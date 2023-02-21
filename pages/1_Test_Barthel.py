@@ -19,10 +19,10 @@ st.markdown("# El test de Barthel")
 #image = Image.open('https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/IB.jpg')
 #image = Image.open('https://github.com/SantiagoArceoDiaz/AMDatabase/blob/7ed451174ce84ad3ea6311783d5d6f64a430102a/pages/IB.jpg')
 
-url = "https://github.com/SantiagoArceoDiaz/AMDatabase/blob/7ed451174ce84ad3ea6311783d5d6f64a430102a/pages/IB.jpg"
+image = "https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/IB.jpg"
 #url = "https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/IB.jpg"
-response = requests.get(url)
-image = Image.open(BytesIO(response.content))
+#response = requests.get(url)
+#image = Image.open(BytesIO(response.content))
 
 st.image(image, caption="Ejemplo del test de Barthel")
 
