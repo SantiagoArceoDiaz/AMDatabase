@@ -1,10 +1,29 @@
 import streamlit as st
 from PIL import Image
+from googletrans import Translator
+
+
 
 st.set_page_config(
     page_title="Hello",
     page_icon="👋",
 )
+
+translator = Translator()
+if st.button("Translate to English"):
+    # Traducir el contenido
+
+def translate_text(text):
+    result = translator.translate(text, dest='en')
+    return result.text
+
+if st.button("Translate to English"):
+    # Traducir el contenido
+    markdown_text = st.markdown(translate_text(markdown_text))
+    tab1.header(translate_text("Fuerza de brazo"))
+    tab2.header(translate_text("Circunferencia de Pantorrilla"))
+    tab3.header(translate_text("Velocidad de Marcha"))
+
 
 st.write("# Sobre la Sarcopenia 👋")
 
