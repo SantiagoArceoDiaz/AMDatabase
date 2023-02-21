@@ -6,7 +6,7 @@ import numpy as np
 st.set_page_config(page_title="Test de Barthel", page_icon=":100:")
 
 st.markdown("# El test de Barthel")
-image = Image.open('C:/Users/Santiago/Downloads/AMapp/pages/IB.jpg')
+image = Image.open('https://github.com/SantiagoArceoDiaz/AMDatabase/blob/main/pages/IB.jpg')
 st.image(image, caption="Ejemplo del test de Barthel")
 st.markdown(
 """
