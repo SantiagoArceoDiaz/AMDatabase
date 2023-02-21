@@ -5,8 +5,13 @@ import numpy as np
 
 st.set_page_config(page_title="Test de Barthel", page_icon=":100:")
 
+#image_url = "https://raw.githubusercontent.com/username/repo/master/example.png"
+#image = Image.open(image_url)
+#st.image(image, caption='Example image')
+
 st.markdown("# El test de Barthel")
-image = Image.open('https://github.com/SantiagoArceoDiaz/AMDatabase/blob/main/pages/IB.jpg')
+#image = Image.open('https://github.com/SantiagoArceoDiaz/AMDatabase/blob/main/pages/IB.jpg')
+image = Image.open('https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/blob/main/pages/IB.jpg')
 st.image(image, caption="Ejemplo del test de Barthel")
 st.markdown(
 """
