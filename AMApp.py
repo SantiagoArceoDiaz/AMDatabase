@@ -33,33 +33,35 @@ st.markdown(
 """
 )
 
-from typing import Text
-#from google_trans_new import google_translator
-import streamlit as st
-#translator = google_translator()
-
-import googletrans
-from pprint import pprint
 
 
-# Initial
-translator = googletrans.Translator()
+
 
 st.title("Language Translator :smile:")
 
-import googletrans
-from pprint import pprint
+import streamlit as st
+from googletrans import Translator
 
+# Initialize the translator
+translator = Translator()
 
-# Initial
-translator = googletrans.Translator()
+# Define the text to be translated
+text_to_translate = "Hello, world!"
 
+# Define the Streamlit app
+def main():
+    # Add a button to trigger the translation
+    if st.button("Translate"):
+        # Translate the text using the Google Translate API
+        translation = translator.translate(text_to_translate, dest='es').text
+        # Display the translated text
+        st.write(translation)
+    else:
+        # Display the original text
+        st.write(text_to_translate)
 
-# Basic Translate
-results = translator.translate('我覺得今天天氣不好。')
-print(results)
-print(results.text)
-
+if __name__ == '__main__':
+    main()
 
 tab1, tab2, tab3 = st.tabs(["Fuerza de brazo", "Circunferencia de Pantorrilla", "Velocidad de Marcha"])
 
