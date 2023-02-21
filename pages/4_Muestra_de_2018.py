@@ -289,13 +289,13 @@ Barras2018, axes = plt.subplots(2, 2, figsize=(10, 10))
 #crear un histograma en cada subplot usando "seaborn"
 #sns.boxplot(data=df, x='team', y='points', ax=axes[0,0])
 #sns.boxplot(data=df, x='team', y='assists', ax=axes[0,1])
-sn.histplot(BD2018['Edad'], ax=axes[0,0], kde=True,
+sns.histplot(BD2018['Edad'], ax=axes[0,0], kde=True,
                       line_kws={'linewidth': 2})
-sn.histplot(BD2018['MNA'], ax=axes[0,1], kde=True,
+sns.histplot(BD2018['MNA'], ax=axes[0,1], kde=True,
                       line_kws={'linewidth': 2})
-sn.histplot(BD2018['Fuerza promedio'], ax=axes[1,0], kde=True,
+sns.histplot(BD2018['Fuerza promedio'], ax=axes[1,0], kde=True,
                       line_kws={'linewidth': 2})
-sn.histplot(df2018['Proteinas'], ax=axes[1,1], kde=True,
+sns.histplot(df2018['Proteinas'], ax=axes[1,1], kde=True,
                       line_kws={'linewidth': 2})
 st.pyplot(Barras2018)
 
