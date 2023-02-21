@@ -55,7 +55,8 @@ with tab1:
     #st.image(IMAGE_URL, caption="Medicion de la fuerza de presion usando un dinamometro digital")
     #image = Image.open('C:/Users/Santiago/Downloads/AMapp/pages/Dina.png')
     #image="https://github.com/SantiagoArceoDiaz/AMDatabase/blob/abf509e5f8a1f80e1894345febe92b82d44971d3/pages/Dina.png"
-    image="https://drive.google.com/file/d/1nH-pMY5EK_fhHaMVTK79WT7L6EvofVTC/view?usp=share_link"
+    #image="https://drive.google.com/file/d/1nH-pMY5EK_fhHaMVTK79WT7L6EvofVTC/view?usp=share_link"
+    image="https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/547b9d1f27ac2e5c5396f35cc85507e74b92404f/pages/Dina.png"
     st.image(image, caption="Medicion de la fuerza de presion usando un dinamometro digital")
     st.write(
     """
