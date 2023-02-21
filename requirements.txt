@@ -12,4 +12,4 @@ seaborn
 openpyxl
 googletrans
 textblob
-sklearn
+scikit-learn
