@@ -592,6 +592,12 @@ Hombres2018 # Muestra el dataframe con datos de hombres.
 
 Hombres2018.describe() # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
 
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
 
 Mujeres2018=BD2018.loc[BD2018['Sexo']=="Fem"] # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Femenino."
 
@@ -620,21 +626,11 @@ del Hombres2018100['Sexo']
 
 
 
-Hombres201860
-
-
-Hombres201870
-
-
-
-Hombres201880
-
-
-Hombres201890
-
-
-
-Hombres2018100
+#Hombres201860
+#Hombres201870
+#Hombres201880
+#Hombres201890
+#Hombres2018100
 
 
 
@@ -651,27 +647,17 @@ del Mujeres2018100['Sexo']
 
 
 
-Mujeres201860
-
-
-Mujeres201870
-
-
-
-Mujeres201880
+#Mujeres201860
+#Mujeres201870
+#Mujeres201880
+#Mujeres201890
+#Mujeres2018100
 
 
 
-Mujeres201890
-
-
-Mujeres2018100
-
-
-
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
+#import pandas as pd
+#import seaborn as sns
+#import matplotlib.pyplot as plt
 # Creamos una correlación desde un dataset D
 corr = Hombres201870.corr().loc[:'BARTHEL', :"BARTHEL"]
 
@@ -681,9 +667,9 @@ plt.show()
 
 
 
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
+#import pandas as pd
+#import seaborn as sns
+#import matplotlib.pyplot as plt
 # Creamos una correlación desde un dataset D
 corr = Hombres201880.corr().loc[:'BARTHEL', :"BARTHEL"]
 
