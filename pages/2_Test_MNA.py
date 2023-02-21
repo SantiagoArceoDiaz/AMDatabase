@@ -7,6 +7,7 @@ from PIL import Image
 st.set_page_config(page_title="Indice Mininutricional", page_icon="📈")
 
 st.markdown("# Indice Mininutricional")
+
 image = Image.open('https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/MNA.png')
 st.image(image, caption="Ejemplo del test de Barthel")
 st.markdown(
