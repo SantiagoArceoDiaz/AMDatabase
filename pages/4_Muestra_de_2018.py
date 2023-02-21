@@ -845,8 +845,8 @@ def Multivariable_Linear_Regression(X,y,learningrate, iterations):
         for i in range(len(y)):
             total += cost_value[i][0] #Calculate the cost function for each iteration
         cost_lst.append(total)
-    st.pyplot(np.arange(1,iterations),cost_lst[1:], color = 'red')
-    #plt.plot(np.arange(1,iterations),cost_lst[1:], color = 'red')
+    #st.pyplot(np.arange(1,iterations),cost_lst[1:], color = 'red')
+    plt.plot(np.arange(1,iterations),cost_lst[1:], color = 'red')
     plt.title('Cost function Graph')
     plt.xlabel('Number of iterations')
     plt.ylabel('Cost')
