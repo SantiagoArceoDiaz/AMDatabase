@@ -15,7 +15,7 @@ import xlsxwriter
 #import datapane as dp
 import matplotlib.pyplot as plt
 import seaborn as sns
-#import sklearn as sk
+import sklearn as sk
 import googletrans
 from googletrans import Translator
 translator = Translator()
