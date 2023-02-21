@@ -1,5 +1,5 @@
 seaborn
-streamlit
+streamlit 1.14.1
 pandas
 numpy
 matplotlib_venn
