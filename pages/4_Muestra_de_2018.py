@@ -4,7 +4,7 @@ import numpy as np
 import base64
 
 import pandas as pd #importa la paquetería PAnel DAta (llamada pandas)
-pip install matplotlib_venn
+#pip install matplotlib_venn
 from matplotlib_venn import venn2, venn2_circles, venn2_unweighted # importa paqueteria para graficar diagramas de venn
 from matplotlib_venn import venn3, venn3_circles
 from matplotlib import pyplot as plt #importa pyplot para hacer gáficas
