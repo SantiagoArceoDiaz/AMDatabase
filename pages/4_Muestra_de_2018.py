@@ -19,33 +19,7 @@ import seaborn as sns
 import googletrans
 from googletrans import Translator
 translator = Translator()
-#from streamlit.scriptrunner import get_script_run_ctx as get_report_ctx
 
-from streamlit.runtime.scriptrunner.script_run_context import get_script_run_ctx
-
-#from streamlit.scrip_runner import get_script_run_ctx as get_report_ctx  
-
-
-
-
-
-
-st.set_page_config(page_title="Muestra de 2018", page_icon=":people_holding_hands:")
-
-
-def translate(text):
-    return translator.translate(text, dest='en').text
-
-if st.button('Traducir a inglés'):
-    # Obtener el contenido actual de la página
-    #page = st.cache(func=st.get_streamlit_report_ctx().get_report_data)().get("full_source")
-    page = st.cache(func=st.get_script_run_ctx().get_report_data)().get("full_source")
-
-    # Traducir el contenido a inglés
-    translated_page = translate(page)
-    
-    # Mostrar el contenido traducido
-    st.write(translated_page)
 
 st.write("# Sobre la muestra")
 
