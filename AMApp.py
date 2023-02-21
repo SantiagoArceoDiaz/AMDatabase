@@ -37,27 +37,54 @@ st.markdown(
 
 
 
-st.title("Language Translator :smile:")
+#st.title("Language Translator :smile:")
+
+#import streamlit as st
+#from textblob import TextBlob
+
+#def translate(text, dest_lang):
+#    blob = TextBlob(text)
+#    translated = blob.translate(to=dest_lang)
+#    return ' '.join(map(str, translated))
+
+# Create a text area for user input
+#text_input = st.text_area('Enter text to translate:', height=200)
+
+# Create a selectbox for destination language
+#dest_lang = st.selectbox('Select destination language:', ['en', 'fr', 'es'])
+
+# Create a button to translate the text
+#if st.button('Translate'):
+#    translation = translate(text_input, dest_lang)
+#    st.write('Translated text:')
+#    st.write(translation)
+
+
 
 import streamlit as st
 from textblob import TextBlob
+from streamlit.components.v1 import html
 
+# Define a function to translate text
 def translate(text, dest_lang):
     blob = TextBlob(text)
     translated = blob.translate(to=dest_lang)
-    return ' '.join(map(str, translated))
-
-# Create a text area for user input
-text_input = st.text_area('Enter text to translate:', height=200)
+    return str(translated)
 
 # Create a selectbox for destination language
 dest_lang = st.selectbox('Select destination language:', ['en', 'fr', 'es'])
 
-# Create a button to translate the text
+# Create a button to translate the page
 if st.button('Translate'):
-    translation = translate(text_input, dest_lang)
-    st.write('Translated text:')
-    st.write(translation)
+    # Get the page content as HTML
+    page = st._get_report_ctx().get_report_adhoc()
+    html_content = page.get_html_content()
+
+    # Translate the HTML content
+    translated_html = translate(html_content, dest_lang)
+
+    # Show the translated HTML content
+    html(translated_html, scrolling=True, width=800, height=1000)
 
 
 
