@@ -713,7 +713,7 @@ fig = alt.Chart(Hombres201870).mark_point().encode(
 final_plot = fig + fig.transform_regression('latitude','longitude').mark_line()
   
 # saving the scatter plot with regression line
-final_plot.save('output2.html')
+st.altair_chart(final_plot)
 
 
 
