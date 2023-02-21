@@ -10,3 +10,4 @@ xlsxwriter
 datapane
 seaborn
 openpyxl
+base64
