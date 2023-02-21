@@ -298,7 +298,7 @@ sns.histplot(BD2018['MNA'], ax=axes[0,1], kde=True,
                       line_kws={'linewidth': 2})
 sns.histplot(BD2018['Fuerza promedio'], ax=axes[1,0], kde=True,
                       line_kws={'linewidth': 2})
-sns.histplot(df2018['Proteinas'], ax=axes[1,1], kde=True,
+sns.histplot(BD2018['Proteinas'], ax=axes[1,1], kde=True,
                       line_kws={'linewidth': 2})
 st.pyplot(Barras2018)
 
@@ -868,4 +868,5 @@ lin_reg.intercept_, lin_reg.coef_
 
 Multivariable_Linear_Regression(X_transform,y, 0.03, 30000)
 
-#st.pyplot(gs)
+sns.histplot(df2018['Proteinas'], ax=axes[1,1], kde=True,
+                      line_kws={'linewidth': 2})
