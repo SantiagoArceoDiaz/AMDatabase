@@ -11,3 +11,4 @@ datapane
 seaborn
 openpyxl
 googletrans
+textblob
