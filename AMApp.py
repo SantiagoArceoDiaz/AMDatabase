@@ -46,33 +46,11 @@ with tab1:
         menor a 17 kg (IMC < 23), menor a 17.3 kg (IMC [23.1,26]), menor a 18 kg (IMC [26,29]) y menor a 21 kg (IMC > 29).
         """
     )
-    #image = Image.open('brazo.jpeg', caption='Medicion de la fuerza de presion utilizando un dinamometro de mano')
-    #st.image(image)
-    
-    #import streamlit as st
 
-    #IMAGE_URL = "https://images.unsplash.com/photo-1548407260-da850faa41e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1487&q=80"
-    #st.image(IMAGE_URL, caption="Medicion de la fuerza de presion usando un dinamometro digital")
     
     image="https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/547b9d1f27ac2e5c5396f35cc85507e74b92404f/pages/Dina.png"
     st.image(image, caption="Medicion de la fuerza de presion usando un dinamometro digital")
-    st.write(
-    """
-    #### Image credit:
-    Creator: User _Neil Iris (@neil_ingham)_ from _Unsplash_
-    License: Do whatever you want.
-    https://unsplash.com/license
-    URL:
-    https://unsplash.com/photos/I2UR7wEftf4
-    """
-    )
-    st.markdown(
-    """
-        # Bibliografia
-        - http://scielo.isciii.es/pdf/nh/v21s3/art06.pdf
-        - http://www.redalyc.org/pdf/3092/309226783003.pdf
-    """    
-    )
+
 
 with tab2:
     st.header("Circunferencia de Pantorrilla")
@@ -82,23 +60,7 @@ with tab2:
     )
     image = 'https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/Calf.jpeg'
     st.image(image, caption="Prueba de velocidad de marcha de 4 metros")
-    st.write(
-    """
-    #### Image credit:
-    Creator: User _Neil Iris (@neil_ingham)_ from _Unsplash_
-    License: Do whatever you want.
-    https://unsplash.com/license
-    URL:
-    https://unsplash.com/photos/I2UR7wEftf4
-    """
-    )
-    st.markdown(
-    """
-        # Bibliografia
-        - http://scielo.isciii.es/pdf/nh/v21s3/art06.pdf
-        - http://www.redalyc.org/pdf/3092/309226783003.pdf
-    """
-    )
+
 
 
 with tab3:
@@ -109,23 +71,7 @@ with tab3:
     )
     image = 'https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/VelMarch.PNG'
     st.image(image, caption="Prueba de velocidad de marcha de 4 metros")
-    st.write(
-    """
-    #### Image credit:
-    Creator: User _Neil Iris (@neil_ingham)_ from _Unsplash_
-    License: Do whatever you want.
-    https://unsplash.com/license
-    URL:
-    https://unsplash.com/photos/I2UR7wEftf4
-    """
-    )
-    st.markdown(
-    """
-        # Bibliografia
-        - http://scielo.isciii.es/pdf/nh/v21s3/art06.pdf
-        - http://www.redalyc.org/pdf/3092/309226783003.pdf
-    """    
-    )
+  
     
     st.markdown(
     """
