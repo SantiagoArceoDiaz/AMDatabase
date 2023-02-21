@@ -9,4 +9,3 @@ altair_catplot
 xlsxwriter
 datapane
 seaborn
-sklearn
