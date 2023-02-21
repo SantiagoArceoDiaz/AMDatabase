@@ -40,7 +40,7 @@ translator = google_translator()
 
 st.title("Language Translator :smile:")
 text=st.text_input("Enter your text here:")
-translate=translator.translate(text,lang_tgt="fr")
+translate=translator.translate(text,lang_tgt="es")
 st.write(translate)
 
 tab1, tab2, tab3 = st.tabs(["Fuerza de brazo", "Circunferencia de Pantorrilla", "Velocidad de Marcha"])
