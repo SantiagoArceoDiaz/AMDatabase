@@ -589,6 +589,12 @@ Hombres2018=BD2018.loc[BD2018['Sexo']=="Mas"]
 del Hombres2018['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
 Hombres2018 # Muestra el dataframe con datos de hombres.
 
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
 
 Hombres2018.describe() # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
 
@@ -604,7 +610,12 @@ Mujeres2018=BD2018.loc[BD2018['Sexo']=="Fem"] # localiza a todos los miembros de
 del Mujeres2018['Sexo']
 Mujeres2018
 
-
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
 
 Mujeres2018.describe() # dEscripcion del Dataframe de "Mujeres"
 
@@ -653,7 +664,12 @@ del Mujeres2018100['Sexo']
 #Mujeres201890
 #Mujeres2018100
 
-
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
 
 #import pandas as pd
 #import seaborn as sns
@@ -743,9 +759,15 @@ ax3 = CalorHombres2018.add_subplot(2, 2, 3)
 sns.heatmap(data=Hombres201870.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
 sns.heatmap(data=Hombres201880.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
 sns.heatmap(data=Hombres201890.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+st.pyplot(CalorHombres2018)
 
 
-
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
 
 
 
@@ -774,3 +796,9 @@ sns.heatmap(data=Mujeres201880.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap 
 sns.heatmap(data=Mujeres201890.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax4, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
 st.pyplot(CalorMujeres2018)
 
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
