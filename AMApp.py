@@ -40,31 +40,27 @@ st.markdown(
 st.title("Language Translator :smile:")
 
 import streamlit as st
-from googletrans import Translator
+from textblob import TextBlob
 
-# Initialize the translator
-#translator = Translator()
+# Define a function to translate text
+def translate(text, dest_lang):
+    blob = TextBlob(text)
+    translated = blob.translate(to=dest_lang)
+    return str(translated)
 
-translator = Translator(service_urls=['translate.google.com'], user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3')
+# Create a text area for user input
+text_input = st.text_area('Enter text to translate:', height=200)
+
+# Create a selectbox for destination language
+dest_lang = st.selectbox('Select destination language:', ['en', 'fr', 'es'])
+
+# Create a button to translate the text
+if st.button('Translate'):
+    translation = translate(text_input, dest_lang)
+    st.write('Translated text:')
+    st.write(translation)
 
 
-# Define the text to be translated
-text_to_translate = "Hello, world!"
-
-# Define the Streamlit app
-def main():
-    # Add a button to trigger the translation
-    if st.button("Translate"):
-        # Translate the text using the Google Translate API
-        translation = translator.translate(text_to_translate, dest='es').text
-        # Display the translated text
-        st.write(translation)
-    else:
-        # Display the original text
-        st.write(text_to_translate)
-
-if __name__ == '__main__':
-    main()
 
 tab1, tab2, tab3 = st.tabs(["Fuerza de brazo", "Circunferencia de Pantorrilla", "Velocidad de Marcha"])
 
