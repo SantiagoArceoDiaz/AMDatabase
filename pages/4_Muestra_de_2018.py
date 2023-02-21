@@ -175,7 +175,7 @@ for col in columnas:
         valores_min = BD2018[col].min()
         valores_max = BD2018[col].max()
         # Crear una barra de selección para el rango de valores en la columna
-        seleccion = st.sidebar.slider(col, valores_min, valores_max, (valores_min, valores_max))
+        seleccion = st.sidebar.slider(col, int(valores_min), int(valores_max), (int(valores_min), int(valores_max)))
         # Filtrar el dataframe en función de los valores seleccionados en la columna
         BD2018 = BD2018[(BD2018[col] >= seleccion[0]) & (BD2018[col] <= seleccion[1])]
 
