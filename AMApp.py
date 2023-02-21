@@ -3,55 +3,20 @@ from PIL import Image
 from googletrans import Translator
 
 
-
-import streamlit as st
 from googletrans import Translator
-
-st.set_page_config(
-    page_title="Hello",
-    page_icon="👋",
-)
 
 translator = Translator()
 
-def translate_text(text):
-    result = translator.translate(text, dest='en')
-    return result.text
+st.set_page_config(
+    page_title="Presentation",
+    page_icon="👋",
+)
 
-markdown_text = st.text_area("Introduzca su texto aquí:", value='', height=250)
+st.write("# About Sarcopenia 👋")
 
-if st.button("Traducir al inglés"):
-    # Traducir el contenido
-    translated_text = translate_text(markdown_text)
-    markdown_text = st.markdown(translated_text)
-
-    # Actualizar los encabezados de las pestañas
-    with st.beta_container():
-        with st.beta_tabs():
-            tab1 = st.beta_container()
-            tab2 = st.beta_container()
-            tab3 = st.beta_container()
-
-        with tab1:
-            st.write(translated_text)
-            st.header(translate_text("Fuerza de brazo"))
-
-        with tab2:
-            st.write(translated_text)
-            st.header(translate_text("Circunferencia de Pantorrilla"))
-
-        with tab3:
-            st.write(translated_text)
-            st.header(translate_text("Velocidad de Marcha"))
-
-
-
-st.write("# Sobre la Sarcopenia 👋")
-
-st.sidebar.success("Select a demo above.")
-
-st.markdown(
-    """
+if st.button("Translate to English"):
+    # Translate the text to English
+    translated_text = translator.translate("""
     Se define la sarcopenia como la perdida progresiva de masa muscular, asociada con la edad. Esta condicion es tipica, aunque
     no exclusiva, en adultos mayores y puede generar impactos negativos en la fuerza y la habilidad funcional al realizar 
     tareas propias de la vida cotidiana. 
@@ -69,9 +34,31 @@ st.markdown(
     La base de datos antropometricos esta conformada por los resultados de pruebas realizadas en adultos mayores que 
     residen en casas de asistencia. Estas pruebas incluyen: los test de Barthel e indice mininutricional, mediciones antropometricas de
     fuerza de presion y velocidad de marcha, la ingesta diaria de proteinas y la estimacion del riesgo de fragilidad (mediante el Z-score)
+    """, dest="en")
 
-"""
-)
+    st.markdown(translated_text.text)
+
+else:
+    st.markdown("""
+    Se define la sarcopenia como la perdida progresiva de masa muscular, asociada con la edad. Esta condicion es tipica, aunque
+    no exclusiva, en adultos mayores y puede generar impactos negativos en la fuerza y la habilidad funcional al realizar 
+    tareas propias de la vida cotidiana. 
+
+    Los adultos registran una perdida promedio de masa muscular de entre 3 y 8 porciento a patir de los 30 años. Algunso factores 
+    que se han asociado con la aparicion de la sarcopenia son: la inactividad fisica, la edad y una dieta deficiente. 
+
+    En el caso de los adultos mayores, la ausencia de ejercicio tiene multiples consecuencias asociadas con la perdida de masa
+    muscular: un riesgo incrementado de caidas y fracturas, un aumento en la sensacion de fatiga durante el dia y una disminucion 
+    en la resistencia muscular. Entre las habilidades necesarias para la vida cotidiana que se ven afectadas por la sarcopenia 
+    estan: la velocidad de marcha, caídas, incapacidad para subir escaleras y en general, debilidad en las extremidades 
+    inferiores. La ingesta insuficiente de proteinas en la dieta esta relacionada con la perdida de masa muscular en hombres y 
+    mujeres de edades comprendidas entre 70 y 79 años.
+
+    La base de datos antropometricos esta conformada por los resultados de pruebas realizadas en adultos mayores que 
+    residen en casas de asistencia. Estas pruebas incluyen: los test de Barthel e indice mininutricional, mediciones antropometricas de
+    fuerza de presion y velocidad de marcha, la ingesta diaria de proteinas y la estimacion del riesgo de fragilidad (mediante el Z-score)
+    """)
+
 
 tab1, tab2, tab3 = st.tabs(["Fuerza de brazo", "Circunferencia de Pantorrilla", "Velocidad de Marcha"])
 
