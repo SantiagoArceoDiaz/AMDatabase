@@ -577,6 +577,13 @@ st.altair_chart(correlaciones2018)
 
 #st.pyplot(grafico)
 
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
+
 # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Masculino."
 Hombres2018=BD2018.loc[BD2018['Sexo']=="Mas"]
 del Hombres2018['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
