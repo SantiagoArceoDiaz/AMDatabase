@@ -1,2 +1,14 @@
 matplotlib-venn==0.11.6
 seaborn
+streamlit
+pandas
+numpy
+matplotlib_venn
+matplotlib
+altair
+altair_catplot
+xlsxwriter
+os
+datapane
+seaborn
+sklearn
