@@ -64,6 +64,8 @@ st.markdown(
 import streamlit as st
 from textblob import TextBlob
 from streamlit.components.v1 import html
+from streamlit.report_thread import add_report_ctx
+
 
 # Define a function to translate text
 def translate(text, dest_lang):
@@ -77,7 +79,7 @@ dest_lang = st.selectbox('Select destination language:', ['en', 'fr', 'es'])
 # Create a button to translate the page
 if st.button('Translate'):
     # Get the page content as HTML
-    page = st._get_report_ctx().get_report_adhoc()
+    page = st._add_report_ctx().get_report_adhoc()
     html_content = page.get_html_content()
 
     # Translate the HTML content
