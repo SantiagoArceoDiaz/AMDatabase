@@ -61,32 +61,32 @@ st.markdown(
 
 
 
-import streamlit as st
-from textblob import TextBlob
-from streamlit.components.v1 import html
-from streamlit.report_thread import add_report_ctx
+#import streamlit as st
+#from textblob import TextBlob
+#from streamlit.components.v1 import html
+#from streamlit.report_thread import add_report_ctx
 
 
 # Define a function to translate text
-def translate(text, dest_lang):
-    blob = TextBlob(text)
-    translated = blob.translate(to=dest_lang)
-    return str(translated)
+#def translate(text, dest_lang):
+#    blob = TextBlob(text)
+#    translated = blob.translate(to=dest_lang)
+#    return str(translated)
 
 # Create a selectbox for destination language
-dest_lang = st.selectbox('Select destination language:', ['en', 'fr', 'es'])
+#dest_lang = st.selectbox('Select destination language:', ['en', 'fr', 'es'])
 
 # Create a button to translate the page
-if st.button('Translate'):
-    # Get the page content as HTML
-    page = st._add_report_ctx().get_report_adhoc()
-    html_content = page.get_html_content()
+#if st.button('Translate'):
+#    # Get the page content as HTML
+#    page = st._add_report_ctx().get_report_adhoc()
+#    html_content = page.get_html_content()
 
-    # Translate the HTML content
-    translated_html = translate(html_content, dest_lang)
+#    # Translate the HTML content
+#    translated_html = translate(html_content, dest_lang)
 
     # Show the translated HTML content
-    html(translated_html, scrolling=True, width=800, height=1000)
+#    html(translated_html, scrolling=True, width=800, height=1000)
 
 
 
