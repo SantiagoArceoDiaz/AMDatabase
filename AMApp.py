@@ -4,25 +4,46 @@ from googletrans import Translator
 
 
 
+import streamlit as st
+from googletrans import Translator
+
 st.set_page_config(
     page_title="Hello",
     page_icon="👋",
 )
 
 translator = Translator()
-if st.button("Translate to English"):
-    # Traducir el contenido
 
 def translate_text(text):
     result = translator.translate(text, dest='en')
     return result.text
 
-if st.button("Translate to English"):
+markdown_text = st.text_area("Introduzca su texto aquí:", value='', height=250)
+
+if st.button("Traducir al inglés"):
     # Traducir el contenido
-    markdown_text = st.markdown(translate_text(markdown_text))
-    tab1.header(translate_text("Fuerza de brazo"))
-    tab2.header(translate_text("Circunferencia de Pantorrilla"))
-    tab3.header(translate_text("Velocidad de Marcha"))
+    translated_text = translate_text(markdown_text)
+    markdown_text = st.markdown(translated_text)
+
+    # Actualizar los encabezados de las pestañas
+    with st.beta_container():
+        with st.beta_tabs():
+            tab1 = st.beta_container()
+            tab2 = st.beta_container()
+            tab3 = st.beta_container()
+
+        with tab1:
+            st.write(translated_text)
+            st.header(translate_text("Fuerza de brazo"))
+
+        with tab2:
+            st.write(translated_text)
+            st.header(translate_text("Circunferencia de Pantorrilla"))
+
+        with tab3:
+            st.write(translated_text)
+            st.header(translate_text("Velocidad de Marcha"))
+
 
 
 st.write("# Sobre la Sarcopenia 👋")
