@@ -19,6 +19,10 @@ import seaborn as sns
 import googletrans
 from googletrans import Translator
 translator = Translator()
+from streamlit.scriptrunner import get_script_run_ctx as get_report_ctx
+
+
+
 
 st.set_page_config(page_title="Muestra de 2018", page_icon=":people_holding_hands:")
 
