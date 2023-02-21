@@ -20,6 +20,9 @@ import googletrans
 from googletrans import Translator
 translator = Translator()
 
+st.set_page_config(page_title="Muestra de 2018", page_icon=":people_holding_hands:")
+
+
 def translate(text):
     return translator.translate(text, dest='en').text
 
@@ -33,7 +36,6 @@ if st.button('Traducir a inglés'):
     # Mostrar el contenido traducido
     st.write(translated_page)
 
-st.set_page_config(page_title="Muestra de 2018", page_icon=":people_holding_hands:")
 st.write("# Sobre la muestra")
 
 #st.title('Antropometria')
