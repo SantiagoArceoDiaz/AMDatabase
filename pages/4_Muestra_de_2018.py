@@ -21,7 +21,7 @@ from googletrans import Translator
 translator = Translator()
 #from streamlit.scriptrunner import get_script_run_ctx as get_report_ctx
 
-from streamlit.runtime.scriptrunner.script_run_context import get_script_run_ctx as get_report_ctx
+from streamlit.runtime.scriptrunner.script_run_context import get_script_run_ctx
 
 #from streamlit.scrip_runner import get_script_run_ctx as get_report_ctx  
 
@@ -39,7 +39,7 @@ def translate(text):
 if st.button('Traducir a inglés'):
     # Obtener el contenido actual de la página
     #page = st.cache(func=st.get_streamlit_report_ctx().get_report_data)().get("full_source")
-    page = st.cache(func=st.get_report_ctx().get_report_data)().get("full_source")
+    page = st.cache(func=st.get_script_run_ctx().get_report_data)().get("full_source")
 
     # Traducir el contenido a inglés
     translated_page = translate(page)
