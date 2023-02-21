@@ -46,9 +46,20 @@ from pprint import pprint
 translator = googletrans.Translator()
 
 st.title("Language Translator :smile:")
-text=st.text_input("Enter your text here:")
-translate=translator.translate(text,lang_tgt="es")
-st.write(translate)
+
+import googletrans
+from pprint import pprint
+
+
+# Initial
+translator = googletrans.Translator()
+
+
+# Basic Translate
+results = translator.translate('我覺得今天天氣不好。')
+print(results)
+print(results.text)
+
 
 tab1, tab2, tab3 = st.tabs(["Fuerza de brazo", "Circunferencia de Pantorrilla", "Velocidad de Marcha"])
 
