@@ -664,6 +664,7 @@ corr = Hombres201870.corr().loc[:'BARTHEL', :"BARTHEL"]
 # Dibujamos nuestro gráfico
 sns.heatmap(corr)
 plt.show()
+#st.seaborn(Barras2018)
 
 
 
@@ -745,8 +746,7 @@ sns.heatmap(data=Hombres201890.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap 
 
 
 
-import matplotlib.pyplot as plt
-import seaborn as sns
+
 
 
 #import seaborn as sns
@@ -772,5 +772,5 @@ sns.heatmap(data=Mujeres201860.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap 
 sns.heatmap(data=Mujeres201870.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
 sns.heatmap(data=Mujeres201880.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
 sns.heatmap(data=Mujeres201890.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax4, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-
+st.pyplot(CalorMujeres)
 
