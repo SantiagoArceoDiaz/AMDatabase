@@ -53,9 +53,7 @@ with tab1:
 
     #IMAGE_URL = "https://images.unsplash.com/photo-1548407260-da850faa41e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1487&q=80"
     #st.image(IMAGE_URL, caption="Medicion de la fuerza de presion usando un dinamometro digital")
-    #image = Image.open('C:/Users/Santiago/Downloads/AMapp/pages/Dina.png')
-    #image="https://github.com/SantiagoArceoDiaz/AMDatabase/blob/abf509e5f8a1f80e1894345febe92b82d44971d3/pages/Dina.png"
-    #image="https://drive.google.com/file/d/1nH-pMY5EK_fhHaMVTK79WT7L6EvofVTC/view?usp=share_link"
+    
     image="https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/547b9d1f27ac2e5c5396f35cc85507e74b92404f/pages/Dina.png"
     st.image(image, caption="Medicion de la fuerza de presion usando un dinamometro digital")
     st.write(
@@ -76,16 +74,13 @@ with tab1:
     """    
     )
 
-
-
-
 with tab2:
     st.header("Circunferencia de Pantorrilla")
     st.markdown(
     """La prueba de circunferencia de pantorrilla es una medida clínica utilizada para evaluar la masa muscular periférica en adultos mayores. Esta prueba es una evaluación simple y no invasiva de la masa muscular que se puede realizar en un entorno clínico o en el hogar. La circunferencia de la pantorrilla es un indicador útil de la masa muscular periférica debido a la alta correlación entre la circunferencia de la pantorrilla y la masa muscular total. La disminución de la masa muscular periférica es un indicador común de la disminución de la fuerza y ​​la función muscular en adultos mayores, lo que se asocia con una mayor discapacidad, caídas y mortalidad. Para realizar la prueba de circunferencia de pantorrilla, se mide la circunferencia de la pantorrilla desnuda en la pierna dominante, en un punto específico, generalmente en la parte más ancha de la pantorrilla. La medida se toma utilizando una cinta métrica flexible y se registra en centímetros. Los valores normales de la circunferencia de la pantorrilla pueden variar según la edad, el sexo y la etnia, pero generalmente se considera normal una medida superior a 31 cm en mujeres y 34 cm en hombres. La prueba de circunferencia de pantorrilla es una herramienta útil para la evaluación de la masa muscular periférica en adultos mayores, pero debe usarse junto con otras medidas clínicas y pruebas de función muscular para una evaluación más completa del estado de la masa muscular y la fuerza en los adultos mayores.
     """
     )
-    image = Image.open('https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/Calf.jpeg')
+    image = 'https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/Calf.jpeg'
     st.image(image, caption="Prueba de velocidad de marcha de 4 metros")
     st.write(
     """
@@ -112,7 +107,7 @@ with tab3:
     """ La prueba de velocidad de marcha, también conocida como prueba de la marcha de 4 metros, es una evaluación simple y rápida que se utiliza comúnmente en adultos mayores para medir su velocidad de marcha y su capacidad funcional. La prueba implica cronometrar el tiempo que tarda una persona en caminar cuatro metros a su ritmo habitual. La velocidad de marcha se considera un predictor importante de la capacidad funcional de los adultos mayores, lo que significa que puede ser un indicador de su capacidad para realizar actividades diarias y su calidad de vida en general. En particular, se ha demostrado que la velocidad de marcha se correlaciona con la capacidad para realizar actividades básicas de la vida diaria, como levantarse de una silla, caminar y subir escaleras, así como con la capacidad para realizar actividades instrumentales de la vida diaria, como hacer compras, cocinar y manejar el dinero. Además de ser una herramienta útil para la evaluación de la capacidad funcional, la prueba de velocidad de marcha también se ha utilizado como predictor de la mortalidad en adultos mayores. Se ha demostrado que una velocidad de marcha lenta se asocia con un mayor riesgo de mortalidad en esta población. En resumen, la prueba de velocidad de marcha es una herramienta importante para la evaluación de la capacidad funcional y la salud en adultos mayores. Permite a los profesionales de la salud identificar a las personas que pueden estar en mayor riesgo de limitaciones funcionales y desarrollar planes de tratamiento y prevención para mejorar su calidad de vida y reducir su riesgo de mortalidad.
     """
     )
-    image = Image.open('https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/VelMarch.PNG')
+    image = 'https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/VelMarch.PNG'
     st.image(image, caption="Prueba de velocidad de marcha de 4 metros")
     st.write(
     """
