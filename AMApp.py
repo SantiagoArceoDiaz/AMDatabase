@@ -42,11 +42,10 @@ st.title("Language Translator :smile:")
 import streamlit as st
 from textblob import TextBlob
 
-# Define a function to translate text
 def translate(text, dest_lang):
     blob = TextBlob(text)
     translated = blob.translate(to=dest_lang)
-    return str(translated)
+    return ' '.join(map(str, translated))
 
 # Create a text area for user input
 text_input = st.text_area('Enter text to translate:', height=200)
