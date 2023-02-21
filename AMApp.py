@@ -33,6 +33,16 @@ st.markdown(
 """
 )
 
+from typing import Text
+from google_trans_new import google_translator
+import streamlit as st
+translator = google_translator()
+
+st.title("Language Translator :smile:")
+text=st.text_input("Enter your text here:")
+translate=translator.translate(text,lang_tgt="fr")
+st.write(translate)
+
 tab1, tab2, tab3 = st.tabs(["Fuerza de brazo", "Circunferencia de Pantorrilla", "Velocidad de Marcha"])
 
 with tab1:
