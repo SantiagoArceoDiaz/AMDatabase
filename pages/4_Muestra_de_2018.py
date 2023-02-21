@@ -25,7 +25,7 @@ def translate(text):
 
 if st.button('Traducir a inglés'):
     # Obtener el contenido actual de la página
-    page = st.cache(func=st._get_report_ctx().get_report_data)().get("full_source")
+    page = st.cache(func=st.get_report_ctx().get_report_data)().get("full_source")
     
     # Traducir el contenido a inglés
     translated_page = translate(page)
