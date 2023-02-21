@@ -1,4 +1,3 @@
-matplotlib-venn==0.11.6
 seaborn
 streamlit
 pandas
