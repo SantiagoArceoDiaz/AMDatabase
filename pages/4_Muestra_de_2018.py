@@ -1,26 +1,25 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-import base64
+#import streamlit as st
+#import pandas as pd
+#import numpy as np
+#import base64
 
-import pandas as pd #importa la paquetería PAnel DAta (llamada pandas)
+#import pandas as pd #importa la paquetería PAnel DAta (llamada pandas)
 #pip install matplotlib_venn
 from matplotlib_venn import venn2, venn2_circles, venn2_unweighted # importa paqueteria para graficar diagramas de venn
 from matplotlib_venn import venn3, venn3_circles
 from matplotlib import pyplot as plt #importa pyplot para hacer gáficas
 from matplotlib import numpy as np #importar numpy
-import seaborn as sn
-import altair as alt
-import altair_catplot as altcat
-import xlsxwriter
-import os
-import datapane as dp
-import matplotlib.pyplot as plt
-import seaborn as sns
-import sklearn as sk
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
+#import altair as alt
+#import altair_catplot as altcat
+#import xlsxwriter
+#import os
+#import datapane as dp
+#import matplotlib.pyplot as plt
+#import seaborn as sns
+#import sklearn as sk
+#import pandas as pd
+#import seaborn as sns
+#import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Muestra de 2018", page_icon=":people_holding_hands:")
 st.write("# Sobre la muestra")
