@@ -34,9 +34,16 @@ st.markdown(
 )
 
 from typing import Text
-from google_trans_new import google_translator
+#from google_trans_new import google_translator
 import streamlit as st
-translator = google_translator()
+#translator = google_translator()
+
+import googletrans
+from pprint import pprint
+
+
+# Initial
+translator = googletrans.Translator()
 
 st.title("Language Translator :smile:")
 text=st.text_input("Enter your text here:")
