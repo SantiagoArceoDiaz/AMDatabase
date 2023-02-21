@@ -9,3 +9,4 @@ altair_catplot
 xlsxwriter
 datapane
 seaborn
+openpyxl
