@@ -69,7 +69,7 @@ df2018['Nombre']= df2018['Nombres'] + df2018['Apellidos'] #combina las columnas 
 del df2018['Apellidos'] # y elimina las columnas individuales.
 del df2018['Nombres']
 #df2018['Fuerza promedio']=df2018['Prom_Fuer'] 
-df2018['Fuerza promedio'] = pd.to_numeric(df2018['Prom_Fuer'])
+df2018['Fuerza'] = pd.to_numeric(df2018['Prom_Fuer'])
 
 # Cambia el orden de las columnas
 #df2018[['Nombre', 'Sexo', 'MNA', 'Prom_Fuer','Proteinas','BARTHEL', 'Int_BARTHEL']]
@@ -94,7 +94,7 @@ ddf2018 = pd.merge(left=df2018,right=DBEdades, how="inner",on="Nombre")
 #ddf2018 # Combina las bases de datos de 2018 con la de usuarios con edad registrada, dejando solo los que tienen en comun
 # es decir, la intersección vista en el diagrama de Venn.
 
-BD2018=ddf2018[['Nombre','Edad','Sexo', 'MNA', 'Fuerza promedio','Proteinas','BARTHEL', 'Int_BARTHEL']]
+BD2018=ddf2018[['Nombre','Edad','Sexo', 'MNA', 'Fuerza','Proteinas','BARTHEL', 'Int_BARTHEL']]
 #BD2018 # Cambia el orden de las columnas y se guarda como una base de datos nueva.
 
 df=BD2018
@@ -161,7 +161,7 @@ df=BD2018
 #st.write(BD2018)
 
 # Seleccionar las columnas que quieres filtrar
-columnas = ['Edad', 'Sexo', 'MNA', 'Fuerza promedio', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
+columnas = ['Edad', 'Sexo', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
 
 # Crear una barra de búsqueda para cada columna en la barra lateral
 for col in columnas:
@@ -323,7 +323,7 @@ chart1=altcat.catplot(BD2018,
                              tooltip=[alt.Tooltip("Nombre"),
                              alt.Tooltip("Edad"),
                              alt.Tooltip("Proteinas"),
-                             alt.Tooltip('Fuerza promedio'),
+                             alt.Tooltip('Fuerza'),
                              alt.Tooltip("MNA"),
                              #alt.Tooltip("Marcha"),
                              alt.Tooltip("BARTHEL"),
@@ -343,7 +343,7 @@ chart2=altcat.catplot(BD2018,
                              tooltip=[alt.Tooltip("Nombre"),
                              alt.Tooltip("Edad"),
                              alt.Tooltip("Proteinas"),
-                             alt.Tooltip('Fuerza promedio'),
+                             alt.Tooltip('Fuerza'),
                              alt.Tooltip("MNA"),
                              #alt.Tooltip("Marcha"),
                              alt.Tooltip("BARTHEL"),
@@ -379,11 +379,11 @@ chart4=altcat.catplot(BD2018,
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
                encoding=dict(x=alt.X('Sexo:N', title=None),
-                             y=alt.Y('Fuerza promedio:Q',scale=alt.Scale(zero=False)),
+                             y=alt.Y('Fuerza:Q',scale=alt.Scale(zero=False)),
                              tooltip=[alt.Tooltip("Nombre"),
                              alt.Tooltip("Edad"),
                              alt.Tooltip("Proteinas"),
-                             alt.Tooltip('Fuerza promedio'),
+                             alt.Tooltip('Fuerza'),
                              alt.Tooltip("MNA"),
                              #alt.Tooltip("Marcha"),
                              alt.Tooltip("BARTHEL"),
@@ -419,11 +419,11 @@ chart6=altcat.catplot(BD2018,
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
                encoding=dict(x=alt.X('Sexo:N', title=None),
-                             y=alt.Y('Fuerza promedio:Q',scale=alt.Scale(zero=False)),
+                             y=alt.Y('Fuerza:Q',scale=alt.Scale(zero=False)),
                              tooltip=[alt.Tooltip("Nombre"),
                              alt.Tooltip("Edad"),
                              alt.Tooltip("Proteinas"),
-                             alt.Tooltip('Fuerza promedio'),
+                             alt.Tooltip('Fuerza'),
                              alt.Tooltip("MNA"),
                              #alt.Tooltip("Marcha"),
                              alt.Tooltip("BARTHEL"),
@@ -452,11 +452,11 @@ st.altair_chart(cajas2018)
 
 selection = alt.selection_multi(fields=['Sexo'], bind='legend')
 chart1 = alt.Chart(BD2018).mark_circle(size=50).encode(
-    x='Edad', y='Fuerza promedio',
+    x='Edad', y='Fuerza',
     color='Sexo',
     tooltip=[alt.Tooltip("Nombre"),
     alt.Tooltip("MNA"),
-    alt.Tooltip('Fuerza promedio'),
+    alt.Tooltip('Fuerza'),
     #alt.Tooltip("Marcha"),
     #alt.Tooltip("PuntajeZ"),
     alt.Tooltip("BARTHEL"),
@@ -473,7 +473,7 @@ chart2 = alt.Chart(BD2018).mark_circle(size=50).encode(
     color='Sexo',
     tooltip=[alt.Tooltip("Nombre"),
     alt.Tooltip("MNA"),
-    alt.Tooltip('Fuerza promedio'),
+    alt.Tooltip('Fuerza'),
     #alt.Tooltip("Marcha"),
     #alt.Tooltip("PuntajeZ"),
     alt.Tooltip("BARTHEL"),
@@ -492,7 +492,7 @@ chart3 = alt.Chart(BD2018).mark_circle(size=50).encode(
     color='Sexo',
     tooltip=[alt.Tooltip("Nombre"),
     alt.Tooltip("MNA"),
-    alt.Tooltip('Fuerza promedio'),
+    alt.Tooltip('Fuerza'),
     #alt.Tooltip("Marcha"),
     #alt.Tooltip("PuntajeZ"),
     alt.Tooltip("BARTHEL"),
@@ -544,7 +544,7 @@ chart6 = alt.Chart(BD2018).mark_circle(size=50).encode(
     color='Sexo',
     tooltip=[alt.Tooltip("Nombre"),
     alt.Tooltip("MNA"),
-    alt.Tooltip('Fuerza promedio'),
+    alt.Tooltip('Fuerza'),
     #alt.Tooltip("Marcha"),
     #alt.Tooltip("PuntajeZ"),
     alt.Tooltip("BARTHEL"),
@@ -861,7 +861,7 @@ def Multivariable_Linear_Regression(X,y,learningrate, iterations):
     return theta
 
 
-BD2018 = BD2018[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza promedio', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+BD2018 = BD2018[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 X = BD2018.iloc[:,2:-2].values
 y = BD2018.iloc[:,-2].values
 
@@ -876,7 +876,7 @@ lin_reg.intercept_, lin_reg.coef_
 theta_optimal = Multivariable_Linear_Regression(X_transform, y, 0.03, 30000)
 
 # Create a new dataframe with the original data and predicted values
-X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Fuerza promedio', 'Proteinas'])
+X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Fuerza', 'Proteinas'])
 predictions = np.dot(X_transform_df, theta_optimal[1:]) + theta_optimal[0]
 BD2018_with_predictions = BD2018.assign(Predicted_BARTHEL=predictions)
 
@@ -942,7 +942,7 @@ def Multivariable_Linear_Regression(X,y,learningrate, iterations):
     return theta
 
 
-BD2018 = BD2018[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza promedio', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+BD2018 = BD2018[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 X = BD2018.iloc[:,2:-2].values
 y = BD2018.iloc[:,-2].values
 
@@ -957,7 +957,7 @@ lin_reg.intercept_, lin_reg.coef_
 theta_optimal = Multivariable_Linear_Regression(X_transform, y, 0.03, 30000)
 
 # Create a new dataframe with the original data and predicted values
-X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Fuerza promedio', 'Proteinas'])
+X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Fuerza', 'Proteinas'])
 predictions = np.dot(X_transform_df, theta_optimal[1:]) + theta_optimal[0]
 BD2018_with_predictions = BD2018.assign(Predicted_BARTHEL=predictions)
 
