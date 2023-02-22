@@ -296,7 +296,7 @@ sns.histplot(BD2018['Edad'], ax=axes[0,0], kde=True,
                       line_kws={'linewidth': 2})
 sns.histplot(BD2018['MNA'], ax=axes[0,1], kde=True,
                       line_kws={'linewidth': 2})
-sns.histplot(BD2018['Fuerza promedio'], ax=axes[1,0], kde=True,
+sns.histplot(BD2018['Fuerza'], ax=axes[1,0], kde=True,
                       line_kws={'linewidth': 2})
 sns.histplot(BD2018['Proteinas'], ax=axes[1,1], kde=True,
                       line_kws={'linewidth': 2})
