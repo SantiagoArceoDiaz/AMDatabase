@@ -973,6 +973,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from sklearn.datasets import load_iris
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier, export_text
+from sklearn import tree
 
 
 # Cargar los datos del conjunto iris
@@ -1053,4 +1054,6 @@ clf.fit(X, y)
 tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist())
 
 st.text(tree_rules)
+
+tree.plot_tree(clf)
 
