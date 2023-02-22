@@ -1083,10 +1083,10 @@ def tree_to_code(tree, feature_names):
             threshold = tree_.threshold[node]
             st.text("{}if {} <= {}:".format(indent, name, np.round(threshold,2)))
             recurse(tree_.children_left[node], depth + 1)
-            st.text(("{}else:  # if {} > {}".format(indent, name, np.round(threshold,2)))
+            st.text("{}else:  # if {} > {}".format(indent, name, np.round(threshold,2)))
             recurse(tree_.children_right[node], depth + 1)
         else:
-            st.text(("{}return {}".format(indent, tree_.value[node]))
+            st.text("{}return {}".format(indent, tree_.value[node]))
 
     recurse(0, 1)
 
