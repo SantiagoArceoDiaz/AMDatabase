@@ -1052,7 +1052,7 @@ clf.fit(X, y)
 
 #tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2])
 #tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist())
-tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist(), class_names=["Clase 1", "Clase 2"])
+tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist(), class_names=BD2018.columns[-1])
 
 st.text(tree_rules)
 
