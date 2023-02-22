@@ -1081,12 +1081,12 @@ def tree_to_code(tree, feature_names):
         if tree_.feature[node] != _tree.TREE_UNDEFINED:
             name = feature_name[node]
             threshold = tree_.threshold[node]
-            print("{}if {} <= {}:".format(indent, name, np.round(threshold,2)))
+            st.write("{}if {} <= {}:".format(indent, name, np.round(threshold,2)))
             recurse(tree_.children_left[node], depth + 1)
-            print("{}else:  # if {} > {}".format(indent, name, np.round(threshold,2)))
+            st.write(("{}else:  # if {} > {}".format(indent, name, np.round(threshold,2)))
             recurse(tree_.children_right[node], depth + 1)
         else:
-            print("{}return {}".format(indent, tree_.value[node]))
+            st.write(("{}return {}".format(indent, tree_.value[node]))
 
     recurse(0, 1)
 
