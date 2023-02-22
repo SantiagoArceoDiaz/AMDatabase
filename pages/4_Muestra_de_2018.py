@@ -1062,7 +1062,8 @@ st.pyplot(fig)
 import graphviz 
 dot_data = tree.export_graphviz(clf, out_file=None) 
 graph = graphviz.Source(dot_data) 
-graph.render("iris")
+#graph.render("iris")
+st.graphviz_chart(graph.render(engine='dot'), use_container_width=True)
 
 dot_data = tree.export_graphviz(clf, out_file=None, 
                       #feature_names=iris.feature_names,  
