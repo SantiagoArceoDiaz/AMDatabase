@@ -860,9 +860,11 @@ def Multivariable_Linear_Regression(X,y,learningrate, iterations):
     st.pyplot(fig)
     return theta
 
-diabetes = load_diabetes()
-X = diabetes.data
-y = diabetes.target
+#diabetes = load_diabetes()
+#X = diabetes.data
+#y = diabetes.target
+X = BD2018.columns[1:-2]
+Y = BD2018.columns[-1]
 
 sc=StandardScaler()
 X_transform=sc.fit_transform(X)
