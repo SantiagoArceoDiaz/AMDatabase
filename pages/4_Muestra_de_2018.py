@@ -803,10 +803,10 @@ st.markdown(
     """
     )
 
-
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 from sklearn.datasets import load_diabetes
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
@@ -860,9 +860,7 @@ def Multivariable_Linear_Regression(X,y,learningrate, iterations):
     st.pyplot(fig)
     return theta
 
-#diabetes = load_diabetes()
-#X = diabetes.data
-#y = diabetes.target
+
 BD2018 = BD2018[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza promedio', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 X = BD2018.iloc[:,2:-2].values
 y = BD2018.iloc[:,-2].values
@@ -874,5 +872,97 @@ lin_reg = LinearRegression()
 lin_reg.fit(X_transform, y)
 lin_reg.intercept_, lin_reg.coef_
 
-Multivariable_Linear_Regression(X_transform,y, 0.03, 30000)
+# Find the optimal theta values using the custom function
+theta_optimal = Multivariable_Linear_Regression(X_transform, y, 0.03, 30000)
+
+# Create a new dataframe with the original data and predicted values
+X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Fuerza promedio', 'Proteinas'])
+predictions = np.dot(X_transform_df, theta_optimal[1:]) + theta_optimal[0]
+BD2018_with_predictions = BD2018.assign(Predicted_BARTHEL=predictions)
+
+# Print the new dataframe with predictions
+st.write(BD2018_with_predictions)
+
+
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.datasets import load_diabetes
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+
+def generateXvector(X):
+    """ Taking the original independent variables matrix and add a row of 1 which corresponds to x_0
+        Parameters:
+          X:  independent variables matrix
+        Return value: the matrix that contains all the values in the dataset, not include the outcomes values 
+    """
+    vectorX = np.c_[np.ones((len(X), 1)), X]
+    return vectorX
+
+def theta_init(X):
+    """ Generate an initial value of vector θ from the original independent variables matrix
+         Parameters:
+          X:  independent variables matrix
+        Return value: a vector of theta filled with initial guess
+    """
+    theta = np.random.randn(len(X[0])+1, 1)
+    return theta
+
+def Multivariable_Linear_Regression(X,y,learningrate, iterations):
+    """ Find the multivarite regression model for the data set
+         Parameters:
+          X:  independent variables matrix
+          y: dependent variables matrix
+          learningrate: learningrate of Gradient Descent
+          iterations: the number of iterations
+        Return value: the final theta vector and the plot of cost function
+    """
+    y_new = np.reshape(y, (len(y), 1))   
+    cost_lst = []
+    vectorX = generateXvector(X)
+    theta = theta_init(X)
+    m = len(X)
+    for i in range(iterations):
+        gradients = 2/m * vectorX.T.dot(vectorX.dot(theta) - y_new)
+        theta = theta - learningrate * gradients
+        y_pred = vectorX.dot(theta)
+        cost_value = 1/(2*len(y))*((y_pred - y)**2) #Calculate the loss for each training instance
+        total = 0
+        for i in range(len(y)):
+            total += cost_value[i][0] #Calculate the cost function for each iteration
+        cost_lst.append(total)
+    fig, ax = plt.subplots()
+    ax.plot(np.arange(1,iterations),cost_lst[1:], color = 'red')
+    ax.set_title('Cost function Graph')
+    ax.set_xlabel('Number of iterations')
+    ax.set_ylabel('Cost')
+    st.pyplot(fig)
+    return theta
+
+
+BD2018 = BD2018[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza promedio', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+X = BD2018.iloc[:,2:-2].values
+y = BD2018.iloc[:,-2].values
+
+sc=StandardScaler()
+X_transform=sc.fit_transform(X)
+
+lin_reg = LinearRegression()
+lin_reg.fit(X_transform, y)
+lin_reg.intercept_, lin_reg.coef_
+
+# Find the optimal theta values using the custom function
+theta_optimal = Multivariable_Linear_Regression(X_transform, y, 0.03, 30000)
+
+# Create a new dataframe with the original data and predicted values
+X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Fuerza promedio', 'Proteinas'])
+predictions = np.dot(X_transform_df, theta_optimal[1:]) + theta_optimal[0]
+BD2018_with_predictions = BD2018.assign(Predicted_BARTHEL=predictions)
+
+# Print the new dataframe with predictions
+st.write(BD2018_with_predictions)
+
+
 
