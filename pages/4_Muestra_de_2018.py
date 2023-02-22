@@ -1079,7 +1079,7 @@ st.pyplot(fig)
 #                      feature_names=BD2018.columns[2:-1],
                       #class_names=iris.target_names,  
 #                      class_names=BD2018.columns[-1],
-                      filled=True, rounded=True,  
+#                      filled=True, rounded=True,  
 #                      special_characters=True)  
 #graph = graphviz.Source(dot_data)  
 #graph 
