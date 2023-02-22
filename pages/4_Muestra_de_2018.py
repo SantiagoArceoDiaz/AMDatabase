@@ -863,7 +863,8 @@ def Multivariable_Linear_Regression(X,y,learningrate, iterations):
 #diabetes = load_diabetes()
 #X = diabetes.data
 #y = diabetes.target
-X = BD2018.iloc[:,1:-2].values
+BD2018 = BD2018[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza promedio', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+X = BD2018.iloc[:,2:-2].values
 Y = BD2018.iloc[:,-2].values
 
 sc=StandardScaler()
