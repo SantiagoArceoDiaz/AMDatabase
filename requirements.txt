@@ -13,3 +13,4 @@ openpyxl
 googletrans
 textblob
 scikit-learn
+graphviz
