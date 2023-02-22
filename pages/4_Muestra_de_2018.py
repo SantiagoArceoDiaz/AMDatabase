@@ -1060,6 +1060,7 @@ tree.plot_tree(clf)
 st.pyplot(fig)
 
 import graphviz 
+os.environ["PATH"] += os.pathsep + 'C:/Users/Santiago/anaconda3/Lib/site-packages/graphviz/dot.py'
 dot_data = tree.export_graphviz(clf, out_file=None) 
 graph = graphviz.Source(dot_data) 
 #graph.render("iris")
