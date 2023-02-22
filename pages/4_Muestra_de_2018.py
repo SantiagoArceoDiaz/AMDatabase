@@ -1061,7 +1061,7 @@ st.text(tree_rules)
 #st.pyplot(fig)
 
 fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
-tree.plot_tree(clf, filled=True, feature_names=BD2018.columns[2:-2].tolist(), class_names=BD2018.columns[2:-1])
+tree.plot_tree(clf, filled=True, feature_names=BD2018.columns[2:-2].tolist(), class_names=BD2018.columns[-1])
 plt.show()
 st.pyplot(fig)
 
