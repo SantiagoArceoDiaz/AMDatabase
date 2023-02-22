@@ -804,6 +804,13 @@ st.markdown(
     )
 
 
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_diabetes
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+
 def generateXvector(X):
     """ Taking the original independent variables matrix and add a row of 1 which corresponds to x_0
         Parameters:
@@ -845,28 +852,24 @@ def Multivariable_Linear_Regression(X,y,learningrate, iterations):
         for i in range(len(y)):
             total += cost_value[i][0] #Calculate the cost function for each iteration
         cost_lst.append(total)
-    #st.pyplot(np.arange(1,iterations),cost_lst[1:], color = 'red')
-    plt.plot(np.arange(1,iterations),cost_lst[1:], color = 'red')
-    plt.title('Cost function Graph')
-    plt.xlabel('Number of iterations')
-    plt.ylabel('Cost')
+    fig, ax = plt.subplots()
+    ax.plot(np.arange(1,iterations),cost_lst[1:], color = 'red')
+    ax.set_title('Cost function Graph')
+    ax.set_xlabel('Number of iterations')
+    ax.set_ylabel('Cost')
+    st.pyplot(fig)
     return theta
 
-from sklearn.datasets import load_diabetes
 diabetes = load_diabetes()
 X = diabetes.data
 y = diabetes.target
 
-from sklearn.preprocessing import StandardScaler
 sc=StandardScaler()
 X_transform=sc.fit_transform(X)
 
-from sklearn.linear_model import LinearRegression
 lin_reg = LinearRegression()
 lin_reg.fit(X_transform, y)
 lin_reg.intercept_, lin_reg.coef_
 
 Multivariable_Linear_Regression(X_transform,y, 0.03, 30000)
 
-sns.histplot(df2018['Proteinas'], ax=axes[1,1], kde=True,
-                      line_kws={'linewidth': 2})
