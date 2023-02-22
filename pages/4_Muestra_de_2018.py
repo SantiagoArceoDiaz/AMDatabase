@@ -965,89 +965,37 @@ BD2018_with_predictions = BD2018.assign(Predicted_BARTHEL=predictions)
 st.write(BD2018_with_predictions)
 
 
-from sklearn.datasets import load_iris
-from sklearn import tree
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-from sklearn.datasets import load_iris
+import streamlit as st
+import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 
+# Cargar el conjunto de datos
+BD2018 = pd.read_csv("BD2018.csv")
 
+# Separar las características y la variable objetivo
+X = BD2018.iloc[:, 2:-2].values
+y = BD2018.iloc[:, -1].values
 
-# Cargar los datos del conjunto iris
-#url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
-#colnames = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'name']
-#iris = pd.read_csv(url, header=None, names=colnames)
+# Normalizar las características
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
 
-# Convertir los datos a un arreglo numpy
-#X = iris.iloc[:, :4].values
-#y = iris.iloc[:, 4].values
-#BD2018["Fuerza"]=BD2018["Prom_Fuer"]
-BD2018 = BD2018[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
-#X = BD2018.iloc[:,2:-2].values
-#y = BD2018.iloc[:,-2].values
-
-X = BD2018.iloc[:,2:-2].values
-y = BD2018.iloc[:,-1].values
-
-
-# Definir el algoritmo de clasificación y ajustar los datos
+# Crear un clasificador de vecinos cercanos
 clf = KNeighborsClassifier(n_neighbors=5)
 clf.fit(X, y)
 
-#st.text_input ("Enter your name")
+# Crear los deslizadores
+Edad = st.slider("Edad", 60, 100, 75)
+MNA = st.slider("MNA", 0, 30, 15)
+Fuerza = st.slider("Fuerza", 0, 150, 75)
+Proteinas = st.slider("Proteinas", 0, 200, 100)
 
-# Pedir al usuario los valores de cada atributo
-Edad = st.text_input("Introduzca la Edad: ")
-MNA = st.text_input("Introduzca el resultado del test MNA: ")
-Fuerza = st.text_input("Introduzca el promedio de fuerza de presión: ")
-Proteinas = st.text_input("Introduzca el consumo promedio de proteinas: ")
-
-# Clasificar el objeto
+# Predecir la clase de la muestra
 prediction = clf.predict([[Edad, MNA, Fuerza, Proteinas]])
-print("El objeto pertenece a la clase:", prediction[0])
 
-
-#from sklearn.datasets import load_iris
-#from sklearn import tree
-#import numpy as np
-
-# Load the iris dataset
-#iris = load_iris()
-
-# Split the dataset into training and testing datasets
-#train_data = iris.data[:-20]
-#train_data = BD2018.iloc[:-20, :]
-train_data = BD2018.iloc[:-20,2:-2].values
-
-#train_target = iris.target[:-20]
-train_target = BD2018.iloc[:-20, -1].values
-
-#test_data = iris.data[-20:]
-test_data = BD2018.iloc[-20:].values
-
-
-#test_target = iris.target[-20:]
-test_target = BD2018.iloc[-20:, -1].values
-
-# Train a decision tree classifier
-clf = tree.DecisionTreeClassifier()
-clf = clf.fit(train_data, train_target)
-
-# Use the trained classifier to classify a new object
-new_object = np.array([[Edad, MNA, Fuerza, Proteinas]])
-prediction = clf.predict(new_object)
-
-# Print the preditrain_target.shapection
-#print("The predicted class is:", iris.target_names[prediction[0]])
-
-clf = DecisionTreeClassifier()
-clf.fit(X, y)
-
-#tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2])
-tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist())
-print(tree_rules)
+# Mostrar la predicción al usuario
+st.write("La predicción de la clase es:", prediction[0])
 
 
 
