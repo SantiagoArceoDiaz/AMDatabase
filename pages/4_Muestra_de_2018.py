@@ -1051,16 +1051,24 @@ clf = DecisionTreeClassifier()
 clf.fit(X, y)
 
 #tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2])
-tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist())
+#tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist())
+tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist(), class_names=["Clase 1", "Clase 2"])
 
 st.text(tree_rules)
 
+#fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
+#tree.plot_tree(clf)
+#st.pyplot(fig)
+
 fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
-tree.plot_tree(clf)
+tree.plot_tree(clf, filled=True, feature_names=BD2018.columns[2:-2].tolist(), class_names=["Clase 1", "Clase 2"])
+plt.show()
 st.pyplot(fig)
 
+
+
 import graphviz 
-os.environ["PATH"] += os.pathsep + 'C:/Users/Santiago/anaconda3/Lib/site-packages/graphviz/dot.py'
+#os.environ["PATH"] += os.pathsep + 'C:/Users/Santiago/anaconda3/Lib/site-packages/graphviz/dot.py'
 dot_data = tree.export_graphviz(clf, out_file=None) 
 graph = graphviz.Source(dot_data) 
 #graph.render("iris")
