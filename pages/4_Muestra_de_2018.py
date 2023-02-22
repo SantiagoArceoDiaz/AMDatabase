@@ -997,10 +997,16 @@ clf = KNeighborsClassifier(n_neighbors=5)
 clf.fit(X, y)
 
 # Pedir al usuario los valores de cada atributo
-Edad = float(input("Introduzca la Edad: "))
-MNA = float(input("Introduzca el resultado del test MNA: "))
-Fuerza = float(input("Introduzca el promedio de fuerza de presión: "))
-Proteinas = float(input("Introduzca el consumo promedio de proteinas: "))
+#Edad = float(input("Introduzca la Edad: "))
+#MNA = float(input("Introduzca el resultado del test MNA: "))
+#Fuerza = float(input("Introduzca el promedio de fuerza de presión: "))
+#Proteinas = float(input("Introduzca el consumo promedio de proteinas: "))
+
+# Crear los deslizadores
+Edad = st.slider("Edad", 60, 100, 75)
+MNA = st.slider("MNA", 0, 30, 15)
+Fuerza = st.slider("Fuerza", 0, 150, 75)
+Proteinas = st.slider("Proteinas", 0, 200, 100)
 
 # Clasificar el objeto
 prediction = clf.predict([[Edad, MNA, Fuerza, Proteinas]])
