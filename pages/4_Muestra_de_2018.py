@@ -996,11 +996,13 @@ y = BD2018.iloc[:,-1].values
 clf = KNeighborsClassifier(n_neighbors=5)
 clf.fit(X, y)
 
+#st.text_input ("Enter your name")
+
 # Pedir al usuario los valores de cada atributo
-Edad = float(input("Introduzca la Edad: "))
-MNA = float(input("Introduzca el resultado del test MNA: "))
-Fuerza = float(input("Introduzca el promedio de fuerza de presión: "))
-Proteinas = float(input("Introduzca el consumo promedio de proteinas: "))
+Edad = float(st.text_input("Introduzca la Edad: "))
+MNA = float(st.text_input("Introduzca el resultado del test MNA: "))
+Fuerza = float(st.text_input("Introduzca el promedio de fuerza de presión: "))
+Proteinas = float(st.text_input("Introduzca el consumo promedio de proteinas: "))
 
 # Clasificar el objeto
 prediction = clf.predict([[Edad, MNA, Fuerza, Proteinas]])
