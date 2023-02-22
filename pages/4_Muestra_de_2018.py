@@ -1058,3 +1058,20 @@ st.text(tree_rules)
 fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
 tree.plot_tree(clf)
 st.pyplot(fig)
+
+import graphviz 
+dot_data = tree.export_graphviz(clf, out_file=None) 
+graph = graphviz.Source(dot_data) 
+graph.render("iris")
+
+dot_data = tree.export_graphviz(clf, out_file=None, 
+                      #feature_names=iris.feature_names,  
+                      feature_names=BD2018.columns[2:-1]
+                      #class_names=iris.target_names,  
+                      class_names=BD2018[-1]
+                      filled=True, rounded=True,  
+                      special_characters=True)  
+graph = graphviz.Source(dot_data)  
+graph 
+
+
