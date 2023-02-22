@@ -999,10 +999,10 @@ clf.fit(X, y)
 #st.text_input ("Enter your name")
 
 # Pedir al usuario los valores de cada atributo
-Edad = float(st.text_input("Introduzca la Edad: "))
-MNA = float(st.text_input("Introduzca el resultado del test MNA: "))
-Fuerza = float(st.text_input("Introduzca el promedio de fuerza de presión: "))
-Proteinas = float(st.text_input("Introduzca el consumo promedio de proteinas: "))
+Edad = st.text_input("Introduzca la Edad: ")
+MNA = st.text_input("Introduzca el resultado del test MNA: ")
+Fuerza = st.text_input("Introduzca el promedio de fuerza de presión: ")
+Proteinas = st.text_input("Introduzca el consumo promedio de proteinas: ")
 
 # Clasificar el objeto
 prediction = clf.predict([[Edad, MNA, Fuerza, Proteinas]])
