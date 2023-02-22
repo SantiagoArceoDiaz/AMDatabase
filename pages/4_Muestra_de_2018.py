@@ -1055,5 +1055,6 @@ tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist())
 
 st.text(tree_rules)
 
+fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (4,4), dpi=300)
 tree.plot_tree(clf)
-
+st.pyplot(fig)
