@@ -1051,8 +1051,8 @@ clf = DecisionTreeClassifier()
 clf.fit(X, y)
 
 #tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2])
-#tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist())
-tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist(), class_names=BD2018.columns[-1])
+#tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist()), class_names=BD2018.columns[-1]
+tree_rules = sklearn.tree.export_text(clf, feature_names=BD2018.columns[2:-2].tolist())
 
 st.text(tree_rules)
 
@@ -1065,6 +1065,7 @@ tree.plot_tree(clf, filled=True, feature_names=BD2018.columns[2:-2].tolist(), cl
 plt.show()
 st.pyplot(fig)
 
+#sklearn.tree.export_text(
 
 
 #import graphviz 
