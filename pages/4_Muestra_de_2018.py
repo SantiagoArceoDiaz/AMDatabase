@@ -970,7 +970,7 @@ import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 
 # Cargar el conjunto de datos
-BD2018 = pd.read_csv("BD2018.csv")
+#BD2018 = pd.read_csv("BD2018.csv")
 
 # Separar las características y la variable objetivo
 X = BD2018.iloc[:, 2:-2].values
