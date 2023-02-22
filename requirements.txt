@@ -14,4 +14,4 @@ googletrans
 textblob
 scikit-learn
 graphviz
-os
+#os
