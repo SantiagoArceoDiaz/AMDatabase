@@ -1061,28 +1061,28 @@ st.text(tree_rules)
 #st.pyplot(fig)
 
 fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
-tree.plot_tree(clf, filled=True, feature_names=BD2018.columns[2:-2].tolist(), class_names=["Clase 1", "Clase 2"])
+tree.plot_tree(clf, filled=True, feature_names=BD2018.columns[2:-2].tolist(), class_names=BD2018.columns[2:-1])
 plt.show()
 st.pyplot(fig)
 
 
 
-import graphviz 
+#import graphviz 
 #os.environ["PATH"] += os.pathsep + 'C:/Users/Santiago/anaconda3/Lib/site-packages/graphviz/dot.py'
-dot_data = tree.export_graphviz(clf, out_file=None) 
-graph = graphviz.Source(dot_data) 
+#dot_data = tree.export_graphviz(clf, out_file=None) 
+#graph = graphviz.Source(dot_data) 
 #graph.render("iris")
-st.graphviz_chart(graph.render(engine='dot'), use_container_width=True)
+#st.graphviz_chart(graph.render(engine='dot'), use_container_width=True)
 
-dot_data = tree.export_graphviz(clf, out_file=None, 
+#dot_data = tree.export_graphviz(clf, out_file=None, 
                       #feature_names=iris.feature_names,  
-                      feature_names=BD2018.columns[2:-1],
+#                      feature_names=BD2018.columns[2:-1],
                       #class_names=iris.target_names,  
-                      class_names=BD2018.columns[-1],
+#                      class_names=BD2018.columns[-1],
                       filled=True, rounded=True,  
-                      special_characters=True)  
-graph = graphviz.Source(dot_data)  
-graph 
+#                      special_characters=True)  
+#graph = graphviz.Source(dot_data)  
+#graph 
 
 
 
