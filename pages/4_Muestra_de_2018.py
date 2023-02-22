@@ -965,4 +965,87 @@ BD2018_with_predictions = BD2018.assign(Predicted_BARTHEL=predictions)
 st.write(BD2018_with_predictions)
 
 
+from sklearn.datasets import load_iris
+from sklearn import tree
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.datasets import load_iris
+from sklearn.neighbors import KNeighborsClassifier
+
+
+
+# Cargar los datos del conjunto iris
+#url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+#colnames = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'name']
+#iris = pd.read_csv(url, header=None, names=colnames)
+
+# Convertir los datos a un arreglo numpy
+#X = iris.iloc[:, :4].values
+#y = iris.iloc[:, 4].values
+#BD2018["Fuerza"]=BD2018["Prom_Fuer"]
+BD2018 = BD2018[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+#X = BD2018.iloc[:,2:-2].values
+#y = BD2018.iloc[:,-2].values
+
+X = BD2018.iloc[:,2:-2].values
+y = BD2018.iloc[:,-1].values
+
+
+# Definir el algoritmo de clasificación y ajustar los datos
+clf = KNeighborsClassifier(n_neighbors=5)
+clf.fit(X, y)
+
+# Pedir al usuario los valores de cada atributo
+Edad = float(input("Introduzca la Edad: "))
+MNA = float(input("Introduzca el resultado del test MNA: "))
+Fuerza = float(input("Introduzca el promedio de fuerza de presión: "))
+Proteinas = float(input("Introduzca el consumo promedio de proteinas: "))
+
+# Clasificar el objeto
+prediction = clf.predict([[Edad, MNA, Fuerza, Proteinas]])
+print("El objeto pertenece a la clase:", prediction[0])
+
+
+#from sklearn.datasets import load_iris
+#from sklearn import tree
+#import numpy as np
+
+# Load the iris dataset
+#iris = load_iris()
+
+# Split the dataset into training and testing datasets
+#train_data = iris.data[:-20]
+#train_data = BD2018.iloc[:-20, :]
+train_data = BD2018.iloc[:-20,2:-2].values
+
+#train_target = iris.target[:-20]
+train_target = BD2018.iloc[:-20, -1].values
+
+#test_data = iris.data[-20:]
+test_data = BD2018.iloc[-20:].values
+
+
+#test_target = iris.target[-20:]
+test_target = BD2018.iloc[-20:, -1].values
+
+# Train a decision tree classifier
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(train_data, train_target)
+
+# Use the trained classifier to classify a new object
+new_object = np.array([[Edad, MNA, Fuerza, Proteinas]])
+prediction = clf.predict(new_object)
+
+# Print the preditrain_target.shapection
+#print("The predicted class is:", iris.target_names[prediction[0]])
+
+clf = DecisionTreeClassifier()
+clf.fit(X, y)
+
+#tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2])
+tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist())
+print(tree_rules)
+
+
 
