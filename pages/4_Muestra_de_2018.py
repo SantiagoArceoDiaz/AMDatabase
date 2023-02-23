@@ -1170,30 +1170,64 @@ for r in rules:
 #graph = graphviz.Source(dot_data)  
 #graph 
 
-from sklearn import tree
+#from sklearn import tree
+#import streamlit as st
+#import pydotplus
+#from streamlit_pydotplus import st_pydotplus
+#from IPython.display import Image  
+
+#features =[[1,0,0] , [2,1,1] , [3,0,0] , [4,1,1] , [5,0,0] , [6,0,1] ,  [900,0,1] , [1001,0,0]] #val,pow2,even
+#labels =  ['o'     ,  'e'    , 'o'     ,  'e'    ,  'o'    ,  'e'    ,   'e'      ,  'o'] #is even
+
+#clf = tree.DecisionTreeClassifier()
+#clf = clf.fit(features,labels)
+
+#prediction = clf.predict([[203,0,0]])
+
+#st.write(f"Prediction: {prediction[0]}")
+
+#dot_data = tree.export_graphviz(clf, out_file=None, 
+#                     feature_names=['number','pow2','even'],  
+#                     class_names=['o','e'],  
+#                     filled=True, rounded=True,  
+#                     special_characters=True)  
+#graph = pydotplus.graph_from_dot_data(dot_data)  
+
+#st_pydotplus(graph)
+
 import streamlit as st
-import pydotplus
-from streamlit_pydotplus import st_pydotplus
-from IPython.display import Image  
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+import matplotlib.pyplot as plt
+import numpy as np
 
-features =[[1,0,0] , [2,1,1] , [3,0,0] , [4,1,1] , [5,0,0] , [6,0,1] ,  [900,0,1] , [1001,0,0]] #val,pow2,even
-labels =  ['o'     ,  'e'    , 'o'     ,  'e'    ,  'o'    ,  'e'    ,   'e'      ,  'o'] #is even
+# load iris dataset
+iris = load_iris()
 
-clf = tree.DecisionTreeClassifier()
-clf = clf.fit(features,labels)
+# fit decision tree classifier
+clf = DecisionTreeClassifier().fit(iris.data[:, :2], iris.target)
 
-prediction = clf.predict([[203,0,0]])
+# create a meshgrid to plot the decision surface
+x_min, x_max = iris.data[:, 0].min() - 1, iris.data[:, 0].max() + 1
+y_min, y_max = iris.data[:, 1].min() - 1, iris.data[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                     np.arange(y_min, y_max, 0.02))
 
-st.write(f"Prediction: {prediction[0]}")
+# predict on the meshgrid
+Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
 
-dot_data = tree.export_graphviz(clf, out_file=None, 
-                     feature_names=['number','pow2','even'],  
-                     class_names=['o','e'],  
-                     filled=True, rounded=True,  
-                     special_characters=True)  
-graph = pydotplus.graph_from_dot_data(dot_data)  
+# plot the decision surface
+fig, ax = plt.subplots()
+ax.contourf(xx, yy, Z, alpha=0.4)
+ax.scatter(iris.data[:, 0], iris.data[:, 1], c=iris.target, alpha=0.8)
+ax.set_xlabel('Sepal length')
+ax.set_ylabel('Sepal width')
+ax.set_title('Decision surface of a decision tree')
 
-st_pydotplus(graph)
+# display the plot in Streamlit
+st.pyplot(fig)
+
 
 
 
