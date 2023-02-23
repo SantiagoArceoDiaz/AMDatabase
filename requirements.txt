@@ -15,4 +15,4 @@ textblob
 scikit-learn
 graphviz
 pydot
-streamlit_pydotplus
+pydotplus
