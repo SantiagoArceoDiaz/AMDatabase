@@ -1141,7 +1141,8 @@ def get_rules(tree, feature_names, class_names):
         
     return rules
 
-class_names = BD2018['target'].unique().astype(str)#fff
+#class_names = BD2018['target'].unique().astype(str)#fff
+class_names = BD2018.columns[-1].unique().astype(str)
 rules = get_rules(clf, BD2018.columns[2:-2].tolist(), BD2018.columns[-1])
 for r in rules:
     st.write(r)
