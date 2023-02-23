@@ -14,3 +14,5 @@ googletrans
 textblob
 scikit-learn
 graphviz
+pydot
+pydotplus
