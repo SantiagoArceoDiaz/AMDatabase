@@ -1170,7 +1170,28 @@ for r in rules:
 #graph = graphviz.Source(dot_data)  
 #graph 
 
+from sklearn import tree
 
+features =[[1,0,0] , [2,1,1] , [3,0,0] , [4,1,1] , [5,0,0] , [6,0,1] ,  [900,0,1] , [1001,0,0]] #val,pow2,even
+labels =  ['o'     ,  'e'    , 'o'     ,  'e'    ,  'o'    ,  'e'    ,   'e'      ,  'o'] #is even
+
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(features,labels)
+
+print (clf.predict([[203,0,0]]))
+
+import pydot
+
+import pydotplus
+from IPython.display import Image  
+dot_data = tree.export_graphviz(clf, out_file=None, 
+                     feature_names=['number','pow2','even'],  
+                     class_names=['o','e'],  
+                     filled=True, rounded=True,  
+                     special_characters=True)  
+graph = pydotplus.graph_from_dot_data(dot_data)  
+# Image(graph.create_png())  
+graph.write_pdf("1.pdf")
 
 
 
