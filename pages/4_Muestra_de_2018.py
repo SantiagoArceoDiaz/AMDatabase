@@ -1180,6 +1180,9 @@ clf = clf.fit(features,labels)
 
 print (clf.predict([[203,0,0]]))
 
+st.write(st.write(f"Prediction: {prediction[0]}")
+
+
 import pydot
 
 import pydotplus
