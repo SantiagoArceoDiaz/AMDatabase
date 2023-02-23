@@ -1051,7 +1051,7 @@ clf = DecisionTreeClassifier()
 clf.fit(X, y)
 
 
-class_names=BD2018.columns[-1].tolist #
+class_names=BD2018.columns[-1].tolist() #
 #tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2])
 #tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist()), class_names=BD2018.columns[-1]
 tree_rules = sk.tree.export_text(clf, feature_names=BD2018.columns[2:-2].tolist())
