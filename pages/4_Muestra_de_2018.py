@@ -1443,7 +1443,7 @@ import altair as alt
 
 # load BD2018 dataset
 #BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
-BD2018 = BD2018[['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+BD2018 = BD2018[['Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 
 import streamlit as st
 import pandas as pd
