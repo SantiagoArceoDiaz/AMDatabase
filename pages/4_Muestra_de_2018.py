@@ -1294,12 +1294,13 @@ print('Precisión del clasificador: {:.2f}'.format(accuracy))
 
 
 import pandas as pd
-import seaborn as sns
+import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
+from mlxtend.plotting import plot_decision_regions
 
 # Leer el archivo csv en un dataframe llamado BD2018
-#BD2018 = pd.read_csv('nombre_del_archivo.csv')
+# BD2018 = pd.read_csv('nombre_del_archivo.csv')
 
 # Definir las características y el objetivo
 X = BD2018.iloc[:, 2:-2]  # Seleccionar todas las columnas menos la última (objetivo)
@@ -1315,5 +1316,8 @@ knn = KNeighborsClassifier(n_neighbors=3)
 knn.fit(X_train, y_train)
 
 # Graficar las superficies de decisión
-sns.set()
-sns.pairplot(BD2018, hue='clase', height=2.5)
+plot_decision_regions(X.values, y.values, clf=knn, legend=2)
+
+# Mostrar la gráfica
+plt.show()
+
