@@ -1293,3 +1293,27 @@ accuracy = knn.score(X_test, y_test)
 print('Precisión del clasificador: {:.2f}'.format(accuracy))
 
 
+import pandas as pd
+import seaborn as sns
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+
+# Leer el archivo csv en un dataframe llamado BD2018
+#BD2018 = pd.read_csv('nombre_del_archivo.csv')
+
+# Definir las características y el objetivo
+X = BD2018.iloc[:, :-1]  # Seleccionar todas las columnas menos la última (objetivo)
+y = BD2018.iloc[:, -1]   # Seleccionar la última columna como objetivo
+
+# Dividir los datos en conjuntos de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Crear un clasificador k-NN con k=3
+knn = KNeighborsClassifier(n_neighbors=3)
+
+# Entrenar el clasificador con los datos de entrenamiento
+knn.fit(X_train, y_train)
+
+# Graficar las superficies de decisión
+sns.set()
+sns.pairplot(BD2018, hue='clase', height=2.5)
