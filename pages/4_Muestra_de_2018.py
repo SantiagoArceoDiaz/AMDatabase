@@ -1451,8 +1451,8 @@ import streamlit as st
 # Dividir el conjunto de datos en características (X) y objetivo (y)
 BD2018 = BD2018[['Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 
-X = BD2018.iloc[:, :-1].values
-y = BD2018.iloc[:, -1].values
+X = BD2018.iloc[:, 0].values
+y = BD2018.iloc[:, 1].values
 
 # Entrenar un modelo de árbol de decisión con una profundidad máxima de 3
 clf = DecisionTreeClassifier(max_depth=3)
