@@ -1195,74 +1195,74 @@ for r in rules:
 
 #st_pydotplus(graph)
 
-import streamlit as st
-from sklearn.datasets import load_iris
-from sklearn.tree import DecisionTreeClassifier, plot_tree
-import matplotlib.pyplot as plt
-import numpy as np
+#import streamlit as st
+#from sklearn.datasets import load_iris
+#from sklearn.tree import DecisionTreeClassifier, plot_tree
+#import matplotlib.pyplot as plt
+#import numpy as np
 
 # load iris dataset
-iris = load_iris()
+#iris = load_iris()
 
 # fit decision tree classifier
-clf = DecisionTreeClassifier().fit(iris.data[:, :2], iris.target)
+#clf = DecisionTreeClassifier().fit(iris.data[:, :2], iris.target)
 
 # create a meshgrid to plot the decision surface
-x_min, x_max = iris.data[:, 0].min() - 1, iris.data[:, 0].max() + 1
-y_min, y_max = iris.data[:, 1].min() - 1, iris.data[:, 1].max() + 1
-xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
-                     np.arange(y_min, y_max, 0.02))
+#x_min, x_max = iris.data[:, 0].min() - 1, iris.data[:, 0].max() + 1
+#y_min, y_max = iris.data[:, 1].min() - 1, iris.data[:, 1].max() + 1
+#xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+#                     np.arange(y_min, y_max, 0.02))
 
 # predict on the meshgrid
-Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-Z = Z.reshape(xx.shape)
+#Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+#Z = Z.reshape(xx.shape)
 
 # plot the decision surface
-fig, ax = plt.subplots()
-ax.contourf(xx, yy, Z, alpha=0.4)
-ax.scatter(iris.data[:, 0], iris.data[:, 1], c=iris.target, alpha=0.8)
-ax.set_xlabel('Sepal length')
-ax.set_ylabel('Sepal width')
-ax.set_title('Decision surface of a decision tree')
+#fig, ax = plt.subplots()
+#ax.contourf(xx, yy, Z, alpha=0.4)
+#ax.scatter(iris.data[:, 0], iris.data[:, 1], c=iris.target, alpha=0.8)
+#ax.set_xlabel('Sepal length')
+#ax.set_ylabel('Sepal width')
+#ax.set_title('Decision surface of a decision tree')
 
 # display the plot in Streamlit
-st.pyplot(fig)
+#st.pyplot(fig)
 
-import streamlit as st
-from sklearn.datasets import load_iris
-from sklearn.tree import DecisionTreeClassifier
-import matplotlib.pyplot as plt
-import numpy as np
+#import streamlit as st
+#from sklearn.datasets import load_iris
+#from sklearn.tree import DecisionTreeClassifier
+#import matplotlib.pyplot as plt
+#import numpy as np
 
 # load iris dataset
-iris = load_iris()
+#iris = load_iris()
 
 # iterate over all possible pairs of features
-for i in range(iris.data.shape[1]):
-    for j in range(i + 1, iris.data.shape[1]):
-        # fit decision tree classifier
-        clf = DecisionTreeClassifier().fit(iris.data[:, [i, j]], iris.target)
+#for i in range(iris.data.shape[1]):
+#    for j in range(i + 1, iris.data.shape[1]):
+#        # fit decision tree classifier
+#        clf = DecisionTreeClassifier().fit(iris.data[:, [i, j]], iris.target)
 
         # create a meshgrid to plot the decision surface
-        x_min, x_max = iris.data[:, i].min() - 1, iris.data[:, i].max() + 1
-        y_min, y_max = iris.data[:, j].min() - 1, iris.data[:, j].max() + 1
-        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
-                             np.arange(y_min, y_max, 0.02))
+#        x_min, x_max = iris.data[:, i].min() - 1, iris.data[:, i].max() + 1
+#        y_min, y_max = iris.data[:, j].min() - 1, iris.data[:, j].max() + 1
+#        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+#                             np.arange(y_min, y_max, 0.02))
 
         # predict on the meshgrid
-        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-        Z = Z.reshape(xx.shape)
+#        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+#        Z = Z.reshape(xx.shape)
 
         # plot the decision surface
-        fig, ax = plt.subplots()
-        ax.contourf(xx, yy, Z, alpha=0.4)
-        ax.scatter(iris.data[:, i], iris.data[:, j], c=iris.target, alpha=0.8)
-        ax.set_xlabel(iris.feature_names[i])
-        ax.set_ylabel(iris.feature_names[j])
-        ax.set_title('Decision surface of a decision tree')
+#        fig, ax = plt.subplots()
+#        ax.contourf(xx, yy, Z, alpha=0.4)
+#        ax.scatter(iris.data[:, i], iris.data[:, j], c=iris.target, alpha=0.8)
+#        ax.set_xlabel(iris.feature_names[i])
+#        ax.set_ylabel(iris.feature_names[j])
+#        ax.set_title('Decision surface of a decision tree')
 
         # display the plot in Streamlit
-        st.pyplot(fig)
+#        st.pyplot(fig)
 
         
 #import pandas as pd
