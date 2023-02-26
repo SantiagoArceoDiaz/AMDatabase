@@ -94,7 +94,7 @@ ddf2018 = pd.merge(left=df2018,right=DBEdades, how="inner",on="Nombre")
 #ddf2018 # Combina las bases de datos de 2018 con la de usuarios con edad registrada, dejando solo los que tienen en comun
 # es decir, la intersección vista en el diagrama de Venn.
 
-BD2018=ddf2018[['Nombre','Edad','Sexo', 'MNA', 'Fuerza','Proteinas','BARTHEL', 'Int_BARTHEL']]
+BD2018=ddf2018[['Nombre','Sexo','Edad', 'MNA', 'Fuerza','Proteinas','BARTHEL', 'Int_BARTHEL']]
 #BD2018 # Cambia el orden de las columnas y se guarda como una base de datos nueva.
 
 df=BD2018
