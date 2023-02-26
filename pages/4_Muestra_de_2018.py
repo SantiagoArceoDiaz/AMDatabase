@@ -1472,22 +1472,37 @@ for i in range(X.shape[1]):
         Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
         Z = Z.reshape(xx.shape)
 
-        # create a pandas DataFrame with the meshgrid data
-        data = pd.DataFrame({'x': xx.ravel(), 'y': yy.ravel(), 'z': Z.ravel()})
-        # create a chart with interactive points
-        chart = alt.Chart(data).mark_point().encode(
+        # create an Altair chart with points and decision surface
+        chart = alt.Chart(X).mark_point().encode(
+            x=X.columns[i],
+            y=X.columns[j],
+            color=alt.Color(y, scale=alt.Scale(scheme='category10')),
+            tooltip=['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
+        ).interactive() + alt.Chart(pd.DataFrame({'x': xx.ravel(), 'y': yy.ravel(), 'z': Z.ravel()})).mark_rect().encode(
             x='x:Q',
             y='y:Q',
-            color='z:N',
-            tooltip=['x', 'y', 'z']
-        ).interactive()
+            color=alt.Color('z:O', scale=alt.Scale(scheme='redyellowgreen'))
+        ).properties(
+            width=200,
+            height=200
+        )
+
+        # add chart to list
         charts.append(chart)
 
-# combine all charts into a single altair chart
-alt_chart = alt.hconcat(*charts)
+# combine all charts into a single row
+row = alt.hconcat(*charts, spacing=10)
 
-# display the chart in Streamlit
-st.altair_chart(alt_chart, use_container_width=True)
+# add title to the row
+suptitle = alt.Chart(pd.DataFrame({'title': ['Decision surfaces of a decision tree']})).mark_text().encode(
+    text='title'
+).properties(
+    width=1000,
+    height=50
+)
+
+# display the row and title in Streamlit
+st.altair_chart(suptitle + row)
 
 
 
