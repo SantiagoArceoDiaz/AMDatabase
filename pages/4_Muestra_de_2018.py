@@ -1502,7 +1502,13 @@ suptitle = alt.Chart(pd.DataFrame({'title': ['Decision surfaces of a decision tr
 )
 
 # display the row and title in Streamlit
-st.altair_chart(suptitle + row)
+#st.altair_chart(suptitle + row)
+
+# combine title and charts into a single column
+col = alt.vconcat(suptitle, row, spacing=10)
+
+# display the column in Streamlit
+st.altair_chart(col)
 
 
 
