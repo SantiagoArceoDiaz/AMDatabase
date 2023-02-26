@@ -1435,11 +1435,11 @@ plt.subplots_adjust(hspace=0.8)
 # display the plot in Streamlit
 st.pyplot()
 
+
 import streamlit as st
 import pandas as pd
-import altair as alt
 from sklearn.tree import DecisionTreeClassifier
-import numpy as np
+import altair as alt
 
 # load BD2018 dataset
 #BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
@@ -1454,11 +1454,9 @@ num_cols = 3
 plots_per_col = 5
 num_plots = X.shape[1] * (X.shape[1]-1) // 2
 
-# create a DataFrame to hold the data for all scatter plots
-df = pd.DataFrame({'x': [], 'y': [], 'class': []})
-
 # iterate over all possible pairs of features
 plot_count = 0
+charts = []
 for i in range(X.shape[1]):
     for j in range(i + 1, X.shape[1]):
         # fit decision tree classifier
@@ -1474,45 +1472,22 @@ for i in range(X.shape[1]):
         Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
         Z = Z.reshape(xx.shape)
 
-        # add decision surface to the DataFrame
-        df = df.append(pd.DataFrame({
-            'x': xx.ravel(),
-            'y': yy.ravel(),
-            'class': Z.ravel()
-        }), ignore_index=True)
+        # create a pandas DataFrame with the meshgrid data
+        data = pd.DataFrame({'x': xx.ravel(), 'y': yy.ravel(), 'z': Z.ravel()})
+        # create a chart with interactive points
+        chart = alt.Chart(data).mark_point().encode(
+            x='x:Q',
+            y='y:Q',
+            color='z:N',
+            tooltip=['x', 'y', 'z']
+        ).interactive()
+        charts.append(chart)
 
-        # add scatter plot to the DataFrame
-        df = df.append(pd.DataFrame({
-            'x': X.iloc[:, i],
-            'y': X.iloc[:, j],
-            'class': y
-        }), ignore_index=True)
+# combine all charts into a single altair chart
+alt_chart = alt.hconcat(*charts)
 
-        # increment the plot counter
-        plot_count += 1
-
-# create the interactive scatter plot using Altair
-scatter_plot = alt.Chart(df).mark_circle(opacity=0.8, stroke='black', strokeWidth=1).encode(
-    x='x:Q',
-    y='y:Q',
-    color=alt.Color('class:N', scale=alt.Scale(scheme='category10')),
-    tooltip=['x', 'y', 'class']
-).properties(
-    width=200,
-    height=200
-).interactive()
-
-# create the facet grid of scatter plots using Altair
-facet_grid = scatter_plot.facet(
-    column=alt.Column('x:N', header=None),
-    row=alt.Row('y:N', header=None),
-    spacing={'row': 20, 'column': 20}
-).properties(
-    title='Decision surfaces of a decision tree'
-)
-
-# display the plot in Streamlit
-st.altair_chart(facet_grid)
+# display the chart in Streamlit
+st.altair_chart(alt_chart, use_container_width=True)
 
 
 
