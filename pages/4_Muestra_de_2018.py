@@ -1472,8 +1472,8 @@ Z = Z.reshape(xx.shape)
 
 # crear el gráfico con la superficie de decisión
 chart = alt.Chart(X).mark_rect().encode(
-    x=alt.X(X.columns[0], title=X.columns[0]),
-    y=alt.Y(X.columns[1], title=X.columns[1]),
+    x=alt.X(X.columns[1], title=X.columns[1]),
+    y=alt.Y(X.columns[2], title=X.columns[2]),
     color=alt.Color(y, title=X.columns[-1])
 ).properties(
     width=500,
