@@ -1454,7 +1454,7 @@ num_plots = X.shape[1] * (X.shape[1]-1) // 2
 
 # create a DataFrame for plotting
 plot_data = pd.concat([X, y], axis=1)
-plot_data = plot_data.melt(id_vars=['EsPobre'])
+#plot_data = plot_data.melt(id_vars=['EsPobre'])
 
 # create a selection for highlighting points on hover
 selection = alt.selection_single(on='mouseover', nearest=True, empty='none')
