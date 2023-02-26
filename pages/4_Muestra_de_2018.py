@@ -1434,16 +1434,11 @@ plt.subplots_adjust(hspace=0.8)
 # display the plot in Streamlit
 st.pyplot()
 
+
 import streamlit as st
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
-from bokeh.models import HoverTool
-from bokeh.plotting import figure
-from bokeh.palettes import Category10
-from bokeh.transform import factor_cmap
-from bokeh.io import to_html
-from bokeh.resources import CDN
-import numpy as np
+import altair as alt
 
 # load BD2018 dataset
 #BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
@@ -1457,17 +1452,9 @@ num_cols = 3
 plots_per_col = 4
 num_plots = X.shape[1] * (X.shape[1]-1) // 2
 
-# create a Bokeh figure
-fig = figure(title="Decision surfaces of a decision tree", 
-             tools="box_select, lasso_select, reset",
-             x_axis_label=X.columns[0], y_axis_label=X.columns[1],
-             sizing_mode="stretch_both")
-
-# create a color palette for the classes
-palette = Category10[10]
-
 # iterate over all possible pairs of features
 plot_count = 0
+charts = []
 for i in range(X.shape[1]):
     for j in range(i + 1, X.shape[1]):
         # fit decision tree classifier
@@ -1483,21 +1470,32 @@ for i in range(X.shape[1]):
         Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
         Z = Z.reshape(xx.shape)
 
-        # add decision surface to the Bokeh figure
-        source = pd.DataFrame({'x': xx.ravel(), 'y': yy.ravel(), 'class': Z.ravel()})
-        source['color'] = factor_cmap('class', palette=palette, factors=[0, 1, 2])
-        fig.patch(source=source, x='x', y='y', color='color', alpha=0.4)
+        # create scatterplot and decision surface with Altair
+        chart = (alt.Chart(X).mark_point().encode(
+                    x=X.columns[i],
+                    y=X.columns[j],
+                    color=alt.Color('Clase:N', scale=alt.Scale(scheme='dark2'))
+                ) + alt.Chart(pd.DataFrame({'x': xx.ravel(), 'y': yy.ravel(), 'z': Z.ravel()})).mark_rect().encode(
+                    x='x:Q',
+                    y='y:Q',
+                    color=alt.Color('z:Q', scale=alt.Scale(scheme='yellowgreenblue')),
+                    opacity=alt.condition(alt.datum.z == 1, alt.value(0.5), alt.value(0))
+                )).properties(
+                    title='Decision surfaces of a decision tree',
+                    width=400,
+                    height=400
+                )
 
-        # add scatter plot to the Bokeh figure
-        source = pd.DataFrame({'x': X.iloc[:, i], 'y': X.iloc[:, j], 'class': y})
-        source['color'] = factor_cmap('class', palette=palette, factors=[0, 1, 2])
-        fig.circle(source=source, x='x', y='y', color='color', alpha=0.8, size=5,
-                   legend_field='class')
+        # add chart to list
+        charts.append(chart)
 
-        # add hover tool to the Bokeh figure
-        hover = HoverTool(tooltips=[(X.columns[i], '@x'), (X.columns[j], '@y')])
-        fig.add_tools(hover)
+# combine all charts into a single chart using Altair's concat method
+combined_chart = alt.concat(*charts, columns=num_cols)
 
-# display the Bokeh figure in Streamlit
-html = to_html(fig, CDN)
-st.components.v1.html(html)
+# display the chart in Streamlit and show data on hover using Altair's tooltip method
+st.altair_chart(combined_chart.configure_view(stroke='transparent').configure_axis(grid=False)).interactive().properties(
+    tooltip=[
+        alt.Tooltip(field, type='quantitative') for field in X.columns
+    ]
+)
+
