@@ -1321,7 +1321,7 @@ knn.fit(X_train, y_train)
 from mlxtend.plotting import plot_decision_regions
 
 # define feature indices
-feature_idx = [0, 1, 3, 4]
+feature_idx = [0, 1]
 
 # define filler feature values for the remaining columns
 filler_feature_values = {
