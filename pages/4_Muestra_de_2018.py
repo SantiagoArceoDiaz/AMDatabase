@@ -1395,8 +1395,8 @@ import numpy as np
 BD2018 = BD2018[['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 
 # get feature and target columns
-X = BD2018.iloc[:, 1:-1]
-y = BD2018.iloc[:, -1]
+X = BD2018.iloc[:, 1:-2]
+y = BD2018.iloc[:, -2]
 
 # define number of columns and plots per column
 num_cols = 3
