@@ -1347,14 +1347,13 @@ import numpy as np
 X = BD2018.iloc[:, 1:-2]
 y = BD2018.iloc[:, -2]
 
-# set number of columns for subplots
+# define number of columns and plots per column
 num_cols = 2
-
-# calculate total number of plots
-num_plots = len(X.columns)*(len(X.columns)-1)//2
-plot_count = 0
+plots_per_col = 3
+num_plots = X.shape[1] * (X.shape[1]-1) // 2
 
 # iterate over all possible pairs of features
+plot_count = 0
 for i in range(X.shape[1]):
     for j in range(i + 1, X.shape[1]):
         # fit decision tree classifier
@@ -1372,17 +1371,15 @@ for i in range(X.shape[1]):
 
         # plot the decision surface
         plot_count += 1
-        plt.subplot(np.ceil(num_plots/num_cols), num_cols, plot_count)
+        plt.subplot(np.ceil(num_plots/plots_per_col), num_cols, plot_count)
         plt.contourf(xx, yy, Z, alpha=0.4)
         plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
         plt.xlabel(X.columns[i])
         plt.ylabel(X.columns[j])
         plt.title('Decision surface of a decision tree')
 
-# adjust spacing between subplots
-plt.tight_layout()
-
 # display the plot in Streamlit
 st.pyplot()
+
 
 
