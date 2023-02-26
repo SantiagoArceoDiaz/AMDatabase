@@ -1371,7 +1371,8 @@ for i in range(X.shape[1]):
 
         # plot the decision surface
         plot_count += 1
-        plt.subplot(np.ceil(num_plots/plots_per_col), num_cols, plot_count)
+#        plt.subplot(np.ceil(num_plots/plots_per_col), num_cols, plot_count)
+        plt.subplot(int(np.ceil(num_plots/plots_per_col)), num_cols, plot_count)
         plt.contourf(xx, yy, Z, alpha=0.4)
         plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
         plt.xlabel(X.columns[i])
