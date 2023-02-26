@@ -1439,6 +1439,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 from sklearn.tree import DecisionTreeClassifier
+import numpy as np
 
 # load BD2018 dataset
 #BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
@@ -1453,9 +1454,11 @@ num_cols = 3
 plots_per_col = 5
 num_plots = X.shape[1] * (X.shape[1]-1) // 2
 
+# create a DataFrame to hold the data for all scatter plots
+df = pd.DataFrame({'x': [], 'y': [], 'class': []})
+
 # iterate over all possible pairs of features
 plot_count = 0
-charts = []
 for i in range(X.shape[1]):
     for j in range(i + 1, X.shape[1]):
         # fit decision tree classifier
@@ -1471,42 +1474,45 @@ for i in range(X.shape[1]):
         Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
         Z = Z.reshape(xx.shape)
 
-        # create chart
-        chart = alt.Chart(pd.DataFrame({
-            X.columns[i]: xx.ravel(),
-            X.columns[j]: yy.ravel(),
-            'prediction': Z.ravel()
-        })).mark_rect().encode(
-            x=X.columns[i],
-            y=X.columns[j],
-            color=alt.Color('prediction', scale=alt.Scale(scheme='yellowgreenblue'))
-        ).interactive()
+        # add decision surface to the DataFrame
+        df = df.append(pd.DataFrame({
+            'x': xx.ravel(),
+            'y': yy.ravel(),
+            'class': Z.ravel()
+        }), ignore_index=True)
 
-        # add tooltip with data for each point
-        chart = chart.add_selection(
-            alt.selection_single(nearest=True, on='mouseover', fields=['prediction'])
-        ).transform_calculate(
-            label='"prediction: " + format(datum.prediction, ".2f")'
-        ).encode(
-            tooltip=['label', X.columns[i], X.columns[j]]
-        )
+        # add scatter plot to the DataFrame
+        df = df.append(pd.DataFrame({
+            'x': X.iloc[:, i],
+            'y': X.iloc[:, j],
+            'class': y
+        }), ignore_index=True)
 
-        # add chart to list
-        charts.append(chart)
-
-        # increment plot count
+        # increment the plot counter
         plot_count += 1
 
-# combine charts into grid
-grid = alt.hconcat(*charts, columns=num_cols)
+# create the interactive scatter plot using Altair
+scatter_plot = alt.Chart(df).mark_circle(opacity=0.8, stroke='black', strokeWidth=1).encode(
+    x='x:Q',
+    y='y:Q',
+    color=alt.Color('class:N', scale=alt.Scale(scheme='category10')),
+    tooltip=['x', 'y', 'class']
+).properties(
+    width=200,
+    height=200
+).interactive()
 
-# add suptitle to the figure
-suptitle = alt.Chart(title='Decision surfaces of a decision tree').mark_text().encode(
-    text='title:N'
+# create the facet grid of scatter plots using Altair
+facet_grid = scatter_plot.facet(
+    column=alt.Column('x:N', header=None),
+    row=alt.Row('y:N', header=None),
+    spacing={'row': 20, 'column': 20}
+).properties(
+    title='Decision surfaces of a decision tree'
 )
 
 # display the plot in Streamlit
-st.altair_chart(suptitle & grid)
+st.altair_chart(facet_grid)
 
 
 
