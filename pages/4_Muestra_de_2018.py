@@ -1344,8 +1344,8 @@ import numpy as np
 #BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
 
 # get feature and target columns
-X = BD2018.iloc[:, 1:-2]
-y = BD2018.iloc[:, -2]
+X = BD2018.iloc[:, 1:-1]
+y = BD2018.iloc[:, -1]
 
 # create a figure with 2 subplots
 fig, axs = plt.subplots(nrows=1, ncols=2, figsize=(12, 6))
