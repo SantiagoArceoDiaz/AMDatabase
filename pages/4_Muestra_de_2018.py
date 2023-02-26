@@ -1265,73 +1265,72 @@ for i in range(iris.data.shape[1]):
         st.pyplot(fig)
 
         
-import pandas as pd
-from sklearn.neighbors import KNeighborsClassifier
+#import pandas as pd
+#from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 
 # Leer el archivo csv en un dataframe llamado BD2018
 #BD2018 = pd.read_csv('nombre_del_archivo.csv')
 
 # Definir las características y el objetivo
-X = BD2018.iloc[:, 2:-2]  # Seleccionar las columnas desde la 2 hasta la antepenúltima
-y = BD2018.iloc[:, -1]    # Seleccionar la última columna como objetivo
+#X = BD2018.iloc[:, 2:-2]  # Seleccionar las columnas desde la 2 hasta la antepenúltima
+#y = BD2018.iloc[:, -1]    # Seleccionar la última columna como objetivo
 
 # Dividir los datos en conjuntos de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Crear un clasificador k-NN con k=3
-knn = KNeighborsClassifier(n_neighbors=3)
+#knn = KNeighborsClassifier(n_neighbors=3)
 
 # Entrenar el clasificador con los datos de entrenamiento
-knn.fit(X_train, y_train)
+#knn.fit(X_train, y_train)
 
 # Predecir las clases de los datos de prueba
-y_pred = knn.predict(X_test)
+#y_pred = knn.predict(X_test)
 
 # Calcular la precisión del clasificador
-accuracy = knn.score(X_test, y_test)
-print('Precisión del clasificador: {:.2f}'.format(accuracy))
+#accuracy = knn.score(X_test, y_test)
+#print('Precisión del clasificador: {:.2f}'.format(accuracy))
 
 
+import streamlit as st
 import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
 import matplotlib.pyplot as plt
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import train_test_split
-from mlxtend.plotting import plot_decision_regions
+import numpy as np
 
-# Leer el archivo csv en un dataframe llamado BD2018
-# BD2018 = pd.read_csv('nombre_del_archivo.csv')
+# load BD2018 dataset
+BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
 
-# Definir las características y el objetivo
-X = BD2018.iloc[:, 2:-2]  # Seleccionar todas las columnas menos la última (objetivo)
-y = BD2018.iloc[:, -1]   # Seleccionar la última columna como objetivo
+# get feature and target columns
+X = BD2018.iloc[:, 1:-2]
+y = BD2018.iloc[:, -2]
 
-# Dividir los datos en conjuntos de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# iterate over all possible pairs of features
+for i in range(X.shape[1]):
+    for j in range(i + 1, X.shape[1]):
+        # fit decision tree classifier
+        clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
 
-# Crear un clasificador k-NN con k=3
-knn = KNeighborsClassifier(n_neighbors=3)
+        # create a meshgrid to plot the decision surface
+        x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
+        y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                             np.arange(y_min, y_max, 0.02))
 
-# Entrenar el clasificador con los datos de entrenamiento
-knn.fit(X_train, y_train)
+        # predict on the meshgrid
+        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+        Z = Z.reshape(xx.shape)
 
-# Graficar las superficies de decisión
-#plot_decision_regions(X.values, y.values, clf=knn, legend=2)
-#plot_decision_regions(X.values, y.values, clf=knn, legend=2, filler_feature_values=[-1, -1])
-from mlxtend.plotting import plot_decision_regions
+        # plot the decision surface
+        fig, ax = plt.subplots()
+        ax.contourf(xx, yy, Z, alpha=0.4)
+        ax.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
+        ax.set_xlabel(X.columns[i])
+        ax.set_ylabel(X.columns[j])
+        ax.set_title('Decision surface of a decision tree')
 
-# define feature indices
-feature_idx = [0, 1]
+        # display the plot in Streamlit
+        st.pyplot(fig)
 
-# define filler feature values for the remaining columns
-filler_feature_values = {
-    i: X.iloc[:, i].mean() for i in range(X.shape[1]) if i not in feature_idx
-}
-
-# plot decision regions
-plot_decision_regions(X.values[:, feature_idx], y.values, clf=knn, legend=2, filler_feature_values=filler_feature_values)
-
-
-# Mostrar la gráfica
-plt.show()
 
