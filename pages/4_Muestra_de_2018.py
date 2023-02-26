@@ -1458,8 +1458,8 @@ X = BD2018.iloc[:, :-1]
 y = BD2018.iloc[:, -1]
 
 # generar la malla para la superficie de decisión
-x_min, x_max = X.iloc[:, 0].min() - 1, X.iloc[:, 0].max() + 1
-y_min, y_max = X.iloc[:, 1].min() - 1, X.iloc[:, 1].max() + 1
+x_min, x_max = X.iloc[:, 1].min() - 1, X.iloc[:, 1].max() + 1
+y_min, y_max = X.iloc[:, 2].min() - 1, X.iloc[:, 2].max() + 1
 xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
                      np.arange(y_min, y_max, 0.02))
 
