@@ -1300,7 +1300,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # load BD2018 dataset
-BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
+#BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
 
 # get feature and target columns
 X = BD2018.iloc[:, 1:-2]
