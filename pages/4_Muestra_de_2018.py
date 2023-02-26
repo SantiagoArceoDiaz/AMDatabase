@@ -1379,6 +1379,7 @@ for i in range(X.shape[1]):
         plt.ylabel(X.columns[j])
         plt.title('Decision surface of a decision tree')
 
+plt.subplots_adjust(hspace=0.4)
 # display the plot in Streamlit
 st.pyplot()
 
