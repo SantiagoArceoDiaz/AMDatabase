@@ -1394,8 +1394,8 @@ import numpy as np
 #BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
 
 # get feature and target columns
-X = BD2018.iloc[:, 1:-2]
-y = BD2018.iloc[:, -2]
+X = BD2018.iloc[:, 1:-1]
+y = BD2018.iloc[:, -1]
 
 # define number of columns and plots per column
 num_cols = 3
@@ -1455,7 +1455,7 @@ num_plots = X.shape[1] * (X.shape[1]-1) // 2
 # create a DataFrame for plotting
 plot_data = pd.concat([X, y], axis=1)
 #plot_data = plot_data.melt(id_vars=['EsPobre'])
-plot_data = plot_data.melt(id_vars=BD2018.columns[2:-2])
+plot_data = plot_data.melt(id_vars=BD2018.columns[1:])
 
 # create a selection for highlighting points on hover
 selection = alt.selection_single(on='mouseover', nearest=True, empty='none')
