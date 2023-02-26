@@ -1270,7 +1270,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 
 # Leer el archivo csv en un dataframe llamado BD2018
-BD2018 = pd.read_csv('nombre_del_archivo.csv')
+#BD2018 = pd.read_csv('nombre_del_archivo.csv')
 
 # Definir las características y el objetivo
 X = BD2018.iloc[:, 2:-2]  # Seleccionar las columnas desde la 2 hasta la antepenúltima
