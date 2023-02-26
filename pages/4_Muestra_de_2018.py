@@ -1445,71 +1445,50 @@ import altair as alt
 #BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
 BD2018 = BD2018[['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 
-# get feature and target columns
-X = BD2018.iloc[:, 1:-2]
-y = BD2018.iloc[:, -2]
+import streamlit as st
+import pandas as pd
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+import altair as alt
 
-# define number of columns and plots per column
-num_cols = 3
-plots_per_col = 5
-num_plots = X.shape[1] * (X.shape[1]-1) // 2
+# cargar el dataset
+#BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
+# seleccionar las columnas de interés
+X = BD2018.iloc[:, :-1]
+y = BD2018.iloc[:, -1]
 
-# iterate over all possible pairs of features
-plot_count = 0
-charts = []
-for i in range(X.shape[1]):
-    for j in range(i + 1, X.shape[1]):
-        # fit decision tree classifier
-        clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
+# generar la malla para la superficie de decisión
+x_min, x_max = X.iloc[:, 0].min() - 1, X.iloc[:, 0].max() + 1
+y_min, y_max = X.iloc[:, 1].min() - 1, X.iloc[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                     np.arange(y_min, y_max, 0.02))
 
-        # create a meshgrid to plot the decision surface
-        x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
-        y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
-        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
-                             np.arange(y_min, y_max, 0.02))
+# crear el clasificador y entrenarlo con los datos
+clf = DecisionTreeClassifier().fit(X.iloc[:, :2], y)
 
-        # predict on the meshgrid
-        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-        Z = Z.reshape(xx.shape)
+# predecir para la malla generada
+Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
 
-        # create an Altair chart with points and decision surface
-        chart = alt.Chart(X).mark_point().encode(
-            x=X.columns[i],
-            y=X.columns[j],
-            color=alt.Color(y, scale=alt.Scale(scheme='category10')),
-            tooltip=['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
-        ).interactive() + alt.Chart(pd.DataFrame({'x': xx.ravel(), 'y': yy.ravel(), 'z': Z.ravel()})).mark_rect().encode(
-            x='x:Q',
-            y='y:Q',
-            color=alt.Color('z:O', scale=alt.Scale(scheme='redyellowgreen'))
-        ).properties(
-            width=200,
-            height=200
-        )
+# crear el gráfico con la superficie de decisión
+chart = alt.Chart(X).mark_rect().encode(
+    x=alt.X(X.columns[0], title=X.columns[0]),
+    y=alt.Y(X.columns[1], title=X.columns[1]),
+    color=alt.Color(y, title=X.columns[-1])
+).properties(
+    width=500,
+    height=500
+).add_selection(
+    alt.selection_multi()
+) + alt.Chart(pd.DataFrame({'x': xx.ravel(), 'y': yy.ravel(), 'z': Z.ravel()})).mark_rect().encode(
+    x='x:Q',
+    y='y:Q',
+    color=alt.Color('z:O', scale=alt.Scale(scheme='redyellowgreen'))
+).interactive()
 
-        # add chart to list
-        charts.append(chart)
-
-# combine all charts into a single row
-#row = alt.hconcat(*charts, spacing=10)
-
-# add title to the row
-#suptitle = alt.Chart(pd.DataFrame({'title': ['Decision surfaces of a decision tree']})).mark_text().encode(
-#    text='title'
-#).properties(
-#    width=1000,
-#    height=50
-#)
-
-# display the row and title in Streamlit
-#st.altair_chart(suptitle + row)
-
-# combine title and charts into a single column
-#col = alt.vconcat(suptitle, row, spacing=10)
-
-# display the column in Streamlit
-#st.altair_chart(col)
+# mostrar el gráfico en Streamlit
 st.altair_chart(chart)
+
 
 
 
