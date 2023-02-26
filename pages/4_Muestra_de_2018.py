@@ -1461,7 +1461,7 @@ import numpy as np
 # create a selection for highlighting points on hover
 selection = alt.selection_single(on='mouseover', nearest=True, empty='none')
 
-iterate over all possible pairs of features
+#iterate over all possible pairs of features
 plots = []
 for i in range(X.shape[1]):
     for j in range(i + 1, X.shape[1]):
