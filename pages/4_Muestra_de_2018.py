@@ -1435,11 +1435,11 @@ plt.subplots_adjust(hspace=0.8)
 # display the plot in Streamlit
 st.pyplot()
 
-#import streamlit as st
-#import pandas as pd
-#import altair as alt
-#from sklearn.tree import DecisionTreeClassifier
-#import numpy as np
+import streamlit as st
+import pandas as pd
+import altair as alt
+from sklearn.tree import DecisionTreeClassifier
+import numpy as np
 
 ## load BD2018 dataset
 ##BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
@@ -1459,51 +1459,51 @@ st.pyplot()
 #plot_data = plot_data.melt(id_vars=BD2018.columns[1:])
 
 # create a selection for highlighting points on hover
-#selection = alt.selection_single(on='mouseover', nearest=True, empty='none')
+selection = alt.selection_single(on='mouseover', nearest=True, empty='none')
 
-# iterate over all possible pairs of features
-#plots = []
-#for i in range(X.shape[1]):
-#    for j in range(i + 1, X.shape[1]):
-#        # fit decision tree classifier
-#        clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
+iterate over all possible pairs of features
+plots = []
+for i in range(X.shape[1]):
+    for j in range(i + 1, X.shape[1]):
+        # fit decision tree classifier
+        clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
 #
-#        # create a meshgrid to plot the decision surface
-#        x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
-#        y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
-#        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
-#                             np.arange(y_min, y_max, 0.02))
+        # create a meshgrid to plot the decision surface
+        x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
+        y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                             np.arange(y_min, y_max, 0.02))
+
+        # predict on the meshgrid
+        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+        Z = Z.reshape(xx.shape)
 #
-#        # predict on the meshgrid
-#        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-#        Z = Z.reshape(xx.shape)
-#
-#        # plot the decision surface
-#        decision_surface = alt.Chart(pd.DataFrame({'x': xx.ravel(), 'y': yy.ravel(), 'z': Z.ravel()})).mark_rect().encode(
-#            x='x:Q',
-#            y='y:Q',
-#            color='z:O',
-#            opacity=alt.value(0.4)
-#        )
+        # plot the decision surface
+        decision_surface = alt.Chart(pd.DataFrame({'x': xx.ravel(), 'y': yy.ravel(), 'z': Z.ravel()})).mark_rect().encode(
+            x='x:Q',
+            y='y:Q',
+            color='z:O',
+            opacity=alt.value(0.4)
+        )
 
 #        # plot the scatter plot
-#        scatter_plot = alt.Chart(plot_data).mark_circle().encode(
-#            x=X.columns[i] + ':Q',
-#            y=X.columns[j] + ':Q',
-#            color=alt.Color('variable:N', scale=alt.Scale(domain=[BD2018.columns[-1], X.columns[i], X.columns[j]], range=['#1f77b4', '#ff7f0e', '#2ca02c'])),
-#            opacity=alt.condition(selection, alt.value(0.8), alt.value(0.1)),
-#            tooltip=[BD2018.columns[-1]] + [alt.Tooltip(c + ':Q') for c in X.columns]
-#       ).add_selection(selection)
+        scatter_plot = alt.Chart(plot_data).mark_circle().encode(
+            x=X.columns[i] + ':Q',
+            y=X.columns[j] + ':Q',
+            color=alt.Color('variable:N', scale=alt.Scale(domain=[BD2018.columns[-2], X.columns[i], X.columns[j]], range=['#1f77b4', '#ff7f0e', '#2ca02c'])),
+            opacity=alt.condition(selection, alt.value(0.8), alt.value(0.1)),
+            tooltip=[BD2018.columns[-1]] + [alt.Tooltip(c + ':Q') for c in X.columns]
+       ).add_selection(selection)
 
-#        # combine the decision surface and scatter plot
-#        plot = (decision_surface + scatter_plot).properties(width=250, height=250, title=f'{X.columns[i]} vs. {X.columns[j]}')
-#        plots.append(plot)
+        # combine the decision surface and scatter plot
+        plot = (decision_surface + scatter_plot).properties(width=250, height=250, title=f'{X.columns[i]} vs. {X.columns[j]}')
+        plots.append(plot)
 
 # create a chart with all the plots
-#combined_chart = alt.hconcat(*plots)
+combined_chart = alt.hconcat(*plots)
 
 # display the chart in Streamlit
-#st.altair_chart(combined_chart.configure_view(stroke='transparent').configure_axis(grid=False), use_container_width=True)
+st.altair_chart(combined_chart.configure_view(stroke='transparent').configure_axis(grid=False), use_container_width=True)
 
 
 
