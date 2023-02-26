@@ -1302,7 +1302,7 @@ from sklearn.model_selection import train_test_split
 #BD2018 = pd.read_csv('nombre_del_archivo.csv')
 
 # Definir las características y el objetivo
-X = BD2018.iloc[:, :-1]  # Seleccionar todas las columnas menos la última (objetivo)
+X = BD2018.iloc[:, 2:-2]  # Seleccionar todas las columnas menos la última (objetivo)
 y = BD2018.iloc[:, -1]   # Seleccionar la última columna como objetivo
 
 # Dividir los datos en conjuntos de entrenamiento y prueba
