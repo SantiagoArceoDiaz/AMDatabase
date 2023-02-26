@@ -1509,7 +1509,7 @@ for i in range(X.shape[1]):
 
 # display the column in Streamlit
 #st.altair_chart(col)
-st.altait_chart(chart)
+st.altair_chart(chart)
 
 
 
