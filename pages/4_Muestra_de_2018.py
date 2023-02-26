@@ -1264,48 +1264,32 @@ for i in range(iris.data.shape[1]):
         # display the plot in Streamlit
         st.pyplot(fig)
 
-#import streamlit as st
-#from sklearn.datasets import load_iris
+        
+import pandas as pd
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
 
-from sklearn.tree import DecisionTreeClassifier
-#import matplotlib.pyplot as plt
-#import numpy as np
+# Leer el archivo csv en un dataframe llamado BD2018
+BD2018 = pd.read_csv('nombre_del_archivo.csv')
 
-# load iris dataset
-#iris = load_iris()
+# Definir las características y el objetivo
+X = BD2018.iloc[:, 2:-2]  # Seleccionar las columnas desde la 2 hasta la antepenúltima
+y = BD2018.iloc[:, -1]    # Seleccionar la última columna como objetivo
 
-# create a figure with subplots
-fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(12, 8))
+# Dividir los datos en conjuntos de entrenamiento y prueba
+X_train, X_test, y_traIn, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# iterate over all possible pairs of features
-for i in range(iris.data.shape[1]):
-    for j in range(i + 1, iris.data.shape[1]):
-        # fit decision tree classifier
-        clf = DecisionTreeClassifier().fit(iris.data[:, [i, j]], iris.target)
+# Crear un clasificador k-NN con k=3
+knn = KNeighborsClassifier(n_neighbors=3)
 
-        # create a meshgrid to plot the decision surface
-        x_min, x_max = iris.data[:, i].min() - 1, iris.data[:, i].max() + 1
-        y_min, y_max = iris.data[:, j].min() - 1, iris.data[:, j].max() + 1
-        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
-                             np.arange(y_min, y_max, 0.02))
+# Entrenar el clasificador con los datos de entrenamiento
+knn.fit(X_train, y_train)
 
-        # predict on the meshgrid
-        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-        Z = Z.reshape(xx.shape)
+# Predecir las clases de los datos de prueba
+y_pred = knn.predict(X_test)
 
-        # plot the decision surface in a subplot
-        ax = axes[j-1][i]
-        ax.contourf(xx, yy, Z, alpha=0.4)
-        ax.scatter(iris.data[:, i], iris.data[:, j], c=iris.target, alpha=0.8)
-        ax.set_xlabel(iris.feature_names[i])
-        ax.set_ylabel(iris.feature_names[j])
-        ax.set_title('Decision surface of a decision tree')
-
-# adjust the layout of subplots
-plt.tight_layout()
-
-# display the plot in Streamlit
-st.pyplot(fig)
-
+# Calcular la precisión del clasificador
+accuracy = knn.score(X_test, y_test)
+print('Precisión del clasificador: {:.2f}'.format(accuracy))
 
 
