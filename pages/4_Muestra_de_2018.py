@@ -1277,7 +1277,7 @@ X = BD2018.iloc[:, 2:-2]  # Seleccionar las columnas desde la 2 hasta la antepen
 y = BD2018.iloc[:, -1]    # Seleccionar la última columna como objetivo
 
 # Dividir los datos en conjuntos de entrenamiento y prueba
-X_train, X_test, y_traIn, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Crear un clasificador k-NN con k=3
 knn = KNeighborsClassifier(n_neighbors=3)
