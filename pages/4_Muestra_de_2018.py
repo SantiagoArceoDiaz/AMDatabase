@@ -1334,4 +1334,47 @@ for i in range(X.shape[1]):
         # display the plot in Streamlit
         st.pyplot(fig)
 
+import streamlit as st
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+import matplotlib.pyplot as plt
+import numpy as np
+
+# load BD2018 dataset
+#BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
+
+# get feature and target columns
+X = BD2018.iloc[:, 1:-2]
+y = BD2018.iloc[:, -2]
+
+# create a figure with 2 subplots
+fig, axs = plt.subplots(nrows=1, ncols=2, figsize=(12, 6))
+
+# iterate over all possible pairs of features
+for idx, (i, j) in enumerate(zip(range(X.shape[1]), range(X.shape[1])[1:])):
+    # compute subplot index
+    subplot_idx = idx % 2
+    
+    # fit decision tree classifier
+    clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
+
+    # create a meshgrid to plot the decision surface
+    x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
+    y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                         np.arange(y_min, y_max, 0.02))
+
+    # predict on the meshgrid
+    Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+
+    # plot the decision surface in the corresponding subplot
+    axs[subplot_idx].contourf(xx, yy, Z, alpha=0.4)
+    axs[subplot_idx].scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
+    axs[subplot_idx].set_xlabel(X.columns[i])
+    axs[subplot_idx].set_ylabel(X.columns[j])
+    axs[subplot_idx].set_title('Decision surface of a decision tree')
+
+# display the plot in Streamlit
+st.pyplot(fig)
 
