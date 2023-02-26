@@ -1436,77 +1436,61 @@ plt.subplots_adjust(hspace=0.8)
 st.pyplot()
 
 
-import streamlit as st
 import pandas as pd
-import numpy as np
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
-import altair as alt
+import matplotlib.pyplot as plt
+import numpy as np
+import streamlit as st
 
-# load BD2018 dataset
-#BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
+# Cargar el conjunto de datos y asignar los nombres de las columnas
+#data = pd.read_csv("BD2018.csv", header=None)
+#BD2018.columns = ['Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
+
+# Dividir el conjunto de datos en características (X) y objetivo (y)
 BD2018 = BD2018[['Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 
-# get feature and target columns
-X = BD2018.iloc[:, :-2]
-y = BD2018.iloc[:, -2]
+X = BD2018.iloc[:, :-1].values
+y = BD2018.iloc[:, -1].values
 
-# define number of columns and plots per column
-num_cols = 3
-plots_per_col = 5
-num_plots = X.shape[1] * (X.shape[1]-1) // 2
+# Entrenar un modelo de árbol de decisión con una profundidad máxima de 3
+clf = DecisionTreeClassifier(max_depth=3)
+clf.fit(X, y)
 
-# iterate over all possible pairs of features
-plot_count = 0
-charts = []
-for i in range(X.shape[1]):
-    for j in range(i + 1, X.shape[1]):
-        # fit decision tree classifier
-        clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
+# Crear una malla de valores para representar la superficie de decisión
+xx, yy = np.meshgrid(np.arange(X[:, 0].min() - 1, X[:, 0].max() + 1, 0.1),
+                     np.arange(X[:, 1].min() - 1, X[:, 1].max() + 1, 0.1))
+Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
 
-        # create a meshgrid to plot the decision surface
-        x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
-        y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
-        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
-                             np.arange(y_min, y_max, 0.02))
+# Crear la figura y los ejes del gráfico
+fig, ax = plt.subplots()
+ax.contourf(xx, yy, Z, alpha=0.4)
 
-        # predict on the meshgrid
-        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-        Z = Z.reshape(xx.shape)
+# Agregar los puntos de datos al gráfico
+scatter = ax.scatter(X[:, 0], X[:, 1], c=y, cmap='viridis')
+plt.xlabel('Edad')
+plt.ylabel('MNA')
 
-        # create an Altair chart with points and decision surface
-        chart = alt.Chart(X).mark_point().encode(
-            x=X.columns[i],
-            y=X.columns[j],
-            color=alt.Color(y, scale=alt.Scale(scheme='category10')),
-            tooltip=['Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
-        ).interactive() + alt.Chart(pd.DataFrame({'x': xx.ravel(), 'y': yy.ravel(), 'z': Z.ravel()})).mark_rect().encode(
-            x='x:Q',
-            y='y:Q',
-            color=alt.Color('z:O', scale=alt.Scale(scheme='redyellowgreen'))
-        ).properties(
-            width=200,
-            height=200
-        )
+# Agregar una leyenda al gráfico
+legend1 = ax.legend(*scatter.legend_elements(),
+                    loc="upper right", title="Target")
+ax.add_artist(legend1)
 
-        # add chart to list
-        charts.append(chart)
+# Agregar interacción con el usuario
+tooltip = st.markdown('Hover over a point on the graph to see its values')
 
-# combine all charts into a single row
-row = alt.hconcat(*charts, spacing=10)
+def on_plot_hover(event):
+    point_x, point_y = event.xdata, event.ydata
+    idx = np.where((X[:, 0]==point_x) & (X[:, 1]==point_y))[0][0]
+    tooltip.write('Edad: {}\nMNA: {}\nFuerza: {}\nProteinas: {}\nBARTHEL: {}\nTarget: {}'.format(
+        X[idx,0], X[idx,1], X[idx,2], X[idx,3], X[idx,4], y[idx]))
 
-# add title to the row
-suptitle = alt.Chart(pd.DataFrame({'title': ['Decision surfaces of a decision tree']})).mark_text().encode(
-    text='title'
-).properties(
-    width=1000,
-    height=50
-)
+fig.canvas.mpl_connect('motion_notify_event', on_plot_hover)
 
-# combine title and charts into a single column
-col = alt.vconcat(suptitle, row, spacing=10)
-
-# display the column in Streamlit
-st.altair_chart(col)
+# Mostrar el gráfico en Streamlit
+st.pyplot(fig)
 
 
 
