@@ -1391,7 +1391,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # load BD2018 dataset
-BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
+#BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
 BD2018 = BD2018[['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 
 # get feature and target columns
