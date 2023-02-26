@@ -1434,3 +1434,70 @@ plt.subplots_adjust(hspace=0.8)
 # display the plot in Streamlit
 st.pyplot()
 
+import streamlit as st
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from bokeh.models import HoverTool
+from bokeh.plotting import figure
+from bokeh.palettes import Category10
+from bokeh.transform import factor_cmap
+from bokeh.io import to_html
+from bokeh.resources import CDN
+import numpy as np
+
+# load BD2018 dataset
+#BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
+
+# get feature and target columns
+X = BD2018.iloc[:, 1:-2]
+y = BD2018.iloc[:, -2]
+
+# define number of columns and plots per column
+num_cols = 3
+plots_per_col = 4
+num_plots = X.shape[1] * (X.shape[1]-1) // 2
+
+# create a Bokeh figure
+fig = figure(title="Decision surfaces of a decision tree", 
+             tools="box_select, lasso_select, reset",
+             x_axis_label=X.columns[0], y_axis_label=X.columns[1],
+             sizing_mode="stretch_both")
+
+# create a color palette for the classes
+palette = Category10[10]
+
+# iterate over all possible pairs of features
+plot_count = 0
+for i in range(X.shape[1]):
+    for j in range(i + 1, X.shape[1]):
+        # fit decision tree classifier
+        clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
+
+        # create a meshgrid to plot the decision surface
+        x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
+        y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                             np.arange(y_min, y_max, 0.02))
+
+        # predict on the meshgrid
+        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+        Z = Z.reshape(xx.shape)
+
+        # add decision surface to the Bokeh figure
+        source = pd.DataFrame({'x': xx.ravel(), 'y': yy.ravel(), 'class': Z.ravel()})
+        source['color'] = factor_cmap('class', palette=palette, factors=[0, 1, 2])
+        fig.patch(source=source, x='x', y='y', color='color', alpha=0.4)
+
+        # add scatter plot to the Bokeh figure
+        source = pd.DataFrame({'x': X.iloc[:, i], 'y': X.iloc[:, j], 'class': y})
+        source['color'] = factor_cmap('class', palette=palette, factors=[0, 1, 2])
+        fig.circle(source=source, x='x', y='y', color='color', alpha=0.8, size=5,
+                   legend_field='class')
+
+        # add hover tool to the Bokeh figure
+        hover = HoverTool(tooltips=[(X.columns[i], '@x'), (X.columns[j], '@y')])
+        fig.add_tools(hover)
+
+# display the Bokeh figure in Streamlit
+html = to_html(fig, CDN)
+st.components.v1.html(html)
