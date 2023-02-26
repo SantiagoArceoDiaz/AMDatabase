@@ -1316,7 +1316,9 @@ knn = KNeighborsClassifier(n_neighbors=3)
 knn.fit(X_train, y_train)
 
 # Graficar las superficies de decisión
-plot_decision_regions(X.values, y.values, clf=knn, legend=2)
+#plot_decision_regions(X.values, y.values, clf=knn, legend=2)
+plot_decision_regions(X.values, y.values, clf=knn, legend=2, filler_feature_values=[-1, -1])
+
 
 # Mostrar la gráfica
 plt.show()
