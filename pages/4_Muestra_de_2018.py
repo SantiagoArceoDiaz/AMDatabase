@@ -1317,7 +1317,19 @@ knn.fit(X_train, y_train)
 
 # Graficar las superficies de decisión
 #plot_decision_regions(X.values, y.values, clf=knn, legend=2)
-plot_decision_regions(X.values, y.values, clf=knn, legend=2, filler_feature_values=[-1, -1])
+#plot_decision_regions(X.values, y.values, clf=knn, legend=2, filler_feature_values=[-1, -1])
+from mlxtend.plotting import plot_decision_regions
+
+# define feature indices
+feature_idx = [0, 1, 3, 4]
+
+# define filler feature values for the remaining columns
+filler_feature_values = {
+    i: X.iloc[:, i].mean() for i in range(X.shape[1]) if i not in feature_idx
+}
+
+# plot decision regions
+plot_decision_regions(X.values[:, feature_idx], y.values, clf=knn, legend=2, filler_feature_values=filler_feature_values)
 
 
 # Mostrar la gráfica
