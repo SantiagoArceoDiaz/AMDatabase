@@ -1292,6 +1292,7 @@ from sklearn.model_selection import train_test_split
 #accuracy = knn.score(X_test, y_test)
 #print('Precisión del clasificador: {:.2f}'.format(accuracy))
 
+BD2018 = BD2018[['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 
 import streamlit as st
 import pandas as pd
