@@ -1455,7 +1455,7 @@ num_plots = X.shape[1] * (X.shape[1]-1) // 2
 # create a DataFrame for plotting
 plot_data = pd.concat([X, y], axis=1)
 #plot_data = plot_data.melt(id_vars=['EsPobre'])
-plot_data = plot_data.melt(id_vars=BD2018.iloc[:, 1:-2])
+plot_data = plot_data.melt(id_vars=BD2018.columns[2:-2])
 
 # create a selection for highlighting points on hover
 selection = alt.selection_single(on='mouseover', nearest=True, empty='none')
@@ -1489,7 +1489,7 @@ for i in range(X.shape[1]):
         scatter_plot = alt.Chart(plot_data).mark_circle().encode(
             x=X.columns[i] + ':Q',
             y=X.columns[j] + ':Q',
-            color=alt.Color('variable:N', scale=alt.Scale(domain=['EsPobre', X.columns[i], X.columns[j]], range=['#1f77b4', '#ff7f0e', '#2ca02c'])),
+            color=alt.Color('variable:N', scale=alt.Scale(domain=[BD2018.columns[-1], X.columns[i], X.columns[j]], range=['#1f77b4', '#ff7f0e', '#2ca02c'])),
             opacity=alt.condition(selection, alt.value(0.8), alt.value(0.1)),
             tooltip=['EsPobre'] + [alt.Tooltip(c + ':Q') for c in X.columns]
         ).add_selection(selection)
