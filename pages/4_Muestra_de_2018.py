@@ -1491,25 +1491,25 @@ for i in range(X.shape[1]):
         charts.append(chart)
 
 # combine all charts into a single row
-row = alt.hconcat(*charts, spacing=10)
+#row = alt.hconcat(*charts, spacing=10)
 
 # add title to the row
-suptitle = alt.Chart(pd.DataFrame({'title': ['Decision surfaces of a decision tree']})).mark_text().encode(
-    text='title'
-).properties(
-    width=1000,
-    height=50
-)
+#suptitle = alt.Chart(pd.DataFrame({'title': ['Decision surfaces of a decision tree']})).mark_text().encode(
+#    text='title'
+#).properties(
+#    width=1000,
+#    height=50
+#)
 
 # display the row and title in Streamlit
 #st.altair_chart(suptitle + row)
 
 # combine title and charts into a single column
-col = alt.vconcat(suptitle, row, spacing=10)
+#col = alt.vconcat(suptitle, row, spacing=10)
 
 # display the column in Streamlit
-st.altair_chart(col)
-
+#st.altair_chart(col)
+st.altait_chart(chart)
 
 
 
