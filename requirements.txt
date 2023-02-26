@@ -16,3 +16,4 @@ scikit-learn
 graphviz
 pydot
 pydotplus
+mlxtend
