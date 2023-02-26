@@ -1457,6 +1457,7 @@ import numpy as np
 #plot_data = pd.concat([X, y], axis=1)
 #plot_data = plot_data.melt(id_vars=['EsPobre'])
 #plot_data = plot_data.melt(id_vars=BD2018.columns[1:])
+plot_data = BD2018.columns[:,1:-1]
 
 # create a selection for highlighting points on hover
 selection = alt.selection_single(on='mouseover', nearest=True, empty='none')
@@ -1487,6 +1488,7 @@ for i in range(X.shape[1]):
         )
 
 #        # plot the scatter plot
+#        scatter_plot = alt.Chart(plot_data).mark_circle().encode(
         scatter_plot = alt.Chart(plot_data).mark_circle().encode(
             x=X.columns[i] + ':Q',
             y=X.columns[j] + ':Q',
