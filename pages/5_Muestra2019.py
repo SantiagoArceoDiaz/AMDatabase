@@ -362,3 +362,113 @@ cajas2019=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart4),al
 
 st.altair_chart(cajas2019)
 
+selection = alt.selection_multi(fields=['Sexo'], bind='legend')
+chart1 = alt.Chart(BD2019).mark_circle(size=50).encode(
+    x='Edad', y='Fuerza',
+    color='Sexo',
+    tooltip=[alt.Tooltip("Nombre"),
+    alt.Tooltip("MNA"),
+    alt.Tooltip('Fuerza'),
+    alt.Tooltip("Marcha"),
+    alt.Tooltip("PuntajeZ"),
+    alt.Tooltip("BARTHEL"),
+    ],
+    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+).properties(
+    height=400, width=500
+).add_selection(
+    selection
+).interactive()
+
+chart2 = alt.Chart(BD2019).mark_circle(size=50).encode(
+    x='Edad', y='Proteinas',
+    color='Sexo',
+    tooltip=[alt.Tooltip("Nombre"),
+    alt.Tooltip("MNA"),
+    alt.Tooltip('Fuerza'),
+    alt.Tooltip("Marcha"),
+    alt.Tooltip("PuntajeZ"),
+    alt.Tooltip("BARTHEL"),
+    ],
+    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+).properties(
+    height=400, width=500
+).add_selection(
+    selection
+).interactive()
+
+
+
+chart3 = alt.Chart(BD2019).mark_circle(size=50).encode(
+    x='Edad', y='MNA',
+    color='Sexo',
+    tooltip=[alt.Tooltip("Nombre"),
+    alt.Tooltip("MNA"),
+    alt.Tooltip('Fuerza'),
+    alt.Tooltip("Marcha"),
+    alt.Tooltip("PuntajeZ"),
+    alt.Tooltip("BARTHEL"),
+    ],
+    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+).properties(
+    height=400, width=500
+).add_selection(
+    selection
+).interactive()
+
+chart4 = alt.Chart(BD2019).mark_circle(size=50).encode(
+    x='Edad', y='Marcha',
+    color='Sexo',
+    tooltip=[alt.Tooltip("Nombre Completo"),
+    alt.Tooltip("MNA"),
+    alt.Tooltip("Prom_Fuer"),
+    alt.Tooltip("Marcha"),
+    alt.Tooltip("PuntajeZ"),
+    alt.Tooltip("BARTHEL"),
+    ],
+    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+).properties(
+    height=400, width=500
+).add_selection(
+    selection
+).interactive()
+
+chart5 = alt.Chart(BD2019).mark_circle(size=50).encode(
+    x='Edad', y='PuntajeZ',
+    color='Sexo',
+    tooltip=[alt.Tooltip("Nombre Completo"),
+    alt.Tooltip("MNA"),
+    alt.Tooltip("Prom_Fuer"),
+    alt.Tooltip("Marcha"),
+    alt.Tooltip("PuntajeZ"),
+    alt.Tooltip("BARTHEL"),
+    ],
+    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+).properties(
+    height=400, width=500
+).add_selection(
+    selection
+).interactive()
+
+selection = alt.selection_multi(fields=['Sexo'], bind='legend')
+chart6 = alt.Chart(BD2019).mark_circle(size=50).encode(
+    x='Edad', y='BARTHEL',
+    color='Sexo',
+    tooltip=[alt.Tooltip("Nombre"),
+    alt.Tooltip("MNA"),
+    alt.Tooltip('Fuerza'),
+    alt.Tooltip("Marcha"),
+    alt.Tooltip("PuntajeZ"),
+    alt.Tooltip("BARTHEL"),
+    ],
+    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+).properties(
+    height=400, width=500
+).add_selection(
+    selection
+).interactive()
+
+
+correlaciones2019=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart6))
+
+st.altair_chart(correlaciones2019)
