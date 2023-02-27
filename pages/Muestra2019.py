@@ -227,3 +227,280 @@ st.markdown(
     """
     )
 
+#################01############################
+
+
+
+chart1=altcat.catplot(BD2020,
+               height=350,
+               width=450,
+               mark='point',
+               box_mark=dict(strokeWidth=2, opacity=0.6),
+               whisker_mark=dict(strokeWidth=2, opacity=0.9),
+               encoding=dict(x=alt.X('Sexo:N', title=None),
+                             y=alt.Y('MNA:Q',scale=alt.Scale(zero=False)),
+                             tooltip=[alt.Tooltip("Nombre"),
+                             alt.Tooltip("Edad"),
+                             alt.Tooltip("Proteinas"),
+                             alt.Tooltip('Fuerza'),
+                             alt.Tooltip("MNA"),
+                             #alt.Tooltip("Marcha"),
+                             alt.Tooltip("BARTHEL"),
+                             ],
+                             color=alt.Color('Sexo:N', legend=None)),
+               transform='jitterbox',
+              jitter_width=0.5).interactive()
+
+chart2=altcat.catplot(BD2020,
+               height=350,
+               width=450,
+               mark='point',
+               box_mark=dict(strokeWidth=2, opacity=0.6),
+               whisker_mark=dict(strokeWidth=2, opacity=0.9),
+               encoding=dict(x=alt.X('Sexo:N', title=None),
+                             y=alt.Y('Proteinas:Q',scale=alt.Scale(zero=False)),
+                             tooltip=[alt.Tooltip("Nombre"),
+                             alt.Tooltip("Edad"),
+                             alt.Tooltip("Proteinas"),
+                             alt.Tooltip('Fuerza'),
+                             alt.Tooltip("MNA"),
+                             #alt.Tooltip("Marcha"),
+                             alt.Tooltip("BARTHEL"),
+                             ],
+                             color=alt.Color('Sexo:N', legend=None)),
+               transform='jitterbox',
+              jitter_width=0.5).interactive()
+
+#chart3=altcat.catplot(BD2018,
+#               height=350,
+#               width=450,
+#               mark='point',
+#               box_mark=dict(strokeWidth=2, opacity=0.6),
+#               whisker_mark=dict(strokeWidth=2, opacity=0.9),
+#               encoding=dict(x=alt.X('Sexo:N', title=None),
+#                             y=alt.Y('PuntajeZ:Q',scale=alt.Scale(zero=False)),
+#                             tooltip=[alt.Tooltip("Nombre Completo"),
+#                             alt.Tooltip("Edad"),
+#                             alt.Tooltip("Proteinas"),
+#                             alt.Tooltip("Prom_Fuer"),
+#                             alt.Tooltip("MNA"),
+#                             #alt.Tooltip("Marcha"),
+#                             alt.Tooltip("BARTHEL"),
+#                             ],
+#                             color=alt.Color('Sexo:N', legend=None)),
+#               transform='jitterbox',
+#              jitter_width=0.5).interactive()
+
+chart4=altcat.catplot(BD2020,
+               height=350,
+               width=450,
+               mark='point',
+               box_mark=dict(strokeWidth=2, opacity=0.6),
+               whisker_mark=dict(strokeWidth=2, opacity=0.9),
+               encoding=dict(x=alt.X('Sexo:N', title=None),
+                             y=alt.Y('Fuerza:Q',scale=alt.Scale(zero=False)),
+                             tooltip=[alt.Tooltip("Nombre"),
+                             alt.Tooltip("Edad"),
+                             alt.Tooltip("Proteinas"),
+                             alt.Tooltip('Fuerza'),
+                             alt.Tooltip("MNA"),
+                             #alt.Tooltip("Marcha"),
+                             alt.Tooltip("BARTHEL"),
+                             ],
+                             color=alt.Color('Sexo:N', legend=None)),
+               transform='jitterbox',
+              jitter_width=0.5).interactive()
+
+#chart5=altcat.catplot(BD2018,
+#               height=350,
+#               width=450,
+#               mark='point',
+#               box_mark=dict(strokeWidth=2, opacity=0.6),
+#               whisker_mark=dict(strokeWidth=2, opacity=0.9),
+#               encoding=dict(x=alt.X('Sexo:N', title=None),
+#                             y=alt.Y('Marcha:Q',scale=alt.Scale(zero=False)),
+#                             tooltip=[alt.Tooltip("Nombre Completo"),
+#                             alt.Tooltip("Edad"),
+#                             alt.Tooltip("Proteinas"),
+#                             alt.Tooltip("Prom_Fuer"),
+#                             alt.Tooltip("MNA"),
+#                             #alt.Tooltip("Marcha"),
+#                             alt.Tooltip("BARTHEL"),
+#                             ],
+#                             color=alt.Color('Sexo:N', legend=None)),
+#               transform='jitterbox',
+#              jitter_width=0.5).interactive()
+
+chart6=altcat.catplot(BD2020,
+               height=350,
+               width=450,
+               mark='point',
+               box_mark=dict(strokeWidth=2, opacity=0.6),
+               whisker_mark=dict(strokeWidth=2, opacity=0.9),
+               encoding=dict(x=alt.X('Sexo:N', title=None),
+                             y=alt.Y('Fuerza:Q',scale=alt.Scale(zero=False)),
+                             tooltip=[alt.Tooltip("Nombre"),
+                             alt.Tooltip("Edad"),
+                             alt.Tooltip("Proteinas"),
+                             alt.Tooltip('Fuerza'),
+                             alt.Tooltip("MNA"),
+                             #alt.Tooltip("Marcha"),
+                             alt.Tooltip("BARTHEL"),
+                             ],
+                             color=alt.Color('Sexo:N', legend=None)),
+               transform='jitterbox',
+              jitter_width=0.5).interactive()
+
+
+cajas2020=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart4, chart6))
+
+#Barras2018, axes = plt.subplots(2, 2, figsize=(10, 10))
+#crear un histograma en cada subplot usando "seaborn"
+#sns.boxplot(data=df, x='team', y='points', ax=axes[0,0])
+#sns.boxplot(data=df, x='team', y='assists', ax=axes[0,1])
+#sn.histplot(BD2018['Edad'], ax=axes[0,0], kde=True,
+#                      line_kws={'linewidth': 2})
+#sn.histplot(BD2018['MNA'], ax=axes[0,1], kde=True,
+#                      line_kws={'linewidth': 2})
+#sn.histplot(BD2018['Prom_Fuer'], ax=axes[1,0], kde=True,
+#                      line_kws={'linewidth': 2})
+#sn.histplot(df2018['Proteinas'], ax=axes[1,1], kde=True,
+#                      line_kws={'linewidth': 2})
+st.altair_chart(cajas2020)
+
+
+selection = alt.selection_multi(fields=['Sexo'], bind='legend')
+chart1 = alt.Chart(BD2020).mark_circle(size=50).encode(
+    x='Edad', y='Fuerza',
+    color='Sexo',
+    tooltip=[alt.Tooltip("Nombre"),
+    alt.Tooltip("MNA"),
+    alt.Tooltip('Fuerza'),
+    #alt.Tooltip("Marcha"),
+    #alt.Tooltip("PuntajeZ"),
+    alt.Tooltip("BARTHEL"),
+    ],
+    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+).properties(
+    height=400, width=500
+).add_selection(
+    selection
+).interactive()
+
+chart2 = alt.Chart(BD2020).mark_circle(size=50).encode(
+    x='Edad', y='Proteinas',
+    color='Sexo',
+    tooltip=[alt.Tooltip("Nombre"),
+    alt.Tooltip("MNA"),
+    alt.Tooltip('Fuerza'),
+    #alt.Tooltip("Marcha"),
+    #alt.Tooltip("PuntajeZ"),
+    alt.Tooltip("BARTHEL"),
+    ],
+    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+).properties(
+    height=400, width=500
+).add_selection(
+    selection
+).interactive()
+
+
+
+chart3 = alt.Chart(BD2020).mark_circle(size=50).encode(
+    x='Edad', y='MNA',
+    color='Sexo',
+    tooltip=[alt.Tooltip("Nombre"),
+    alt.Tooltip("MNA"),
+    alt.Tooltip('Fuerza'),
+    #alt.Tooltip("Marcha"),
+    #alt.Tooltip("PuntajeZ"),
+    alt.Tooltip("BARTHEL"),
+    ],
+    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+).properties(
+    height=400, width=500
+).add_selection(
+    selection
+).interactive()
+
+#chart4 = alt.Chart(BD2018).mark_circle(size=50).encode(
+#    x='Edad', y='Marcha',
+#    color='Sexo',
+#    tooltip=[alt.Tooltip("Nombre Completo"),
+#    alt.Tooltip("MNA"),
+#    alt.Tooltip("Prom_Fuer"),
+#    #alt.Tooltip("Marcha"),
+#    #alt.Tooltip("PuntajeZ"),
+#    alt.Tooltip("BARTHEL"),
+#    ],
+#    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+#).properties(
+#    height=400, width=500
+#).add_selection(
+#    selection
+#).interactive()
+
+#chart5 = alt.Chart(BD2018).mark_circle(size=50).encode(
+#    x='Edad', y='PuntajeZ',
+#    color='Sexo',
+#    tooltip=[alt.Tooltip("Nombre Completo"),
+#    alt.Tooltip("MNA"),
+#    alt.Tooltip("Prom_Fuer"),
+#    #alt.Tooltip("Marcha"),
+#    #alt.Tooltip("PuntajeZ"),
+#    alt.Tooltip("BARTHEL"),
+#    ],
+#    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+#).properties(
+#    height=400, width=500
+#).add_selection(
+#    selection
+#).interactive()
+
+selection = alt.selection_multi(fields=['Sexo'], bind='legend')
+chart6 = alt.Chart(BD2020).mark_circle(size=50).encode(
+    x='Edad', y='BARTHEL',
+    color='Sexo',
+    tooltip=[alt.Tooltip("Nombre"),
+    alt.Tooltip("MNA"),
+    alt.Tooltip('Fuerza'),
+    #alt.Tooltip("Marcha"),
+    #alt.Tooltip("PuntajeZ"),
+    alt.Tooltip("BARTHEL"),
+    ],
+    opacity=alt.condition(selection, alt.value(1), alt.value(0))
+).properties(
+    height=400, width=500
+).add_selection(
+    selection
+).interactive()
+
+
+correlaciones2020=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart6))
+
+st.altair_chart(correlaciones2020)
+
+#Barras2018, axes = plt.subplots(2, 2, figsize=(10, 10))
+
+
+# Creamos una correlación desde un dataset D
+#corr2018 = BD2018.corr()
+
+# Dibujamos nuestro gráfico
+#grafico=sns.heatmap(corr2018)
+#st.pyplot(grafico)
+
+
+#datos = sns.load_dataset("iris")
+#grafico = sns.pairplot(datos, hue="species")
+
+#st.pyplot(grafico)
+
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
+
+
