@@ -56,7 +56,7 @@ df2020['Fuerza'] = pd.to_numeric(df2020['Prom_Fuer'])
 
 
 Listadf2020=df2020['Nombre'].tolist() #crea una lista a partir de los nombres de usuarios en df2018..
-Setdf2020=set(Listadf2018) # convierte la lista en un conjunto (para su manejo posterior)
+Setdf2020=set(Listadf2020) # convierte la lista en un conjunto (para su manejo posterior)
 
 st.markdown(
     """ 
