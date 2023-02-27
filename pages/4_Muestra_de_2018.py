@@ -1436,17 +1436,15 @@ plt.subplots_adjust(hspace=0.8)
 st.pyplot()
 
 
-
-
 import streamlit as st
 import pandas as pd
+from sklearn.neighbors import KNeighborsClassifier
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.neighbors import KNeighborsClassifier
 
 # load BD2018 dataset
 #BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
-BD2018 = BD2018[['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+#BD2018 = BD2018[['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 
 # get feature and target columns
 X = BD2018.iloc[:, 1:-2]
@@ -1475,28 +1473,22 @@ for i in range(X.shape[1]):
         Z = Z.reshape(xx.shape)
 
         # plot the decision surface
-        #plot_count += 1
-        #plt.subplot(int(np.ceil(num_plots/plots_per_col)), num_cols, plot_count)
-        #plt.contourf(xx, yy, Z, alpha=0.4)
-        #plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
-        #plt.xlabel(X.columns[i])
-        #plt.ylabel(X.columns[j])
-
-        # plot the decision surface
         plot_count += 1
-        ax = plt.subplot(int(np.ceil(num_plots/plots_per_col)), num_cols, plot_count)
-        ax.contourf(xx, yy, Z, alpha=0.4)
-        ax.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
-        ax.set_xlabel(X.columns[i])
-        ax.set_ylabel(X.columns[j])
+        plt.subplot(int(np.ceil(num_plots/plots_per_col)), num_cols, plot_count)
+        plt.contourf(xx, yy, Z, alpha=0.4)
+        plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
+        plt.xlabel(X.columns[i])
+        plt.ylabel(X.columns[j])
 
-        
 # add suptitle to the figure
 plt.suptitle('Decision surfaces of a K-neighbors classifier')
 
 plt.subplots_adjust(hspace=0.8)
 # display the plot in Streamlit
 st.pyplot()
+
+
+
 
 #import pandas as pd
 #from sklearn import datasets
