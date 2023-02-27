@@ -359,3 +359,6 @@ chart6=altcat.catplot(BD2019,
 
 
 cajas2019=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart4),alt.hconcat(chart5, chart6))
+
+st.altair_chart(cajas2019)
+
