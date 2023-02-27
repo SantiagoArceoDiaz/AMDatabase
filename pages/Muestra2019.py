@@ -480,21 +480,7 @@ correlaciones2020=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, ch
 
 st.altair_chart(correlaciones2020)
 
-#Barras2018, axes = plt.subplots(2, 2, figsize=(10, 10))
 
-
-# Creamos una correlación desde un dataset D
-#corr2018 = BD2018.corr()
-
-# Dibujamos nuestro gráfico
-#grafico=sns.heatmap(corr2018)
-#st.pyplot(grafico)
-
-
-#datos = sns.load_dataset("iris")
-#grafico = sns.pairplot(datos, hue="species")
-
-#st.pyplot(grafico)
 
 st.markdown(
     """ 
@@ -563,11 +549,6 @@ del Hombres2020100['Sexo']
 
 
 
-#Hombres201860
-#Hombres201870
-#Hombres201880
-#Hombres201890
-#Hombres2018100
 
 
 
@@ -584,11 +565,6 @@ del Mujeres2020100['Sexo']
 
 
 
-#Mujeres201860
-#Mujeres201870
-#Mujeres201880
-#Mujeres201890
-#Mujeres2018100
 
 st.markdown(
     """ 
@@ -597,82 +573,23 @@ st.markdown(
     """
     )
 
-#import pandas as pd
-#import seaborn as sns
-#import matplotlib.pyplot as plt
-# Creamos una correlación desde un dataset D
-#corr = Hombres201870.corr().loc[:'BARTHEL', :"BARTHEL"]
-
-# Dibujamos nuestro gráfico
-#sns.heatmap(corr)
-#plt.show()
-#st.seaborn(Barras2018)
 
 
 
-#import pandas as pd
-#import seaborn as sns
-#import matplotlib.pyplot as plt
-# Creamos una correlación desde un dataset D
-#corr = Hombres201880.corr().loc[:'BARTHEL', :"BARTHEL"]
 
-# Dibujamos nuestro gráfico
-#sns.heatmap(corr)
-#plt.show()
-
-
-
-# importing libraries
 import altair as alt
 from vega_datasets import data
   
-# importing airports dataset from vega_datasets package
-# airport = data.airports()
-  
-# making the scatter plot on latitude and longitude
-# setting color on the basis of country
-#fig = alt.Chart(Hombres201870).mark_point().encode(
-#  x='Edad',y='Proteinas')
-  
-# making the regression line using transform_regression
-# function and add with the scatter plot
-#final_plot = fig + fig.transform_regression('latitude','longitude').mark_line()
-  
-# saving the scatter plot with regression line
-#st.altair_chart(final_plot)
 
-
-
-# Creamos una correlación desde un dataset D
-#corr = Hombres201880.corr().loc[:'BARTHEL', :"BARTHEL"]
-
-# Dibujamos nuestro gráfico
-#sns.heatmap(corr)
-#plt.show()
 
 
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-# Creamos una correlación desde un dataset D
-#corr = Hombres201890.corr().loc[:'BARTHEL', :"BARTHEL"]
-
-# Dibujamos nuestro gráfico
-#sns.heatmap(corr)
-#plt.show()
 
 
 
-
-#import seaborn as sns
 cmap = sns.diverging_palette( 220 , 10 , as_cmap = True )
-#sb1 = sns.heatmap(
-#    subset1.corr(), 
-#    cmap = cmap,
-#    square=True, 
-#    cbar_kws={ 'shrink' : .9 }, 
-#    annot = True, 
-#    annot_kws = { 'fontsize' : 12 })
 
 # Here we create a figure instance, and two subplots
 CalorHombres2020 = plt.figure(figsize = (20,20)) # width x height
@@ -729,4 +646,466 @@ st.markdown(
     """
     )
 
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.datasets import load_diabetes
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+
+def generateXvector(X):
+    """ Taking the original independent variables matrix and add a row of 1 which corresponds to x_0
+        Parameters:
+          X:  independent variables matrix
+        Return value: the matrix that contains all the values in the dataset, not include the outcomes values 
+    """
+    vectorX = np.c_[np.ones((len(X), 1)), X]
+    return vectorX
+
+def theta_init(X):
+    """ Generate an initial value of vector θ from the original independent variables matrix
+         Parameters:
+          X:  independent variables matrix
+        Return value: a vector of theta filled with initial guess
+    """
+    theta = np.random.randn(len(X[0])+1, 1)
+    return theta
+
+def Multivariable_Linear_Regression(X,y,learningrate, iterations):
+    """ Find the multivarite regression model for the data set
+         Parameters:
+          X:  independent variables matrix
+          y: dependent variables matrix
+          learningrate: learningrate of Gradient Descent
+          iterations: the number of iterations
+        Return value: the final theta vector and the plot of cost function
+    """
+    y_new = np.reshape(y, (len(y), 1))   
+    cost_lst = []
+    vectorX = generateXvector(X)
+    theta = theta_init(X)
+    m = len(X)
+    for i in range(iterations):
+        gradients = 2/m * vectorX.T.dot(vectorX.dot(theta) - y_new)
+        theta = theta - learningrate * gradients
+        y_pred = vectorX.dot(theta)
+        cost_value = 1/(2*len(y))*((y_pred - y)**2) #Calculate the loss for each training instance
+        total = 0
+        for i in range(len(y)):
+            total += cost_value[i][0] #Calculate the cost function for each iteration
+        cost_lst.append(total)
+    fig, ax = plt.subplots()
+    ax.plot(np.arange(1,iterations),cost_lst[1:], color = 'red')
+    ax.set_title('Cost function Graph')
+    ax.set_xlabel('Number of iterations')
+    ax.set_ylabel('Cost')
+    st.pyplot(fig)
+    return theta
+
+
+BD2020 = BD2020[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+X = BD2020.iloc[:,2:-2].values
+y = BD2020.iloc[:,-2].values
+
+sc=StandardScaler()
+X_transform=sc.fit_transform(X)
+
+lin_reg = LinearRegression()
+lin_reg.fit(X_transform, y)
+lin_reg.intercept_, lin_reg.coef_
+
+# Find the optimal theta values using the custom function
+theta_optimal = Multivariable_Linear_Regression(X_transform, y, 0.03, 30000)
+
+# Create a new dataframe with the original data and predicted values
+X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Fuerza', 'Proteinas'])
+predictions = np.dot(X_transform_df, theta_optimal[1:]) + theta_optimal[0]
+BD2020_with_predictions = BD2020.assign(Predicted_BARTHEL=predictions)
+
+# Print the new dataframe with predictions
+st.write(BD2020_with_predictions)
+
+
+
+from sklearn.datasets import load_iris
+from sklearn import tree
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.datasets import load_iris
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier, export_text
+from sklearn import tree
+
+
+# Cargar los datos del conjunto iris
+#url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+#colnames = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'name']
+#iris = pd.read_csv(url, header=None, names=colnames)
+
+# Convertir los datos a un arreglo numpy
+#X = iris.iloc[:, :4].values
+#y = iris.iloc[:, 4].values
+#BD2018["Fuerza"]=BD2018["Prom_Fuer"]
+BD2020 = BD2020[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+#X = BD2018.iloc[:,2:-2].values
+#y = BD2018.iloc[:,-2].values
+
+X = BD2020.iloc[:,2:-2].values
+y = BD2020.iloc[:,-1].values
+
+
+# Definir el algoritmo de clasificación y ajustar los datos
+clf = KNeighborsClassifier(n_neighbors=5)
+clf.fit(X, y)
+
+# Pedir al usuario los valores de cada atributo
+#Edad = float(input("Introduzca la Edad: "))
+#MNA = float(input("Introduzca el resultado del test MNA: "))
+#Fuerza = float(input("Introduzca el promedio de fuerza de presión: "))
+#Proteinas = float(input("Introduzca el consumo promedio de proteinas: "))
+
+# Crear los deslizadores
+Edad = st.slider("Edad", 60, 100, 75)
+MNA = st.slider("MNA", 0, 30, 15)
+Fuerza = st.slider("Fuerza", 0, 150, 75)
+Proteinas = st.slider("Proteinas", 0, 200, 100)
+
+# Clasificar el objeto
+prediction = clf.predict([[Edad, MNA, Fuerza, Proteinas]])
+print("El objeto pertenece a la clase:", prediction[0])
+
+
+#from sklearn.datasets import load_iris
+#from sklearn import tree
+#import numpy as np
+
+# Load the iris dataset
+#iris = load_iris()
+
+# Split the dataset into training and testing datasets
+#train_data = iris.data[:-20]
+#train_data = BD2018.iloc[:-20, :]
+train_data = BD2020.iloc[:-20,2:-2].values
+
+#train_target = iris.target[:-20]
+train_target = BD2020.iloc[:-20, -1].values
+
+#test_data = iris.data[-20:]
+test_data = BD2020.iloc[-20:].values
+
+
+#test_target = iris.target[-20:]
+test_target = BD2020.iloc[-20:, -1].values
+
+# Train a decision tree classifier
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(train_data, train_target)
+
+# Use the trained classifier to classify a new object
+new_object = np.array([[Edad, MNA, Fuerza, Proteinas]])
+prediction = clf.predict(new_object)
+
+# Print the preditrain_target.shapection
+#print("The predicted class is:", iris.target_names[prediction[0]])
+
+clf = DecisionTreeClassifier()
+clf.fit(X, y)
+
+
+class_names=BD2020.columns[-1] #
+#tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2])
+#tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist()), class_names=BD2018.columns[-1]
+tree_rules = sk.tree.export_text(clf, feature_names=BD2020.columns[2:-2].tolist())
+
+st.text(tree_rules)
+
+#fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
+#tree.plot_tree(clf)
+#st.pyplot(fig)
+
+fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
+tree.plot_tree(clf, filled=True, feature_names=BD2020.columns[2:-2].tolist(), class_names=BD2020.columns[-1])
+plt.show()
+st.pyplot(fig)
+
+from sklearn.tree import _tree
+
+def tree_to_code(tree, feature_names):
+    tree_ = tree.tree_
+    feature_name = [
+        feature_names[i] if i != _tree.TREE_UNDEFINED else "undefined!"
+        for i in tree_.feature
+    ]
+    feature_names = [f.replace(" ", "_")[:-5] for f in feature_names]
+    st.write("def predict({}):".format(", ".join(feature_names)))
+
+    def recurse(node, depth):
+        indent = "    " * depth
+        if tree_.feature[node] != _tree.TREE_UNDEFINED:
+            name = feature_name[node]
+            threshold = tree_.threshold[node]
+            st.write("{}if {} <= {}:".format(indent, name, np.round(threshold,2)))
+            recurse(tree_.children_left[node], depth + 1)
+            st.write("{}else:  # if {} > {}".format(indent, name, np.round(threshold,2)))
+            recurse(tree_.children_right[node], depth + 1)
+        else:
+            st.write("{}return {}".format(indent, tree_.value[node]))
+
+    recurse(0, 1)
+    
+def get_rules(tree, feature_names, class_names):
+    tree_ = tree.tree_
+    feature_name = [
+        feature_names[i] if i != _tree.TREE_UNDEFINED else "undefined!"
+        for i in tree_.feature
+    ]
+
+    paths = []
+    path = []
+    
+    def recurse(node, path, paths):
+        
+        if tree_.feature[node] != _tree.TREE_UNDEFINED:
+            name = feature_name[node]
+            threshold = tree_.threshold[node]
+            p1, p2 = list(path), list(path)
+            p1 += [f"({name} <= {np.round(threshold, 3)})"]
+            recurse(tree_.children_left[node], p1, paths)
+            p2 += [f"({name} > {np.round(threshold, 3)})"]
+            recurse(tree_.children_right[node], p2, paths)
+        else:
+            path += [(tree_.value[node], tree_.n_node_samples[node])]
+            paths += [path]
+            
+    recurse(0, path, paths)
+
+    # sort by samples count
+    samples_count = [p[-1][1] for p in paths]
+    ii = list(np.argsort(samples_count))
+    paths = [paths[i] for i in reversed(ii)]
+    
+    rules = []
+    for path in paths:
+        rule = "if "
+        
+        for p in path[:-1]:
+            if rule != "if ":
+                rule += " and "
+            rule += str(p)
+        rule += " then "
+        if class_names is None:
+            rule += "response: "+str(np.round(path[-1][0][0][0],3))
+        else:
+            classes = path[-1][0][0]
+            l = np.argmax(classes)
+            rule += f"class: {class_names[l]} (proba: {np.round(100.0*classes[l]/np.sum(classes),2)}%)"
+        rule += f" | based on {path[-1][1]:,} samples"
+        rules += [rule]
+        
+    return rules
+
+#class_names = BD2018['target'].unique().astype(str)#fff
+#class_names = BD2018.columns[-1].unique().astype(str)
+class_names = ['0', '1', '2']
+rules = get_rules(clf, BD2020.columns[2:-2].tolist(), BD2020.columns[-1])
+for r in rules:
+    st.write(r)
+
+#sklearn.tree.export_text(
+
+
+#import graphviz 
+#os.environ["PATH"] += os.pathsep + 'C:/Users/Santiago/anaconda3/Lib/site-packages/graphviz/dot.py'
+#dot_data = tree.export_graphviz(clf, out_file=None) 
+#graph = graphviz.Source(dot_data) 
+#graph.render("iris")
+#st.graphviz_chart(graph.render(engine='dot'), use_container_width=True)
+
+#dot_data = tree.export_graphviz(clf, out_file=None, 
+                      #feature_names=iris.feature_names,  
+#                      feature_names=BD2018.columns[2:-1],
+                      #class_names=iris.target_names,  
+#                      class_names=BD2018.columns[-1],
+#                      filled=True, rounded=True,  
+#                      special_characters=True)  
+#graph = graphviz.Source(dot_data)  
+#graph 
+
+#from sklearn import tree
+#import streamlit as st
+#import pydotplus
+#from streamlit_pydotplus import st_pydotplus
+#from IPython.display import Image  
+
+#features =[[1,0,0] , [2,1,1] , [3,0,0] , [4,1,1] , [5,0,0] , [6,0,1] ,  [900,0,1] , [1001,0,0]] #val,pow2,even
+#labels =  ['o'     ,  'e'    , 'o'     ,  'e'    ,  'o'    ,  'e'    ,   'e'      ,  'o'] #is even
+
+#clf = tree.DecisionTreeClassifier()
+#clf = clf.fit(features,labels)
+
+#prediction = clf.predict([[203,0,0]])
+
+#st.write(f"Prediction: {prediction[0]}")
+
+#dot_data = tree.export_graphviz(clf, out_file=None, 
+#                     feature_names=['number','pow2','even'],  
+#                     class_names=['o','e'],  
+#                     filled=True, rounded=True,  
+#                     special_characters=True)  
+#graph = pydotplus.graph_from_dot_data(dot_data)  
+
+#st_pydotplus(graph)
+
+#import streamlit as st
+#from sklearn.datasets import load_iris
+#from sklearn.tree import DecisionTreeClassifier, plot_tree
+#import matplotlib.pyplot as plt
+#import numpy as np
+
+# load iris dataset
+#iris = load_iris()
+
+# fit decision tree classifier
+#clf = DecisionTreeClassifier().fit(iris.data[:, :2], iris.target)
+
+# create a meshgrid to plot the decision surface
+#x_min, x_max = iris.data[:, 0].min() - 1, iris.data[:, 0].max() + 1
+#y_min, y_max = iris.data[:, 1].min() - 1, iris.data[:, 1].max() + 1
+#xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+#                     np.arange(y_min, y_max, 0.02))
+
+# predict on the meshgrid
+#Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+#Z = Z.reshape(xx.shape)
+
+# plot the decision surface
+#fig, ax = plt.subplots()
+#ax.contourf(xx, yy, Z, alpha=0.4)
+#ax.scatter(iris.data[:, 0], iris.data[:, 1], c=iris.target, alpha=0.8)
+#ax.set_xlabel('Sepal length')
+#ax.set_ylabel('Sepal width')
+#ax.set_title('Decision surface of a decision tree')
+
+# display the plot in Streamlit
+#st.pyplot(fig)
+
+#import streamlit as st
+#from sklearn.datasets import load_iris
+#from sklearn.tree import DecisionTreeClassifier
+#import matplotlib.pyplot as plt
+#import numpy as np
+
+# load iris dataset
+#iris = load_iris()
+
+# iterate over all possible pairs of features
+#for i in range(iris.data.shape[1]):
+#    for j in range(i + 1, iris.data.shape[1]):
+#        # fit decision tree classifier
+#        clf = DecisionTreeClassifier().fit(iris.data[:, [i, j]], iris.target)
+
+        # create a meshgrid to plot the decision surface
+#        x_min, x_max = iris.data[:, i].min() - 1, iris.data[:, i].max() + 1
+#        y_min, y_max = iris.data[:, j].min() - 1, iris.data[:, j].max() + 1
+#        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+#                             np.arange(y_min, y_max, 0.02))
+
+        # predict on the meshgrid
+#        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+#        Z = Z.reshape(xx.shape)
+
+        # plot the decision surface
+#        fig, ax = plt.subplots()
+#        ax.contourf(xx, yy, Z, alpha=0.4)
+#        ax.scatter(iris.data[:, i], iris.data[:, j], c=iris.target, alpha=0.8)
+#        ax.set_xlabel(iris.feature_names[i])
+#        ax.set_ylabel(iris.feature_names[j])
+#        ax.set_title('Decision surface of a decision tree')
+
+        # display the plot in Streamlit
+#        st.pyplot(fig)
+
+        
+#import pandas as pd
+#from sklearn.neighbors import KNeighborsClassifier
+#from sklearn.model_selection import train_test_split
+
+# Leer el archivo csv en un dataframe llamado BD2018
+#BD2018 = pd.read_csv('nombre_del_archivo.csv')
+
+# Definir las características y el objetivo
+#X = BD2018.iloc[:, 2:-2]  # Seleccionar las columnas desde la 2 hasta la antepenúltima
+#y = BD2018.iloc[:, -1]    # Seleccionar la última columna como objetivo
+
+# Dividir los datos en conjuntos de entrenamiento y prueba
+#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Crear un clasificador k-NN con k=3
+#knn = KNeighborsClassifier(n_neighbors=3)
+
+# Entrenar el clasificador con los datos de entrenamiento
+#knn.fit(X_train, y_train)
+
+# Predecir las clases de los datos de prueba
+#y_pred = knn.predict(X_test)
+
+# Calcular la precisión del clasificador
+#accuracy = knn.score(X_test, y_test)
+#print('Precisión del clasificador: {:.2f}'.format(accuracy))
+
+
+import streamlit as st
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+
+# load BD2018 dataset
+#BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
+BD2020 = BD2020[['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+
+# get feature and target columns
+X = BD2020.iloc[:, 1:-2]
+y = BD2020.iloc[:, -2]
+
+# define number of columns and plots per column
+num_cols = 3
+plots_per_col = 5
+num_plots = X.shape[1] * (X.shape[1]-1) // 2
+
+# iterate over all possible pairs of features
+plot_count = 0
+for i in range(X.shape[1]):
+    for j in range(i + 1, X.shape[1]):
+        # fit decision tree classifier
+        clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
+
+        # create a meshgrid to plot the decision surface
+        x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
+        y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                             np.arange(y_min, y_max, 0.02))
+
+        # predict on the meshgrid
+        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+        Z = Z.reshape(xx.shape)
+
+        # plot the decision surface
+        plot_count += 1
+        plt.subplot(int(np.ceil(num_plots/plots_per_col)), num_cols, plot_count)
+        plt.contourf(xx, yy, Z, alpha=0.4)
+        plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
+        plt.xlabel(X.columns[i])
+        plt.ylabel(X.columns[j])
+
+# add suptitle to the figure
+plt.suptitle('Decision surfaces of a decision tree')
+
+plt.subplots_adjust(hspace=0.8)
+# display the plot in Streamlit
+st.pyplot()
 
