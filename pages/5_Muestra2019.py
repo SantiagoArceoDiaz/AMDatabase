@@ -419,7 +419,7 @@ chart3 = alt.Chart(BD2019).mark_circle(size=50).encode(
 chart4 = alt.Chart(BD2019).mark_circle(size=50).encode(
     x='Edad', y='Marcha',
     color='Sexo',
-    tooltip=[alt.Tooltip("Nombre Completo"),
+    tooltip=[alt.Tooltip("Nombre"),
     alt.Tooltip("MNA"),
     alt.Tooltip("Prom_Fuer"),
     alt.Tooltip("Marcha"),
@@ -436,7 +436,7 @@ chart4 = alt.Chart(BD2019).mark_circle(size=50).encode(
 chart5 = alt.Chart(BD2019).mark_circle(size=50).encode(
     x='Edad', y='PuntajeZ',
     color='Sexo',
-    tooltip=[alt.Tooltip("Nombre Completo"),
+    tooltip=[alt.Tooltip("Nombre"),
     alt.Tooltip("MNA"),
     alt.Tooltip("Prom_Fuer"),
     alt.Tooltip("Marcha"),
