@@ -362,6 +362,13 @@ cajas2019=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart4),al
 
 st.altair_chart(cajas2019)
 
+st.markdown(
+    """
+    La grafica muestra los histogramas de la distribucion de frecuencias de los paramtero relevantes para la base de datos: Edad [años], Índice Mininutricional [puntaje], Fuerza promedio de antebrazo [kilogramos] y consumo diario de proteinas [gramos]. La línea azul representa una estimación de la densidad de probabilidad de la variable (kde es el acrónimo de "Kernel Density Estimate"). En los histogramas se muestra la distribución de frecuencia de los valores de cada variable. En el eje x se encuentran los valores de la variable y en el eje y se encuentra la frecuencia de los valores.
+    """
+    )
+
+
 selection = alt.selection_multi(fields=['Sexo'], bind='legend')
 chart1 = alt.Chart(BD2019).mark_circle(size=50).encode(
     x='Edad', y='Fuerza',
@@ -392,12 +399,10 @@ chart2 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=200, width=300
+    height=300, width=400
 ).add_selection(
     selection
 ).interactive()
-
-
 
 chart3 = alt.Chart(BD2019).mark_circle(size=50).encode(
     x='Edad', y='MNA',
@@ -411,7 +416,7 @@ chart3 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=200, width=300
+    height=300, width=400
 ).add_selection(
     selection
 ).interactive()
@@ -428,7 +433,7 @@ chart4 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=200, width=300
+    height=300, width=400
 ).add_selection(
     selection
 ).interactive()
@@ -445,7 +450,7 @@ chart5 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=200, width=300
+    height=300, width=400
 ).add_selection(
     selection
 ).interactive()
@@ -463,7 +468,7 @@ chart6 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=200, width=300
+    height=300, width=400
 ).add_selection(
     selection
 ).interactive()
@@ -472,3 +477,9 @@ chart6 = alt.Chart(BD2019).mark_circle(size=50).encode(
 correlaciones2019=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart4),alt.hconcat(chart5, chart6))
 
 st.altair_chart(correlaciones2019)
+
+st.markdown(
+    """
+    La grafica muestra los histogramas de la distribucion de frecuencias de los paramtero relevantes para la base de datos: Edad [años], Índice Mininutricional [puntaje], Fuerza promedio de antebrazo [kilogramos] y consumo diario de proteinas [gramos]. La línea azul representa una estimación de la densidad de probabilidad de la variable (kde es el acrónimo de "Kernel Density Estimate"). En los histogramas se muestra la distribución de frecuencia de los valores de cada variable. En el eje x se encuentran los valores de la variable y en el eje y se encuentra la frecuencia de los valores.
+    """
+    )
