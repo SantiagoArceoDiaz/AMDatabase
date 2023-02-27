@@ -206,7 +206,7 @@ BD2019Depurada.save() #guarda el archivo de excel en el directorio local
 
 
 
-Barras2019, axes = plt.subplots(3, 2, figsize=(10, 10))
+Barras2019, axes = plt.subplots(3, 2, figsize=(8, 8))
 #crear un histograma en cada subplot usando "seaborn"
 #sns.boxplot(data=df, x='team', y='points', ax=axes[0,0])
 #sns.boxplot(data=df, x='team', y='assists', ax=axes[0,1])
@@ -232,8 +232,8 @@ st.markdown(
 
 #######################01#################################33
 chart1=altcat.catplot(BD2019,
-               height=250,
-               width=350,
+               height=300,
+               width=400,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -253,8 +253,8 @@ chart1=altcat.catplot(BD2019,
               jitter_width=0.5).interactive()
 
 chart2=altcat.catplot(BD2019,
-               height=250,
-               width=350,
+               height=300,
+               width=400,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -274,8 +274,8 @@ chart2=altcat.catplot(BD2019,
               jitter_width=0.5).interactive()
 
 chart3=altcat.catplot(BD2019,
-               height=250,
-               width=350,
+               height=300,
+               width=400,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -295,8 +295,8 @@ chart3=altcat.catplot(BD2019,
               jitter_width=0.5).interactive()
 
 chart4=altcat.catplot(BD2019,
-               height=250,
-               width=350,
+               height=300,
+               width=400,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -316,8 +316,8 @@ chart4=altcat.catplot(BD2019,
               jitter_width=0.5).interactive()
 
 chart5=altcat.catplot(BD2019,
-               height=250,
-               width=350,
+               height=300,
+               width=400,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -337,8 +337,8 @@ chart5=altcat.catplot(BD2019,
               jitter_width=0.5).interactive()
 
 chart6=altcat.catplot(BD2019,
-               height=250,
-               width=350,
+               height=300,
+               width=400,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
