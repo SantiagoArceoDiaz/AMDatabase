@@ -20,37 +20,24 @@ import googletrans
 from googletrans import Translator
 translator = Translator()
 
+#Bloque para preparar las bases de datos
 
-st.write("# Sobre la muestra")
+st.write("# Sobre la muestra") #coloca el titulo de la sección
 
-#st.title('Antropometria')
-#carga los datos de los archivos de excel con los resultados del test de Barthel
-dfEdades=pd.read_excel('EdadesF.xlsx')
-#dfEdades.head() #muestra las primeras cinco filas de la base de datos
+dfEdades=pd.read_excel('EdadesF.xlsx') # carga el archivo que contiene las edades y nombres de los pacientes
 
-#combina la columna de Nombres y la de Apellidos
-dfEdades['Nombre']= dfEdades['Nombres'] + dfEdades['Apellidos'] 
+dfEdades['Nombre']= dfEdades['Nombres'] + dfEdades['Apellidos'] #combina la columna de Nombres y la de Apellidos
 
-#dfEdades # muestra el dataframe resultante
 del dfEdades['Apellidos'] #elimina las filas innecesarias
 del dfEdades['Nombres']
 del dfEdades['Sexo']
-#dfEdades # muestra el dataframe resultante
 
-
-
-# Intercambia el orden de las columnas
-DBEdades=dfEdades[['Nombre', 'Edad']]
-#DBEdades
-
-
+DBEdades=dfEdades[['Nombre', 'Edad']] # Intercambia el orden de las columnas
 
 ListaDBEdades=DBEdades['Nombre'].tolist() #Toma la columna de nombres 
 # del archivo de usuarios con edades registradas y crea una lista
 
-
 SetDBEdades=set(ListaDBEdades) #convierte la lista de usuarios cuya edad está registrada en un conjunto
-
 
 #carga los datos de los archivos de excel con los resultados de diferentes test para el año 2018
 df2018=pd.read_excel('2018C.xlsx')
@@ -58,21 +45,13 @@ df2018=pd.read_excel('2018C.xlsx')
 del df2018['PuntajeZ'] #quita la fila de puntaje Z, ya que no se tienen datos
 del df2018['Marcha'] #quita la fila de Marcha, ya que no se tienen datos
 
-# Se muestra la base depurada, en la que ya se han eliminado aquellos datos con
-# NaN, como las columnas PuntajeZ y Marcha tienen solo NaN, entonces se 
-# eliminaron, ya que no aportan información al respecto.
-
 df2018 = df2018.dropna() #quita las filas que tengan NaN en algun valor
-
 
 df2018['Nombre']= df2018['Nombres'] + df2018['Apellidos'] #combina las columnas de nombres y apellidos en una llamada "Nombre"
 del df2018['Apellidos'] # y elimina las columnas individuales.
 del df2018['Nombres']
 #df2018['Fuerza promedio']=df2018['Prom_Fuer'] 
 df2018['Fuerza'] = pd.to_numeric(df2018['Prom_Fuer'])
-
-# Cambia el orden de las columnas
-#df2018[['Nombre', 'Sexo', 'MNA', 'Prom_Fuer','Proteinas','BARTHEL', 'Int_BARTHEL']]
 
 
 
@@ -161,7 +140,7 @@ df=BD2018
 #st.write(BD2018)
 
 # Seleccionar las columnas que quieres filtrar
-columnas = ['Edad', 'Sexo', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
+columnas = ['Nombre', 'Edad', 'Sexo', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
 
 # Crear una barra de búsqueda para cada columna en la barra lateral
 for col in columnas:
