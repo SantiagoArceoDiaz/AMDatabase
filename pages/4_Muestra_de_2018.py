@@ -1436,61 +1436,114 @@ plt.subplots_adjust(hspace=0.8)
 st.pyplot()
 
 
+
+
+import streamlit as st
 import pandas as pd
-from sklearn import datasets
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
 import matplotlib.pyplot as plt
 import numpy as np
-import streamlit as st
+from sklearn.neighbors import KNeighborsClassifier
 
-# Cargar el conjunto de datos y asignar los nombres de las columnas
-#data = pd.read_csv("BD2018.csv", header=None)
+# load BD2018 dataset
+#BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
+BD2018 = BD2018[['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+
+# get feature and target columns
+X = BD2018.iloc[:, 1:-2]
+y = BD2018.iloc[:, -2]
+
+# define number of columns and plots per column
+num_cols = 3
+plots_per_col = 5
+num_plots = X.shape[1] * (X.shape[1]-1) // 2
+
+# iterate over all possible pairs of features
+plot_count = 0
+for i in range(X.shape[1]):
+    for j in range(i + 1, X.shape[1]):
+        # fit K-neighbors classifier
+        clf = KNeighborsClassifier().fit(X.iloc[:, [i, j]], y)
+
+        # create a meshgrid to plot the decision surface
+        x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
+        y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                             np.arange(y_min, y_max, 0.02))
+
+        # predict on the meshgrid
+        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+        Z = Z.reshape(xx.shape)
+
+        # plot the decision surface
+        plot_count += 1
+        plt.subplot(int(np.ceil(num_plots/plots_per_col)), num_cols, plot_count)
+        plt.contourf(xx, yy, Z, alpha=0.4)
+        plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
+        plt.xlabel(X.columns[i])
+        plt.ylabel(X.columns[j])
+
+# add suptitle to the figure
+plt.suptitle('Decision surfaces of a K-neighbors classifier')
+
+plt.subplots_adjust(hspace=0.8)
+# display the plot in Streamlit
+st.pyplot()
+
+#import pandas as pd
+#from sklearn import datasets
+#from sklearn.model_selection import train_test_split
+#from sklearn.tree import DecisionTreeClassifier
+#import matplotlib.pyplot as plt
+#import numpy as np
+#import streamlit as st
+
+## Cargar el conjunto de datos y asignar los nombres de las columnas
+##data = pd.read_csv("BD2018.csv", header=None)
 #BD2018.columns = ['Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
 
-# Dividir el conjunto de datos en características (X) y objetivo (y)
-BD2018 = BD2018[['Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+## Dividir el conjunto de datos en características (X) y objetivo (y)
+#BD2018 = BD2018[['Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 
-X = BD2018.iloc[:, 0].values
-y = BD2018.iloc[:, 1].values
+#X = BD2018.iloc[:, 0].values
+#y = BD2018.iloc[:, 1].values
 
-# Entrenar un modelo de árbol de decisión con una profundidad máxima de 3
-clf = DecisionTreeClassifier(max_depth=3)
-clf.fit(X, y)
+## Entrenar un modelo de árbol de decisión con una profundidad máxima de 3
+#clf = DecisionTreeClassifier(max_depth=3)
+#clf.fit(X, y)
 
-# Crear una malla de valores para representar la superficie de decisión
-xx, yy = np.meshgrid(np.arange(X[:, 0].min() - 1, X[:, 0].max() + 1, 0.1),
-                     np.arange(X[:, 1].min() - 1, X[:, 1].max() + 1, 0.1))
-Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-Z = Z.reshape(xx.shape)
+## Crear una malla de valores para representar la superficie de decisión
+#xx, yy = np.meshgrid(np.arange(X[:, 0].min() - 1, X[:, 0].max() + 1, 0.1),
+#                     np.arange(X[:, 1].min() - 1, X[:, 1].max() + 1, 0.1))
+#Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+#Z = Z.reshape(xx.shape)
 
-# Crear la figura y los ejes del gráfico
-fig, ax = plt.subplots()
-ax.contourf(xx, yy, Z, alpha=0.4)
+## Crear la figura y los ejes del gráfico
+#fig, ax = plt.subplots()
+#ax.contourf(xx, yy, Z, alpha=0.4)
 
-# Agregar los puntos de datos al gráfico
-scatter = ax.scatter(X[:, 0], X[:, 1], c=y, cmap='viridis')
-plt.xlabel('Edad')
-plt.ylabel('MNA')
+## Agregar los puntos de datos al gráfico
+#scatter = ax.scatter(X[:, 0], X[:, 1], c=y, cmap='viridis')
+#plt.xlabel('Edad')
+#plt.ylabel('MNA')
 
-# Agregar una leyenda al gráfico
-legend1 = ax.legend(*scatter.legend_elements(),
-                    loc="upper right", title="Target")
-ax.add_artist(legend1)
+## Agregar una leyenda al gráfico
+#legend1 = ax.legend(*scatter.legend_elements(),
+#                    loc="upper right", title="Target")
+#ax.add_artist(legend1)
 
-# Agregar interacción con el usuario
-tooltip = st.markdown('Hover over a point on the graph to see its values')
+## Agregar interacción con el usuario
+#tooltip = st.markdown('Hover over a point on the graph to see its values')
 
-def on_plot_hover(event):
-    point_x, point_y = event.xdata, event.ydata
-    idx = np.where((X[:, 0]==point_x) & (X[:, 1]==point_y))[0][0]
-    tooltip.write('Edad: {}\nMNA: {}\nFuerza: {}\nProteinas: {}\nBARTHEL: {}\nTarget: {}'.format(
-        X[idx,0], X[idx,1], X[idx,2], X[idx,3], X[idx,4], y[idx]))
+#def on_plot_hover(event):
+#    point_x, point_y = event.xdata, event.ydata
+#    idx = np.where((X[:, 0]==point_x) & (X[:, 1]==point_y))[0][0]
+#    tooltip.write('Edad: {}\nMNA: {}\nFuerza: {}\nProteinas: {}\nBARTHEL: {}\nTarget: {}'.format(
+#        X[idx,0], X[idx,1], X[idx,2], X[idx,3], X[idx,4], y[idx]))
 
-fig.canvas.mpl_connect('motion_notify_event', on_plot_hover)
+#fig.canvas.mpl_connect('motion_notify_event', on_plot_hover)
 
 # Mostrar el gráfico en Streamlit
-st.pyplot(fig)
+#st.pyplot(fig)
 
 
 
