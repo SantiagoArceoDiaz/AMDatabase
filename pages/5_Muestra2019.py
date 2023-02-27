@@ -483,3 +483,230 @@ st.markdown(
     La grafica muestra los histogramas de la distribucion de frecuencias de los paramtero relevantes para la base de datos: Edad [años], Índice Mininutricional [puntaje], Fuerza promedio de antebrazo [kilogramos] y consumo diario de proteinas [gramos]. La línea azul representa una estimación de la densidad de probabilidad de la variable (kde es el acrónimo de "Kernel Density Estimate"). En los histogramas se muestra la distribución de frecuencia de los valores de cada variable. En el eje x se encuentran los valores de la variable y en el eje y se encuentra la frecuencia de los valores.
     """
     )
+
+
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
+
+# localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Masculino."
+Hombres2019=BD2019.loc[BD2019['Sexo']=="Mas"]
+del Hombres2019['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
+Hombres2019 # Muestra el dataframe con datos de hombres.
+
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
+
+Hombres2019.describe() # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
+
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
+
+Mujeres2019=BD2019.loc[BD2019['Sexo']=="Fem"] # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Femenino."
+
+del Mujeres2019['Sexo']
+Mujeres2019
+
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
+
+Mujeres2019.describe() # dEscripcion del Dataframe de "Mujeres"
+
+
+# En el siguiente bloque se separa por rangos de edad de 10 años al subgrupo de "Hombres". 
+# En algunos casos no hay miembros registrados que cumplan con el rango de edad requerido, por lo que los
+# dataframes estan vacios (como ocurre con el grupo de menos de 60 años).
+
+Hombres201960=BD2019.loc[((BD2019['Edad'] <= 60) & (BD2019['Sexo']=='Mas'))]
+del Hombres201960['Sexo']
+Hombres201970=BD2019.loc[((BD2019['Edad'] > 60) & (BD2019['Edad'] <= 70) & (BD2019['Sexo'] == 'Mas'))]
+del Hombres201970['Sexo']
+Hombres201980=BD2019.loc[((BD2019['Edad'] > 70) & (BD2019['Edad'] <= 80) & (BD2019['Sexo'] == 'Mas'))]
+del Hombres201980['Sexo']
+Hombres201990=BD2019.loc[((BD2019['Edad'] > 80) & (BD2019['Edad'] <= 90) & (BD2019['Sexo'] == 'Mas'))]
+del Hombres201990['Sexo']
+Hombres2019100=BD2019.loc[((BD2019['Edad'] > 90) & (BD2019['Sexo'] == 'Mas'))]
+del Hombres2019100['Sexo']
+
+
+
+#Hombres201860
+#Hombres201870
+#Hombres201880
+#Hombres201890
+#Hombres2018100
+
+
+
+Mujeres201960=BD2019.loc[((BD2019['Edad']<=60) & (BD2019['Sexo']=='Fem'))]
+del Mujeres201960['Sexo']
+Mujeres201970=BD2019.loc[((BD2019['Edad'] >60) & (BD2019['Edad']<=70) & (BD2019['Sexo']=='Fem'))]
+del Mujeres201970['Sexo']
+Mujeres201980=BD2019.loc[((BD2019['Edad'] >70) & (BD2019['Edad']<=80) & (BD2019['Sexo']=='Fem'))]
+del Mujeres201980['Sexo']
+Mujeres201990=BD2019.loc[((BD2019['Edad'] >80) & (BD2019['Edad']<=90) & (BD2019['Sexo']=='Fem'))]
+del Mujeres201990['Sexo']
+Mujeres2019100=BD2019.loc[((BD2019['Edad'] >90) & (BD2019['Sexo']=='Fem'))]
+del Mujeres2019100['Sexo']
+
+
+
+#Mujeres201860
+#Mujeres201870
+#Mujeres201880
+#Mujeres201890
+#Mujeres2018100
+
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
+
+#import pandas as pd
+#import seaborn as sns
+#import matplotlib.pyplot as plt
+# Creamos una correlación desde un dataset D
+#corr = Hombres201870.corr().loc[:'BARTHEL', :"BARTHEL"]
+
+# Dibujamos nuestro gráfico
+#sns.heatmap(corr)
+#plt.show()
+#st.seaborn(Barras2018)
+
+
+
+#import pandas as pd
+#import seaborn as sns
+#import matplotlib.pyplot as plt
+# Creamos una correlación desde un dataset D
+#corr = Hombres201880.corr().loc[:'BARTHEL', :"BARTHEL"]
+
+# Dibujamos nuestro gráfico
+#sns.heatmap(corr)
+#plt.show()
+
+
+
+# importing libraries
+import altair as alt
+from vega_datasets import data
+  
+# importing airports dataset from vega_datasets package
+# airport = data.airports()
+  
+# making the scatter plot on latitude and longitude
+# setting color on the basis of country
+#fig = alt.Chart(Hombres201870).mark_point().encode(
+#  x='Edad',y='Proteinas')
+  
+# making the regression line using transform_regression
+# function and add with the scatter plot
+#final_plot = fig + fig.transform_regression('latitude','longitude').mark_line()
+  
+# saving the scatter plot with regression line
+#st.altair_chart(final_plot)
+
+
+
+# Creamos una correlación desde un dataset D
+#corr = Hombres201880.corr().loc[:'BARTHEL', :"BARTHEL"]
+
+# Dibujamos nuestro gráfico
+#sns.heatmap(corr)
+#plt.show()
+
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+# Creamos una correlación desde un dataset D
+#corr = Hombres201890.corr().loc[:'BARTHEL', :"BARTHEL"]
+
+# Dibujamos nuestro gráfico
+#sns.heatmap(corr)
+#plt.show()
+
+
+
+
+#import seaborn as sns
+cmap = sns.diverging_palette( 220 , 10 , as_cmap = True )
+#sb1 = sns.heatmap(
+#    subset1.corr(), 
+#    cmap = cmap,
+#    square=True, 
+#    cbar_kws={ 'shrink' : .9 }, 
+#    annot = True, 
+#    annot_kws = { 'fontsize' : 12 })
+
+# Here we create a figure instance, and two subplots
+CalorHombres2019 = plt.figure(figsize = (20,20)) # width x height
+ax1 = CalorHombres2019.add_subplot(2, 2, 1) # row, column, position
+ax2 = CalorHombres2019.add_subplot(2, 2, 2)
+ax3 = CalorHombres2019.add_subplot(2, 2, 3)
+
+
+# We use ax parameter to tell seaborn which subplot to use for this plot
+sns.heatmap(data=Hombres201970.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+sns.heatmap(data=Hombres201980.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+sns.heatmap(data=Hombres201990.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+st.pyplot(CalorHombres2019)
+
+
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
+
+
+
+#import seaborn as sns
+cmap = sns.diverging_palette( 220 , 10 , as_cmap = True )
+#sb1 = sns.heatmap(
+#    subset1.corr(), 
+#    cmap = cmap,
+#    square=True, 
+#    cbar_kws={ 'shrink' : .9 }, 
+#    annot = True, 
+#    annot_kws = { 'fontsize' : 12 })
+
+# Here we create a figure instance, and two subplots
+CalorMujeres2019 = plt.figure(figsize = (20,20)) # width x height
+ax1 = CalorMujeres2019.add_subplot(2, 2, 1) # row, column, position
+ax2 = CalorMujeres2019.add_subplot(2, 2, 2)
+ax3 = CalorMujeres2019.add_subplot(2, 2, 3)
+ax4 = CalorMujeres2019.add_subplot(2, 2, 4)
+
+
+# We use ax parameter to tell seaborn which subplot to use for this plot
+sns.heatmap(data=Mujeres201960.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+sns.heatmap(data=Mujeres201970.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+sns.heatmap(data=Mujeres201980.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+sns.heatmap(data=Mujeres201990.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax4, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+st.pyplot(CalorMujeres2019)
+
+st.markdown(
+    """ 
+    # Descripcion de la muestra 👋
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    """
+    )
