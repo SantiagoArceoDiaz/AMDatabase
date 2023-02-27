@@ -232,8 +232,8 @@ st.markdown(
 
 #######################01#################################33
 chart1=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -253,8 +253,8 @@ chart1=altcat.catplot(BD2019,
               jitter_width=0.5).interactive()
 
 chart2=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -274,8 +274,8 @@ chart2=altcat.catplot(BD2019,
               jitter_width=0.5).interactive()
 
 chart3=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -295,8 +295,8 @@ chart3=altcat.catplot(BD2019,
               jitter_width=0.5).interactive()
 
 chart4=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -316,8 +316,8 @@ chart4=altcat.catplot(BD2019,
               jitter_width=0.5).interactive()
 
 chart5=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -337,8 +337,8 @@ chart5=altcat.catplot(BD2019,
               jitter_width=0.5).interactive()
 
 chart6=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -375,7 +375,7 @@ chart1 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=400, width=500
+    height=200, width=300
 ).add_selection(
     selection
 ).interactive()
@@ -392,7 +392,7 @@ chart2 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=400, width=500
+    height=200, width=300
 ).add_selection(
     selection
 ).interactive()
@@ -411,7 +411,7 @@ chart3 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=400, width=500
+    height=200, width=300
 ).add_selection(
     selection
 ).interactive()
@@ -428,7 +428,7 @@ chart4 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=400, width=500
+    height=200, width=300
 ).add_selection(
     selection
 ).interactive()
@@ -445,7 +445,7 @@ chart5 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=400, width=500
+    height=200, width=300
 ).add_selection(
     selection
 ).interactive()
@@ -463,12 +463,12 @@ chart6 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=400, width=500
+    height=200, width=300
 ).add_selection(
     selection
 ).interactive()
 
 
-correlaciones2019=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart6))
+correlaciones2019=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart4),alt.hconcat(chart5, chart6))
 
 st.altair_chart(correlaciones2019)
