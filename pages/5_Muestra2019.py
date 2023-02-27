@@ -382,7 +382,7 @@ chart1 = alt.Chart(BD2019).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=200, width=300
+    height=300, width=400
 ).add_selection(
     selection
 ).interactive()
