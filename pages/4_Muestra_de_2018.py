@@ -140,7 +140,7 @@ df=BD2018
 #st.write(BD2018)
 
 # Seleccionar las columnas que quieres filtrar
-columnas = ['Nombre', 'Edad', 'Sexo', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
+columnas = ['Edad', 'Sexo', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
 
 # Crear una barra de búsqueda para cada columna en la barra lateral
 for col in columnas:
