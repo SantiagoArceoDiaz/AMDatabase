@@ -66,10 +66,10 @@ st.markdown(
     )
 
 
-SetDBEdades.difference(Setdf2018) # muestra el conjunto de usuarios que aparecen en la lista de edades
+SetDBEdades.difference(Setdf2020) # muestra el conjunto de usuarios que aparecen en la lista de edades
 # pero no estan en la base de datos de 2018. Esto puede deberse a que no están o a que se eliminarion por tener columnas con "NaN"
 
-ddf2018 = pd.merge(left=df2020,right=DBEdades, how="inner",on="Nombre")
+ddf2020 = pd.merge(left=df2020,right=DBEdades, how="inner",on="Nombre")
 #ddf2018 # Combina las bases de datos de 2018 con la de usuarios con edad registrada, dejando solo los que tienen en comun
 # es decir, la intersección vista en el diagrama de Venn.
 
