@@ -86,11 +86,11 @@ for col in columnas:
     # Verificar si la columna solo tiene valores de tipo string
     if BD2019[col].dtype == 'object':
         # Obtener los valores únicos en la columna y ordenarlos
-        valores = sorted(BD2020[col].unique())
+        valores = sorted(BD2019[col].unique())
         # Crear una barra de selección para cada valor único en la columna
         seleccion = st.sidebar.multiselect(col, valores, default=valores)
         # Filtrar el dataframe en función de los valores seleccionados en la columna
-        BD2019 = BD2020[BD2019[col].isin(seleccion)]
+        BD2019 = BD2019[BD2019[col].isin(seleccion)]
     else:
         # Obtener el rango de valores en la columna
         valores_min = BD2019[col].min()
