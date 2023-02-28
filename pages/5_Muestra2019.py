@@ -955,7 +955,7 @@ with tab3:
         rule += f" | based on {path[-1][1]:,} samples"
         rules += [rule]
         
-    return rules
+        return rules
 
 #class_names = BD2018['target'].unique().astype(str)#fff
 #class_names = BD2018.columns[-1].unique().astype(str)
