@@ -795,163 +795,126 @@ theta_optimal = Multivariable_Linear_Regression(X_transform, y, 0.03, 30000)
 X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas'])
 predictions = np.dot(X_transform_df, theta_optimal[1:]) + theta_optimal[0]
 BD2019_with_predictions = BD2019.assign(Predicted_BARTHEL=predictions)
+st.write(BD2019_with_predictions)
 
 
 with tab3:
 
 # Print the new dataframe with predictions
-st.write(BD2019_with_predictions)
 
-from sklearn.datasets import load_iris
-from sklearn import tree
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-from sklearn.datasets import load_iris
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier, export_text
-from sklearn import tree
-
-
-# Cargar los datos del conjunto iris
-#url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
-#colnames = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'name']
-#iris = pd.read_csv(url, header=None, names=colnames)
-
-# Convertir los datos a un arreglo numpy
-#X = iris.iloc[:, :4].values
-#y = iris.iloc[:, 4].values
-#BD2018["Fuerza"]=BD2018["Prom_Fuer"]
-#BD2021 = BD2020[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
-#X = BD2018.iloc[:,2:-2].values
-#y = BD2018.iloc[:,-2].values
-
-#X = BD2019.iloc[:,2:-2].values
-#y = BD2019.iloc[:,-1].values
-X = BD2019.iloc[:,2:-2]
-y = BD2019.iloc[:,-1]
-
-# Definir el algoritmo de clasificación y ajustar los datos
-clf = KNeighborsClassifier(n_neighbors=5)
-clf.fit(X, y)
-
-# Pedir al usuario los valores de cada atributo
-#Edad = float(input("Introduzca la Edad: "))
-#MNA = float(input("Introduzca el resultado del test MNA: "))
-#Fuerza = float(input("Introduzca el promedio de fuerza de presión: "))
-#Proteinas = float(input("Introduzca el consumo promedio de proteinas: "))
-
-# Crear los deslizadores
-Edad = st.slider("Edad", 60, 100, 75)
-MNA = st.slider("MNA", 0, 30, 15)
-Fuerza = st.slider("Fuerza", 0, 150, 75)
-Proteinas = st.slider("Proteinas", 0, 200, 100)
-PuntajeZ = st.slider("PuntajeZ", 0, 200, 100)
-Marcha = st.slider("Marcha", 0, 200, 100)
+    from sklearn.datasets import load_iris
+    from sklearn import tree
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d import Axes3D
+    from sklearn.datasets import load_iris
+    from sklearn.neighbors import KNeighborsClassifier
+    from sklearn.tree import DecisionTreeClassifier, export_text
+    from sklearn import tree
 
 
 
-# Clasificar el objeto
-prediction = clf.predict([[Edad, MNA, Fuerza, Proteinas, PuntajeZ, Marcha]])
-print("El objeto pertenece a la clase:", prediction[0])
+    X = BD2019.iloc[:,2:-2]
+    y = BD2019.iloc[:,-1]
+
+    # Definir el algoritmo de clasificación y ajustar los datos
+    clf = KNeighborsClassifier(n_neighbors=5)
+    clf.fit(X, y)
 
 
-#from sklearn.datasets import load_iris
-#from sklearn import tree
-#import numpy as np
-
-# Load the iris dataset
-#iris = load_iris()
-
-# Split the dataset into training and testing datasets
-#train_data = iris.data[:-20]
-#train_data = BD2018.iloc[:-20, :]
-#train_data = BD2019.iloc[:-20,2:-2].values
-train_data = BD2019.iloc[:-20,2:-2]
-
-
-#train_target = iris.target[:-20]
-#train_target = BD2019.iloc[:-20, -1].values
-train_target = BD2019.iloc[:-20, -1]
-
-
-#test_data = iris.data[-20:]
-#test_data = BD2019.iloc[-20:].values
-test_data = BD2019.iloc[-20:]
-
-
-#test_target = iris.target[-20:]
-#test_target = BD2019.iloc[-20:, -1].values
-test_target = BD2019.iloc[-20:, -1]
-
-
-# Train a decision tree classifier
-clf = tree.DecisionTreeClassifier()
-clf = clf.fit(train_data, train_target)
-
-# Use the trained classifier to classify a new object
-new_object = np.array([[Edad, MNA, Fuerza, Proteinas, PuntajeZ, Marcha]])
-prediction = clf.predict(new_object)
-
-# Print the preditrain_target.shapection
-#print("The predicted class is:", iris.target_names[prediction[0]])
-
-clf = DecisionTreeClassifier()
-clf.fit(X, y)
-
-
-class_names=BD2019.columns[-1] #
-#tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2])
-#tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist()), class_names=BD2018.columns[-1]
-tree_rules = sk.tree.export_text(clf, feature_names=BD2019.columns[2:-2].tolist())
-
-st.text(tree_rules)
-
-#fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
-#tree.plot_tree(clf)
-#st.pyplot(fig)
-
-fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
-tree.plot_tree(clf, filled=True, feature_names=BD2019.columns[2:-2].tolist(), class_names=BD2019.columns[-1])
-plt.show()
-st.pyplot(fig)
+    # Crear los deslizadores
+    Edad = st.slider("Edad", 60, 100, 75)
+    MNA = st.slider("MNA", 0, 30, 15)
+    Fuerza = st.slider("Fuerza", 0, 150, 75)
+    Proteinas = st.slider("Proteinas", 0, 200, 100)
+    PuntajeZ = st.slider("PuntajeZ", 0, 200, 100)
+    Marcha = st.slider("Marcha", 0, 200, 100)
 
 
 
-from sklearn.tree import _tree
+    # Clasificar el objeto
+    prediction = clf.predict([[Edad, MNA, Fuerza, Proteinas, PuntajeZ, Marcha]])
+    print("El objeto pertenece a la clase:", prediction[0])
 
-def tree_to_code(tree, feature_names):
-    tree_ = tree.tree_
-    feature_name = [
-        feature_names[i] if i != _tree.TREE_UNDEFINED else "undefined!"
-        for i in tree_.feature
-    ]
-    feature_names = [f.replace(" ", "_")[:-5] for f in feature_names]
-    st.write("def predict({}):".format(", ".join(feature_names)))
 
-    def recurse(node, depth):
-        indent = "    " * depth
-        if tree_.feature[node] != _tree.TREE_UNDEFINED:
-            name = feature_name[node]
-            threshold = tree_.threshold[node]
-            st.write("{}if {} <= {}:".format(indent, name, np.round(threshold,2)))
-            recurse(tree_.children_left[node], depth + 1)
-            st.write("{}else:  # if {} > {}".format(indent, name, np.round(threshold,2)))
-            recurse(tree_.children_right[node], depth + 1)
-        else:
-            st.write("{}return {}".format(indent, tree_.value[node]))
 
-    recurse(0, 1)
+    train_data = BD2019.iloc[:-20,2:-2]
+
+
+
+    train_target = BD2019.iloc[:-20, -1]
+
+
+
+    test_data = BD2019.iloc[-20:]
+
+
+
+    test_target = BD2019.iloc[-20:, -1]
+
+
+    # Train a decision tree classifier
+    clf = tree.DecisionTreeClassifier()
+    clf = clf.fit(train_data, train_target)
+
+    # Use the trained classifier to classify a new object
+    new_object = np.array([[Edad, MNA, Fuerza, Proteinas, PuntajeZ, Marcha]])
+    prediction = clf.predict(new_object)
+
+
+    clf = DecisionTreeClassifier()
+    clf.fit(X, y)
+
+
+    class_names=BD2019.columns[-1] #
+
+    tree_rules = sk.tree.export_text(clf, feature_names=BD2019.columns[2:-2].tolist())
+
+    st.text(tree_rules)
+
+
+
+    fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
+    tree.plot_tree(clf, filled=True, feature_names=BD2019.columns[2:-2].tolist(), class_names=BD2019.columns[-1])
+    plt.show()
+    st.pyplot(fig)
+
+
+
+    from sklearn.tree import _tree
+
+    def tree_to_code(tree, feature_names):
+        tree_ = tree.tree_
+        feature_name = [
+            feature_names[i] if i != _tree.TREE_UNDEFINED else "undefined!"
+            for i in tree_.feature
+        ]
+        feature_names = [f.replace(" ", "_")[:-5] for f in feature_names]
+        st.write("def predict({}):".format(", ".join(feature_names)))
+
+        def recurse(node, depth):
+            indent = "    " * depth
+            if tree_.feature[node] != _tree.TREE_UNDEFINED:
+                name = feature_name[node]
+                threshold = tree_.threshold[node]
+                st.write("{}if {} <= {}:".format(indent, name, np.round(threshold,2)))
+                recurse(tree_.children_left[node], depth + 1)
+                st.write("{}else:  # if {} > {}".format(indent, name, np.round(threshold,2)))
+                recurse(tree_.children_right[node], depth + 1)
+            else:
+                st.write("{}return {}".format(indent, tree_.value[node]))
+
+        recurse(0, 1)
     
-def get_rules(tree, feature_names, class_names):
-    tree_ = tree.tree_
-    feature_name = [
-        feature_names[i] if i != _tree.TREE_UNDEFINED else "undefined!"
-        for i in tree_.feature
-    ]
+    def get_rules(tree, feature_names, class_names):
+        tree_ = tree.tree_
+        feature_name = [
+            feature_names[i] if i != _tree.TREE_UNDEFINED else "undefined!"
+            for i in tree_.feature
+        ]
 
-    paths = []
-    path = []
+        paths = []
+        path = []
     
     def recurse(node, path, paths):
         
@@ -996,18 +959,18 @@ def get_rules(tree, feature_names, class_names):
 
 #class_names = BD2018['target'].unique().astype(str)#fff
 #class_names = BD2018.columns[-1].unique().astype(str)
-class_names = ['0', '1', '2']
-rules = get_rules(clf, BD2019.columns[2:-2].tolist(), BD2019.columns[-1])
-for r in rules:
-    st.write(r)
+    class_names = ['0', '1', '2']
+    rules = get_rules(clf, BD2019.columns[2:-2].tolist(), BD2019.columns[-1])
+    for r in rules:
+        st.write(r)
 
 ######################33
 
-import streamlit as st
-import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
-import matplotlib.pyplot as plt
-import numpy as np
+    import streamlit as st
+    import pandas as pd
+    from sklearn.tree import DecisionTreeClassifier
+    import matplotlib.pyplot as plt
+    import numpy as np
 
 
 
@@ -1056,92 +1019,92 @@ import numpy as np
 #st.pyplot()
 
 
-BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
 ## get feature and target columns
-X = BD2019.iloc[:, 1:-2]
-y = BD2019.iloc[:, -2]
+    X = BD2019.iloc[:, 1:-2]
+    y = BD2019.iloc[:, -2]
 
 # Modificamos el número de filas y columnas
-num_cols = 3
-plots_per_col = 5
-num_plots = X.shape[1] * (X.shape[1]-1) // 2
+    num_cols = 3
+    plots_per_col = 5
+    num_plots = X.shape[1] * (X.shape[1]-1) // 2
 
 # Eliminamos algunos subgráficos si es necesario para que el número total de subgráficos sea un múltiplo de 3
-num_extra_plots = num_plots % num_cols
-if num_extra_plots > 0:
-    num_plots -= num_extra_plots
+    num_extra_plots = num_plots % num_cols
+    if num_extra_plots > 0:
+        num_plots -= num_extra_plots
 
 # iterate over all possible pairs of features
-plot_count = 0
-for i in range(X.shape[1]):
-    for j in range(i + 1, X.shape[1]):
+    plot_count = 0
+    for i in range(X.shape[1]):
+        for j in range(i + 1, X.shape[1]):
         # fit decision tree classifier
-        clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
+            clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
 
         # create a meshgrid to plot the decision surface
-        x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
-        y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
-        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+            x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
+            y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
+            xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
                              np.arange(y_min, y_max, 0.02))
 
         # predict on the meshgrid
-        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-        Z = Z.reshape(xx.shape)
+            Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+            Z = Z.reshape(xx.shape)
 
         # plot the decision surface
-        plot_count += 1
-        if plot_count <= num_plots:
-            plt.subplot(int(num_plots/num_cols), num_cols, plot_count)
-            plt.contourf(xx, yy, Z, alpha=0.4)
-            plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
-            plt.xlabel(X.columns[i])
-            plt.ylabel(X.columns[j])
-            #plt.remove()
+            plot_count += 1
+            if plot_count <= num_plots:
+                plt.subplot(int(num_plots/num_cols), num_cols, plot_count)
+                plt.contourf(xx, yy, Z, alpha=0.4)
+                plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
+                plt.xlabel(X.columns[i])
+                plt.ylabel(X.columns[j])
+                #plt.remove()
 
-# add suptitle to the figure
-plt.suptitle('Decision surfaces of a decision tree')
+    # add suptitle to the figure
+    plt.suptitle('Decision surfaces of a decision tree')
 
-plt.subplots_adjust(hspace=0.8)
-# display the plot in Streamlit
-st.pyplot()
+    plt.subplots_adjust(hspace=0.8)
+    # display the plot in Streamlit
+    st.pyplot()
 
-import streamlit as st
-import matplotlib.pyplot as plt
-import numpy as np
-from sklearn.tree import DecisionTreeClassifier
+    import streamlit as st
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from sklearn.tree import DecisionTreeClassifier
 
-# define a function to plot the decision surface
-def plot_decision_surface(X, y, feature1, feature2):
-    clf = DecisionTreeClassifier().fit(X.loc[:, [feature1, feature2]], y)
-    x_min, x_max = X.loc[:, feature1].min() - 1, X.loc[:, feature1].max() + 1
-    y_min, y_max = X.loc[:, feature2].min() - 1, X.loc[:, feature2].max() + 1
-    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02), np.arange(y_min, y_max, 0.02))
-    Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-    Z = Z.reshape(xx.shape)
-    plt.figure()
-    plt.contourf(xx, yy, Z, alpha=0.4)
-    plt.scatter(X.loc[:, feature1], X.loc[:, feature2], c=y, alpha=0.8)
-    plt.xlabel(feature1)
-    plt.ylabel(feature2)
-    plt.title('Decision surface of a decision tree')
+    # define a function to plot the decision surface
+    def plot_decision_surface(X, y, feature1, feature2):
+        clf = DecisionTreeClassifier().fit(X.loc[:, [feature1, feature2]], y)
+        x_min, x_max = X.loc[:, feature1].min() - 1, X.loc[:, feature1].max() + 1
+        y_min, y_max = X.loc[:, feature2].min() - 1, X.loc[:, feature2].max() + 1
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02), np.arange(y_min, y_max, 0.02))
+        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+        Z = Z.reshape(xx.shape)
+        plt.figure()
+        plt.contourf(xx, yy, Z, alpha=0.4)
+        plt.scatter(X.loc[:, feature1], X.loc[:, feature2], c=y, alpha=0.8)
+        plt.xlabel(feature1)
+        plt.ylabel(feature2)
+        plt.title('Decision surface of a decision tree')
 
-# load the data
-BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+    # load the data
+    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
 
-# get feature and target columns
-X = BD2019.iloc[:, 1:-2]
-y = BD2019.iloc[:, -2]
+    # get feature and target columns
+    X = BD2019.iloc[:, 1:-2]
+    y = BD2019.iloc[:, -2]
 
-# set up the sidebar inputs
-st.sidebar.header('Select two features to display the decision surface')
-feature1 = st.sidebar.selectbox('First feature', X.columns)
-feature2 = st.sidebar.selectbox('Second feature', X.columns)
+    # set up the sidebar inputs
+    st.sidebar.header('Select two features to display the decision surface')
+    feature1 = st.sidebar.selectbox('First feature', X.columns)
+    feature2 = st.sidebar.selectbox('Second feature', X.columns)
 
-# plot the decision surface based on the selected features
-plot_decision_surface(X, y, feature1, feature2)
+    # plot the decision surface based on the selected features
+    plot_decision_surface(X, y, feature1, feature2)
 
-# display the plot in Streamlit
-st.pyplot()
+    # display the plot in Streamlit
+    st.pyplot()
 
 
 
