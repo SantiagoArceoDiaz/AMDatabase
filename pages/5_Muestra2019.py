@@ -999,7 +999,7 @@ X = BD2019.iloc[:, 1:-2]
 y = BD2019.iloc[:, -2]
 
 # define number of columns and plots per column
-num_cols = 3
+num_cols = 4
 plots_per_col = 6
 num_plots = X.shape[1] * (X.shape[1]-1) // 2
 
