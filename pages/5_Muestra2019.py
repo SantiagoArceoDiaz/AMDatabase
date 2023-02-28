@@ -24,164 +24,169 @@ translator = Translator()
 
 st.write("# Sobre la muestra") #coloca el titulo de la sección
 
-dfEdades=pd.read_excel('EdadesF.xlsx') # carga el archivo que contiene las edades y nombres de los pacientes
+st.markdown
+(
+"""
+eihfwehfewihfweiohfpweihfiphewpfhepwhfebwohfpjwepihfpw3ihphf3ph22
+"""
+)
 
-dfEdades['Nombre']= dfEdades['Nombres'] + dfEdades['Apellidos'] #combina la columna de Nombres y la de Apellidos
+tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes"])
 
-del dfEdades['Apellidos'] #elimina las filas innecesarias
-del dfEdades['Nombres']
-del dfEdades['Sexo']
+with tab1:
+    st.header("Fuerza de brazo")
+    st.markdown
+    (
+    """
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de     los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de         proteinas en sangre. A continuación se muestra la base de datos de los participantes.
+    """
+    )
 
-DBEdades=dfEdades[['Nombre', 'Edad']] # Intercambia el orden de las columnas
+    dfEdades=pd.read_excel('EdadesF.xlsx') # carga el archivo que contiene las edades y nombres de los pacientes
 
-ListaDBEdades=DBEdades['Nombre'].tolist() #Toma la columna de nombres 
-# del archivo de usuarios con edades registradas y crea una lista
+    dfEdades['Nombre']= dfEdades['Nombres'] + dfEdades['Apellidos'] #combina la columna de Nombres y la de Apellidos
 
-SetDBEdades=set(ListaDBEdades) #convierte la lista de usuarios cuya edad está registrada en un conjunto
+    del dfEdades['Apellidos'] #elimina las filas innecesarias
+    del dfEdades['Nombres']
+    del dfEdades['Sexo']
 
-#carga los datos de los archivos de excel con los resultados de diferentes test para el año 2018
-df2019=pd.read_excel('2019C.xlsx')
+    DBEdades=dfEdades[['Nombre', 'Edad']] # Intercambia el orden de las columnas
 
-#del df2020['PuntajeZ'] #quita la fila de puntaje Z, ya que no se tienen datos
-#del df2020['Marcha'] #quita la fila de Marcha, ya que no se tienen datos
+    ListaDBEdades=DBEdades['Nombre'].tolist() #Toma la columna de nombres 
+    # del archivo de usuarios con edades registradas y crea una lista
 
-df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
+    SetDBEdades=set(ListaDBEdades) #convierte la lista de usuarios cuya edad está registrada en un conjunto
 
-df2019['Nombre']= df2019['Nombres'] + df2019['Apellidos'] #combina las columnas de nombres y apellidos en una llamada "Nombre"
-del df2019['Apellidos'] # y elimina las columnas individuales.
-del df2019['Nombres']
-df2019['Fuerza'] = pd.to_numeric(df2019['Prom_Fuer'])
+    #carga los datos de los archivos de excel con los resultados de diferentes test para el año 2018
+    df2019=pd.read_excel('2019C.xlsx')
 
+    #del df2020['PuntajeZ'] #quita la fila de puntaje Z, ya que no se tienen datos
+    #del df2020['Marcha'] #quita la fila de Marcha, ya que no se tienen datos
 
+    df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
 
-Listadf2019=df2019['Nombre'].tolist() #crea una lista a partir de los nombres de usuarios en df2018..
-Setdf2019=set(Listadf2019) # convierte la lista en un conjunto (para su manejo posterior)
+    df2019['Nombre']= df2019['Nombres'] + df2019['Apellidos'] #combina las columnas de nombres y apellidos en una llamada "Nombre"
+    del df2019['Apellidos'] # y elimina las columnas individuales.
+    del df2019['Nombres']
+    df2019['Fuerza'] = pd.to_numeric(df2019['Prom_Fuer'])
 
-st.markdown(
+    Listadf2019=df2019['Nombre'].tolist() #crea una lista a partir de los nombres de usuarios en df2018..
+    Setdf2019=set(Listadf2019) # convierte la lista en un conjunto (para su manejo posterior)
+
+    st.markdown(
     """ 
     # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de     los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de         proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
     """
     )
 
 
-SetDBEdades.difference(Setdf2019) # muestra el conjunto de usuarios que aparecen en la lista de edades
-# pero no estan en la base de datos de 2018. Esto puede deberse a que no están o a que se eliminarion por tener columnas con "NaN"
+    SetDBEdades.difference(Setdf2019) # muestra el conjunto de usuarios que aparecen en la lista de edades
+    # pero no estan en la base de datos de 2018. Esto puede deberse a que no están o a que se eliminarion por tener columnas con "NaN"
 
-ddf2019 = pd.merge(left=df2019,right=DBEdades, how="inner",on="Nombre")
-#ddf2018 # Combina las bases de datos de 2018 con la de usuarios con edad registrada, dejando solo los que tienen en comun
-# es decir, la intersección vista en el diagrama de Venn.
+    ddf2019 = pd.merge(left=df2019,right=DBEdades, how="inner",on="Nombre")
+    #ddf2018 # Combina las bases de datos de 2018 con la de usuarios con edad registrada, dejando solo los que tienen en comun
+    # es decir, la intersección vista en el diagrama de Venn.
 
-BD2019=ddf2019[['Nombre','Sexo','Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas','BARTHEL', 'Int_BARTHEL']]
-#BD2018 # Cambia el orden de las columnas y se guarda como una base de datos nueva.
+    BD2019=ddf2019[['Nombre','Sexo','Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas','BARTHEL', 'Int_BARTHEL']]
+    #BD2018 # Cambia el orden de las columnas y se guarda como una base de datos nueva.
 
-df=BD2019
+    df=BD2019
 
 
-# Seleccionar las columnas que quieres filtrar
-columnas = ['Sexo', 'Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
+    # Seleccionar las columnas que quieres filtrar
+    columnas = ['Sexo', 'Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
 
-# Crear una barra de búsqueda para cada columna en la barra lateral
-for col in columnas:
-    # Verificar si la columna solo tiene valores de tipo string
-    if BD2019[col].dtype == 'object':
-        # Obtener los valores únicos en la columna y ordenarlos
-        valores = sorted(BD2019[col].unique())
-        # Crear una barra de selección para cada valor único en la columna
-        seleccion = st.sidebar.multiselect(col, valores, default=valores)
-        # Filtrar el dataframe en función de los valores seleccionados en la columna
-        BD2019 = BD2019[BD2019[col].isin(seleccion)]
-    else:
-        # Obtener el rango de valores en la columna
-        valores_min = BD2019[col].min()
-        valores_max = BD2019[col].max()
-        # Crear una barra de selección para el rango de valores en la columna
-        seleccion = st.sidebar.slider(col, int(valores_min), int(valores_max), (int(valores_min), int(valores_max)))
-        # Filtrar el dataframe en función de los valores seleccionados en la columna
+    # Crear una barra de búsqueda para cada columna en la barra lateral
+    for col in columnas:
+        # Verificar si la columna solo tiene valores de tipo string
+        if BD2019[col].dtype == 'object':
+            # Obtener los valores únicos en la columna y ordenarlos
+            valores = sorted(BD2019[col].unique())
+            # Crear una barra de selección para cada valor único en la columna
+            seleccion = st.sidebar.multiselect(col, valores, default=valores)
+            # Filtrar el dataframe en función de los valores seleccionados en la columna
+            BD2019 = BD2019[BD2019[col].isin(seleccion)]
+        else:
+            # Obtener el rango de valores en la columna
+            valores_min = BD2019[col].min()
+            valores_max = BD2019[col].max()
+            # Crear una barra de selección para el rango de valores en la columna
+            seleccion = st.sidebar.slider(col, int(valores_min), int(valores_max), (int(valores_min), int(valores_max)))
+            # Filtrar el dataframe en función de los valores seleccionados en la columna
         BD2019 = BD2019[(BD2019[col] >= seleccion[0]) & (BD2019[col] <= seleccion[1])]
 
-st.write(BD2019)
-
-
-# Cambiar el orden de las columnas y guardar como una base de datos nueva.
-#BD2018 = BD2018[['Nombre', 'Edad', 'Sexo', 'MNA', 'Fuerza promedio', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
-
-# Crear una barra de búsqueda en la barra lateral
-#search_term = st.sidebar.text_input('Buscar')
-
-# Filtrar el dataframe en función del término de búsqueda
-#if search_term:
-#    BD2018 = BD2018[BD2018['Nombre'].str.contains(search_term)]
-
-# Mostrar el dataframe filtrado
-
-#st.write(print(BD2018.dtypes))
+    st.write(BD2019)
 
 
 
 
 
-# Crear un botón de descarga para el dataframe
-def download_button_CSV(df, filename, button_text):
-    csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="{filename}">{button_text}</a>'
-    st.markdown(href, unsafe_allow_html=True)
-
-# Crear un botón de descarga para el dataframe
-def download_button(df, filename, button_text):
-    # Crear un objeto ExcelWriter
-    excel_writer = pd.ExcelWriter(filename, engine='xlsxwriter')
-    # Guardar el dataframe en el objeto ExcelWriter
-    df.to_excel(excel_writer, index=False)
-    # Cerrar el objeto ExcelWriter
-    excel_writer.save()
-    # Leer el archivo guardado como bytes
-    with open(filename, 'rb') as f:
-        file_bytes = f.read()
-    # Generar el enlace de descarga
-    href = f'<a href="data:application/octet-stream;base64,{base64.b64encode(file_bytes).decode()}" download="{filename}">{button_text}</a>'
-    st.markdown(href, unsafe_allow_html=True)
-
-# Dividir la página en dos columnas
-col1, col2 = st.columns(2)
-
-# Agregar un botón de descarga para el dataframe en la primera columna
-with col1:
-    download_button(df, 'dataframe.xlsx', 'Descargar como Excel')
-    st.write('')
-
-# Agregar un botón de descarga para el dataframe en la segunda columna
-with col2:
-    download_button_CSV(df, 'dataframe.csv', 'Descargar como CSV')
-    st.write('')
-
-st.markdown(
-    """ 
-    # Diagrama de venn 👋
-    La muestra de recolectada en 2018 representa compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-    """
-    )
-
-# crea un diagrama de Venn en donde podemos ver los usuarios que tienen en común la base de datos de 2018 y la de edades registradas
-fig, ax = plt.subplots(figsize=(2,2))
-venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Base de datos de 2018', 'Usuarios con edad registrada'), set_colors=('red','blue'))
-st.pyplot(fig)
-st.caption("Figura de la comparación entre usuarios en la base de datos de 2018 y usuarios con edad registrada.")
 
 
-st.markdown(
-    """ 
-    # Resumen estadistico de la muestra
-    Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
-    """
-    )
-Descripcion2019=BD2019.describe() # Crea un resumen con la estadistica de de la base de datos para 2018
 
-st.dataframe(Descripcion2019.style.set_properties(**{'text-align': 'center'}))
+    # Crear un botón de descarga para el dataframe
+    def download_button_CSV(df, filename, button_text):
+        csv = df.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()
+        href = f'<a href="data:file/csv;base64,{b64}" download="{filename}">{button_text}</a>'
+        st.markdown(href, unsafe_allow_html=True)
 
-st.markdown(
-    """
+    # Crear un botón de descarga para el dataframe
+    def download_button(df, filename, button_text):
+        # Crear un objeto ExcelWriter
+        excel_writer = pd.ExcelWriter(filename, engine='xlsxwriter')
+        # Guardar el dataframe en el objeto ExcelWriter
+        df.to_excel(excel_writer, index=False)
+        # Cerrar el objeto ExcelWriter
+        excel_writer.save()
+        # Leer el archivo guardado como bytes
+        with open(filename, 'rb') as f:
+            file_bytes = f.read()
+        # Generar el enlace de descarga
+        href = f'<a href="data:application/octet-stream;base64,{base64.b64encode(file_bytes).decode()}" download="{filename}">{button_text}</a>'
+        st.markdown(href, unsafe_allow_html=True)
+
+    # Dividir la página en dos columnas
+    col1, col2 = st.columns(2)
+
+    # Agregar un botón de descarga para el dataframe en la primera columna
+    with col1:
+        download_button(df, 'dataframe.xlsx', 'Descargar como Excel')
+        st.write('')
+
+    # Agregar un botón de descarga para el dataframe en la segunda columna
+    with col2:
+        download_button_CSV(df, 'dataframe.csv', 'Descargar como CSV')
+        st.write('')
+
+    st.markdown(
+        """ 
+        # Diagrama de venn 👋
+        La muestra de recolectada en 2018 representa compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples           visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional,           además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
+
+        # crea un diagrama de Venn en donde podemos ver los usuarios que tienen en común la base de datos de 2018 y la de edades registradas
+        fig, ax = plt.subplots(figsize=(2,2))
+        venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Base de datos de 2018', 'Usuarios con edad registrada'), set_colors=('red','blue'))
+        st.pyplot(fig)
+        st.caption("Figura de la comparación entre usuarios en la base de datos de 2018 y usuarios con edad registrada.")
+
+with tab2:
+
+    st.markdown(
+        """ 
+        # Resumen estadistico de la muestra
+        Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
+        """
+        )
+    Descripcion2019=BD2019.describe() # Crea un resumen con la estadistica de de la base de datos para 2018
+
+    st.dataframe(Descripcion2019.style.set_properties(**{'text-align': 'center'}))
+
+    st.markdown(
+        """
     Las filas son las siguientes:
 
     - **count:** el número de valores no nulos en la columna.
@@ -790,6 +795,9 @@ theta_optimal = Multivariable_Linear_Regression(X_transform, y, 0.03, 30000)
 X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas'])
 predictions = np.dot(X_transform_df, theta_optimal[1:]) + theta_optimal[0]
 BD2019_with_predictions = BD2019.assign(Predicted_BARTHEL=predictions)
+
+
+with tab3:
 
 # Print the new dataframe with predictions
 st.write(BD2019_with_predictions)
