@@ -1122,5 +1122,25 @@ plot_decision_surface(X, y, feature1, feature2)
 # display the plot in Streamlit
 st.pyplot()
 
+import pandas as pd
+from sklearn.cluster import KMeans
+
+# Cargar dataframe
+BD2019 = pd.read_csv("ruta/al/archivo.csv")
+
+# Seleccionar columnas para el algoritmo
+X = BD2019.drop("Nombre", axis=1)
+
+# Definir número de clusters
+n_clusters = 3
+
+# Crear instancia de k-means
+kmeans = KMeans(n_clusters=n_clusters, init='k-means++', max_iter=300, n_init=10, random_state=0)
+
+# Ajustar modelo a los datos
+kmeans.fit(X)
+
+# Obtener clasificación de cada miembro
+clasificacion = kmeans.predict(X)
 
 
