@@ -993,7 +993,7 @@ import numpy as np
 
 # load BD2018 dataset
 
-BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
 # get feature and target columns
 X = BD2019.iloc[:, 1:-2]
 y = BD2019.iloc[:, -2]
