@@ -22,7 +22,7 @@ translator = Translator()
 
 #Bloque para preparar las bases de datos
 
-st.header("# Sobre la muestra") #coloca el titulo de la sección
+st.header("Sobre la muestra") #coloca el titulo de la sección
 
 st.markdown
 (
@@ -201,69 +201,69 @@ with tab2:
     )
 
 
-# Escribe un archivo de excel que contine a BD2018
-BD2019Depurada = pd.ExcelWriter('BD2018Depurada.xlsx')
-BD2019.to_excel(BD2019Depurada) #convierte BD2018 en un archivo de excel
-BD2019Depurada.save() #guarda el archivo de excel en el directorio local
-#from google.colab import files
-#files.download('BD2018Depurada.xlsx') 
+    # Escribe un archivo de excel que contine a BD2018
+    BD2019Depurada = pd.ExcelWriter('BD2018Depurada.xlsx')
+    BD2019.to_excel(BD2019Depurada) #convierte BD2018 en un archivo de excel
+    BD2019Depurada.save() #guarda el archivo de excel en el directorio local
+    #from google.colab import files
+    #files.download('BD2018Depurada.xlsx') 
 
 
 
 
-Barras2019, axes = plt.subplots(3, 2, figsize=(8, 8))
-#crear un histograma en cada subplot usando "seaborn"
-#sns.boxplot(data=df, x='team', y='points', ax=axes[0,0])
-#sns.boxplot(data=df, x='team', y='assists', ax=axes[0,1])
-sns.histplot(BD2019['Edad'], ax=axes[0,0], kde=True,
+    Barras2019, axes = plt.subplots(3, 2, figsize=(8, 8))
+    #crear un histograma en cada subplot usando "seaborn"
+    #sns.boxplot(data=df, x='team', y='points', ax=axes[0,0])
+    #sns.boxplot(data=df, x='team', y='assists', ax=axes[0,1])
+    sns.histplot(BD2019['Edad'], ax=axes[0,0], kde=True,
                       line_kws={'linewidth': 2})
-sns.histplot(BD2019['MNA'], ax=axes[0,1], kde=True,
+    sns.histplot(BD2019['MNA'], ax=axes[0,1], kde=True,
                       line_kws={'linewidth': 2})
-sns.histplot(BD2019['Marcha'], ax=axes[1,0], kde=True,
+    sns.histplot(BD2019['Marcha'], ax=axes[1,0], kde=True,
                       line_kws={'linewidth': 2})
-sns.histplot(BD2019['Fuerza'], ax=axes[1,1], kde=True,
+    sns.histplot(BD2019['Fuerza'], ax=axes[1,1], kde=True,
                       line_kws={'linewidth': 2})                      
-sns.histplot(BD2019['PuntajeZ'], ax=axes[2,0], kde=True,
+    sns.histplot(BD2019['PuntajeZ'], ax=axes[2,0], kde=True,
                       line_kws={'linewidth': 2})
-sns.histplot(BD2019['Proteinas'], ax=axes[2,1], kde=True,
+    sns.histplot(BD2019['Proteinas'], ax=axes[2,1], kde=True,
                       line_kws={'linewidth': 2})                      
-st.pyplot(Barras2019)
+    st.pyplot(Barras2019)
 
-st.markdown(
+    st.markdown(
     """
     La grafica muestra los histogramas de la distribucion de frecuencias de los paramtero relevantes para la base de datos: Edad [años], Índice Mininutricional [puntaje], Fuerza promedio de antebrazo [kilogramos] y consumo diario de proteinas [gramos]. La línea azul representa una estimación de la densidad de probabilidad de la variable (kde es el acrónimo de "Kernel Density Estimate"). En los histogramas se muestra la distribución de frecuencia de los valores de cada variable. En el eje x se encuentran los valores de la variable y en el eje y se encuentra la frecuencia de los valores.
     """
     )
 
-#######################01#################################33
-chart1=altcat.catplot(BD2019,
-               height=300,
-               width=400,
-               mark='point',
-               box_mark=dict(strokeWidth=2, opacity=0.6),
-               whisker_mark=dict(strokeWidth=2, opacity=0.9),
-               encoding=dict(x=alt.X('Sexo:N', title=None),
-                             y=alt.Y('MNA:Q',scale=alt.Scale(zero=False)),
-                             tooltip=[alt.Tooltip("Nombre"),
-                             alt.Tooltip("Edad"),
-                             alt.Tooltip("Proteinas"),
-                             alt.Tooltip('Fuerza'),
-                             alt.Tooltip("MNA"),
-                             alt.Tooltip("Marcha"),
-                             alt.Tooltip("PuntajeZ"),
-                             alt.Tooltip("BARTHEL"),
-                             ],
-                             color=alt.Color('Sexo:N', legend=None)),
-               transform='jitterbox',
-              jitter_width=0.5).interactive()
+    #######################01#################################33
+    chart1=altcat.catplot(BD2019,
+                   height=300,
+                   width=400,
+                   mark='point',
+                   box_mark=dict(strokeWidth=2, opacity=0.6),
+                   whisker_mark=dict(strokeWidth=2, opacity=0.9),
+                   encoding=dict(x=alt.X('Sexo:N', title=None),
+                              y=alt.Y('MNA:Q',scale=alt.Scale(zero=False)),
+                              tooltip=[alt.Tooltip("Nombre"),
+                              alt.Tooltip("Edad"),
+                              alt.Tooltip("Proteinas"),
+                              alt.Tooltip('Fuerza'),
+                              alt.Tooltip("MNA"),
+                              alt.Tooltip("Marcha"),
+                              alt.Tooltip("PuntajeZ"),
+                              alt.Tooltip("BARTHEL"),
+                                 ],
+                              color=alt.Color('Sexo:N', legend=None)),
+                  transform='jitterbox',
+                  jitter_width=0.5).interactive()
 
-chart2=altcat.catplot(BD2019,
-               height=300,
-               width=400,
-               mark='point',
-               box_mark=dict(strokeWidth=2, opacity=0.6),
-               whisker_mark=dict(strokeWidth=2, opacity=0.9),
-               encoding=dict(x=alt.X('Sexo:N', title=None),
+    chart2=altcat.catplot(BD2019,
+                   height=300,
+                   width=400,
+                   mark='point',
+                   box_mark=dict(strokeWidth=2, opacity=0.6),
+                   whisker_mark=dict(strokeWidth=2, opacity=0.9),
+                   encoding=dict(x=alt.X('Sexo:N', title=None),
                              y=alt.Y('Proteinas:Q',scale=alt.Scale(zero=False)),
                              tooltip=[alt.Tooltip("Nombre"),
                              alt.Tooltip("Edad"),
@@ -275,16 +275,16 @@ chart2=altcat.catplot(BD2019,
                              alt.Tooltip("BARTHEL"),
                              ],
                              color=alt.Color('Sexo:N', legend=None)),
-               transform='jitterbox',
-              jitter_width=0.5).interactive()
+                   transform='jitterbox',
+                   jitter_width=0.5).interactive()
 
-chart3=altcat.catplot(BD2019,
-               height=300,
-               width=400,
-               mark='point',
-               box_mark=dict(strokeWidth=2, opacity=0.6),
-               whisker_mark=dict(strokeWidth=2, opacity=0.9),
-               encoding=dict(x=alt.X('Sexo:N', title=None),
+    chart3=altcat.catplot(BD2019,
+                   height=300,
+                   width=400,
+                   mark='point',
+                   box_mark=dict(strokeWidth=2, opacity=0.6),
+                   whisker_mark=dict(strokeWidth=2, opacity=0.9),
+                   encoding=dict(x=alt.X('Sexo:N', title=None),
                              y=alt.Y('PuntajeZ:Q',scale=alt.Scale(zero=False)),
                              tooltip=[alt.Tooltip("Nombre"),
                              alt.Tooltip("Edad"),
@@ -296,16 +296,16 @@ chart3=altcat.catplot(BD2019,
                              alt.Tooltip("BARTHEL"),
                              ],
                              color=alt.Color('Sexo:N', legend=None)),
-               transform='jitterbox',
-              jitter_width=0.5).interactive()
+                  transform='jitterbox',
+                  jitter_width=0.5).interactive()
 
-chart4=altcat.catplot(BD2019,
-               height=300,
-               width=400,
-               mark='point',
-               box_mark=dict(strokeWidth=2, opacity=0.6),
-               whisker_mark=dict(strokeWidth=2, opacity=0.9),
-               encoding=dict(x=alt.X('Sexo:N', title=None),
+    chart4=altcat.catplot(BD2019,
+                   height=300,
+                   width=400,
+                   mark='point',
+                   box_mark=dict(strokeWidth=2, opacity=0.6),
+                   whisker_mark=dict(strokeWidth=2, opacity=0.9),
+                   encoding=dict(x=alt.X('Sexo:N', title=None),
                              y=alt.Y('Fuerza:Q',scale=alt.Scale(zero=False)),
                              tooltip=[alt.Tooltip("Nombre"),
                              alt.Tooltip("Edad"),
@@ -317,16 +317,16 @@ chart4=altcat.catplot(BD2019,
                              alt.Tooltip("BARTHEL"),
                              ],
                              color=alt.Color('Sexo:N', legend=None)),
-               transform='jitterbox',
-              jitter_width=0.5).interactive()
+                   transform='jitterbox',
+                   jitter_width=0.5).interactive()
 
-chart5=altcat.catplot(BD2019,
-               height=300,
-               width=400,
-               mark='point',
-               box_mark=dict(strokeWidth=2, opacity=0.6),
-               whisker_mark=dict(strokeWidth=2, opacity=0.9),
-               encoding=dict(x=alt.X('Sexo:N', title=None),
+    chart5=altcat.catplot(BD2019,
+                   height=300,
+                   width=400,
+                   mark='point',
+                   box_mark=dict(strokeWidth=2, opacity=0.6),
+                   whisker_mark=dict(strokeWidth=2, opacity=0.9),
+                   encoding=dict(x=alt.X('Sexo:N', title=None),
                              y=alt.Y('Marcha:Q',scale=alt.Scale(zero=False)),
                              tooltip=[alt.Tooltip("Nombre"),
                              alt.Tooltip("Edad"),
@@ -338,16 +338,16 @@ chart5=altcat.catplot(BD2019,
                              alt.Tooltip("BARTHEL"),
                              ],
                              color=alt.Color('Sexo:N', legend=None)),
-               transform='jitterbox',
-              jitter_width=0.5).interactive()
+                   transform='jitterbox',
+                   jitter_width=0.5).interactive()
 
-chart6=altcat.catplot(BD2019,
-               height=300,
-               width=400,
-               mark='point',
-               box_mark=dict(strokeWidth=2, opacity=0.6),
-               whisker_mark=dict(strokeWidth=2, opacity=0.9),
-               encoding=dict(x=alt.X('Sexo:N', title=None),
+    chart6=altcat.catplot(BD2019,
+                   height=300,
+                   width=400,
+                   mark='point',
+                   box_mark=dict(strokeWidth=2, opacity=0.6),
+                   whisker_mark=dict(strokeWidth=2, opacity=0.9),
+                   encoding=dict(x=alt.X('Sexo:N', title=None),
                              y=alt.Y('BARTHEL:Q',scale=alt.Scale(zero=False)),
                              tooltip=[alt.Tooltip("Nombre"),
                              alt.Tooltip("Edad"),
@@ -359,194 +359,194 @@ chart6=altcat.catplot(BD2019,
                              alt.Tooltip("BARTHEL"),
                              ],
                              color=alt.Color('Sexo:N', legend=None)),
-               transform='jitterbox',
-              jitter_width=0.5).interactive()
+                   transform='jitterbox',
+                   jitter_width=0.5).interactive()
 
 
-cajas2019=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart4),alt.hconcat(chart5, chart6))
+    cajas2019=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart4),alt.hconcat(chart5, chart6))
 
-st.altair_chart(cajas2019)
+    st.altair_chart(cajas2019)
 
-st.markdown(
-    """
-    La grafica muestra los histogramas de la distribucion de frecuencias de los paramtero relevantes para la base de datos: Edad [años], Índice Mininutricional [puntaje], Fuerza promedio de antebrazo [kilogramos] y consumo diario de proteinas [gramos]. La línea azul representa una estimación de la densidad de probabilidad de la variable (kde es el acrónimo de "Kernel Density Estimate"). En los histogramas se muestra la distribución de frecuencia de los valores de cada variable. En el eje x se encuentran los valores de la variable y en el eje y se encuentra la frecuencia de los valores.
-    """
-    )
-
-
-selection = alt.selection_multi(fields=['Sexo'], bind='legend')
-chart1 = alt.Chart(BD2019).mark_circle(size=50).encode(
-    x='Edad', y='Fuerza',
-    color='Sexo',
-    tooltip=[alt.Tooltip("Nombre"),
-    alt.Tooltip("MNA"),
-    alt.Tooltip('Fuerza'),
-    alt.Tooltip("Marcha"),
-    alt.Tooltip("PuntajeZ"),
-    alt.Tooltip("BARTHEL"),
-    ],
-    opacity=alt.condition(selection, alt.value(1), alt.value(0))
-).properties(
-    height=300, width=400
-).add_selection(
-    selection
-).interactive()
-
-chart2 = alt.Chart(BD2019).mark_circle(size=50).encode(
-    x='Edad', y='Proteinas',
-    color='Sexo',
-    tooltip=[alt.Tooltip("Nombre"),
-    alt.Tooltip("MNA"),
-    alt.Tooltip('Fuerza'),
-    alt.Tooltip("Marcha"),
-    alt.Tooltip("PuntajeZ"),
-    alt.Tooltip("BARTHEL"),
-    ],
-    opacity=alt.condition(selection, alt.value(1), alt.value(0))
-).properties(
-    height=300, width=400
-).add_selection(
-    selection
-).interactive()
-
-chart3 = alt.Chart(BD2019).mark_circle(size=50).encode(
-    x='Edad', y='MNA',
-    color='Sexo',
-    tooltip=[alt.Tooltip("Nombre"),
-    alt.Tooltip("MNA"),
-    alt.Tooltip('Fuerza'),
-    alt.Tooltip("Marcha"),
-    alt.Tooltip("PuntajeZ"),
-    alt.Tooltip("BARTHEL"),
-    ],
-    opacity=alt.condition(selection, alt.value(1), alt.value(0))
-).properties(
-    height=300, width=400
-).add_selection(
-    selection
-).interactive()
-
-chart4 = alt.Chart(BD2019).mark_circle(size=50).encode(
-    x='Edad', y='Marcha',
-    color='Sexo',
-    tooltip=[alt.Tooltip("Nombre"),
-    alt.Tooltip("MNA"),
-    alt.Tooltip("Fuerza"),
-    alt.Tooltip("Marcha"),
-    alt.Tooltip("PuntajeZ"),
-    alt.Tooltip("BARTHEL"),
-    ],
-    opacity=alt.condition(selection, alt.value(1), alt.value(0))
-).properties(
-    height=300, width=400
-).add_selection(
-    selection
-).interactive()
-
-chart5 = alt.Chart(BD2019).mark_circle(size=50).encode(
-    x='Edad', y='PuntajeZ',
-    color='Sexo',
-    tooltip=[alt.Tooltip("Nombre"),
-    alt.Tooltip("MNA"),
-    alt.Tooltip("Fuerza"),
-    alt.Tooltip("Marcha"),
-    alt.Tooltip("PuntajeZ"),
-    alt.Tooltip("BARTHEL"),
-    ],
-    opacity=alt.condition(selection, alt.value(1), alt.value(0))
-).properties(
-    height=300, width=400
-).add_selection(
-    selection
-).interactive()
-
-selection = alt.selection_multi(fields=['Sexo'], bind='legend')
-chart6 = alt.Chart(BD2019).mark_circle(size=50).encode(
-    x='Edad', y='BARTHEL',
-    color='Sexo',
-    tooltip=[alt.Tooltip("Nombre"),
-    alt.Tooltip("MNA"),
-    alt.Tooltip('Fuerza'),
-    alt.Tooltip("Marcha"),
-    alt.Tooltip("PuntajeZ"),
-    alt.Tooltip("BARTHEL"),
-    ],
-    opacity=alt.condition(selection, alt.value(1), alt.value(0))
-).properties(
-    height=300, width=400
-).add_selection(
-    selection
-).interactive()
+    st.markdown(
+        """
+        La grafica muestra los histogramas de la distribucion de frecuencias de los paramtero relevantes para la base de datos: Edad [años], Índice Mininutricional [puntaje], Fuerza promedio de antebrazo [kilogramos] y consumo diario de proteinas [gramos]. La línea azul representa una estimación de la densidad de probabilidad de la variable (kde es el acrónimo de "Kernel Density Estimate"). En los histogramas se muestra la distribución de frecuencia de los valores de cada variable. En el eje x se encuentran los valores de la variable y en el eje y se encuentra la frecuencia de los valores.
+        """
+        )
 
 
-correlaciones2019=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart4),alt.hconcat(chart5, chart6))
+    selection = alt.selection_multi(fields=['Sexo'], bind='legend')
+    chart1 = alt.Chart(BD2019).mark_circle(size=50).encode(
+        x='Edad', y='Fuerza',
+        color='Sexo',
+        tooltip=[alt.Tooltip("Nombre"),
+        alt.Tooltip("MNA"),
+        alt.Tooltip('Fuerza'),
+        alt.Tooltip("Marcha"),
+        alt.Tooltip("PuntajeZ"),
+        alt.Tooltip("BARTHEL"),
+        ],
+        opacity=alt.condition(selection, alt.value(1), alt.value(0))
+    ).properties(
+        height=300, width=400
+    ).add_selection(
+        selection
+    ).interactive()
 
-st.altair_chart(correlaciones2019)
+    chart2 = alt.Chart(BD2019).mark_circle(size=50).encode(
+        x='Edad', y='Proteinas',
+        color='Sexo',
+        tooltip=[alt.Tooltip("Nombre"),
+        alt.Tooltip("MNA"),
+        alt.Tooltip('Fuerza'),
+        alt.Tooltip("Marcha"),
+        alt.Tooltip("PuntajeZ"),
+        alt.Tooltip("BARTHEL"),
+        ],
+        opacity=alt.condition(selection, alt.value(1), alt.value(0))
+    ).properties(
+        height=300, width=400
+    ).add_selection(
+        selection
+    ).interactive()
 
-st.markdown(
-    """
-    La grafica muestra los histogramas de la distribucion de frecuencias de los paramtero relevantes para la base de datos: Edad [años], Índice Mininutricional [puntaje], Fuerza promedio de antebrazo [kilogramos] y consumo diario de proteinas [gramos]. La línea azul representa una estimación de la densidad de probabilidad de la variable (kde es el acrónimo de "Kernel Density Estimate"). En los histogramas se muestra la distribución de frecuencia de los valores de cada variable. En el eje x se encuentran los valores de la variable y en el eje y se encuentra la frecuencia de los valores.
-    """
-    )
+    chart3 = alt.Chart(BD2019).mark_circle(size=50).encode(
+        x='Edad', y='MNA',
+        color='Sexo',
+        tooltip=[alt.Tooltip("Nombre"),
+        alt.Tooltip("MNA"),
+        alt.Tooltip('Fuerza'),
+        alt.Tooltip("Marcha"),
+        alt.Tooltip("PuntajeZ"),
+        alt.Tooltip("BARTHEL"),
+        ],
+        opacity=alt.condition(selection, alt.value(1), alt.value(0))
+    ).properties(
+        height=300, width=400
+    ).add_selection(
+        selection
+    ).interactive()
+
+    chart4 = alt.Chart(BD2019).mark_circle(size=50).encode(
+        x='Edad', y='Marcha',
+        color='Sexo',
+        tooltip=[alt.Tooltip("Nombre"),
+        alt.Tooltip("MNA"),
+        alt.Tooltip("Fuerza"),
+        alt.Tooltip("Marcha"),
+        alt.Tooltip("PuntajeZ"),
+        alt.Tooltip("BARTHEL"),
+        ],
+        opacity=alt.condition(selection, alt.value(1), alt.value(0))
+    ).properties(
+        height=300, width=400
+    ).add_selection(
+        selection
+    ).interactive()
+
+    chart5 = alt.Chart(BD2019).mark_circle(size=50).encode(
+        x='Edad', y='PuntajeZ',
+        color='Sexo',
+        tooltip=[alt.Tooltip("Nombre"),
+        alt.Tooltip("MNA"),
+        alt.Tooltip("Fuerza"),
+        alt.Tooltip("Marcha"),
+        alt.Tooltip("PuntajeZ"),
+        alt.Tooltip("BARTHEL"),
+        ],
+        opacity=alt.condition(selection, alt.value(1), alt.value(0))
+    ).properties(
+        height=300, width=400
+    ).add_selection(
+        selection
+    ).interactive()
+
+    selection = alt.selection_multi(fields=['Sexo'], bind='legend')
+    chart6 = alt.Chart(BD2019).mark_circle(size=50).encode(
+        x='Edad', y='BARTHEL',
+        color='Sexo',
+        tooltip=[alt.Tooltip("Nombre"),
+        alt.Tooltip("MNA"),
+        alt.Tooltip('Fuerza'),
+        alt.Tooltip("Marcha"),
+        alt.Tooltip("PuntajeZ"),
+        alt.Tooltip("BARTHEL"),
+        ],
+        opacity=alt.condition(selection, alt.value(1), alt.value(0))
+    ).properties(
+      height=300, width=400
+    ).add_selection(
+        selection
+    ).interactive()
 
 
-st.markdown(
+    correlaciones2019=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart3, chart4),alt.hconcat(chart5, chart6))
+
+    st.altair_chart(correlaciones2019)
+
+    st.markdown(
+        """
+        La grafica muestra los histogramas de la distribucion de frecuencias de los paramtero relevantes para la base de datos: Edad [años], Índice Mininutricional [puntaje], Fuerza promedio de antebrazo [kilogramos] y consumo diario de proteinas [gramos]. La línea azul representa una estimación de la densidad de probabilidad de la variable (kde es el acrónimo de "Kernel Density Estimate"). En los histogramas se muestra la distribución de frecuencia de los valores de cada variable. En el eje x se encuentran los valores de la variable y en el eje y se encuentra la frecuencia de los valores.
+        """
+        )
+
+
+    st.markdown(
+        """ 
+        # Descripcion de la muestra 👋
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
+
+    # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Masculino."
+    Hombres2019=BD2019.loc[BD2019['Sexo']=="Mas"]
+    del Hombres2019['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
+    Hombres2019 # Muestra el dataframe con datos de hombres.
+
+    st.markdown(
+        """ 
+        # Descripcion de la muestra 👋
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
+
+    Hombres2019.describe() # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
+
+    st.markdown(
+        """ 
+        # Descripcion de la muestra 👋
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
+
+    Mujeres2019=BD2019.loc[BD2019['Sexo']=="Fem"] # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Femenino."
+
+    del Mujeres2019['Sexo']
+    Mujeres2019
+
+    st.markdown(
     """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-    """
-    )
+        # Descripcion de la muestra 👋
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
 
-# localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Masculino."
-Hombres2019=BD2019.loc[BD2019['Sexo']=="Mas"]
-del Hombres2019['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
-Hombres2019 # Muestra el dataframe con datos de hombres.
-
-st.markdown(
-    """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-    """
-    )
-
-Hombres2019.describe() # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
-
-st.markdown(
-    """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-    """
-    )
-
-Mujeres2019=BD2019.loc[BD2019['Sexo']=="Fem"] # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Femenino."
-
-del Mujeres2019['Sexo']
-Mujeres2019
-
-st.markdown(
-    """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-    """
-    )
-
-Mujeres2019.describe() # dEscripcion del Dataframe de "Mujeres"
+    Mujeres2019.describe() # dEscripcion del Dataframe de "Mujeres"
 
 
 # En el siguiente bloque se separa por rangos de edad de 10 años al subgrupo de "Hombres". 
 # En algunos casos no hay miembros registrados que cumplan con el rango de edad requerido, por lo que los
 # dataframes estan vacios (como ocurre con el grupo de menos de 60 años).
 
-Hombres201960=BD2019.loc[((BD2019['Edad'] <= 60) & (BD2019['Sexo']=='Mas'))]
-del Hombres201960['Sexo']
-Hombres201970=BD2019.loc[((BD2019['Edad'] > 60) & (BD2019['Edad'] <= 70) & (BD2019['Sexo'] == 'Mas'))]
-del Hombres201970['Sexo']
-Hombres201980=BD2019.loc[((BD2019['Edad'] > 70) & (BD2019['Edad'] <= 80) & (BD2019['Sexo'] == 'Mas'))]
-del Hombres201980['Sexo']
-Hombres201990=BD2019.loc[((BD2019['Edad'] > 80) & (BD2019['Edad'] <= 90) & (BD2019['Sexo'] == 'Mas'))]
-del Hombres201990['Sexo']
-Hombres2019100=BD2019.loc[((BD2019['Edad'] > 90) & (BD2019['Sexo'] == 'Mas'))]
-del Hombres2019100['Sexo']
+    Hombres201960=BD2019.loc[((BD2019['Edad'] <= 60) & (BD2019['Sexo']=='Mas'))]
+    del Hombres201960['Sexo']
+    Hombres201970=BD2019.loc[((BD2019['Edad'] > 60) & (BD2019['Edad'] <= 70) & (BD2019['Sexo'] == 'Mas'))]
+    del Hombres201970['Sexo']
+    Hombres201980=BD2019.loc[((BD2019['Edad'] > 70) & (BD2019['Edad'] <= 80) & (BD2019['Sexo'] == 'Mas'))]
+    del Hombres201980['Sexo']
+    Hombres201990=BD2019.loc[((BD2019['Edad'] > 80) & (BD2019['Edad'] <= 90) & (BD2019['Sexo'] == 'Mas'))]
+    del Hombres201990['Sexo']
+    Hombres2019100=BD2019.loc[((BD2019['Edad'] > 90) & (BD2019['Sexo'] == 'Mas'))]
+    del Hombres2019100['Sexo']
 
 
 
@@ -558,16 +558,16 @@ del Hombres2019100['Sexo']
 
 
 
-Mujeres201960=BD2019.loc[((BD2019['Edad']<=60) & (BD2019['Sexo']=='Fem'))]
-del Mujeres201960['Sexo']
-Mujeres201970=BD2019.loc[((BD2019['Edad'] >60) & (BD2019['Edad']<=70) & (BD2019['Sexo']=='Fem'))]
-del Mujeres201970['Sexo']
-Mujeres201980=BD2019.loc[((BD2019['Edad'] >70) & (BD2019['Edad']<=80) & (BD2019['Sexo']=='Fem'))]
-del Mujeres201980['Sexo']
-Mujeres201990=BD2019.loc[((BD2019['Edad'] >80) & (BD2019['Edad']<=90) & (BD2019['Sexo']=='Fem'))]
-del Mujeres201990['Sexo']
-Mujeres2019100=BD2019.loc[((BD2019['Edad'] >90) & (BD2019['Sexo']=='Fem'))]
-del Mujeres2019100['Sexo']
+    Mujeres201960=BD2019.loc[((BD2019['Edad']<=60) & (BD2019['Sexo']=='Fem'))]
+    del Mujeres201960['Sexo']
+    Mujeres201970=BD2019.loc[((BD2019['Edad'] >60) & (BD2019['Edad']<=70) & (BD2019['Sexo']=='Fem'))]
+    del Mujeres201970['Sexo']
+    Mujeres201980=BD2019.loc[((BD2019['Edad'] >70) & (BD2019['Edad']<=80) & (BD2019['Sexo']=='Fem'))]
+    del Mujeres201980['Sexo']
+    Mujeres201990=BD2019.loc[((BD2019['Edad'] >80) & (BD2019['Edad']<=90) & (BD2019['Sexo']=='Fem'))]
+    del Mujeres201990['Sexo']
+    Mujeres2019100=BD2019.loc[((BD2019['Edad'] >90) & (BD2019['Sexo']=='Fem'))]
+    del Mujeres2019100['Sexo']
 
 
 
@@ -577,12 +577,12 @@ del Mujeres2019100['Sexo']
 #Mujeres201890
 #Mujeres2018100
 
-st.markdown(
-    """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-    """
-    )
+    st.markdown(
+        """ 
+        # Descripcion de la muestra 👋
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
 
 #import pandas as pd
 #import seaborn as sns
@@ -610,8 +610,8 @@ st.markdown(
 
 
 # importing libraries
-import altair as alt
-from vega_datasets import data
+    import altair as alt
+    from vega_datasets import data
   
 # importing airports dataset from vega_datasets package
 # airport = data.airports()
@@ -638,9 +638,9 @@ from vega_datasets import data
 #plt.show()
 
 
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
+    import pandas as pd
+    import seaborn as sns
+    import matplotlib.pyplot as plt
 # Creamos una correlación desde un dataset D
 #corr = Hombres201890.corr().loc[:'BARTHEL', :"BARTHEL"]
 
@@ -652,7 +652,7 @@ import matplotlib.pyplot as plt
 
 
 #import seaborn as sns
-cmap = sns.diverging_palette( 220 , 10 , as_cmap = True )
+    cmap = sns.diverging_palette( 220 , 10 , as_cmap = True )
 #sb1 = sns.heatmap(
 #    subset1.corr(), 
 #    cmap = cmap,
@@ -662,32 +662,32 @@ cmap = sns.diverging_palette( 220 , 10 , as_cmap = True )
 #    annot_kws = { 'fontsize' : 12 })
 
 # Here we create a figure instance, and two subplots
-CalorHombres2019 = plt.figure(figsize = (20,20)) # width x height
-ax1 = CalorHombres2019.add_subplot(2, 2, 1) # row, column, position
-ax2 = CalorHombres2019.add_subplot(2, 2, 2)
-ax3 = CalorHombres2019.add_subplot(2, 2, 3)
+    CalorHombres2019 = plt.figure(figsize = (20,20)) # width x height
+    ax1 = CalorHombres2019.add_subplot(2, 2, 1) # row, column, position
+    ax2 = CalorHombres2019.add_subplot(2, 2, 2)
+    ax3 = CalorHombres2019.add_subplot(2, 2, 3)
 
 
 # We use ax parameter to tell seaborn which subplot to use for this plot
 #sns.heatmap(data=Hombres201970.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
 
-sns.heatmap(data=Hombres201970.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-sns.heatmap(data=Hombres201980.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-sns.heatmap(data=Hombres201990.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-st.pyplot(CalorHombres2019)
+    sns.heatmap(data=Hombres201970.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+    sns.heatmap(data=Hombres201980.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+    sns.heatmap(data=Hombres201990.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+    st.pyplot(CalorHombres2019)
 
 
-st.markdown(
-    """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-    """
-    )
+    st.markdown(
+        """ 
+        # Descripcion de la muestra 👋
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
 
 
 
 #import seaborn as sns
-cmap = sns.diverging_palette( 220 , 10 , as_cmap = True )
+    cmap = sns.diverging_palette( 220 , 10 , as_cmap = True )
 #sb1 = sns.heatmap(
 #    subset1.corr(), 
 #    cmap = cmap,
@@ -697,105 +697,105 @@ cmap = sns.diverging_palette( 220 , 10 , as_cmap = True )
 #    annot_kws = { 'fontsize' : 12 })
 
 # Here we create a figure instance, and two subplots
-CalorMujeres2019 = plt.figure(figsize = (20,20)) # width x height
-ax1 = CalorMujeres2019.add_subplot(2, 2, 1) # row, column, position
-ax2 = CalorMujeres2019.add_subplot(2, 2, 2)
-ax3 = CalorMujeres2019.add_subplot(2, 2, 3)
-ax4 = CalorMujeres2019.add_subplot(2, 2, 4)
+    CalorMujeres2019 = plt.figure(figsize = (20,20)) # width x height
+    ax1 = CalorMujeres2019.add_subplot(2, 2, 1) # row, column, position
+    ax2 = CalorMujeres2019.add_subplot(2, 2, 2)
+    ax3 = CalorMujeres2019.add_subplot(2, 2, 3)
+    ax4 = CalorMujeres2019.add_subplot(2, 2, 4)
 
 
 # We use ax parameter to tell seaborn which subplot to use for this plot
-sns.heatmap(data=Mujeres201960.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-sns.heatmap(data=Mujeres201970.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-sns.heatmap(data=Mujeres201980.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-sns.heatmap(data=Mujeres201990.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax4, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-st.pyplot(CalorMujeres2019)
+    sns.heatmap(data=Mujeres201960.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+    sns.heatmap(data=Mujeres201970.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+    sns.heatmap(data=Mujeres201980.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+    sns.heatmap(data=Mujeres201990.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax4, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+    st.pyplot(CalorMujeres2019)
 
-st.markdown(
-    """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-    """
-    )
+    st.markdown(
+        """ 
+        # Descripcion de la muestra 👋
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
 
 
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-from sklearn.datasets import load_diabetes
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LinearRegression
+    import streamlit as st
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    from sklearn.datasets import load_diabetes
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.linear_model import LinearRegression
 
-def generateXvector(X):
-    """ Taking the original independent variables matrix and add a row of 1 which corresponds to x_0
-        Parameters:
-          X:  independent variables matrix
-        Return value: the matrix that contains all the values in the dataset, not include the outcomes values 
-    """
-    vectorX = np.c_[np.ones((len(X), 1)), X]
-    return vectorX
+    def generateXvector(X):
+        """ Taking the original independent variables matrix and add a row of 1 which corresponds to x_0
+            Parameters:
+            X:  independent variables matrix
+            Return value: the matrix that contains all the values in the dataset, not include the outcomes values 
+        """
+        vectorX = np.c_[np.ones((len(X), 1)), X]
+        return vectorX
 
-def theta_init(X):
-    """ Generate an initial value of vector θ from the original independent variables matrix
-         Parameters:
-          X:  independent variables matrix
-        Return value: a vector of theta filled with initial guess
-    """
-    theta = np.random.randn(len(X[0])+1, 1)
-    return theta
+    def theta_init(X):
+        """ Generate an initial value of vector θ from the original independent variables matrix
+            Parameters:
+            X:  independent variables matrix
+            Return value: a vector of theta filled with initial guess
+        """
+        theta = np.random.randn(len(X[0])+1, 1)
+        return theta
 
-def Multivariable_Linear_Regression(X,y,learningrate, iterations):
-    """ Find the multivarite regression model for the data set
-         Parameters:
-          X:  independent variables matrix
-          y: dependent variables matrix
-          learningrate: learningrate of Gradient Descent
-          iterations: the number of iterations
-        Return value: the final theta vector and the plot of cost function
-    """
-    y_new = np.reshape(y, (len(y), 1))   
-    cost_lst = []
-    vectorX = generateXvector(X)
-    theta = theta_init(X)
-    m = len(X)
-    for i in range(iterations):
-        gradients = 2/m * vectorX.T.dot(vectorX.dot(theta) - y_new)
-        theta = theta - learningrate * gradients
-        y_pred = vectorX.dot(theta)
-        cost_value = 1/(2*len(y))*((y_pred - y)**2) #Calculate the loss for each training instance
-        total = 0
-        for i in range(len(y)):
-            total += cost_value[i][0] #Calculate the cost function for each iteration
-        cost_lst.append(total)
-    fig, ax = plt.subplots()
-    ax.plot(np.arange(1,iterations),cost_lst[1:], color = 'red')
-    ax.set_title('Cost function Graph')
-    ax.set_xlabel('Number of iterations')
-    ax.set_ylabel('Cost')
-    st.pyplot(fig)
-    return theta
+    def Multivariable_Linear_Regression(X,y,learningrate, iterations):
+        """ Find the multivarite regression model for the data set
+            Parameters:
+            X:  independent variables matrix
+            y: dependent variables matrix
+            learningrate: learningrate of Gradient Descent
+            iterations: the number of iterations
+            Return value: the final theta vector and the plot of cost function
+        """
+        y_new = np.reshape(y, (len(y), 1))   
+        cost_lst = []
+        vectorX = generateXvector(X)
+        theta = theta_init(X)
+        m = len(X)
+        for i in range(iterations):
+            gradients = 2/m * vectorX.T.dot(vectorX.dot(theta) - y_new)
+            theta = theta - learningrate * gradients
+            y_pred = vectorX.dot(theta)
+            cost_value = 1/(2*len(y))*((y_pred - y)**2) #Calculate the loss for each training instance
+            total = 0
+            for i in range(len(y)):
+                total += cost_value[i][0] #Calculate the cost function for each iteration
+            cost_lst.append(total)
+        fig, ax = plt.subplots()
+        ax.plot(np.arange(1,iterations),cost_lst[1:], color = 'red')
+        ax.set_title('Cost function Graph')
+        ax.set_xlabel('Number of iterations')
+        ax.set_ylabel('Cost')
+        st.pyplot(fig)
+        return theta
 
 
 #BD2020 = BD2020[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
-X = BD2019.iloc[:,2:-2].values
-y = BD2019.iloc[:,-2].values
+    X = BD2019.iloc[:,2:-2].values
+    y = BD2019.iloc[:,-2].values
 
-sc=StandardScaler()
-X_transform=sc.fit_transform(X)
+    sc=StandardScaler()
+    X_transform=sc.fit_transform(X)
 
-lin_reg = LinearRegression()
-lin_reg.fit(X_transform, y)
-lin_reg.intercept_, lin_reg.coef_
+    lin_reg = LinearRegression()
+    lin_reg.fit(X_transform, y)
+    lin_reg.intercept_, lin_reg.coef_
 
 # Find the optimal theta values using the custom function
-theta_optimal = Multivariable_Linear_Regression(X_transform, y, 0.03, 30000)
+    theta_optimal = Multivariable_Linear_Regression(X_transform, y, 0.03, 30000)
 
 # Create a new dataframe with the original data and predicted values
-X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas'])
-predictions = np.dot(X_transform_df, theta_optimal[1:]) + theta_optimal[0]
-BD2019_with_predictions = BD2019.assign(Predicted_BARTHEL=predictions)
-st.write(BD2019_with_predictions)
+    X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas'])
+    predictions = np.dot(X_transform_df, theta_optimal[1:]) + theta_optimal[0]
+    BD2019_with_predictions = BD2019.assign(Predicted_BARTHEL=predictions)
+    st.write(BD2019_with_predictions)
 
 
 with tab3:
