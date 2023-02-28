@@ -22,7 +22,7 @@ translator = Translator()
 
 #Bloque para preparar las bases de datos
 
-st.write("# Sobre la muestra") #coloca el titulo de la sección
+st.header("# Sobre la muestra") #coloca el titulo de la sección
 
 st.markdown
 (
