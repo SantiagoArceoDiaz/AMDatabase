@@ -174,14 +174,11 @@ with tab1:
     st.pyplot(fig)
     st.caption("Figura de la comparación entre usuarios en la base de datos de 2018 y usuarios con edad registrada.")
 
-    # Función para descargar gráfica
-    def download_graph():
-        fig.savefig("grafica.png")
-        st.download_button(label="Descargar gráfica", data="grafica.png", file_name="grafica.png", mime="grafica/png")
-
-    # Mostrar gráfica y botón de descarga
-    #st.pyplot(fig)
-    download_graph()
+    # Crea el botón de descarga
+    if st.button('Descargar gráfica'):
+        # Guarda la gráfica como un archivo PNG
+        fig.savefig('grafica.png')
+        st.download_button(label="Descargar gráfica", data='grafica.png', file_name='grafica.png', mime='image/png')
     
    
 with tab2:
