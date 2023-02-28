@@ -1036,6 +1036,11 @@ import numpy as np
 #st.pyplot()
 
 
+BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+## get feature and target columns
+X = BD2019.iloc[:, 1:-2]
+y = BD2019.iloc[:, -2]
+
 # Modificamos el número de filas y columnas
 num_cols = 3
 plots_per_col = 5
