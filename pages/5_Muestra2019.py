@@ -993,14 +993,57 @@ import numpy as np
 
 # load BD2018 dataset
 
+#BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+## get feature and target columns
+#X = BD2019.iloc[:, 1:-2]
+#y = BD2019.iloc[:, -2]
+
+## define number of columns and plots per column
+#num_cols = 5
+#plots_per_col = 3
+#num_plots = X.shape[1] * (X.shape[1]-1) // 2
+
+## iterate over all possible pairs of features
+#plot_count = 0
+#for i in range(X.shape[1]):
+#    for j in range(i + 1, X.shape[1]):
+#        # fit decision tree classifier
+#        clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
+#
+##        # create a meshgrid to plot the decision surface
+#        x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
+#        y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
+#        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+#                             np.arange(y_min, y_max, 0.02))
+#
+#        # predict on the meshgrid
+#        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+#        Z = Z.reshape(xx.shape)
+#
+#        # plot the decision surface
+#        plot_count += 1
+#        plt.subplot(int(np.ceil(num_plots/plots_per_col)), num_cols, plot_count)
+#        plt.contourf(xx, yy, Z, alpha=0.4)
+#        plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
+#        plt.xlabel(X.columns[i])
+#        plt.ylabel(X.columns[j])
+#
+## add suptitle to the figure
+#plt.suptitle('Decision surfaces of a decision tree')
+#
+#plt.subplots_adjust(hspace=0.8)
+## display the plot in Streamlit
+#st.pyplot()
+
+
 BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
 # get feature and target columns
 X = BD2019.iloc[:, 1:-2]
 y = BD2019.iloc[:, -2]
 
 # define number of columns and plots per column
-num_cols = 5
-plots_per_col = 3
+num_cols = 3
+plots_per_col = 5
 num_plots = X.shape[1] * (X.shape[1]-1) // 2
 
 # iterate over all possible pairs of features
@@ -1034,9 +1077,6 @@ plt.suptitle('Decision surfaces of a decision tree')
 plt.subplots_adjust(hspace=0.8)
 # display the plot in Streamlit
 st.pyplot()
-
-
-
 
 
 
