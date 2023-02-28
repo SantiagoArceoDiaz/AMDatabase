@@ -177,7 +177,7 @@ with tab1:
     # Función para descargar gráfica
     def download_graph():
         fig.savefig("grafica.png")
-        st.download_button(label="Descargar gráfica", data="grafica.png", file_name="grafica.png", mime="image/png")
+        st.download_button(label="Descargar gráfica", data="grafica.png", file_name="grafica.png", mime="grafica/png")
 
     # Mostrar gráfica y botón de descarga
     #st.pyplot(fig)
