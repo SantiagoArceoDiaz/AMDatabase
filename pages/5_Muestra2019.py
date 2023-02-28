@@ -1122,20 +1122,26 @@ plot_decision_surface(X, y, feature1, feature2)
 # display the plot in Streamlit
 st.pyplot()
 
+
+
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 
 # Cargar dataframe
-#BD2019 = pd.read_csv("ruta/al/archivo.csv")
+# BD2019 = pd.read_csv("ruta/al/archivo.csv")
 
 # Seleccionar columnas para el algoritmo
 X = BD2019.drop("Nombre", axis=1)
 
-# Definir número de clusters
-n_clusters = 3
+# Solicitar número de clusters al usuario
+n_clusters = int(input("Ingrese el número de clusters: "))
 
-# Crear instancia de k-means
-kmeans = KMeans(n_clusters=n_clusters, init='k-means++', max_iter=300, n_init=10, random_state=0)
+# Solicitar número máximo de iteraciones al usuario
+max_iter = int(input("Ingrese el número máximo de iteraciones: "))
+
+# Crear instancia de k-means con los parámetros ingresados por el usuario
+kmeans = KMeans(n_clusters=n_clusters, init='k-means++', max_iter=max_iter, n_init=10, random_state=0)
 
 # Ajustar modelo a los datos
 kmeans.fit(X)
@@ -1143,4 +1149,10 @@ kmeans.fit(X)
 # Obtener clasificación de cada miembro
 clasificacion = kmeans.predict(X)
 
+# Representar los resultados en un gráfico de dispersión
+plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=clasificacion)
+plt.title('Clasificación de los objetos')
+plt.xlabel('Edad')
+plt.ylabel('Marcha')
+plt.show()
 
