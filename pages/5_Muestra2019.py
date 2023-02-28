@@ -818,9 +818,10 @@ from sklearn import tree
 #X = BD2018.iloc[:,2:-2].values
 #y = BD2018.iloc[:,-2].values
 
-X = BD2019.iloc[:,2:-2].values
-y = BD2019.iloc[:,-1].values
-
+#X = BD2019.iloc[:,2:-2].values
+#y = BD2019.iloc[:,-1].values
+X = BD2019.iloc[:,2:-2]
+y = BD2019.iloc[:,-1]
 
 # Definir el algoritmo de clasificación y ajustar los datos
 clf = KNeighborsClassifier(n_neighbors=5)
