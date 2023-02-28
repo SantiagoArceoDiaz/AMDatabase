@@ -19,6 +19,38 @@ st.markdown("# El test de Barthel")
 #image = Image.open('https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/IB.jpg')
 #image = Image.open('https://github.com/SantiagoArceoDiaz/AMDatabase/blob/7ed451174ce84ad3ea6311783d5d6f64a430102a/pages/IB.jpg')
 
+st.markdown(
+    """
+El test de Barthel es una herramienta de evaluación funcional utilizada en el ámbito de la salud para medir la capacidad de una persona para llevar a cabo las actividades básicas de la vida diaria (ABVD). Fue desarrollado por el médico británico Mahlon Barthel en 1965. El test de Barthel consiste en una serie de 10 o 20 ítems, que evalúan la capacidad del paciente para realizar tareas cotidianas como vestirse, bañarse, comer, moverse de un lugar a otro, entre otras. Cada ítem se puntúa en función de la capacidad del paciente para realizar la tarea sin ayuda, con ayuda parcial o con ayuda total. La puntuación total obtenida en el test de Barthel se utiliza para medir el grado de dependencia o independencia del paciente en las ABVD. Una puntuación más alta indica una mayor independencia en las actividades diarias, mientras que una puntuación más baja indica una mayor dependencia y necesidad de asistencia.
+
+El test de Barthel se utiliza comúnmente en la evaluación de pacientes con discapacidades, enfermedades crónicas, lesiones traumáticas y en pacientes geriátricos. Es una herramienta útil para evaluar la capacidad funcional de los pacientes, monitorear su progreso y determinar los planes de tratamiento y cuidado a seguir.
+"""
+)
+
+st.header("Recomendaciones para la aplicación del test de Barthel en adultos mayores")
+st.markdown(
+    """
+El Test de Barthel se puede aplicar a pacientes geriátricos de la misma manera que en cualquier otro grupo de edad. Sin embargo, es importante tener en cuenta algunos factores específicos que pueden afectar la capacidad de los pacientes geriátricos para realizar las ABVD y, por lo tanto, el resultado del test. Por ejemplo, es posible que los pacientes geriátricos necesiten más tiempo para realizar las tareas del test debido a la disminución de la fuerza física o la movilidad. También puede ser necesario utilizar ayudas técnicas, como andadores o sillas de ruedas, durante la evaluación.
+
+En los pacientes geriátricos, el Test de Barthel se puede utilizar para evaluar su capacidad funcional antes y después de una hospitalización, para determinar su capacidad para vivir de forma independiente en el hogar, para identificar las necesidades de atención y cuidado, y para establecer planes de rehabilitación y terapia ocupacional. En general, el Test de Barthel es una herramienta valiosa en la evaluación geriátrica integral y en la atención de pacientes geriátricos.
+
+Aquí hay algunos consejos para aplicar el test de Barthel en personas adultas mayores:
+
+- Asegúrese de que el ambiente de evaluación sea seguro y cómodo: Asegúrese de que el lugar donde se va a realizar el test sea seguro, cómodo y adecuado para la edad del paciente. Por ejemplo, puede ser necesario utilizar una silla o una cama para algunas de las tareas del test.
+
+- Explique claramente las tareas: Asegúrese de que el paciente comprenda claramente cada una de las tareas del test. En algunos casos, puede ser necesario demostrar la tarea al paciente para que la entienda mejor.
+
+- Utilice ayudas técnicas si es necesario: Si el paciente utiliza ayudas técnicas para realizar algunas de las actividades diarias, como un andador o una silla de ruedas, asegúrese de que las tenga disponibles durante la evaluación.
+
+- Sea paciente y respetuoso: Las personas mayores pueden tener dificultades para realizar algunas de las tareas del test debido a la edad, la discapacidad o la enfermedad. Sea paciente y respetuoso durante la evaluación.
+
+- Tenga en cuenta el estado cognitivo del paciente: Si el paciente tiene algún tipo de deterioro cognitivo, como demencia, puede ser necesario adaptar el test para evaluar su capacidad funcional de manera más precisa.
+
+"""
+)
+
+st.write( "Video explicación sobre el Test de Barthel](https://www.youtube.com/watch?v=4E375_AzQ5I)")
+
 image = "https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/IB.jpg"
 #url = "https://raw.githubusercontent.com/SantiagoArceoDiaz/AMDatabase/main/pages/IB.jpg"
 #response = requests.get(url)
@@ -53,7 +85,6 @@ cotidiana. Dichas actividades son:
 """
 )
 
-st.write( "Video explicación sobre el Test de Barthel](https://www.youtube.com/watch?v=4E375_AzQ5I)")
 
 
 
