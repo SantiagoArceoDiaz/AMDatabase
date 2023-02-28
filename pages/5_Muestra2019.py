@@ -994,10 +994,10 @@ import numpy as np
 # load BD2018 dataset
 #BD2018 = pd.read_csv('ruta/a/tu/BD2018.csv')
 #BD2020 = BD2020[['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
-
+BD2019 = BD2019[['Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 # get feature and target columns
-X = BD2019.iloc[:, 3:-2]
-y = BD2019.iloc[:, -1]
+X = BD2019.iloc[:, 0:-2]
+y = BD2019.iloc[:, -2]
 
 # define number of columns and plots per column
 num_cols = 4
