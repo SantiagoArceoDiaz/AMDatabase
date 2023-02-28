@@ -858,17 +858,24 @@ print("El objeto pertenece a la clase:", prediction[0])
 # Split the dataset into training and testing datasets
 #train_data = iris.data[:-20]
 #train_data = BD2018.iloc[:-20, :]
-train_data = BD2019.iloc[:-20,2:-2].values
+#train_data = BD2019.iloc[:-20,2:-2].values
+train_data = BD2019.iloc[:-20,2:-2]
+
 
 #train_target = iris.target[:-20]
-train_target = BD2019.iloc[:-20, -1].values
+#train_target = BD2019.iloc[:-20, -1].values
+train_target = BD2019.iloc[:-20, -1]
+
 
 #test_data = iris.data[-20:]
-test_data = BD2019.iloc[-20:].values
+#test_data = BD2019.iloc[-20:].values
+test_data = BD2019.iloc[-20:]
 
 
 #test_target = iris.target[-20:]
-test_target = BD2019.iloc[-20:, -1].values
+#test_target = BD2019.iloc[-20:, -1].values
+test_target = BD2019.iloc[-20:, -1]
+
 
 # Train a decision tree classifier
 clf = tree.DecisionTreeClassifier()
@@ -900,6 +907,8 @@ fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
 tree.plot_tree(clf, filled=True, feature_names=BD2019.columns[2:-2].tolist(), class_names=BD2019.columns[-1])
 plt.show()
 st.pyplot(fig)
+
+
 
 from sklearn.tree import _tree
 
