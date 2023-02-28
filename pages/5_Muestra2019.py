@@ -1078,7 +1078,7 @@ for i in range(X.shape[1]):
             plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
             plt.xlabel(X.columns[i])
             plt.ylabel(X.columns[j])
-            plt.remove()
+            #plt.remove()
 
 # add suptitle to the figure
 plt.suptitle('Decision surfaces of a decision tree')
