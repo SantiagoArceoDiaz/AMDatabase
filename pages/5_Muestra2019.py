@@ -1001,7 +1001,7 @@ y = BD2019.iloc[:, -2]
 
 # define number of columns and plots per column
 num_cols = 3
-plots_per_col = 6
+plots_per_col = 7
 num_plots = X.shape[1] * (X.shape[1]-1) // 2
 
 # iterate over all possible pairs of features
