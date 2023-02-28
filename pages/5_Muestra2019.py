@@ -996,7 +996,7 @@ import numpy as np
 #BD2020 = BD2020[['Nombre', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
 
 # get feature and target columns
-X = BD2019.iloc[:, 2:-2]
+X = BD2019.iloc[:, 3:-2]
 y = BD2019.iloc[:, -1]
 
 # define number of columns and plots per column
