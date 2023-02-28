@@ -792,3 +792,191 @@ BD2019_with_predictions = BD2019.assign(Predicted_BARTHEL=predictions)
 # Print the new dataframe with predictions
 st.write(BD2019_with_predictions)
 
+from sklearn.datasets import load_iris
+from sklearn import tree
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.datasets import load_iris
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier, export_text
+from sklearn import tree
+
+
+# Cargar los datos del conjunto iris
+#url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+#colnames = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'name']
+#iris = pd.read_csv(url, header=None, names=colnames)
+
+# Convertir los datos a un arreglo numpy
+#X = iris.iloc[:, :4].values
+#y = iris.iloc[:, 4].values
+#BD2018["Fuerza"]=BD2018["Prom_Fuer"]
+#BD2021 = BD2020[['Nombre','Sexo', 'Edad', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+#X = BD2018.iloc[:,2:-2].values
+#y = BD2018.iloc[:,-2].values
+
+X = BD2019.iloc[:,2:-2].values
+y = BD2019.iloc[:,-1].values
+
+
+# Definir el algoritmo de clasificación y ajustar los datos
+clf = KNeighborsClassifier(n_neighbors=5)
+clf.fit(X, y)
+
+# Pedir al usuario los valores de cada atributo
+#Edad = float(input("Introduzca la Edad: "))
+#MNA = float(input("Introduzca el resultado del test MNA: "))
+#Fuerza = float(input("Introduzca el promedio de fuerza de presión: "))
+#Proteinas = float(input("Introduzca el consumo promedio de proteinas: "))
+
+# Crear los deslizadores
+Edad = st.slider("Edad", 60, 100, 75)
+MNA = st.slider("MNA", 0, 30, 15)
+Fuerza = st.slider("Fuerza", 0, 150, 75)
+Proteinas = st.slider("Proteinas", 0, 200, 100)
+PuntajeZ = st.slider("PuntajeZ", 0, 200, 100)
+Marcha = st.slider("Marcha", 0, 200, 100)
+
+
+
+# Clasificar el objeto
+prediction = clf.predict([[Edad, MNA, Fuerza, Proteinas, PuntajeZ, Marcha]])
+print("El objeto pertenece a la clase:", prediction[0])
+
+
+#from sklearn.datasets import load_iris
+#from sklearn import tree
+#import numpy as np
+
+# Load the iris dataset
+#iris = load_iris()
+
+# Split the dataset into training and testing datasets
+#train_data = iris.data[:-20]
+#train_data = BD2018.iloc[:-20, :]
+train_data = BD2019.iloc[:-20,2:-2].values
+
+#train_target = iris.target[:-20]
+train_target = BD2019.iloc[:-20, -1].values
+
+#test_data = iris.data[-20:]
+test_data = BD2019.iloc[-20:].values
+
+
+#test_target = iris.target[-20:]
+test_target = BD2019.iloc[-20:, -1].values
+
+# Train a decision tree classifier
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(train_data, train_target)
+
+# Use the trained classifier to classify a new object
+new_object = np.array([[Edad, MNA, Fuerza, Proteinas, PuntajeZ, Marcha]])
+prediction = clf.predict(new_object)
+
+# Print the preditrain_target.shapection
+#print("The predicted class is:", iris.target_names[prediction[0]])
+
+clf = DecisionTreeClassifier()
+clf.fit(X, y)
+
+
+class_names=BD2019.columns[-1] #
+#tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2])
+#tree_rules = export_text(clf, feature_names=BD2018.columns[2:-2].tolist()), class_names=BD2018.columns[-1]
+tree_rules = sk.tree.export_text(clf, feature_names=BD2019.columns[2:-2].tolist())
+
+st.text(tree_rules)
+
+#fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
+#tree.plot_tree(clf)
+#st.pyplot(fig)
+
+fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
+tree.plot_tree(clf, filled=True, feature_names=BD2019.columns[2:-2].tolist(), class_names=BD2019.columns[-1])
+plt.show()
+st.pyplot(fig)
+
+from sklearn.tree import _tree
+
+def tree_to_code(tree, feature_names):
+    tree_ = tree.tree_
+    feature_name = [
+        feature_names[i] if i != _tree.TREE_UNDEFINED else "undefined!"
+        for i in tree_.feature
+    ]
+    feature_names = [f.replace(" ", "_")[:-5] for f in feature_names]
+    st.write("def predict({}):".format(", ".join(feature_names)))
+
+    def recurse(node, depth):
+        indent = "    " * depth
+        if tree_.feature[node] != _tree.TREE_UNDEFINED:
+            name = feature_name[node]
+            threshold = tree_.threshold[node]
+            st.write("{}if {} <= {}:".format(indent, name, np.round(threshold,2)))
+            recurse(tree_.children_left[node], depth + 1)
+            st.write("{}else:  # if {} > {}".format(indent, name, np.round(threshold,2)))
+            recurse(tree_.children_right[node], depth + 1)
+        else:
+            st.write("{}return {}".format(indent, tree_.value[node]))
+
+    recurse(0, 1)
+    
+def get_rules(tree, feature_names, class_names):
+    tree_ = tree.tree_
+    feature_name = [
+        feature_names[i] if i != _tree.TREE_UNDEFINED else "undefined!"
+        for i in tree_.feature
+    ]
+
+    paths = []
+    path = []
+    
+    def recurse(node, path, paths):
+        
+        if tree_.feature[node] != _tree.TREE_UNDEFINED:
+            name = feature_name[node]
+            threshold = tree_.threshold[node]
+            p1, p2 = list(path), list(path)
+            p1 += [f"({name} <= {np.round(threshold, 3)})"]
+            recurse(tree_.children_left[node], p1, paths)
+            p2 += [f"({name} > {np.round(threshold, 3)})"]
+            recurse(tree_.children_right[node], p2, paths)
+        else:
+            path += [(tree_.value[node], tree_.n_node_samples[node])]
+            paths += [path]
+            
+    recurse(0, path, paths)
+
+    # sort by samples count
+    samples_count = [p[-1][1] for p in paths]
+    ii = list(np.argsort(samples_count))
+    paths = [paths[i] for i in reversed(ii)]
+    
+    rules = []
+    for path in paths:
+        rule = "if "
+        
+        for p in path[:-1]:
+            if rule != "if ":
+                rule += " and "
+            rule += str(p)
+        rule += " then "
+        if class_names is None:
+            rule += "response: "+str(np.round(path[-1][0][0][0],3))
+        else:
+            classes = path[-1][0][0]
+            l = np.argmax(classes)
+            rule += f"class: {class_names[l]} (proba: {np.round(100.0*classes[l]/np.sum(classes),2)}%)"
+        rule += f" | based on {path[-1][1]:,} samples"
+        rules += [rule]
+        
+    return rules
+
+#class_names = BD2018['target'].unique().astype(str)#fff
+#class_names = BD2018.columns[-1].unique().astype(str)
+class_names = ['0', '1', '2']
+rules = get_rules(clf, BD2019.columns[2:-2].tolist(), BD2019.columns[-1])
+for r in rules:
+    st.write(r)
