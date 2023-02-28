@@ -1126,7 +1126,7 @@ import pandas as pd
 from sklearn.cluster import KMeans
 
 # Cargar dataframe
-BD2019 = pd.read_csv("ruta/al/archivo.csv")
+#BD2019 = pd.read_csv("ruta/al/archivo.csv")
 
 # Seleccionar columnas para el algoritmo
 X = BD2019.drop("Nombre", axis=1)
