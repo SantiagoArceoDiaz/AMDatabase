@@ -6,7 +6,7 @@ from PIL import Image
 
 st.set_page_config(page_title="Indice Mininutricional", page_icon="📈")
 
-st.header("# Indice Mininutricional")
+st.header("Indice Mininutricional")
 
 st.markdown(
 """
@@ -22,7 +22,7 @@ El MNA evalúa una serie de factores, como la ingesta de alimentos, la movilidad
 """
 )
 
-st.header("# Indice Mininutricional en personas adultas mayores")
+st.header("Indice Mininutricional en personas adultas mayores")
 
 st.markdown(
 """
