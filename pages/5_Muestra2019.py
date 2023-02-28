@@ -177,7 +177,7 @@ with tab1:
     # Crea el botón de descarga
     if st.button('Descargar gráfica'):
         # Guarda la gráfica como un archivo PNG
-        fig.savefig('grafica.png')
+        fig.savefig("grafica.png", bbox_inches="tight")
         st.download_button(label="Descargar gráfica", data='grafica.png', file_name='grafica.png', mime='image/png')
     
    
