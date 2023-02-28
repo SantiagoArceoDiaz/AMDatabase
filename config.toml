@@ -188,8 +188,6 @@ showPyplotGlobalUse = false
 # Font family for all text in the app, except code blocks. One of "sans serif", "serif", or "monospace".
 # font =
 
-
-
 [theme]
 base="light"
 primaryColor="#949ade"
