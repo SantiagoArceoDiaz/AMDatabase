@@ -997,7 +997,7 @@ import numpy as np
 
 # get feature and target columns
 X = BD2019.iloc[:, 2:-2]
-y = BD2019.iloc[:, -2]
+y = BD2019.iloc[:, -1]
 
 # define number of columns and plots per column
 num_cols = 3
