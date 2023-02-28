@@ -664,9 +664,11 @@ ax3 = CalorHombres2019.add_subplot(2, 2, 3)
 
 
 # We use ax parameter to tell seaborn which subplot to use for this plot
-sns.heatmap(data=Hombres201970.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-sns.heatmap(data=Hombres201980.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-sns.heatmap(data=Hombres201990.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+#sns.heatmap(data=Hombres201970.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+
+sns.heatmap(data=Hombres201970.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+sns.heatmap(data=Hombres201980.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+sns.heatmap(data=Hombres201990.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
 st.pyplot(CalorHombres2019)
 
 
@@ -698,10 +700,10 @@ ax4 = CalorMujeres2019.add_subplot(2, 2, 4)
 
 
 # We use ax parameter to tell seaborn which subplot to use for this plot
-sns.heatmap(data=Mujeres201960.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-sns.heatmap(data=Mujeres201970.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-sns.heatmap(data=Mujeres201980.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
-sns.heatmap(data=Mujeres201990.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax4, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+sns.heatmap(data=Mujeres201960.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax1, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+sns.heatmap(data=Mujeres201970.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax2, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+sns.heatmap(data=Mujeres201980.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
+sns.heatmap(data=Mujeres201990.corr(numeric_only=True).loc[:'BARTHEL', :"BARTHEL"], ax=ax4, cmap = cmap, square=True, cbar_kws={'shrink': .3}, annot=True, annot_kws={'fontsize': 12})
 st.pyplot(CalorMujeres2019)
 
 st.markdown(
