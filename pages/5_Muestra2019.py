@@ -34,6 +34,7 @@ eihfwehfewihfweiohfpweihfiphewpfhepwhfebwohfpjwepihfpw3ihphf3ph22
 tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes"])
 
 with tab1:
+    
     st.header("Fuerza de brazo")
     st.markdown
     (
@@ -173,6 +174,16 @@ with tab1:
     st.pyplot(fig)
     st.caption("Figura de la comparación entre usuarios en la base de datos de 2018 y usuarios con edad registrada.")
 
+    # Función para descargar gráfica
+    def download_graph():
+        fig.savefig("grafica.png")
+        st.download_button(label="Descargar gráfica", data="grafica.png", file_name="grafica.png", mime="image/png")
+
+    # Mostrar gráfica y botón de descarga
+    st.pyplot(fig)
+    download_graph()
+    
+   
 with tab2:
 
     st.markdown(
