@@ -1084,6 +1084,43 @@ plt.subplots_adjust(hspace=0.8)
 # display the plot in Streamlit
 st.pyplot()
 
+import streamlit as st
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+
+# define a function to plot the decision surface
+def plot_decision_surface(X, y, feature1, feature2):
+    clf = DecisionTreeClassifier().fit(X.loc[:, [feature1, feature2]], y)
+    x_min, x_max = X.loc[:, feature1].min() - 1, X.loc[:, feature1].max() + 1
+    y_min, y_max = X.loc[:, feature2].min() - 1, X.loc[:, feature2].max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02), np.arange(y_min, y_max, 0.02))
+    Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    plt.figure()
+    plt.contourf(xx, yy, Z, alpha=0.4)
+    plt.scatter(X.loc[:, feature1], X.loc[:, feature2], c=y, alpha=0.8)
+    plt.xlabel(feature1)
+    plt.ylabel(feature2)
+    plt.title('Decision surface of a decision tree')
+
+# load the data
+BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+
+# get feature and target columns
+X = BD2019.iloc[:, 1:-2]
+y = BD2019.iloc[:, -2]
+
+# set up the sidebar inputs
+st.sidebar.header('Select two features to display the decision surface')
+feature1 = st.sidebar.selectbox('First feature', X.columns)
+feature2 = st.sidebar.selectbox('Second feature', X.columns)
+
+# plot the decision surface based on the selected features
+plot_decision_surface(X, y, feature1, feature2)
+
+# display the plot in Streamlit
+st.pyplot()
 
 
 
