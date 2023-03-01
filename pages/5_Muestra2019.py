@@ -180,7 +180,7 @@ with tab1:
     #    fig.savefig("grafica.png", bbox_inches="tight")
     #    st.download_button(label="Descargar gráfica", data='grafica.png', file_name='grafica.png', mime='image/png')
     with open("venn2019.png", "rb") as file:
-    btn = st.download_button(
+        btn = st.download_button(
             label="Download image",
             data=file,
             file_name="venn2019.png",
