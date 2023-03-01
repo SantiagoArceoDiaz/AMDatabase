@@ -182,7 +182,7 @@ with tab1:
      pdf.output(pdf_fn)
     
    
-    fig, ax = plt.subplots(figsize=(8,6))
+    fig, ax = plt.subplots(figsize=(4,2))
     venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Base de datos de 2018', 'Usuarios con edad registrada'), set_colors=('red','blue'))
     st.pyplot(fig)
     st.caption("Figura de la comparación entre usuarios en la base de datos de 2018 y usuarios con edad registrada.")
