@@ -206,13 +206,13 @@ with tab1:
         pdf_fn = 'mypdf.pdf'
         create_pdf(img_fn, pdf_fn)
 
-        with open(pdf_fn, 'rb') as h_pdf:
-            st.download_button(
-                label="Descargar",
-                data=h_pdf,
-                file_name="Relatório.pdf",
-                mime="application/pdf",
-            )
+#        with open(pdf_fn, 'rb') as h_pdf:
+#            st.download_button(
+#                label="Descargar",
+#                data=h_pdf,
+#                file_name="Relatório.pdf",
+#                mime="application/pdf",
+#            )
 
     
 
