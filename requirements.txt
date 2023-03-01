@@ -18,4 +18,4 @@ pydot
 pydotplus
 mlxtend
 bokeh
-io
+fpdf
