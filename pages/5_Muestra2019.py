@@ -208,7 +208,7 @@ with tab1:
 
         with open(pdf_fn, 'rb') as h_pdf:
             st.download_button(
-                label="Descarregar relatório",
+                label="Descargar",
                 data=h_pdf,
                 file_name="Relatório.pdf",
                 mime="application/pdf",
