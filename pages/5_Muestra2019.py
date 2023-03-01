@@ -22,14 +22,13 @@ translator = Translator()
 
 #Bloque para preparar las bases de datos
 
-st.write("# Sobre la muestra") #coloca el titulo de la sección
+st.markdown(
+        """ 
+        # Resumen estadistico de la muestra
+        Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
+        """        
+        )
 
-st.markdown
-(
-"""
-eihfwehfewihfweiohfpweihfiphewpfhepwhfebwohfpjwepihfpw3ihphf3ph22
-"""
-)
 
 tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes"])
 
