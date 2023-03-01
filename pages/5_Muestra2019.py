@@ -169,17 +169,23 @@ with tab1:
         )
 
         # crea un diagrama de Venn en donde podemos ver los usuarios que tienen en común la base de datos de 2018 y la de edades registradas
-    fig, ax = plt.subplots(figsize=(8,6))
+    venn2019, ax = plt.subplots(figsize=(8,6))
     venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Base de datos de 2018', 'Usuarios con edad registrada'), set_colors=('red','blue'))
-    st.pyplot(fig)
+    st.pyplot(venn2019)
     st.caption("Figura de la comparación entre usuarios en la base de datos de 2018 y usuarios con edad registrada.")
 
     # Crea el botón de descarga
-    if st.button('Descargar gráfica'):
-        # Guarda la gráfica como un archivo PNG
-        fig.savefig("grafica.png", bbox_inches="tight")
-        st.download_button(label="Descargar gráfica", data='grafica.png', file_name='grafica.png', mime='image/png')
-    
+    #if st.button('Descargar gráfica'):
+    #    # Guarda la gráfica como un archivo PNG
+    #    fig.savefig("grafica.png", bbox_inches="tight")
+    #    st.download_button(label="Descargar gráfica", data='grafica.png', file_name='grafica.png', mime='image/png')
+    with open("venn2019.png", "rb") as file:
+    btn = st.download_button(
+            label="Download image",
+            data=file,
+            file_name="venn2019.png",
+            mime="image/png"
+          )
    
 with tab2:
 
