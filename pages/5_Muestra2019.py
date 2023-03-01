@@ -169,11 +169,53 @@ with tab1:
         )
 
         # crea un diagrama de Venn en donde podemos ver los usuarios que tienen en común la base de datos de 2018 y la de edades registradas
+    def create_pdf(img_fn, pdf_fn):
+    """
+    Create pdf written to pdf_fn with the image file img_fn.
+    """
+    pdf = FPDF()
+    pdf.add_page()
+
+    # Save to pdf
+    pdf.set_xy(30, 50)
+    pdf.image(img_fn, w=140, h=110)
+    pdf.output(pdf_fn)
+    
+   
     fig, ax = plt.subplots(figsize=(8,6))
     venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Base de datos de 2018', 'Usuarios con edad registrada'), set_colors=('red','blue'))
     st.pyplot(fig)
     st.caption("Figura de la comparación entre usuarios en la base de datos de 2018 y usuarios con edad registrada.")
+    
+        # Save to png
+    img_fn = 'Hip angle.png'
+    fig1.savefig(img_fn)
 
+    # Prepare file for download.
+    dfn = 'angle.png'
+    with open(img_fn, "rb") as f:
+        st.download_button(
+            label="Descarregar imagem",
+            data=f,
+            file_name=dfn,
+            mime="image/png")
+
+    # pdf download
+    checkbox = st.checkbox('Name', value='')
+    if checkbox:
+        pdf_fn = 'mypdf.pdf'
+        create_pdf(img_fn, pdf_fn)
+
+        with open(pdf_fn, 'rb') as h_pdf:
+            st.download_button(
+                label="Descarregar relatório",
+                data=h_pdf,
+                file_name="Relatório.pdf",
+                mime="application/pdf",
+            )
+
+    
+    
     # Crea el botón de descarga
     #if st.button('Descargar gráfica'):
     #    # Guarda la gráfica como un archivo PNG
