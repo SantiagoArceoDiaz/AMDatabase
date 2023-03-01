@@ -34,13 +34,12 @@ eihfwehfewihfweiohfpweihfiphewpfhepwhfebwohfpjwepihfpw3ihphf3ph22
 tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes"])
 
 with tab1:
-    
-    st.header("Fuerza de brazo")
-    st.markdown
-    (
-    """
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de     los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de         proteinas en sangre. A continuación se muestra la base de datos de los participantes.
-    """
+   
+    st.markdown(
+        """ 
+        # Resumen estadistico de la muestra
+        Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
+        """        
     )
 
     dfEdades=pd.read_excel('EdadesF.xlsx') # carga el archivo que contiene las edades y nombres de los pacientes
@@ -75,11 +74,11 @@ with tab1:
     Setdf2019=set(Listadf2019) # convierte la lista en un conjunto (para su manejo posterior)
 
     st.markdown(
-    """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de     los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de         proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-    """
-    )
+        """ 
+        # Descripcion de la muestra 👋
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de     los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de         proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
 
 
     SetDBEdades.difference(Setdf2019) # muestra el conjunto de usuarios que aparecen en la lista de edades
