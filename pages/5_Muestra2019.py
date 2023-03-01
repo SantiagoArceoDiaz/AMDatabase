@@ -189,7 +189,7 @@ with tab1:
     
         # Save to png
     img_fn = 'Hip angle.png'
-    fig1.savefig(img_fn)
+    fig.savefig(img_fn)
 
     # Prepare file for download.
     dfn = 'angle.png'
