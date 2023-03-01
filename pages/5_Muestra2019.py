@@ -24,8 +24,9 @@ translator = Translator()
 
 st.markdown(
         """ 
-        # Resumen estadistico de la muestra
-        Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
+        # Descripción de la muestra
+        La muestra de 2019 se compone de 164 adultos mayores que habitan en una casa de asistencia. A los participantes se les realizaron diferentes series de                 pruebas, como el test de Barthel, el índice mininutricional, la prueba de fragilidad "Share-Fi". Adicionalmente se registraron algunas cracterísticas                 antropométricas: fuerza de presión de brazos, circunferencia de pantorilla, velocidad de marcha. 
+        
         """        
         )
 
