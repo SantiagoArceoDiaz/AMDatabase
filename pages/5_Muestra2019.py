@@ -25,10 +25,59 @@ translator = Translator()
 st.markdown(
         """ 
         # Descripción de la muestra
-        La muestra de 2019 se compone de 164 adultos mayores que habitan en una casa de asistencia. A los participantes se les realizaron diferentes series de                 pruebas, como el test de Barthel, el índice mininutricional, la prueba de fragilidad "Share-Fi". Adicionalmente se registraron algunas cracterísticas                 antropométricas: fuerza de presión de brazos, circunferencia de pantorilla, velocidad de marcha. 
+        La muestra de 2019 se compone de 164 adultos mayores que habitan en una casa de asistencia. A los participantes se les realizaron diferentes series de pruebas, como el test de Barthel, el índice mininutricional, la prueba de fragilidad "Share-Fi". Adicionalmente se registraron algunas cracterísticas antropométricas: fuerza de presión de brazos, circunferencia de pantorilla, velocidad de marcha. A continuación se muestran los datos de los pacientes
         
         """        
         )
+    dfEdades=pd.read_excel('EdadesF.xlsx') # carga el archivo que contiene las edades y nombres de los pacientes
+
+    dfEdades['Nombre']= dfEdades['Nombres'] + dfEdades['Apellidos'] #combina la columna de Nombres y la de Apellidos
+
+    del dfEdades['Apellidos'] #elimina las filas innecesarias
+    del dfEdades['Nombres']
+    del dfEdades['Sexo']
+
+    DBEdades=dfEdades[['Nombre', 'Edad']] # Intercambia el orden de las columnas
+
+    ListaDBEdades=DBEdades['Nombre'].tolist() #Toma la columna de nombres 
+    # del archivo de usuarios con edades registradas y crea una lista
+
+    SetDBEdades=set(ListaDBEdades) #convierte la lista de usuarios cuya edad está registrada en un conjunto
+
+    #carga los datos de los archivos de excel con los resultados de diferentes test para el año 2018
+    df2019=pd.read_excel('2019C.xlsx')
+
+    #del df2020['PuntajeZ'] #quita la fila de puntaje Z, ya que no se tienen datos
+    #del df2020['Marcha'] #quita la fila de Marcha, ya que no se tienen datos
+
+    df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
+
+    df2019['Nombre']= df2019['Nombres'] + df2019['Apellidos'] #combina las columnas de nombres y apellidos en una llamada "Nombre"
+    del df2019['Apellidos'] # y elimina las columnas individuales.
+    del df2019['Nombres']
+    df2019['Fuerza'] = pd.to_numeric(df2019['Prom_Fuer'])
+
+    Listadf2019=df2019['Nombre'].tolist() #crea una lista a partir de los nombres de usuarios en df2018..
+    Setdf2019=set(Listadf2019) # convierte la lista en un conjunto (para su manejo posterior)
+
+    st.markdown(
+        """ 
+        # Descripcion de la muestra 👋
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de     los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de         proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
+
+
+    SetDBEdades.difference(Setdf2019) # muestra el conjunto de usuarios que aparecen en la lista de edades
+    # pero no estan en la base de datos de 2018. Esto puede deberse a que no están o a que se eliminarion por tener columnas con "NaN"
+
+    ddf2019 = pd.merge(left=df2019,right=DBEdades, how="inner",on="Nombre")
+    #ddf2018 # Combina las bases de datos de 2018 con la de usuarios con edad registrada, dejando solo los que tienen en comun
+    # es decir, la intersección vista en el diagrama de Venn.
+
+    BD2019=ddf2019[['Nombre','Sexo','Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas','BARTHEL', 'Int_BARTHEL']]
+    #BD2018 # Cambia el orden de las columnas y se guarda como una base de datos nueva.
+
 
 
 tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes"])
