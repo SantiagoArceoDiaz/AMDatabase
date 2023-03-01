@@ -200,11 +200,11 @@ with tab1:
             file_name=dfn,
             mime="image/png")
 
-    # pdf download
-    checkbox = st.checkbox('Name', value='')
-    if checkbox:
-        pdf_fn = 'mypdf.pdf'
-        create_pdf(img_fn, pdf_fn)
+#    # pdf download
+#    checkbox = st.checkbox('Name', value='')
+#    if checkbox:
+#        pdf_fn = 'mypdf.pdf'
+#        create_pdf(img_fn, pdf_fn)
 
 #        with open(pdf_fn, 'rb') as h_pdf:
 #            st.download_button(
