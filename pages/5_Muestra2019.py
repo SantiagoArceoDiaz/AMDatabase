@@ -169,9 +169,9 @@ with tab1:
         )
 
         # crea un diagrama de Venn en donde podemos ver los usuarios que tienen en común la base de datos de 2018 y la de edades registradas
-    venn2019, ax = plt.subplots(figsize=(8,6))
+    fig, ax = plt.subplots(figsize=(8,6))
     venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Base de datos de 2018', 'Usuarios con edad registrada'), set_colors=('red','blue'))
-    st.pyplot(venn2019)
+    st.pyplot(fig)
     st.caption("Figura de la comparación entre usuarios en la base de datos de 2018 y usuarios con edad registrada.")
 
     # Crea el botón de descarga
