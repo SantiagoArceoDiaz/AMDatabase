@@ -195,7 +195,7 @@ with tab1:
     dfn = 'angle.png'
     with open(img_fn, "rb") as f:
         st.download_button(
-            label="Descarregar imagem",
+            label="Descargar imagen",
             data=f,
             file_name=dfn,
             mime="image/png")
