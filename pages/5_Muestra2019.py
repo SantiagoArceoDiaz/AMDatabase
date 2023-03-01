@@ -120,12 +120,6 @@ with tab1:
     st.write(BD2019)
 
 
-
-
-
-
-
-
     # Crear un botón de descarga para el dataframe
     def download_button_CSV(df, filename, button_text):
         csv = df.to_csv(index=False)
@@ -183,16 +177,16 @@ with tab1:
     
    
     fig, ax = plt.subplots(figsize=(4,2))
-    venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Base de datos de 2018', 'Usuarios con edad registrada'), set_colors=('red','blue'))
+    venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Muestra de 2019', 'Muestra total'), set_colors=('red','blue'))
     st.pyplot(fig)
-    st.caption("Figura de la comparación entre usuarios en la base de datos de 2018 y usuarios con edad registrada.")
+    st.caption("Comparativa entre los usuarios pertenecientes al año 2019 y el total, correspondiente a 2018-2021.")
     
         # Save to png
-    img_fn = 'Hip angle.png'
+    img_fn = 'Venn 2019.png'
     fig.savefig(img_fn)
 
     # Prepare file for download.
-    dfn = 'angle.png'
+    dfn = 'Venn 2019.png'
     with open(img_fn, "rb") as f:
         st.download_button(
             label="Descargar imagen",
