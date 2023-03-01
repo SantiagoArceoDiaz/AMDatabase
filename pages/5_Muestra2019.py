@@ -215,22 +215,7 @@ with tab1:
             )
 
     
-    
-    # Crea el botón de descarga
-    #if st.button('Descargar gráfica'):
-    #    # Guarda la gráfica como un archivo PNG
-    #    fig.savefig("grafica.png", bbox_inches="tight")
-    #    st.download_button(label="Descargar gráfica", data='grafica.png', file_name='grafica.png', mime='image/png')
-    # Guardar la figura en un buffer
-    buffer = io.BytesIO()
-    plt.savefig(buffer, format="png", bbox_inches="tight")
-    buffer.seek(0)
 
-    # Mostrar la figura en Streamlit
-    st.image(buffer)
-
-    # Crear un botón de descarga para la figura
-    st.download_button(label="Descargar gráfica", data=buffer, file_name="venn2019.png", mime="image/png")
    
 with tab2:
 
