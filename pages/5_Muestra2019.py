@@ -1399,6 +1399,8 @@ with tab4:
         # Graficar histogramas de características de salida
         Xdepl_df = pd.DataFrame(Xdeplset, columns=['Xdepl'])  # convertir conjunto a DataFrame
         Xdepl_df.hist(figsize=[14, 12], bins=20)
+        st.pyplot()
+        
         
         # Mostrar imagen en Streamlit
         #st.write("Imagen de la figura guardada")
