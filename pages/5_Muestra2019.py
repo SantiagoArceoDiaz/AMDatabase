@@ -1377,8 +1377,19 @@ with tab4:
         Xdeptset=set(df2019BS.loc[df2019BS['Int_Barthel']==4.0].index)
         Xdeptset
         
-        fig = Xindep.hist(figsize=[14, 12])
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xindep.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xindep2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
         st.pyplot(fig)
+
+        # Mostrar imagen en Streamlit
+        st.write("Imagen de la figura guardada")
+        st.image("Xindep2019.png")
         
 #            fig, ax = plt.subplots(figsize=(4,2))
  #   venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Muestra de 2019', 'Muestra total'), set_colors=('red','blue'))
