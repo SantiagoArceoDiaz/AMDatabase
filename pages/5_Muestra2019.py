@@ -26,7 +26,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 #from sklearn.metrics import accuracy_score, plot_roc_curve, plot_confusion_matrix
 import streamlit as st
-from sklearn.metrics import accuracy_score, plot_confusion_matrix
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import plot_confusion_matrix
 from sklearn.metrics._plot.roc_curve import plot_roc_curve
 
 
