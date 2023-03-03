@@ -1335,6 +1335,11 @@ with tab4:
         Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
         """)
         
+        #carga los datos de los archivos de excel con los resultados del test de Barthel
+        df2019 = pd.read_excel('2019barthel.xlsx')
+        df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
+        df2019
+        
     with tab2:
    
         st.markdown(
