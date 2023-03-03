@@ -1299,7 +1299,7 @@ with tab3:
     #ax.yaxis.set_ticklabels(['False','True'])
 
 ## Display the visualization of the Confusion Matrix.
-    st.pyplot()
+    #st.pyplot()
 
     ax = sns.heatmap(cf/np.sum(cf), annot=True, 
             fmt='.2%', cmap='Blues')
@@ -1313,7 +1313,7 @@ with tab3:
     ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
 
 ## Display the visualization of the Confusion Matrix.
-    plt.show()
+    st.pyplot()
 
         
         
