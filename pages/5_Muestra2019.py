@@ -1281,17 +1281,17 @@ with tab3:
     import seaborn as sns
     import matplotlib.pyplot as plt
 
-    ax = sns.heatmap(cf, annot=True, cmap='Blues')
-    ax.set_title('Seaborn Confusion Matrix with labels\n\n');
-    ax.set_xlabel('\nPredicted Flower Category')
-    ax.set_ylabel('Actual Flower Category ');
+    #ax = sns.heatmap(cf, annot=True, cmap='Blues')
+    #ax.set_title('Seaborn Confusion Matrix with labels\n\n');
+    #ax.set_xlabel('\nPredicted Flower Category')
+    #ax.set_ylabel('Actual Flower Category ');
 
 ## Ticket labels - List must be in alphabetical order
-    ax.xaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
-    ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+    #ax.xaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+    #ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
 
 ## Display the visualization of the Confusion Matrix.
-    plt.show()
+    #plt.show()
 
 
 ## Ticket labels - List must be in alphabetical order
