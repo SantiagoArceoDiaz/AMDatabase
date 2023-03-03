@@ -1327,25 +1327,25 @@ with tab4:
         
     tab1, tab2, tab3 = st.tabs(["Muestra general", "Grupo Mujeres", "Grupo Hombres"])
 
-        with tab1:
+    with tab1:
    
-    st.markdown(
+        st.markdown(
         """ 
         # Resumen estadistico de la muestra
         Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
         """)
         
-        with tab2:
+    with tab2:
    
-    st.markdown(
+        st.markdown(
         """ 
         # Resumen estadistico de la muestra
         Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
         """)
         
-        with tab3:
+    with tab3:
    
-    st.markdown(
+        st.markdown(
         """ 
         # Resumen estadistico de la muestra
         Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
