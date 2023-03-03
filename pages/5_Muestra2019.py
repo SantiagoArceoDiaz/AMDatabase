@@ -94,8 +94,8 @@ BD2019=ddf2019[['Nombre','Sexo','Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', '
     #BD2018 # Cambia el orden de las columnas y se guarda como una base de datos nueva.
 
 
-tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes"])
-#tab1, tab2, tab3, tab4 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes", "Análisis con teoría de conjuntos"])
+#tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes"])
+tab1, tab2, tab3, tab4 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes", "Análisis con teoría de conjuntos"])
 
 with tab1:
    
@@ -1218,8 +1218,7 @@ with tab3:
     #iris.columns = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'class']
 
     # Separar el conjunto de entrenamiento y de prueba
-    #X = iris.iloc[:, :-1].values
-    #y = iris.iloc[:, -1].values
+ 
     BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
     ## get feature and target columns
     X = BD2019.iloc[:, 1:-2]
@@ -1248,23 +1247,9 @@ with tab3:
     feature_importances.plot(kind='barh')
     plt.title("Importancia de características")
     st.pyplot()
-
-    # Graficar curva ROC
-    #plot_roc_curve(classifier, X_test, y_test)
-    #RocCurveDisplay.from_estimator(classifier, X_test, y_test)
-    #plt.title("Curva ROC")
-    #st.pyplot()
-
-#from sklearn.metrics import plot_roc_curve
-#svc_disp = plot_roc_curve(svc, X_test, y_test)
-#rfc_disp = plot_roc_curve(rfc, X_test, y_test, ax=svc_disp.ax_)
-#From sklearn 1.2:
-
-#from sklearn.metrics import RocCurveDisplay
-#svc_disp = RocCurveDisplay.from_estimator(svc, X_test, y_test)
-#rfc_disp = RocCurveDisplay.from_estimator(rfc, X_test, y_test, ax=svc_disp.ax_)    
+ 
         
-        
+    
     # Graficar árbol
     plt.figure(figsize=(15,10))
     tree.plot_tree(classifier.estimators_[0], feature_names=X_train.columns, filled=True)
@@ -1282,25 +1267,6 @@ with tab3:
     import seaborn as sns
     import matplotlib.pyplot as plt
 
-    #ax = sns.heatmap(cf, annot=True, cmap='Blues')
-    #ax.set_title('Seaborn Confusion Matrix with labels\n\n');
-    #ax.set_xlabel('\nPredicted Flower Category')
-    #ax.set_ylabel('Actual Flower Category ');
-
-## Ticket labels - List must be in alphabetical order
-    #ax.xaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
-    #ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
-
-## Display the visualization of the Confusion Matrix.
-    #plt.show()
-
-
-## Ticket labels - List must be in alphabetical order
-    #ax.xaxis.set_ticklabels(['False','True'])
-    #ax.yaxis.set_ticklabels(['False','True'])
-
-## Display the visualization of the Confusion Matrix.
-    #st.pyplot()
 
     ax = sns.heatmap(cf/np.sum(cf), annot=True, 
             fmt='.2%', cmap='Blues')
@@ -1341,23 +1307,9 @@ with tab3:
     plt.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
     plt.show()
     st.pyplot()
-#En este código, se utiliza la función confusion_matrix de sklearn.metrics para generar la matriz de confusión y se utiliza la
 
-
-
-
-#You just change
-#for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-
-#To:
-#
-#for i in range (cm.shape[0]):
-#    for j in range (cm.shape[1]):
-
-
+with tab4:
         
-    #dfEdades=pd.read_excel('EdadesF.xlsx') # carga el archivo que contiene las edades y nombres de los pacientes
-
     df2019 = pd.read_excel('2019barthel.xlsx')
     df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
     df2019
