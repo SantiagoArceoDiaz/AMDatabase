@@ -1271,7 +1271,7 @@ with tab3:
 
     
     # Graficar matriz de confusión
-    cf=confusion_matrix(y_test, y_test)
+    cf=confusion_matrix(y_test, y_pred)
     #plot_confusion_matrix()
     #plt.title("Matriz de confusión")
     #st.pyplot()
@@ -1290,7 +1290,7 @@ with tab3:
     ax.yaxis.set_ticklabels(['False','True'])
 
 ## Display the visualization of the Confusion Matrix.
-    plt.show()
+    st.pyplot()
 
 
 
