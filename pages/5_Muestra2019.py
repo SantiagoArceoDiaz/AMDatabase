@@ -80,7 +80,7 @@ BD2019=ddf2019[['Nombre','Sexo','Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', '
 
 
 
-tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes"])
+tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes", "Análisis con teoría de conjuntos"])
 
 with tab1:
    
@@ -1192,6 +1192,22 @@ with tab3:
     # display the plot in Streamlit
     st.pyplot()
 
+with tab4:
+        
+        
+   df2019 = pd.read_excel('2019BARTH.xlsx')
+   df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
+   df2019
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 #import pandas as pd
