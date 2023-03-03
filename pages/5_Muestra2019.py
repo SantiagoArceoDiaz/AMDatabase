@@ -1397,44 +1397,44 @@ with tab4:
         #plt.savefig("Xindep2019.png", bbox_inches='tight', dpi=300)
 
         # Graficar histogramas de características de salida
-        Xdepl_df = pd.DataFrame(Xdeplset, columns=['Xdepl'])  # convertir conjunto a DataFrame
-        Xdepl_df.hist(figsize=[14, 12], bins=20)
-        st.pyplot()
+        #Xdepl_df = pd.DataFrame(Xdeplset, columns=['Xdepl'])  # convertir conjunto a DataFrame
+        #Xdepl_df.hist(figsize=[14, 12], bins=20)
+        #st.pyplot()
         
         
         # Mostrar imagen en Streamlit
         #st.write("Imagen de la figura guardada")
         #st.image("Xindep2019.png")
         
-        #fig, ax = plt.subplots(figsize=[14, 12])
-        #Xdeplset.hist(ax=ax)
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepl.hist(ax=ax)
         
         # Guardar figura
-        #plt.savefig("Xdeplset2019.png", bbox_inches='tight', dpi=300)
+        plt.savefig("Xdepl2019.png", bbox_inches='tight', dpi=300)
 
         # Mostrar figura en Streamlit
-        #st.write("Histograma de la variable independiente X")
-        #st.pyplot(fig)
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
         
-        #fig, ax = plt.subplots(figsize=[14, 12])
-        #Xdepmset.hist(ax=ax)
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepm.hist(ax=ax)
 
         # Guardar figura
-        #plt.savefig("Xdepmsetset2019.png", bbox_inches='tight', dpi=300)
+        plt.savefig("Xdepm2019.png", bbox_inches='tight', dpi=300)
 
         # Mostrar figura en Streamlit
-        #st.write("Histograma de la variable independiente X")
-        #st.pyplot(fig)
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
     
-        #fig, ax = plt.subplots(figsize=[14, 12])
-        #Xdepsset.hist(ax=ax)
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdeps.hist(ax=ax)
 
         # Guardar figura
-        #plt.savefig("Xdepsset2019.png", bbox_inches='tight', dpi=300)
+        plt.savefig("Xdeps2019.png", bbox_inches='tight', dpi=300)
 
-        # Mostrar figura en Streamlit
-        #st.write("Histograma de la variable independiente X")
-        #st.pyplot(fig)
+        #Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
 
         
         
