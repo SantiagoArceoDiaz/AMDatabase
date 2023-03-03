@@ -34,6 +34,7 @@ from sklearn.metrics import RocCurveDisplay
 
 
 
+
 #Bloque para preparar las bases de datos
 
 st.markdown(
@@ -1330,8 +1331,10 @@ with tab3:
     plt.gca().set_yticklabels(sorted(set(y)))
     plt.gca().xaxis.tick_top()
     threshold = cf_matrix.max() / 2
-    for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
-        plt.text(j, i, format(cf_matrix[i, j], '.2f'),
+    #for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
+    for i in range(cf_matrix.shape[0])
+        for j in range(cf_matriz.shape[1]):
+                plt.text(j, i, format(cf_matrix[i, j], '.2f'),
                 horizontalalignment="center",
                 color="white" if cf_matrix[i, j] > threshold else "black")
     plt.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
@@ -1343,6 +1346,13 @@ with tab3:
 
 
 
+#You just change
+#for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+
+#To:
+#
+#for i in range (cm.shape[0]):
+#    for j in range (cm.shape[1]):
 
 
         
