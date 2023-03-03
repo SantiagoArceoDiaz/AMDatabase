@@ -1316,13 +1316,6 @@ with tab4:
     # Resumen estadistico de la muestra
     Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
     """)
-
-    
-    df2019M=df2019.loc[df2019['Sexo']==1]
-    import pingouin as pg
-
-    pg.cronbach_alpha(data=df2019M[['B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete','B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina']])
-        
         
     tab1, tab2, tab3 = st.tabs(["Muestra general", "Grupo Mujeres", "Grupo Hombres"])
 
