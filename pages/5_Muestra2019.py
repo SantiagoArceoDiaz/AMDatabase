@@ -1192,12 +1192,14 @@ with tab3:
     # display the plot in Streamlit
     st.pyplot()
 
+    df2019 = pd.read_excel('2019BARTH.xlsx')
+    df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
+    df2019
+
 with tab4:
         
         
-   df2019 = pd.read_excel('2019BARTH.xlsx')
-   df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
-   df2019
+   
         
         
         
