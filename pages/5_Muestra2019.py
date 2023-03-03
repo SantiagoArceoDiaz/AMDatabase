@@ -80,7 +80,7 @@ BD2019=ddf2019[['Nombre','Sexo','Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', '
 
 
 
-tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes", "Análisis con teoría de conjuntos"])
+tab1, tab2, tab3, tab4 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes", "Análisis con teoría de conjuntos"])
 
 with tab1:
    
