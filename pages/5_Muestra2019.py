@@ -1222,7 +1222,7 @@ with tab3:
     BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
     ## get feature and target columns
     X = BD2019.iloc[:, 1:-2]
-    y = BD2019.iloc[:, -2]
+    y = BD2019.iloc[:, -1]
         
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
