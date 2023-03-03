@@ -1377,7 +1377,7 @@ with tab4:
         Xdeptset=set(df2019BS.loc[df2019BS['Int_Barthel']==4.0].index)
         Xdeptset
         
-        fig, ax = Xindep.hist(figsize=[14, 12])
+        fig = Xindep.hist(figsize=[14, 12])
         st.pyplot(fig)
         
 #            fig, ax = plt.subplots(figsize=(4,2))
