@@ -20,4 +20,3 @@ mlxtend
 bokeh
 fpdf
 pingouin
-itertools
