@@ -1193,7 +1193,44 @@ with tab3:
 
     # display the plot in Streamlit
     st.pyplot()
-    dfEdades=pd.read_excel('EdadesF.xlsx') # carga el archivo que contiene las edades y nombres de los pacientes
+    
+    import pandas as pd
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.model_selection import train_test_split
+    from sklearn.metrics import accuracy_score
+
+    # Cargar el dataset
+    #iris = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
+    # Asignar nombres a las columnas
+    #iris.columns = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'class']
+
+    # Separar el conjunto de entrenamiento y de prueba
+    #X = iris.iloc[:, :-1].values
+    #y = iris.iloc[:, -1].values
+    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+    ## get feature and target columns
+    X = BD2019.iloc[:, 1:-2]
+    y = BD2019.iloc[:, -2]
+        
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+    # Crear un clasificador de random forest
+    classifier = RandomForestClassifier(n_estimators=100, random_state=0)
+
+    # Entrenar el clasificador con los datos de entrenamiento
+    classifier.fit(X_train, y_train)
+
+    # Predecir las clases del conjunto de prueba
+    y_pred = classifier.predict(X_test)
+
+    # Calcular la precisión del modelo
+    accuracy = accuracy_score(y_test, y_pred)
+    print("Precisión:", accuracy)
+    
+        
+        
+        
+    #dfEdades=pd.read_excel('EdadesF.xlsx') # carga el archivo que contiene las edades y nombres de los pacientes
 
     df2019 = pd.read_excel('2019barthel.xlsx')
     df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
