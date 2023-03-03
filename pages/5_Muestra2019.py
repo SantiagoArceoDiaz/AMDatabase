@@ -1225,7 +1225,9 @@ with tab3:
 
     # Calcular la precisión del modelo
     accuracy = accuracy_score(y_test, y_pred)
-    print("Precisión:", accuracy)
+    #print("Precisión:", accuracy)
+    st.write("## Resultados de Random Forest")
+    st.write("Precisión:", accuracy)
     
         
         
