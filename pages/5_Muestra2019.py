@@ -1281,7 +1281,7 @@ with tab3:
     import seaborn as sns
     import matplotlib.pyplot as plt
 
-    ax = sns.heatmap(cf_matrix, annot=True, cmap='Blues')
+    ax = sns.heatmap(cf, annot=True, cmap='Blues')
     ax.set_title('Seaborn Confusion Matrix with labels\n\n');
     ax.set_xlabel('\nPredicted Flower Category')
     ax.set_ylabel('Actual Flower Category ');
