@@ -1328,9 +1328,9 @@ with tab4:
         """)
         
         #carga los datos de los archivos de excel con los resultados del test de Barthel
-        #df2019 = pd.read_excel('2019barthel.xlsx')
-        #df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
-        #df2019
+        df2019 = pd.read_excel('2019barthel.xlsx')
+        df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
+        df2019
         
         #st.write("De acuerdo al test de Cronbach, la confiabilidad del cuestionario es:")
         #pg.cronbach_alpha(data=df2019[['B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete','B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina']])
