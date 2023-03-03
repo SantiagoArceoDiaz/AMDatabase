@@ -1234,7 +1234,7 @@ with tab3:
 
     # Predecir las clases del conjunto de prueba
     y_pred = classifier.predict(X_test)
-    st.write(y_pred)
+    st.write("valores predichos", y_pred)
 
     # Calcular la precisión del modelo
     accuracy = accuracy_score(y_test, y_pred)
