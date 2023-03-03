@@ -1271,7 +1271,7 @@ with tab3:
 
     
     # Graficar matriz de confusión
-    confusion_matrix(classifier, X_test, y_test, cmap=plt.cm.Blues)
+    confusion_matrix(classifier, X_test, y_test)
     #plot_confusion_matrix()
     plt.title("Matriz de confusión")
     st.pyplot()
