@@ -79,8 +79,8 @@ BD2019=ddf2019[['Nombre','Sexo','Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', '
     #BD2018 # Cambia el orden de las columnas y se guarda como una base de datos nueva.
 
 
-
-tab1, tab2, tab3, tab4 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes", "Análisis con teoría de conjuntos"])
+tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes"])
+#tab1, tab2, tab3, tab4 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes", "Análisis con teoría de conjuntos"])
 
 with tab1:
    
@@ -1196,7 +1196,6 @@ with tab3:
     df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
     df2019
 
-with tab4:
         
         
    
