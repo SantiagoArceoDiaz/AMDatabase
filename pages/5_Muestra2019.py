@@ -1229,6 +1229,31 @@ with tab3:
     st.write("## Resultados de Random Forest")
     st.write("Precisión:", accuracy)
     
+    # Graficar importancia de características
+    feature_importances = pd.Series(classifier.feature_importances_, index=X_train.columns)
+    feature_importances.plot(kind='barh')
+    plt.title("Importancia de características")
+    st.pyplot()
+
+    # Graficar curva ROC
+    plot_roc_curve(classifier, X_test, y_test)
+    plt.title("Curva ROC")
+    st.pyplot()
+
+    # Graficar árbol
+    plt.figure(figsize=(15,10))
+    tree.plot_tree(classifier.estimators_[0], feature_names=X_train.columns, filled=True)
+    plt.title("Árbol de decisión")
+    st.pyplot()
+
+    # Graficar matriz de confusión
+    plot_confusion_matrix(classifier, X_test, y_test, cmap=plt.cm.Blues)
+    plt.title("Matriz de confusión")
+    st.pyplot()
+
+
+
+
         
         
         
