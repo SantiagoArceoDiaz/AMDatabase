@@ -1388,13 +1388,13 @@ with tab4:
         st.pyplot(fig)
 
         # Graficar histogramas de características de entrada
-        fig, axes = plt.subplots(nrows=2, ncols=4, figsize=[16, 8])
-        for i, column in enumerate(Xindep.columns):
-                Xindep[column].plot(kind='hist', bins=20, ax=axes[i//4, i%4])
-        plt.tight_layout()
+        #fig, axes = plt.subplots(nrows=2, ncols=4, figsize=[16, 8])
+        #for i, column in enumerate(Xindep.columns):
+        #        Xindep[column].plot(kind='hist', bins=20, ax=axes[i//4, i%4])
+        #plt.tight_layout()
 
         # Guardar figura
-        plt.savefig("Xindep2019.png", bbox_inches='tight', dpi=300)
+        #plt.savefig("Xindep2019.png", bbox_inches='tight', dpi=300)
 
         # Graficar histogramas de características de salida
         Xdepl_df = pd.DataFrame(Xdeplset, columns=['Xdepl'])  # convertir conjunto a DataFrame
