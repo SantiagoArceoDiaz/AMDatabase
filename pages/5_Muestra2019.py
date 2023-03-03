@@ -1352,7 +1352,10 @@ with tab4:
        'B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina',
        'Int_Barthel']]
         
-        
+        from operator import index
+        Xindep=df2019BS.loc[df2019BS['Int_Barthel']==0.0]
+        Xindepset=set(df2019BS.loc[df2019BS['Int_Barthel']==0.0].index)
+        Xindepset
         
     with tab2:
    
