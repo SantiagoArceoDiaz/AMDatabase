@@ -1332,8 +1332,8 @@ with tab3:
     threshold = cf_matrix.max() / 2
     for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
         plt.text(j, i, format(cf_matrix[i, j], '.2f'),
-        horizontalalignment="center",
-        color="white" if cf_matrix[i, j] > threshold else "black")
+                horizontalalignment="center",
+                color="white" if cf_matrix[i, j] > threshold else "black")
     plt.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
     plt.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
     plt.show()
