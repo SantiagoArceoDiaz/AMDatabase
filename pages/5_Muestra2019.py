@@ -1271,10 +1271,11 @@ with tab3:
 
     
     # Graficar matriz de confusión
-    confusion_matrix(classifier, X_test, y_test)
+    cf=confusion_matrix(y_test, y_test)
     #plot_confusion_matrix()
-    plt.title("Matriz de confusión")
-    st.pyplot()
+    #plt.title("Matriz de confusión")
+    #st.pyplot()
+    st.write("Matriz de confusión",cf)
 
 
 
