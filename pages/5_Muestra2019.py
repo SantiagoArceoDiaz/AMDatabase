@@ -1301,7 +1301,19 @@ with tab3:
 ## Display the visualization of the Confusion Matrix.
     st.pyplot()
 
+    ax = sns.heatmap(cf/np.sum(cf), annot=True, 
+            fmt='.2%', cmap='Blues')
 
+    ax.set_title('Seaborn Confusion Matrix with labels\n\n');
+    ax.set_xlabel('\nPredicted Flower Category')
+    ax.set_ylabel('Actual Flower Category ');
+
+## Ticket labels - List must be in alphabetical order
+    ax.xaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+    ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+
+## Display the visualization of the Confusion Matrix.
+    plt.show()
 
         
         
