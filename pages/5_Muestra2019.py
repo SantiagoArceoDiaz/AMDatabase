@@ -1315,8 +1315,36 @@ with tab3:
 ## Display the visualization of the Confusion Matrix.
     st.pyplot()
 
-        
-        
+    # Generar matriz de confusión
+    cf_matrix = confusion_matrix(y_test, y_pred)
+    sns.heatmap(cf_matrix/np.sum(cf_matrix), annot=True, fmt='.2%', cmap='Blues')
+
+# Crear gráfica de errores de predicción
+    plt.title("Matriz de confusión")
+    plt.ylabel('Valores reales')
+    plt.xlabel('Valores predichos')
+    tick_marks = np.arange(len(set(y))) + 0.5
+    plt.xticks(tick_marks, set(y))
+    plt.yticks(tick_marks, set(y))
+    plt.gca().set_xticklabels(sorted(set(y)))
+    plt.gca().set_yticklabels(sorted(set(y)))
+    plt.gca().xaxis.tick_top()
+    threshold = cf_matrix.max() / 2
+    for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
+        plt.text(j, i, format(cf_matrix[i, j], '.2f'),
+        horizontalalignment="center",
+        color="white" if cf_matrix[i, j] > threshold else "black")
+    plt.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
+    plt.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
+    plt.show()
+    st.pyplot()
+#En este código, se utiliza la función confusion_matrix de sklearn.metrics para generar la matriz de confusión y se utiliza la
+
+
+
+
+
+
         
     #dfEdades=pd.read_excel('EdadesF.xlsx') # carga el archivo que contiene las edades y nombres de los pacientes
 
