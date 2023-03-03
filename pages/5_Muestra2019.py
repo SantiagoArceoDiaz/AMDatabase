@@ -27,6 +27,7 @@ from sklearn.model_selection import train_test_split
 #from sklearn.metrics import accuracy_score, plot_roc_curve, plot_confusion_matrix
 import streamlit as st
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
 #from sklearn.metrics import plot_confusion_matrix
 #from sklearn.metrics._plot.roc_curve import plot_roc_curve
 from sklearn.metrics import RocCurveDisplay
@@ -1248,9 +1249,9 @@ with tab3:
 
     # Graficar curva ROC
     #plot_roc_curve(classifier, X_test, y_test)
-    RocCurveDisplay.from_estimator(classifier, X_test, y_test)
-    plt.title("Curva ROC")
-    st.pyplot()
+    #RocCurveDisplay.from_estimator(classifier, X_test, y_test)
+    #plt.title("Curva ROC")
+    #st.pyplot()
 
 #from sklearn.metrics import plot_roc_curve
 #svc_disp = plot_roc_curve(svc, X_test, y_test)
@@ -1268,10 +1269,12 @@ with tab3:
     plt.title("Árbol de decisión")
     st.pyplot()
 
+    
     # Graficar matriz de confusión
-    #plot_confusion_matrix(classifier, X_test, y_test, cmap=plt.cm.Blues)
-    #plt.title("Matriz de confusión")
-    #st.pyplot()
+    confusion_matrix(classifier, X_test, y_test, cmap=plt.cm.Blues
+    #plot_confusion_matrix()
+    plt.title("Matriz de confusión")
+    st.pyplot()
 
 
 
