@@ -1388,13 +1388,40 @@ with tab4:
         st.pyplot(fig)
 
         # Mostrar imagen en Streamlit
-        st.write("Imagen de la figura guardada")
-        st.image("Xindep2019.png")
+        #st.write("Imagen de la figura guardada")
+        #st.image("Xindep2019.png")
         
-#            fig, ax = plt.subplots(figsize=(4,2))
- #   venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Muestra de 2019', 'Muestra total'), set_colors=('red','blue'))
- #   st.pyplot(fig)
- #   st.caption("Comparativa entre los usuarios pertenecientes al año 2019 y el total, correspondiente a 2018-2021.")
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdeplset.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdeplset2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+        
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepmset.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdepmsetset2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+    
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepsset.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdepsset2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+
+        
         
         
     with tab2:
