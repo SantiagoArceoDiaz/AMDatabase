@@ -19,3 +19,4 @@ pydotplus
 mlxtend
 bokeh
 fpdf
+pingouin
