@@ -1339,8 +1339,8 @@ with tab4:
         df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
         df2019
         
-        confiabilidad=pg.cronbach_alpha(data=df2019[['B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete','B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina']])
-        st.write("De acuerdo al test de Cronbach, la confiabilidad del cuestionario es:", confiabilidad)
+        st.write("De acuerdo al test de Cronbach, la confiabilidad del cuestionario es:")
+        pg.cronbach_alpha(data=df2019[['B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete','B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina']])
         
         ListadfBarth2019=df2019['Nombre'].tolist() # crea una lista con los usuarios de 2019
         SetdfBarth2019=set(Listadf2019) # crea un conjunto a partir de la lista de usuarios de 2019   
