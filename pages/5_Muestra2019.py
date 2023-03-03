@@ -1279,7 +1279,7 @@ with tab3:
 
     import seaborn as sns
 
-    ax = sns.heatmap(cf_matrix, annot=True, cmap='Blues')
+    ax = sns.heatmap(cf, annot=True, cmap='Blues')
 
     ax.set_title('Seaborn Confusion Matrix with labels\n\n');
     ax.set_xlabel('\nPredicted Values')
