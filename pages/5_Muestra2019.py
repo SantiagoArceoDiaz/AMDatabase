@@ -28,7 +28,8 @@ from sklearn.model_selection import train_test_split
 import streamlit as st
 from sklearn.metrics import accuracy_score
 #from sklearn.metrics import plot_confusion_matrix
-from sklearn.metrics._plot.roc_curve import plot_roc_curve
+#from sklearn.metrics._plot.roc_curve import plot_roc_curve
+from sklearn.metrics import RocCurveDisplay
 
 
 
@@ -1246,10 +1247,21 @@ with tab3:
     st.pyplot()
 
     # Graficar curva ROC
-    plot_roc_curve(classifier, X_test, y_test)
+    #plot_roc_curve(classifier, X_test, y_test)
+    RocCurveDisplay.from_estimator(classifier, X_test, y_test)
     plt.title("Curva ROC")
     st.pyplot()
 
+#from sklearn.metrics import plot_roc_curve
+#svc_disp = plot_roc_curve(svc, X_test, y_test)
+#rfc_disp = plot_roc_curve(rfc, X_test, y_test, ax=svc_disp.ax_)
+#From sklearn 1.2:
+
+#from sklearn.metrics import RocCurveDisplay
+#svc_disp = RocCurveDisplay.from_estimator(svc, X_test, y_test)
+#rfc_disp = RocCurveDisplay.from_estimator(rfc, X_test, y_test, ax=svc_disp.ax_)    
+        
+        
     # Graficar árbol
     plt.figure(figsize=(15,10))
     tree.plot_tree(classifier.estimators_[0], feature_names=X_train.columns, filled=True)
