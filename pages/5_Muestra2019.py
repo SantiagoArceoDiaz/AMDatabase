@@ -1357,6 +1357,35 @@ with tab4:
         Xindepset=set(df2019BS.loc[df2019BS['Int_Barthel']==0.0].index)
         Xindepset
         
+        from operator import index
+        Xdepl=df2019BS.loc[df2019BS['Int_Barthel']==1.0]
+        Xdeplset=set(df2019BS.loc[df2019BS['Int_Barthel']==1.0].index)
+        Xdeplset
+        
+        from operator import index
+        Xdepm=df2019BS.loc[df2019BS['Int_Barthel']==2.0]
+        Xdepmset=set(df2019BS.loc[df2019BS['Int_Barthel']==2.0].index)
+        Xdepmset
+        
+        from operator import index
+        Xdeps=df2019BS.loc[df2019BS['Int_Barthel']==3.0]
+        Xdepsset=set(df2019BS.loc[df2019BS['Int_Barthel']==3.0].index)
+        Xdepsset
+        
+        from operator import index
+        Xdept=df2019BS.loc[df2019BS['Int_Barthel']==4.0]
+        Xdeptset=set(df2019BS.loc[df2019BS['Int_Barthel']==4.0].index)
+        Xdeptset
+        
+        fig, ax = Xindep.hist(figsize=[14, 12])
+        st.pyplot(fig)
+        
+#            fig, ax = plt.subplots(figsize=(4,2))
+ #   venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Muestra de 2019', 'Muestra total'), set_colors=('red','blue'))
+ #   st.pyplot(fig)
+ #   st.caption("Comparativa entre los usuarios pertenecientes al año 2019 y el total, correspondiente a 2018-2021.")
+        
+        
     with tab2:
    
         st.markdown(
