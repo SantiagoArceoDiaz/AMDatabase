@@ -19,6 +19,8 @@ import sklearn as sk
 import googletrans
 from googletrans import Translator
 translator = Translator()
+import pingouin as pg
+
 
 #Bloque para preparar las bases de datos
 
@@ -1191,11 +1193,21 @@ with tab3:
 
     # display the plot in Streamlit
     st.pyplot()
+    dfEdades=pd.read_excel('EdadesF.xlsx') # carga el archivo que contiene las edades y nombres de los pacientes
 
     df2019 = pd.read_excel('2019barthel.xlsx')
     df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
     df2019
 
+
+    pg.cronbach_alpha(data=df2019[['B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete','B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina']])
+    
+    ListadfBarth2019=df2019['Nombre'].tolist() # crea una lista con los usuarios de 2019
+    SetdfBarth2019=set(Listadf2019) # crea un conjunto a partir de la lista de usuarios de 2019
+    df2019M=df2019.loc[df2019['Sexo']==1]
+    import pingouin as pg
+
+    pg.cronbach_alpha(data=df2019M[['B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete','B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina']])
         
         
    
