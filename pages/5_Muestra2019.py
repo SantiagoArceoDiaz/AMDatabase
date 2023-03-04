@@ -1545,8 +1545,8 @@ with tab4:
 
 				if(gamma_new_red > gamma_T):
 
-				T = reduct.union(feature)
-				print("added")
+					T = reduct.union(feature)
+					print("added")
 
 		        reduct = T
 
