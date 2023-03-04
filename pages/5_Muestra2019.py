@@ -1536,8 +1536,7 @@ with tab4:
 
 			        feature = set()	#creating a new set to hold the currently selected feature
 			        feature.add(x)
-
-			print(feature)
+				print(feature)
 
 			new_red = reduct.union(feature)	#directly unioning x separates the alphabets of the feature...
 
