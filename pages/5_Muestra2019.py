@@ -1538,12 +1538,12 @@ with tab4:
 			        feature.add(x)
 				print(feature)
 
-			new_red = reduct.union(feature)	#directly unioning x separates the alphabets of the feature...
+				new_red = reduct.union(feature)	#directly unioning x separates the alphabets of the feature...
 
-			gamma_new_red = gamma_measure(new_red, D, table.index, table)
-			gamma_T = gamma_measure(T, D, table.index, table)
+				gamma_new_red = gamma_measure(new_red, D, table.index, table)
+				gamma_T = gamma_measure(T, D, table.index, table)
 
-			if(gamma_new_red > gamma_T):
+				if(gamma_new_red > gamma_T):
 
 				T = reduct.union(feature)
 				print("added")
