@@ -1751,7 +1751,7 @@ with tab4:
 	
 	
         # Graficar matriz de confusión
-        #cfbart=confusion_matrix(ybart_test, ybart_pred)
+        cfbart=confusion_matrix(ybart_test, ybart_pred)
         ##plot_confusion_matrix()
         ##plt.title("Matriz de confusión")
         ##st.pyplot()
@@ -1774,7 +1774,7 @@ with tab4:
         #cfbart_matrix = confusion_matrix(ybart_test, ybart_pred)
         #sns.heatmap(cfbart_matrix/np.sum(cfbart_matrix), annot=True, fmt='.2%', cmap='Blues')
 
-        fig, ax = plt.subplots(figsize=(8, 6))
+        confbart, ax = plt.subplots(figsize=(8, 6))
         sns.heatmap(cfbart/np.sum(cfbart), annot=True, fmt='.2%', cmap='Blues', ax=ax)
 
         ax.set_title('Seaborn Confusion Matrix with labels\n\n');
@@ -1786,7 +1786,7 @@ with tab4:
         ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
 
         ## Display the visualization of the Confusion Matrix.
-        st.pyplot(fig)
+        st.pyplot(confbart)
 
         # Generar matriz de confusión
         cfbart_matrix = confusion_matrix(ybart_test, ybart_pred)
