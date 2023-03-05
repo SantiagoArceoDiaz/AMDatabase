@@ -1738,11 +1738,18 @@ with tab4:
 
 
         # Graficar árbol
-        plt.figure(figsize=(15,10))
-        tree.plot_tree(classifier.estimators_[0], feature_names=Xbart_train.columns, filled=True)
-        plt.title("Árbol de decisión")
-        st.pyplot()
-    
+        #plt.figure(figsize=(15,10))
+        #tree.plot_tree(classifier.estimators_[0], feature_names=Xbart_train.columns, filled=True)
+        #plt.title("Árbol de decisión")
+        #st.pyplot()
+
+	# Graficar árbol
+        fig, ax = plt.subplots(figsize=(15,10))
+        tree.plot_tree(classifier.estimators_[0], feature_names=Xbart_train.columns, filled=True, ax=ax)
+        ax.set_title("Árbol de decisión")
+        st.pyplot(fig)
+	
+	
         # Graficar matriz de confusión
         cfbart=confusion_matrix(ybart_test, ybart_pred)
         #plot_confusion_matrix()
