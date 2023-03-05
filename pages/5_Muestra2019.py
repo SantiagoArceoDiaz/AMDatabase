@@ -1532,28 +1532,28 @@ with tab4:
         columnasf= ['Nombre','Sexo','Edad']+list(final_reduct)+['Int_Barthel']
         #columnasf
         dfBS=df2019BS[columnasf]
-        Xindep=df2019BS.loc[df2019BS['Int_Barthel']==0.0]
-        Xindepset=set(df2019BS.loc[df2019BS['Int_Barthel']==0.0].index)
+        Xindep=dfBs.loc[dfBS['Int_Barthel']==0.0]
+        Xindepset=set(dfBS.loc[df2BS['Int_Barthel']==0.0].index)
         Xindepset
         
         from operator import index
-        Xdepl=df2019BS.loc[df2019BS['Int_Barthel']==1.0]
-        Xdeplset=set(df2019BS.loc[df2019BS['Int_Barthel']==1.0].index)
+        Xdepl=dfBS.loc[dfBS['Int_Barthel']==1.0]
+        Xdeplset=set(dfBS.loc[dfBS['Int_Barthel']==1.0].index)
         Xdeplset
         
         from operator import index
-        Xdepm=df2019BS.loc[df2019BS['Int_Barthel']==2.0]
-        Xdepmset=set(df2019BS.loc[df2019BS['Int_Barthel']==2.0].index)
+        Xdepm=dfBS.loc[dfBS['Int_Barthel']==2.0]
+        Xdepmset=set(dfBS.loc[dfBS['Int_Barthel']==2.0].index)
         Xdepmset
         
         from operator import index
-        Xdeps=df2019BS.loc[df2019BS['Int_Barthel']==3.0]
-        Xdepsset=set(df2019BS.loc[df2019BS['Int_Barthel']==3.0].index)
+        Xdeps=dfBS.loc[dfBS['Int_Barthel']==3.0]
+        Xdepsset=set(dfBS.loc[dfBS['Int_Barthel']==3.0].index)
         Xdepsset
         
         from operator import index
-        Xdept=df2019BS.loc[df2019BS['Int_Barthel']==4.0]
-        Xdeptset=set(df2019BS.loc[df2019BS['Int_Barthel']==4.0].index)
+        Xdept=dfBS.loc[dfBS['Int_Barthel']==4.0]
+        Xdeptset=set(dfBS.loc[dfBS['Int_Barthel']==4.0].index)
         Xdeptset
         
         fig, ax = plt.subplots(figsize=[14, 12])
@@ -1596,6 +1596,8 @@ with tab4:
         #Mostrar figura en Streamlit
         st.write("Histograma de la variable independiente X")
         st.pyplot(fig)
+        IND=indiscernibility(U, dfBS)
+        IND
 
 	
 #'''
