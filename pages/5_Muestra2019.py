@@ -1696,10 +1696,10 @@ with tab4:
         tabs = st.tabs(["Conjunto "+str(i) for i in range(len(conjuntos))])
         for i, tab in enumerate(tabs):
            with tab:
-               df, fig = actualizar_df(i)
-               st.write(f"Dataframe para el conjunto {conjuntos[i]}:")
-               st.write(df)
-               st.pyplot(fig)	
+                df, fig = actualizar_df(i)
+                st.write(f"Dataframe para el conjunto {conjuntos[i]}:")
+                st.write(df)
+                st.pyplot(fig)	
 	
 
         ## get feature and target columns
@@ -1729,14 +1729,12 @@ with tab4:
         feature_importances.plot(kind='barh')
         plt.title("Importancia de características")
         st.pyplot()
- 
      
         # Graficar árbol
         plt.figure(figsize=(15,10))
         tree.plot_tree(classifier.estimators_[0], feature_names=X_train.columns, filled=True)
         plt.title("Árbol de decisión")
         st.pyplot()
-
     
         # Graficar matriz de confusión
         cf=confusion_matrix(y_test, y_pred)
@@ -1744,10 +1742,6 @@ with tab4:
         #plt.title("Matriz de confusión")
         #st.pyplot()
         st.write("Matriz de confusión",cf)
-
-        import seaborn as sns
-        import matplotlib.pyplot as plt
-
 
         ax = sns.heatmap(cf/np.sum(cf), annot=True, fmt='.2%', cmap='Blues')
 
@@ -1780,9 +1774,7 @@ with tab4:
         #for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
         for i in range(cf_matrix.shape[0]):
             for j in range(cf_matrix.shape[1]):                                                                                                                                                                                                                                                                                                                                                                                                                            
-                plt.text(j, i, format(cf_matrix[i, j], '.2f'),
-                horizontalalignment="center",
-                color="white" if cf_matrix[i, j] > threshold else "black")
+                plt.text(j, i, format(cf_matrix[i, j], '.2f'), horizontalalignment="center", color="white" if cf_matrix[i, j] > threshold else "black")
         plt.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
         plt.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
         plt.show()
