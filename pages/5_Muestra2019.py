@@ -1621,6 +1621,35 @@ with tab4:
         # Mostrar el dataframe correspondiente al conjunto seleccionado
         st.write(f"Dataframe para el conjunto {conjuntos[idx]}:")
         st.write(df)
+	
+        # Seleccionar las columnas posteriores a la tercera
+        cols = df.columns[3:]
+
+        # Crear una lista de valores para cada columna
+        valores = [df[col].sum() for col in cols]
+
+        # Crear un gráfico de radar
+        fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
+
+        # Calcular el ángulo de cada eje en el gráfico de radar
+        n = len(cols)
+        angles = [i * 2 * np.pi / n for i in range(n)]
+        angles += angles[:1]
+
+        # Dibujar los ejes en el gráfico de radar
+        ax.set_theta_offset(np.pi / 2)
+        ax.set_theta_direction(-1)
+        plt.xticks(angles[:-1], cols)
+
+        # Dibujar la línea del gráfico de radar
+        ax.plot(angles, valores)
+
+        # Rellenar el área del gráfico de radar
+        ax.fill(angles, valores, alpha=0.25)
+
+        # Mostrar el gráfico de radar
+        st.pyplot(fig)
+
 
 
 	
