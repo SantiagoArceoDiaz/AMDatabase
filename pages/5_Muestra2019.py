@@ -1529,8 +1529,8 @@ with tab4:
 
 #final_reduct = quick_reduct(audio.columns[0:-1], [audio.columns[-1]], audio)
 #final_reduct = quick_reduct(mushroom.columns[1:], [mushroom.columns[0]], mushroom)
-        final_reduct=quick_reduct(df2019BS.columns[3:-1],[df2019BS.columns[-1]],df2019BS)
-        print("Serial took : ", str(time.time() - t1))
+        final_reduct=quick_reduct(df2019.columns[3:-1],[df2019.columns[-1]],df2019)
+        st.write("Serial took : ", str(time.time() - t1))
         st.write(final_reduct)
 #'''
 #w_ind = indiscernibility(['weak'], my_table)
