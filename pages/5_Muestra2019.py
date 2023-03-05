@@ -1733,7 +1733,7 @@ with tab4:
      
         importancia, ax = plt.subplots(figsize=(15,10))
         feature_importances = pd.Series(classifier.feature_importances_, index=Xbart_train.columns)
-        importancia = feature_importances.plot(kind='barh')
+        feature_importances.plot(kind='barh')
         ax.set_title("Importancia de características")
         st.pyplot(importancia)
 
