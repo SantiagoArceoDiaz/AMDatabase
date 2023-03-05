@@ -1530,7 +1530,7 @@ with tab4:
 	
         columnas = list(final_reduct)
         columnasf= ['Nombre','Sexo','Edad']+list(final_reduct)+['Int_Barthel']
-	columnasf
+        columnasf
 	#df2019BS[columnas]
         #df2019BS=pd.concat([df2019BS[0:3],df2019BS[columnas]])
         #df2019BS
