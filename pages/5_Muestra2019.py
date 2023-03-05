@@ -1796,6 +1796,101 @@ with tab4:
 
 	
 	
+	                                                                                                                                                                                                                                                                                                                                                                                                                .pyplot()
+
+## get feature and target columns
+        XbartF = df2019BS.iloc[:, 3:-1]
+        ybartF = df2019BS.iloc[:, -1]
+        
+        XbartF_train, XbartF_test, ybartF_train, ybartF_test = train_test_split(XbartF, ybartF, test_size=0.3, random_state=0)
+
+        # Crear un clasificador de random forest
+        classifier = RandomForestClassifier(n_estimators=100, random_state=0)
+
+        # Entrenar el clasificador con los datos de entrenamiento
+        classifier.fit(XbartF_train, ybartF_train)
+
+        # Predecir las clases del conjunto de prueba
+        ybartF_pred = classifier.predict(XbartF_test)
+        st.write("valores predichos", ybartF_pred)
+
+        # Calcular la precisión del modelo
+        accuracy = accuracy_score(ybartF_test, ybartF_pred)
+        #print("Precisión:", accuracy)
+        st.write("## Resultados de Random Forest")
+        st.write("Precisión:", accuracy)
+    
+        # Graficar importancia de características
+        
+        #feature_importances = pd.Series(classifier.feature_importances_, index=Xbart_train.columns)
+        #feature_importances.plot(kind='barh')
+        #plt.title("Importancia de características")
+        #st.pyplot()
+     
+        importanciaF, ax = plt.subplots(figsize=(15,10))
+        feature_importances = pd.Series(classifier.feature_importances_, index=XbartF_train.columns)
+        feature_importances.plot(kind='barh')
+        ax.set_title("Importancia de características")
+        st.pyplot(importanciaF)
+
+
+        # Graficar árbol
+        #plt.figure(figsize=(15,10))
+        #tree.plot_tree(classifier.estimators_[0], feature_names=Xbart_train.columns, filled=True)
+        #plt.title("Árbol de decisión")
+        #st.pyplot()
+
+	# Graficar árbol
+        bartarbolF, ax = plt.subplots(figsize=(15,10))
+        tree.plot_tree(classifier.estimators_[0], feature_names=XbartF_train.columns, filled=True, ax=ax)
+        ax.set_title("Árbol de decisión")
+        st.pyplot(bartarbolF)
+	
+	
+        # Graficar matriz de confusión
+        cfbartF=confusion_matrix(ybartF_test, ybartF_pred)
+        ##plot_confusion_matrix()
+        ##plt.title("Matriz de confusión")
+        ##st.pyplot()
+        #st.write("Matriz de confusión",cfbart)
+
+        #ax = sns.heatmap(cfbart/np.sum(cfbart), annot=True, fmt='.2%', cmap='Blues')
+
+        #ax.set_title('Seaborn Confusion Matrix with labels\n\n');
+	#ax.set_xlabel('\nPredicted Flower Category')
+        #ax.set_ylabel('Actual Flower Category ');
+
+        ## Ticket labels - List must be in alphabetical order
+        #ax.xaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+        #ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+
+        ## Display the visualization of the Confusion Matrix.
+        #st.pyplot()
+
+        # Generar matriz de confusión
+        #cfbart_matrix = confusion_matrix(ybart_test, ybart_pred)
+        #sns.heatmap(cfbart_matrix/np.sum(cfbart_matrix), annot=True, fmt='.2%', cmap='Blues')
+
+        confbartF, ax = plt.subplots(figsize=(8, 6))
+        sns.heatmap(cfbartF/np.sum(cfbartF), annot=True, fmt='.2%', cmap='Blues', ax=ax)
+
+        ax.set_title('Seaborn Confusion Matrix with labels\n\n');
+        ax.set_xlabel('\nPredicted Flower Category')
+        ax.set_ylabel('Actual Flower Category ');
+
+        ## Ticket labels - List must be in alphabetical order
+        ax.xaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+        ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+
+        ## Display the visualization of the Confusion Matrix.
+        st.pyplot(confbart)
+
+        # Generar matriz de confusión
+        cfbartF_matrix = confusion_matrix(ybartF_test, ybartF_pred)
+        sns.heatmap(cfbartF_matrix/np.sum(cfbartF_matrix), annot=True, fmt='.2%', cmap='Blues', ax=ax)
+
+	
+	
 	
 #        # Crear gráfica de errores de predicción
 #        plt.title("Matriz de confusión")
@@ -1815,27 +1910,29 @@ with tab4:
 #        plt.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
 #        plt.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
 #        plt.show()
-#        st.pyplot()                                                                                                                                                                                                                                                                                                                                                                                                                      .pyplot()
+#        st.pyplot()      
+
+
 
 	 # Crear gráfica de errores de predicción
-        fig, ax = plt.subplots()
+        figF, ax = plt.subplots()
         ax.set_title("Matriz de confusión")
         ax.set_ylabel('Valores reales')
         ax.set_xlabel('Valores predichos')
-        tick_marks = np.arange(len(set(ybart))) + 0.5
-        ax.set_xticks(tick_marks, set(ybart))
-        ax.set_yticks(tick_marks, set(ybart))
-        ax.set_xticklabels(sorted(set(ybart)))
-        ax.set_yticklabels(sorted(set(ybart)))
+        tick_marks = np.arange(len(set(ybartF))) + 0.5
+        ax.set_xticks(tick_marks, set(ybartF))
+        ax.set_yticks(tick_marks, set(ybartF))
+        ax.set_xticklabels(sorted(set(ybartF)))
+        ax.set_yticklabels(sorted(set(ybartF)))
         ax.xaxis.tick_top()
-        threshold = cfbart_matrix.max() / 2
+        threshold = cfbartF_matrix.max() / 2
 #for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
-        for i in range(cfbart_matrix.shape[0]):
-            for j in range(cfbart_matrix.shape[1]):                                                                                                                                                                                                                                                                                                                                                                                                                            
-                ax.text(j, i, format(cfbart_matrix[i, j], '.2f'), horizontalalignment="center", color="white" if cfbart_matrix[i, j] > threshold else "black")
+        for i in range(cfbartF_matrix.shape[0]):
+            for j in range(cfbartF_matrix.shape[1]):                                                                                                                                                                                                                                                                                                                                                                                                                            
+                ax.text(j, i, format(cfbartF_matrix[i, j], '.2f'), horizontalalignment="center", color="white" if cfbart_matrix[i, j] > threshold else "black")
         ax.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
         ax.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
-        st.pyplot(fig)
+        st.pyplot(figF)
 
 	
 	
