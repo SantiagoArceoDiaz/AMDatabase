@@ -1527,6 +1527,9 @@ with tab4:
         final_reduct=quick_reduct(df2019BS.columns[3:-1],[df2019BS.columns[-1]],df2019BS)
         st.write("Serial took : ", str(time.time() - t1))
         st.write(final_reduct)
+	
+	columnas = list(final_reduct)
+        df2019BS[columnas]
 #'''
 #w_ind = indiscernibility(['weak'], my_table)
 #d_ind = indiscernibility(['flu'], my_table)
