@@ -1659,7 +1659,7 @@ with tab4:
         def actualizar_df(idx):
            conjunto = conjuntos[idx]
            df_name = f'df_{idx}'
-           globals()[df_name] = dfBS.loc[list(conjunto)]
+           globals()[df_name] = dfBS.loc[conjunto]
            df = globals()[df_name]
            cols = df.columns[3:]
            valores = df[cols].mean().values.tolist()
@@ -1731,10 +1731,11 @@ with tab4:
         #plt.title("Importancia de características")
         #st.pyplot()
      
+        importancia, ax = plt.subplots(figsize=(15,10))
         feature_importances = pd.Series(classifier.feature_importances_, index=Xbart_train.columns)
         importancia = feature_importances.plot(kind='barh')
-        plt.title("Importancia de características")
-        st.pyplot(plt.gcf())
+        ax.set_title("Importancia de características")
+        st.pyplot(importancia)
 
 
         # Graficar árbol
