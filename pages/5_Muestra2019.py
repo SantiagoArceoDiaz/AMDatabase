@@ -1725,11 +1725,13 @@ with tab4:
         st.write("Precisión:", accuracy)
     
         # Graficar importancia de características
-        feature_importances = pd.Series(classifier.feature_importances_, index=Xbart_train.columns)
-        feature_importances.plot(kind='barh')
+        
+	feature_importances = pd.Series(classifier.feature_importances_, index=Xbart_train.columns)
+        importancia = feature_importances.plot(kind='barh')
         plt.title("Importancia de características")
-        st.pyplot()
+        st.pyplot(importancia)
      
+
         # Graficar árbol
         plt.figure(figsize=(15,10))
         tree.plot_tree(classifier.estimators_[0], feature_names=Xbart_train.columns, filled=True)
