@@ -1531,9 +1531,73 @@ with tab4:
         columnas = list(final_reduct)
         columnasf= ['Nombre','Sexo','Edad']+list(final_reduct)+['Int_Barthel']
         #columnasf
-        df2019BS[columnasf]
-        #df2019BS=pd.concat([df2019BS[0:3],df2019BS[columnas]])
-        #df2019BS
+        dfBS=df2019BS[columnasf]
+
+	
+	Xindep=df2019BS.loc[df2019BS['Int_Barthel']==0.0]
+        Xindepset=set(df2019BS.loc[df2019BS['Int_Barthel']==0.0].index)
+        Xindepset
+        
+        from operator import index
+        Xdepl=df2019BS.loc[df2019BS['Int_Barthel']==1.0]
+        Xdeplset=set(df2019BS.loc[df2019BS['Int_Barthel']==1.0].index)
+        Xdeplset
+        
+        from operator import index
+        Xdepm=df2019BS.loc[df2019BS['Int_Barthel']==2.0]
+        Xdepmset=set(df2019BS.loc[df2019BS['Int_Barthel']==2.0].index)
+        Xdepmset
+        
+        from operator import index
+        Xdeps=df2019BS.loc[df2019BS['Int_Barthel']==3.0]
+        Xdepsset=set(df2019BS.loc[df2019BS['Int_Barthel']==3.0].index)
+        Xdepsset
+        
+        from operator import index
+        Xdept=df2019BS.loc[df2019BS['Int_Barthel']==4.0]
+        Xdeptset=set(df2019BS.loc[df2019BS['Int_Barthel']==4.0].index)
+        Xdeptset
+        
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xindep.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xindep2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+
+        
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepl.hist(ax=ax)
+        
+        # Guardar figura
+        plt.savefig("Xdepl2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+        
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepm.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdepm2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+    
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdeps.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdeps2019.png", bbox_inches='tight', dpi=300)
+
+        #Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
 
 	
 #'''
