@@ -1659,7 +1659,7 @@ with tab4:
         def actualizar_df(idx):
            conjunto = conjuntos[idx]
            df_name = f'df_{idx}'
-           globals()[df_name] = dfBS.loc[list(conjunto)]
+           globals()[df_name] = dfBS.loc[conjunto]
            df = globals()[df_name]
            cols = df.columns[3:]
            valores = df[cols].mean().values.tolist()
@@ -1690,7 +1690,7 @@ with tab4:
            # Agregar leyenda de texto con el número de filas del dataframe
            n_rows = df.shape[0]
            ax.text(0.5, 1.1, f'Nº de pacientes: {n_rows}', transform=ax.transAxes, ha='center')
-           plt.close() 
+           #plt.close() 
            return globals()[df_name], fig
 
         # Crear un panel de pestañas para mostrar los dataframes y gráficos de radar correspondientes
