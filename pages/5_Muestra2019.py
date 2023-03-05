@@ -1531,7 +1531,7 @@ with tab4:
 #final_reduct = quick_reduct(mushroom.columns[1:], [mushroom.columns[0]], mushroom)
         final_reduct=quick_reduct(df2019BS.columns[3:-1],[df2019BS.columns[-1]],df2019BS)
         print("Serial took : ", str(time.time() - t1))
-        print(final_reduct)
+        st.write(final_reduct)
 #'''
 #w_ind = indiscernibility(['weak'], my_table)
 #d_ind = indiscernibility(['flu'], my_table)
