@@ -1749,8 +1749,7 @@ with tab4:
         import matplotlib.pyplot as plt
 
 
-         ax = sns.heatmap(cf/np.sum(cf), annot=True, 
-             fmt='.2%', cmap='Blues')
+         ax = sns.heatmap(cf/np.sum(cf), annot=True, fmt='.2%', cmap='Blues')
 
          ax.set_title('Seaborn Confusion Matrix with labels\n\n');
          ax.set_xlabel('\nPredicted Flower Category')
