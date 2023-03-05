@@ -1796,27 +1796,46 @@ with tab4:
 	
 	
 	
-        # Crear gráfica de errores de predicción
-        plt.title("Matriz de confusión")
-        plt.ylabel('Valores reales')
-        plt.xlabel('Valores predichos')
-        tick_marks = np.arange(len(set(ybart))) + 0.5
-        plt.xticks(tick_marks, set(ybart))
-        plt.yticks(tick_marks, set(ybart))
-        plt.gca().set_xticklabels(sorted(set(ybart)))
-        plt.gca().set_yticklabels(sorted(set(ybart)))
-        plt.gca().xaxis.tick_top()
-        threshold = cfbart_matrix.max() / 2
-        #for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
-        for i in range(cfbart_matrix.shape[0]):
-            for j in range(cfbart_matrix.shape[1]):                                                                                                                                                                                                                                                                                                                                                                                                                            
-                plt.text(j, i, format(cfbart_matrix[i, j], '.2f'), horizontalalignment="center", color="white" if cfbart_matrix[i, j] > threshold else "black")
-        plt.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
-        plt.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
-        plt.show()
-        st.pyplot()                                                                                                                                                                                                                                                                                                                                                                                                                      .pyplot()
+#        # Crear gráfica de errores de predicción
+#        plt.title("Matriz de confusión")
+#        plt.ylabel('Valores reales')
+#        plt.xlabel('Valores predichos')
+#        tick_marks = np.arange(len(set(ybart))) + 0.5
+#        plt.xticks(tick_marks, set(ybart))
+#        plt.yticks(tick_marks, set(ybart))
+#        plt.gca().set_xticklabels(sorted(set(ybart)))
+#        plt.gca().set_yticklabels(sorted(set(ybart)))
+#        plt.gca().xaxis.tick_top()
+#        threshold = cfbart_matrix.max() / 2
+#        #for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
+#        for i in range(cfbart_matrix.shape[0]):
+#            for j in range(cfbart_matrix.shape[1]):                                                                                                                                                                                                                                                                                                                                                                                                                            
+#                plt.text(j, i, format(cfbart_matrix[i, j], '.2f'), horizontalalignment="center", color="white" if cfbart_matrix[i, j] > threshold else "black")
+#        plt.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
+#        plt.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
+#        plt.show()
+#        st.pyplot()                                                                                                                                                                                                                                                                                                                                                                                                                      .pyplot()
 
-	
+	 # Crear gráfica de errores de predicción
+         fig, ax = plt.subplots()
+         ax.set_title("Matriz de confusión")
+         ax.set_ylabel('Valores reales')
+         ax.set_xlabel('Valores predichos')
+         tick_marks = np.arange(len(set(ybart))) + 0.5
+         ax.set_xticks(tick_marks, set(ybart))
+         ax.set_yticks(tick_marks, set(ybart))
+         ax.set_xticklabels(sorted(set(ybart)))
+         ax.set_yticklabels(sorted(set(ybart)))
+         ax.xaxis.tick_top()
+         threshold = cfbart_matrix.max() / 2
+#for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
+         for i in range(cfbart_matrix.shape[0]):
+             for j in range(cfbart_matrix.shape[1]):                                                                                                                                                                                                                                                                                                                                                                                                                            
+                 ax.text(j, i, format(cfbart_matrix[i, j], '.2f'), horizontalalignment="center", color="white" if cfbart_matrix[i, j] > threshold else "black")
+         ax.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
+         ax.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
+         st.pyplot(fig)
+
 	
 	
 #'''
