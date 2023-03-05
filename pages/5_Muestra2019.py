@@ -1702,7 +1702,93 @@ with tab4:
                st.pyplot(fig)	
 	
 
+        ## get feature and target columns
+        X = dfBS.iloc[:, 3:-1]
+        y = dfBS.iloc[:, -1]
+        
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
+        # Crear un clasificador de random forest
+        classifier = RandomForestClassifier(n_estimators=100, random_state=0)
+
+        # Entrenar el clasificador con los datos de entrenamiento
+        classifier.fit(X_train, y_train)
+
+        # Predecir las clases del conjunto de prueba
+        y_pred = classifier.predict(X_test)
+        st.write("valores predichos", y_pred)
+
+        # Calcular la precisión del modelo
+        accuracy = accuracy_score(y_test, y_pred)
+        #print("Precisión:", accuracy)
+        st.write("## Resultados de Random Forest")
+        st.write("Precisión:", accuracy)
+    
+        # Graficar importancia de características
+        feature_importances = pd.Series(classifier.feature_importances_, index=X_train.columns)
+        feature_importances.plot(kind='barh')
+        plt.title("Importancia de características")
+        st.pyplot()
+ 
+     
+        # Graficar árbol
+        plt.figure(figsize=(15,10))
+        tree.plot_tree(classifier.estimators_[0], feature_names=X_train.columns, filled=True)
+        plt.title("Árbol de decisión")
+        st.pyplot()
+
+    
+        # Graficar matriz de confusión
+        cf=confusion_matrix(y_test, y_pred)
+        #plot_confusion_matrix()
+        #plt.title("Matriz de confusión")
+        #st.pyplot()
+        st.write("Matriz de confusión",cf)
+
+        import seaborn as sns
+        import matplotlib.pyplot as plt
+
+
+         ax = sns.heatmap(cf/np.sum(cf), annot=True, 
+             fmt='.2%', cmap='Blues')
+
+         ax.set_title('Seaborn Confusion Matrix with labels\n\n');
+         ax.set_xlabel('\nPredicted Flower Category')
+         ax.set_ylabel('Actual Flower Category ');
+
+         ## Ticket labels - List must be in alphabetical order
+         ax.xaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+         ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+
+         ## Display the visualization of the Confusion Matrix.
+         st.pyplot()
+
+         # Generar matriz de confusión
+         cf_matrix = confusion_matrix(y_test, y_pred)
+         sns.heatmap(cf_matrix/np.sum(cf_matrix), annot=True, fmt='.2%', cmap='Blues')
+
+         # Crear gráfica de errores de predicción
+         plt.title("Matriz de confusión")
+         plt.ylabel('Valores reales')
+         plt.xlabel('Valores predichos')
+         tick_marks = np.arange(len(set(y))) + 0.5
+         plt.xticks(tick_marks, set(y))
+         plt.yticks(tick_marks, set(y))
+         plt.gca().set_xticklabels(sorted(set(y)))
+         plt.gca().set_yticklabels(sorted(set(y)))
+         plt.gca().xaxis.tick_top()
+         threshold = cf_matrix.max() / 2
+         #for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
+         for i in range(cf_matrix.shape[0]):
+             for j in range(cf_matrix.shape[1]):                                                                                                                                                                                                                                                                                                                                                                                                                            
+                 plt.text(j, i, format(cf_matrix[i, j], '.2f'),
+                 horizontalalignment="center",
+                 color="white" if cf_matrix[i, j] > threshold else "black")
+         plt.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
+         plt.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
+         plt.show()
+	 st.pyplot()
+                                                                                                                                                                                                                                                                                                                                                                                                                                .pyplot()
 
 	
 	
