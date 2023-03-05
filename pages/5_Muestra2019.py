@@ -1453,17 +1453,12 @@ with tab4:
         """ 
         # Resumen estadistico de la muestra
         Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
-        """)
+        """wwwww)
         
         
         
-        #a program to find the lower approximation of a feature/ set of features
-#mohana palaka
-#2019
+	#a program to find the lower approximation of a feature/ set of features#mohana palaka
 
-	#a program to find the lower approximation of a feature/ set of features
-#mohana palaka
-#2019
         import time
         def indiscernibility(attr, table):
             u_ind = {}	#an empty dictionary to store the elements of the indiscernibility relation (U/IND({set of attributes}))
@@ -1506,30 +1501,30 @@ with tab4:
         def quick_reduct(C, D, table):	#C is the set of all conditional attributes; D is the set of decision attributes
             reduct = set()
             gamma_C = gamma_measure(C, D, table.index, table)
-            print(gamma_C)
+            st.write(gamma_C)
             gamma_R = 0
             while(gamma_R < gamma_C):
                 T = reduct
                 for x in (set(C) - reduct):
                     feature = set()	#creating a new set to hold the currently selected feature
                     feature.add(x)
-                    print(feature)
+                    st.write(feature)
                     new_red = reduct.union(feature)	#directly unioning x separates the alphabets of the feature...
                     gamma_new_red = gamma_measure(new_red, D, table.index, table)
                     gamma_T = gamma_measure(T, D, table.index, table)
                     if(gamma_new_red > gamma_T):
                         T = reduct.union(feature)
-                        print("added")
+                        st.write("added")
                 reduct = T
                         #finding the new gamma measure of the reduct
                 gamma_R = gamma_measure(reduct, D, table.index, table)
-                print(gamma_R)
+                st.write(gamma_R)
             return reduct
         t1 = time.time()
 
 #final_reduct = quick_reduct(audio.columns[0:-1], [audio.columns[-1]], audio)
 #final_reduct = quick_reduct(mushroom.columns[1:], [mushroom.columns[0]], mushroom)
-        final_reduct=quick_reduct(df2019.columns[3:-1],[df2019.columns[-1]],df2019)
+        final_reduct=quick_reduct(df2019BS.columns[3:-1],[df2019BS.columns[-1]],df2019BS)
         st.write("Serial took : ", str(time.time() - t1))
         st.write(final_reduct)
 #'''
