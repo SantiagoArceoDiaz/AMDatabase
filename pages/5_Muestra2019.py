@@ -1751,13 +1751,31 @@ with tab4:
 	
 	
         # Graficar matriz de confusión
-        cfbart=confusion_matrix(ybart_test, ybart_pred)
-        #plot_confusion_matrix()
-        #plt.title("Matriz de confusión")
-        #st.pyplot()
-        st.write("Matriz de confusión",cfbart)
+        #cfbart=confusion_matrix(ybart_test, ybart_pred)
+        ##plot_confusion_matrix()
+        ##plt.title("Matriz de confusión")
+        ##st.pyplot()
+        #st.write("Matriz de confusión",cfbart)
 
-        ax = sns.heatmap(cfbart/np.sum(cfbart), annot=True, fmt='.2%', cmap='Blues')
+        #ax = sns.heatmap(cfbart/np.sum(cfbart), annot=True, fmt='.2%', cmap='Blues')
+
+        #ax.set_title('Seaborn Confusion Matrix with labels\n\n');
+	#ax.set_xlabel('\nPredicted Flower Category')
+        #ax.set_ylabel('Actual Flower Category ');
+
+        ## Ticket labels - List must be in alphabetical order
+        #ax.xaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+        #ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+
+        ## Display the visualization of the Confusion Matrix.
+        #st.pyplot()
+
+        # Generar matriz de confusión
+        #cfbart_matrix = confusion_matrix(ybart_test, ybart_pred)
+        #sns.heatmap(cfbart_matrix/np.sum(cfbart_matrix), annot=True, fmt='.2%', cmap='Blues')
+
+        fig, ax = plt.subplots(figsize=(8, 6))
+        sns.heatmap(cfbart/np.sum(cfbart), annot=True, fmt='.2%', cmap='Blues', ax=ax)
 
         ax.set_title('Seaborn Confusion Matrix with labels\n\n');
         ax.set_xlabel('\nPredicted Flower Category')
@@ -1768,12 +1786,15 @@ with tab4:
         ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
 
         ## Display the visualization of the Confusion Matrix.
-        st.pyplot()
+        st.pyplot(fig)
 
         # Generar matriz de confusión
         cfbart_matrix = confusion_matrix(ybart_test, ybart_pred)
-        sns.heatmap(cfbart_matrix/np.sum(cfbart_matrix), annot=True, fmt='.2%', cmap='Blues')
+        sns.heatmap(cfbart_matrix/np.sum(cfbart_matrix), annot=True, fmt='.2%', cmap='Blues', ax=ax)
 
+	
+	
+	
         # Crear gráfica de errores de predicción
         plt.title("Matriz de confusión")
         plt.ylabel('Valores reales')
