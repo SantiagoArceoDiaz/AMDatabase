@@ -1471,7 +1471,7 @@ with tab4:
                 for i in (table.index):
                         attr_values = []
                         for j in (attr):
-                        attr_values.append(table.loc[i, j])	#find the value of the table at the corresponding row and the desired attribute and add it to the attr_values list
+                            attr_values.append(table.loc[i, j])	#find the value of the table at the corresponding row and the desired attribute and add it to the attr_values list
 		#convert the list to a string and check if it is already a key value in the dictionary
                 key = ''.join(str(k) for k in (attr_values))
                 if(key in u_ind):	#if the key already exists in the dictionary
@@ -1483,48 +1483,48 @@ with tab4:
 
 
         def lower_approximation(R, X):	#We have to try to describe the knowledge in X with respect to the knowledge in R; both are LISTS OS SETS [{},{}]
-                l_approx = set()	#change to [] if you want the result to be a list of sets
+            l_approx = set()	#change to [] if you want the result to be a list of sets
 
 	#print("X : " + str(len(X)))
 	#print("R : " + str(len(R)))
-                for i in range(len(X)):
-                        for j in range(len(R)):
-                                if(R[j].issubset(X[i])):
-                                        l_approx.update(R[j])	#change to .append() if you want the result to be a list of sets
-                return l_approx
+            for i in range(len(X)):
+                for j in range(len(R)):
+                    if(R[j].issubset(X[i])):
+                        l_approx.update(R[j])	#change to .append() if you want the result to be a list of sets
+            return l_approx
 
 
         def gamma_measure(describing_attributes, attributes_to_be_described, U, table):	#a functuon that takes attributes/features R, X, and the universe of objects
-                f_ind = indiscernibility(describing_attributes, table)
-                t_ind = indiscernibility(attributes_to_be_described, table)
-                f_lapprox = lower_approximation(f_ind, t_ind)
-                return len(f_lapprox)/len(U)
+            f_ind = indiscernibility(describing_attributes, table)
+            t_ind = indiscernibility(attributes_to_be_described, table)
+            f_lapprox = lower_approximation(f_ind, t_ind)
+            return len(f_lapprox)/len(U)
 
 	#return mod_l_approx(l_approx)/len(U)
 
 
         def quick_reduct(C, D, table):	#C is the set of all conditional attributes; D is the set of decision attributes
-                reduct = set()
-                gamma_C = gamma_measure(C, D, table.index, table)
-                print(gamma_C)
-                gamma_R = 0
-                while(gamma_R < gamma_C):
-                        T = reduct
-                        for x in (set(C) - reduct):
-                                feature = set()	#creating a new set to hold the currently selected feature
-                                feature.add(x)
-                                print(feature)
-                                new_red = reduct.union(feature)	#directly unioning x separates the alphabets of the feature...
-                                gamma_new_red = gamma_measure(new_red, D, table.index, table)
-                                gamma_T = gamma_measure(T, D, table.index, table)
-                                if(gamma_new_red > gamma_T):
-                                        T = reduct.union(feature)
-                                        print("added")
-                        reduct = T
+            reduct = set()
+            gamma_C = gamma_measure(C, D, table.index, table)
+            print(gamma_C)
+            gamma_R = 0
+            while(gamma_R < gamma_C):
+                T = reduct
+                for x in (set(C) - reduct):
+                    feature = set()	#creating a new set to hold the currently selected feature
+                    feature.add(x)
+                    print(feature)
+                    new_red = reduct.union(feature)	#directly unioning x separates the alphabets of the feature...
+                    gamma_new_red = gamma_measure(new_red, D, table.index, table)
+                    gamma_T = gamma_measure(T, D, table.index, table)
+                    if(gamma_new_red > gamma_T):
+                        T = reduct.union(feature)
+                        print("added")
+                reduct = T
                         #finding the new gamma measure of the reduct
-                        gamma_R = gamma_measure(reduct, D, table.index, table)
-                        print(gamma_R)
-                return reduct
+                gamma_R = gamma_measure(reduct, D, table.index, table)
+                print(gamma_R)
+        return reduct
         t1 = time.time()
 
 #final_reduct = quick_reduct(audio.columns[0:-1], [audio.columns[-1]], audio)
