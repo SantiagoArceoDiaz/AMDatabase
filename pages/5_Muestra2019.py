@@ -1744,10 +1744,10 @@ with tab4:
         #st.pyplot()
 
 	# Graficar árbol
-        fig, ax = plt.subplots(figsize=(15,10))
+        bartarbol, ax = plt.subplots(figsize=(15,10))
         tree.plot_tree(classifier.estimators_[0], feature_names=Xbart_train.columns, filled=True, ax=ax)
         ax.set_title("Árbol de decisión")
-        st.pyplot(fig)
+        st.pyplot(bartarbol)
 	
 	
         # Graficar matriz de confusión
