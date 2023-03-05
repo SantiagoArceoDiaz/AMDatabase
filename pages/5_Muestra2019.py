@@ -1614,6 +1614,20 @@ with tab4:
         st.write(f"Dataframe para el conjunto {conjunto}:")
         st.write(dfBS.loc[conjunto])
 	
+	# Lista de conjuntos
+        # Iterar sobre la lista de conjuntos y agregar las filas correspondientes al dataframe
+        for i, conjunto in enumerate(conjuntos):
+            df_name = f'df_{i}'
+            locals()[df_name] = dfBS.loc[conjunto]
+        df = df.append(locals()[df_name])
+
+        # Mostrar el dataframe correspondiente al conjunto
+        st.write(f"Dataframe para el conjunto {conjunto}:")
+        st.write(locals()[df_name])
+
+	
+	
+	
 #'''
 #w_ind = indiscernibility(['weak'], my_table)
 #d_ind = indiscernibility(['flu'], my_table)
