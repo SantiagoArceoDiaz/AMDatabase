@@ -1598,8 +1598,21 @@ with tab4:
         st.pyplot(fig)
         U=dfBS.columns[1:-1]
         IND=indiscernibility(U, dfBS)
-        IND
+        
 
+	# Lista de conjuntos
+        conjuntos = [{0}, {1, 2, 3, 6, 7, 8, 12, 13, 14, 16, 17, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 34, 36, 37, 39, 40, 41, 45, 46, 48, 50, 52, 53, 54, 55, 56, 57, 58, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 76, 77, 78, 79, 80, 83, 84, 85, 86, 87, 88, 89, 90, 92, 95, 96, 97, 98, 100, 105, 107, 109, 112, 113, 115, 116, 117, 118, 119, 120, 121, 122, 126, 127, 128, 129, 131, 133, 134, 136, 137, 141, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 155, 156, 157, 158, 159, 161, 162, 163, 164, 165, 166, 167}, {32, 33, 4, 138, 139, 51}, {5}, {130, 9, 75, 110, 142, 18, 114, 22, 153, 123}, {10}, {11}, {15}, {35}, {38}, {81, 49, 42, 93}, {59, 43, 108}, {44, 47}, {82, 94, 106}, {91}, {99}, {101}, {102}, {103}, {104}, {111}, {160, 140, 124}, {125, 135}, {132}, {154}]
+
+        # Crear un dataframe vacío
+        df = pd.DataFrame()
+
+        # Iterar sobre la lista de conjuntos y agregar las filas correspondientes al dataframe
+        for conjunto in conjuntos:
+            df = df.append(dfBS.loc[conjunto])
+
+        # Mostrar el dataframe correspondiente al conjunto
+        st.write(f"Dataframe para el conjunto {conjunto}:")
+        st.write(dfBS.loc[conjunto])
 	
 #'''
 #w_ind = indiscernibility(['weak'], my_table)
