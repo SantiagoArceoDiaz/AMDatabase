@@ -1531,7 +1531,7 @@ with tab4:
         columnas = list(final_reduct)
         #df2019BS[columnas]
         df2019BS=pd.concat([df2019BS[0:3],df2019BS[columnas]])
-	df2019BS
+        df2019BS
 
 	
 #'''
