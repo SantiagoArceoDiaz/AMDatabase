@@ -1466,20 +1466,20 @@ with tab4:
 #2019
         import time
         def indiscernibility(attr, table):
-                u_ind = {}	#an empty dictionary to store the elements of the indiscernibility relation (U/IND({set of attributes}))
-                attr_values = []	#an empty list to tore the values of the attributes
-                for i in (table.index):
-                        attr_values = []
-                        for j in (attr):
-                            attr_values.append(table.loc[i, j])	#find the value of the table at the corresponding row and the desired attribute and add it to the attr_values list
+            u_ind = {}	#an empty dictionary to store the elements of the indiscernibility relation (U/IND({set of attributes}))
+            attr_values = []	#an empty list to tore the values of the attributes
+            for i in (table.index):
+                attr_values = []
+                for j in (attr):
+                    attr_values.append(table.loc[i, j])	#find the value of the table at the corresponding row and the desired attribute and add it to the attr_values list
 		#convert the list to a string and check if it is already a key value in the dictionary
                 key = ''.join(str(k) for k in (attr_values))
                 if(key in u_ind):	#if the key already exists in the dictionary
-                        u_ind[key].add(i)
+                    u_ind[key].add(i)
                 else:	#if the key does not exist in the dictionary yet
-                        u_ind[key] = set()
-                        u_ind[key].add(i)
-                return list(u_ind.values())
+                    u_ind[key] = set()
+                    u_ind[key].add(i)
+            return list(u_ind.values())
 
 
         def lower_approximation(R, X):	#We have to try to describe the knowledge in X with respect to the knowledge in R; both are LISTS OS SETS [{},{}]
@@ -1524,7 +1524,7 @@ with tab4:
                         #finding the new gamma measure of the reduct
                 gamma_R = gamma_measure(reduct, D, table.index, table)
                 print(gamma_R)
-        return reduct
+            return reduct
         t1 = time.time()
 
 #final_reduct = quick_reduct(audio.columns[0:-1], [audio.columns[-1]], audio)
