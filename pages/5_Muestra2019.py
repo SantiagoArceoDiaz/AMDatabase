@@ -1726,11 +1726,16 @@ with tab4:
     
         # Graficar importancia de características
         
-        feature_importances = pd.Series(classifier.feature_importances_, index=Xbart_train.columns)
-        importancia = feature_importances.plot(kind='barh')
-        plt.title("Importancia de características")
-        st.pyplot(importancia)
+        #feature_importances = pd.Series(classifier.feature_importances_, index=Xbart_train.columns)
+        #feature_importances.plot(kind='barh')
+        #plt.title("Importancia de características")
+        #st.pyplot()
      
+        feature_importances = pd.Series(classifier.feature_importances_, index=Xbart_train.columns)
+        fig = feature_importances.plot(kind='barh')
+        plt.title("Importancia de características")
+        st.pyplot(plt.gcf())
+
 
         # Graficar árbol
         plt.figure(figsize=(15,10))
