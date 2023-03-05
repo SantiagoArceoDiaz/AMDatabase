@@ -1690,7 +1690,8 @@ with tab4:
            # Agregar leyenda de texto con el número de filas del dataframe
            n_rows = df.shape[0]
            ax.text(0.5, 1.1, f'Nº de pacientes: {n_rows}', transform=ax.transAxes, ha='center')
-           return globals()[df_name], fig
+           plt.close() 
+	   return globals()[df_name], fig
 
         # Crear un panel de pestañas para mostrar los dataframes y gráficos de radar correspondientes
         tabs = st.tabs(["Conjunto "+str(i) for i in range(len(conjuntos))])
