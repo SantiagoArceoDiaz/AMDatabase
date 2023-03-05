@@ -1532,9 +1532,7 @@ with tab4:
         columnasf= ['Nombre','Sexo','Edad']+list(final_reduct)+['Int_Barthel']
         #columnasf
         dfBS=df2019BS[columnasf]
-
-	
-	Xindep=df2019BS.loc[df2019BS['Int_Barthel']==0.0]
+        Xindep=df2019BS.loc[df2019BS['Int_Barthel']==0.0]
         Xindepset=set(df2019BS.loc[df2019BS['Int_Barthel']==0.0].index)
         Xindepset
         
