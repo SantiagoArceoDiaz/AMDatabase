@@ -1684,10 +1684,10 @@ with tab4:
         tabs = st.tabs(["Conjunto "+str(i) for i in range(len(conjuntos))])
         for i, tab in enumerate(tabs):
            with tab:
-           df, fig = actualizar_df(i)
-           st.write(f"Dataframe para el conjunto {conjuntos[i]}:")
-           st.write(df)
-           st.pyplot(fig)	
+               df, fig = actualizar_df(i)
+               st.write(f"Dataframe para el conjunto {conjuntos[i]}:")
+               st.write(df)
+               st.pyplot(fig)	
 	
 
 
