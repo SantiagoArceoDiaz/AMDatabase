@@ -1602,55 +1602,55 @@ with tab4:
         # Lista de conjuntos
         conjuntos = [{0}, {1, 2, 3, 6, 7, 8, 12, 13, 14, 16, 17, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 34, 36, 37, 39, 40, 41, 45, 46, 48, 50, 52, 53, 54, 55, 56, 57, 58, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 76, 77, 78, 79, 80, 83, 84, 85, 86, 87, 88, 89, 90, 92, 95, 96, 97, 98, 100, 105, 107, 109, 112, 113, 115, 116, 117, 118, 119, 120, 121, 122, 126, 127, 128, 129, 131, 133, 134, 136, 137, 141, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 155, 156, 157, 158, 159, 161, 162, 163, 164, 165, 166, 167}, {32, 33, 4, 138, 139, 51}, {5}, {130, 9, 75, 110, 142, 18, 114, 22, 153, 123}, {10}, {11}, {15}, {35}, {38}, {81, 49, 42, 93}, {59, 43, 108}, {44, 47}, {82, 94, 106}, {91}, {99}, {101}, {102}, {103}, {104}, {111}, {160, 140, 124}, {125, 135}, {132}, {154}]
 
-        # Crear un dataframe vacío
-        df = pd.DataFrame()
+        ## Crear un dataframe vacío
+        #df = pd.DataFrame()
 
-        # Función para actualizar el dataframe a mostrar
-        def actualizar_df(idx):
-            conjunto = conjuntos[idx]
-            df_name = f'df_{idx}'
-            globals()[df_name] = dfBS.loc[conjunto]
-            return globals()[df_name]
+        ## Función para actualizar el dataframe a mostrar
+        #def actualizar_df(idx):
+        #    conjunto = conjuntos[idx]
+        #    df_name = f'df_{idx}'
+        #    globals()[df_name] = dfBS.loc[conjunto]
+        #    return globals()[df_name]
 
-        # Crear un slider para seleccionar el índice del conjunto
-        idx = st.slider("Seleccione el índice del conjunto:", 0, len(conjuntos)-1)
+        ## Crear un slider para seleccionar el índice del conjunto
+        #idx = st.slider("Seleccione el índice del conjunto:", 0, len(conjuntos)-1)
 
-        # Actualizar el dataframe a mostrar cuando cambie el valor del slider
-        df = actualizar_df(idx)
+        ## Actualizar el dataframe a mostrar cuando cambie el valor del slider
+        #df = actualizar_df(idx)
 
-        # Mostrar el dataframe correspondiente al conjunto seleccionado
-        st.write(f"Dataframe para el conjunto {conjuntos[idx]}:")
-        st.write(df)
+        ## Mostrar el dataframe correspondiente al conjunto seleccionado
+        #st.write(f"Dataframe para el conjunto {conjuntos[idx]}:")
+        #st.write(df)
 
-        # Seleccionar las columnas posteriores a la tercera
-        cols = df.columns[3:]
+        ## Seleccionar las columnas posteriores a la tercera
+        #cols = df.columns[3:]
 
-        # Obtener los valores promedio de cada columna
-        valores = df[cols].mean().values.tolist()
+        ## Obtener los valores promedio de cada columna
+        #valores = df[cols].mean().values.tolist()
 
-        # Agregar el primer valor al final para que coincida con el tamaño de angles
-        valores.append(valores[0])
+        ## Agregar el primer valor al final para que coincida con el tamaño de angles
+        #valores.append(valores[0])
 
-        # Calcular los ángulos de los ejes en el gráfico de radar
-        angles = [n / float(len(cols)) * 2 * np.pi for n in range(len(cols))]
-        angles.append(angles[0])
+        ## Calcular los ángulos de los ejes en el gráfico de radar
+        #angles = [n / float(len(cols)) * 2 * np.pi for n in range(len(cols))]
+        #angles.append(angles[0])
 
-        # Crear el gráfico de radar
-        fig = plt.figure(figsize=(6, 6))
-        ax = fig.add_subplot(111, polar=True)
-        ax.plot(angles, valores, label='Promedio')
-        ax.fill(angles, valores, alpha=0.3)
+        ## Crear el gráfico de radar
+        #fig = plt.figure(figsize=(6, 6))
+        #ax = fig.add_subplot(111, polar=True)
+        #ax.plot(angles, valores, label='Promedio')
+        #ax.fill(angles, valores, alpha=0.3)
 
-        # Agregar los nombres de las columnas a los ejes del gráfico de radar
-        ax.set_xticks(angles[:-1])
-        ax.set_xticklabels(cols)
+        ## Agregar los nombres de las columnas a los ejes del gráfico de radar
+        #ax.set_xticks(angles[:-1])
+        #ax.set_xticklabels(cols)
 
         # Mostrar los radios internos del diagrama a intervalos de 5 puntos
-        rticks = np.arange(5, max(valores), 5)
-        ax.set_rticks(rticks)
+        #rticks = np.arange(5, max(valores), 5)
+        #ax.set_rticks(rticks)
 
         # Mostrar el gráfico de radar
-        st.pyplot(fig)
+        #st.pyplot(fig)
 
         # Crear un dataframe vacío
         df = pd.DataFrame()
@@ -1659,7 +1659,7 @@ with tab4:
         def actualizar_df(idx):
            conjunto = conjuntos[idx]
            df_name = f'df_{idx}'
-           globals()[df_name] = dfBS.loc[conjunto]
+           globals()[df_name] = dfBS.loc[list(conjunto)]
            df = globals()[df_name]
            cols = df.columns[3:]
            valores = df[cols].mean().values.tolist()
