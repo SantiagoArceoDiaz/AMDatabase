@@ -1596,7 +1596,8 @@ with tab4:
         #Mostrar figura en Streamlit
         st.write("Histograma de la variable independiente X")
         st.pyplot(fig)
-        IND=indiscernibility(U, dfBS)
+        U=dfBS.columns[1:-1]
+	IND=indiscernibility(U, dfBS)
         IND
 
 	
