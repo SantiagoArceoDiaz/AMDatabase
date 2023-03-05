@@ -1453,7 +1453,7 @@ with tab4:
         """ 
         # Resumen estadistico de la muestra
         Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
-        """wwwww)
+        """)
         
         
         
