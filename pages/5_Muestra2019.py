@@ -1533,7 +1533,7 @@ with tab4:
         #columnasf
         dfBS=df2019BS[columnasf]
         Xindep=dfBS.loc[dfBS['Int_Barthel']==0.0]
-        Xindepset=set(dfBS.loc[df2BS['Int_Barthel']==0.0].index)
+        Xindepset=set(dfBS.loc[dfBS['Int_Barthel']==0.0].index)
         Xindepset
         
         from operator import index
