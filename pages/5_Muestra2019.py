@@ -1715,7 +1715,7 @@ with tab4:
         classifier.fit(Xbart_train, ybart_train)
 
         # Predecir las clases del conjunto de prueba
-        y_pred = classifier.predict(Xbart_test)
+        ybart_pred = classifier.predict(Xbart_test)
         st.write("valores predichos", ybart_pred)
 
         # Calcular la precisión del modelo
