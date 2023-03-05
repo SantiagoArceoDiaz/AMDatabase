@@ -1666,7 +1666,19 @@ with tab4:
            valores.append(valores[0])
            angles = [n / float(len(cols)) * 2 * np.pi for n in range(len(cols))]
            angles.append(angles[0])
-           color = df.iloc[0,-1] # Obtener el color de relleno del valor de la última columna
+           #color = df.iloc[0,-1] # Obtener el color de relleno del valor de la última columna
+		
+           color_code = df.iloc[0,-1] # Obtener el código de color del valor de la última columna
+           if color_code == 0:
+               color = 'green'
+           elif color_code == 1:
+               color = 'yellow'
+           elif color_code == 2:
+               color = 'orange'
+           elif color_code == 3:
+               color = 'red'
+           else:
+               color = 'gray'		
            fig = plt.figure(figsize=(6, 6))
            ax = fig.add_subplot(111, polar=True)
            ax.plot(angles, valores, label='Promedio', color=color) # Establecer el color de relleno correspondiente
