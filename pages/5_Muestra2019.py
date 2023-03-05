@@ -1610,7 +1610,7 @@ with tab4:
             conjunto = conjuntos[idx]
             df_name = f'df_{idx}'
             globals()[df_name] = dfBS.loc[conjunto]
-        return globals()[df_name]
+            return globals()[df_name]
 
         # Crear un slider para seleccionar el índice del conjunto
         idx = st.slider("Seleccione el índice del conjunto:", 0, len(conjuntos)-1)
