@@ -1597,7 +1597,7 @@ with tab4:
         st.write("Histograma de la variable independiente X")
         st.pyplot(fig)
         U=dfBS.columns[1:-1]
-	IND=indiscernibility(U, dfBS)
+        IND=indiscernibility(U, dfBS)
         IND
 
 	
