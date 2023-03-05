@@ -1679,7 +1679,7 @@ with tab4:
                color = 'red'
            else:
                color = 'gray'		
-           fig = plt.figure(figsize=(6, 6))
+           fig = plt.figure(figsize=(3, 3))
            ax = fig.add_subplot(111, polar=True)
            ax.plot(angles, valores, label='Promedio', color=color) # Establecer el color de relleno correspondiente
            ax.fill(angles, valores, alpha=0.3, color=color)
