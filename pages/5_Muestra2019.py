@@ -1659,7 +1659,7 @@ with tab4:
         def actualizar_df(idx):
            conjunto = conjuntos[idx]
            df_name = f'df_{idx}'
-           globals()[df_name] = dfBS.loc[conjunto]
+           globals()[df_name] = dfBS.loc[list(conjunto)]
            df = globals()[df_name]
            cols = df.columns[3:]
            valores = df[cols].mean().values.tolist()
