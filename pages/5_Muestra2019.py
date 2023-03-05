@@ -1786,7 +1786,7 @@ with tab4:
         plt.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
         plt.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
         plt.show()
-	st.pyplot()
+        st.pyplot()
                                                                                                                                                                                                                                                                                                                                                                                                                                 .pyplot()
 
 	
