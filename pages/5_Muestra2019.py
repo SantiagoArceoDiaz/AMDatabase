@@ -1622,33 +1622,30 @@ with tab4:
         st.write(f"Dataframe para el conjunto {conjuntos[idx]}:")
         st.write(df)
 	
-        # Seleccionar las columnas posteriores a la tercera
+
+	
+	# Seleccionar las columnas posteriores a la tercera
         cols = df.columns[3:]
 
-        # Crear una lista de valores para cada columna
-        valores = [df[col].sum() for col in cols]
+        # Obtener los valores promedio de cada columna
+        valores = df[cols].mean().values.tolist()
 
-        # Crear un gráfico de radar
-        fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
+        # Agregar el primer valor al final para que coincida con el tamaño de angles
+        valores.append(valores[0])
 
-        # Calcular el ángulo de cada eje en el gráfico de radar
-        n = len(cols)
-        angles = [i * 2 * np.pi / n for i in range(n)]
-        angles += angles[:1]
+        # Calcular los ángulos de los ejes en el gráfico de radar
+        angles = [n / float(len(cols)) * 2 * np.pi for n in range(len(cols))]
+        angles.append(angles[0])
 
-        # Dibujar los ejes en el gráfico de radar
-        ax.set_theta_offset(np.pi / 2)
-        ax.set_theta_direction(-1)
-        plt.xticks(angles[:-1], cols)
-
-        # Dibujar la línea del gráfico de radar
+        # Crear el gráfico de radar
+        fig = plt.figure(figsize=(6, 6))
+        ax = fig.add_subplot(111, polar=True)
         ax.plot(angles, valores)
-
-        # Rellenar el área del gráfico de radar
-        ax.fill(angles, valores, alpha=0.25)
+        ax.fill(angles, valores, alpha=0.3)
 
         # Mostrar el gráfico de radar
         st.pyplot(fig)
+
 
 
 
