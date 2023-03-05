@@ -1796,8 +1796,6 @@ with tab4:
 
 	
 	
-	                                                                                                                                                                                                                                                                                                                                                                                                                .pyplot()
-
 ## get feature and target columns
         XbartF = df2019BS.iloc[:, 3:-1]
         ybartF = df2019BS.iloc[:, -1]
