@@ -1619,15 +1619,19 @@ with tab4:
         # Obtener el conjunto correspondiente al índice actual
         current_conjunto = conjuntos[current_index]
 
+
+	# Convertir el índice del DataFrame a numérico
+        df = df.reset_index(drop=True)
+
         # Iterar sobre la lista de conjuntos y agregar las filas correspondientes al dataframe
         for i, conjunto in enumerate(conjuntos):
             df_name = f'df_{i}'
             locals()[df_name] = df.loc[conjunto]
-            if i == current_index:
-                current_df = locals()[df_name]
             df = df.append(locals()[df_name])
 
-
+        # Mostrar el dataframe correspondiente al conjunto
+        st.write(f"Dataframe para el conjunto {conjunto}:")
+        st.write(locals()[df_name])
 	
 	
 
