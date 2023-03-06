@@ -256,24 +256,39 @@ with tab1:
         """
         )
 
-        import streamlit as st
+
+	
+
+	import streamlit as st
         import matplotlib.pyplot as plt
 
         # Cuenta el número de pacientes por sexo
         count_sexo = BD2019['Sexo'].value_counts()
+
         # Crea una lista con los valores de la cuenta
         values = count_sexo.values.tolist()
+
         # Crea una lista con las etiquetas del sexo
         labels = count_sexo.index.tolist()
+
         # Crea la gráfica de pastel
         fig, ax = plt.subplots(figsize=(3, 2))
         ax.pie(values, labels=labels)
+
         # Agrega el conteo de individuos de cada categoría dentro de la gráfica de pastel
-        fig.savefig('Pastel 2019.png', dpi=300)
         for i, v in enumerate(values):
             ax.text(i - 0.1, -0.1, str(v), fontsize=10)
+
+        # Agrega el título a la gráfica
+        ax.set_title("Distribución de pacientes por género en la muestra 2019")
+
+        # Guarda la imagen
+        fig.savefig('Pastel 2019.png', dpi=300)
+
         # Muestra la gráfica en Streamlit
-        st.pyplot(fig)
+        with st.beta_container():
+            st.image('Pastel 2019.png', width=200)
+            st.caption("Distribución de pacientes por género en la muestra 2019.")
 
         # Prepare file for download.
         dfn = 'Pastel 2019.png'
@@ -282,9 +297,11 @@ with tab1:
             label="Descargar imagen",
             data=f,
             file_name=dfn,
-            mime="image/png")
-	
+            mime="image/png"
+         )
 
+	
+	
 
 
         st.markdown(
