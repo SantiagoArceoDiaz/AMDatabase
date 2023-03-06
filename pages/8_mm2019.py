@@ -278,7 +278,7 @@ with tab1:
         ax.pie(values, labels=labels)
 
         # Muestra la gráfica en Streamlit
-        st.pyplot(fig, use_container_width=True)
+        st.pyplot(fig)
 
 	
 
