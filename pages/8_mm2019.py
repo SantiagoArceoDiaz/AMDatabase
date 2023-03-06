@@ -183,7 +183,7 @@ with tab1:
                 # Crear una barra de selección para el rango de valores en la columna
                 seleccion = st.sidebar.slider(col, int(valores_min), int(valores_max), (int(valores_min), int(valores_max)))
                 # Filtrar el dataframe en función de los valores seleccionados en la columna
-           BD2019 = BD2019[(BD2019[col] >= seleccion[0]) & (BD2019[col] <= seleccion[1])]
+            BD2019 = BD2019[(BD2019[col] >= seleccion[0]) & (BD2019[col] <= seleccion[1])]
         st.write(BD2019)
 
 
