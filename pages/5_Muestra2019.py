@@ -75,12 +75,12 @@ df2019['Fuerza'] = pd.to_numeric(df2019['Prom_Fuer'])
 Listadf2019=df2019['Nombre'].tolist() #crea una lista a partir de los nombres de usuarios en df2018..
 Setdf2019=set(Listadf2019) # convierte la lista en un conjunto (para su manejo posterior)
 
-st.markdown(
-        """ 
-        # Descripcion de la muestra 👋
-        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de     los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de         proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-        """
-        )
+#st.markdown(
+#        """ 
+#        # Descripcion de la muestra 👋
+#        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de     los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de         proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+#        """
+#        )
 
 
 SetDBEdades.difference(Setdf2019) # muestra el conjunto de usuarios que aparecen en la lista de edades
