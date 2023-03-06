@@ -259,7 +259,7 @@ with tab1:
 
 	
 
-	import streamlit as st
+        import streamlit as st
         import matplotlib.pyplot as plt
 
         # Cuenta el número de pacientes por sexo
