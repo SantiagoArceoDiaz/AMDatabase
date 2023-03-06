@@ -272,7 +272,7 @@ with tab1:
         labels = count_sexo.index.tolist()
 
         # Crea la gráfica de pastel
-        fig, ax = plt.subplots(figsize=(3, 2))
+        fig, ax = plt.subplots(figsize=(5, 3))
         ax.pie(values, labels=labels)
 
         # Agrega el conteo de individuos de cada categoría dentro de la gráfica de pastel
