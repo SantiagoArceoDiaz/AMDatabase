@@ -91,9 +91,9 @@ BD2019=ddf2019[['Nombre','Sexo','Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', '
 
 
 #tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes"])
-tab1, tab2, tab3, tab4 = st.tabs(["Muestra depurada", "Estadistica descriptiva", "Clasificación de pacientes", "Análisis con teoría de conjuntos"])
+tabs1, tabs2, tabs3, tabs4 = st.tabs(["Muestra depurada", "Estadistica descriptiva", "Clasificación de pacientes", "Análisis con teoría de conjuntos"])
 
-with tab1:
+with tabs1:
    
     st.markdown(
         """
@@ -540,7 +540,7 @@ with tab1:
 	
 	############################################################################################################################################
 	
-with tab2:
+with tabs2:
    
     st.markdown(
         """ 
@@ -549,15 +549,11 @@ with tab2:
         """        
         )
 	
-   
 
-
-	
-	
 	
 	#############################################################################################################################################
 	
-with tab3:
+with tabs3:
    
     st.markdown(
         """ 
@@ -566,7 +562,7 @@ with tab3:
         """        
         )
 	
-with tab4:
+with tabs4:
    
     st.markdown(
         """ 
