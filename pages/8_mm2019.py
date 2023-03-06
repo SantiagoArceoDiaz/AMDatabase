@@ -209,6 +209,8 @@ with tab1:
             data=f,
             file_name=dfn,
             mime="image/png")
+	# Limpiar la figura para evitar advertencias en la siguiente subtrama
+        ax.cla()
 
 	
         st.write(BD2019)
@@ -299,6 +301,8 @@ with tab1:
             mime="image/png"
          )
 
+	# Limpiar la figura para evitar advertencias en la siguiente subtrama
+        ax.cla()
 	
 	
 
@@ -459,7 +463,9 @@ with tab1:
             mime="image/png"
          )
                
-        
+        # Limpiar la figura para evitar advertencias en la siguiente subtrama
+        ax.cla()
+	
 	############
         Dependientesleves, ax = plt.subplots(figsize=[14, 12])
         Xdepl.hist(ax=ax)
@@ -482,7 +488,8 @@ with tab1:
             mime="image/png"
          )
 	
-	
+	# Limpiar la figura para evitar advertencias en la siguiente subtrama
+        ax.cla()
 
         Dependientesmoderado, ax = plt.subplots(figsize=[14, 12])
         Xdepm.hist(ax=ax)
@@ -504,7 +511,8 @@ with tab1:
             mime="image/png"
          )
 	
-	
+	# Limpiar la figura para evitar advertencias en la siguiente subtrama
+        ax.cla()
 
         Dependientesseveros, ax = plt.subplots(figsize=[14, 12])
         Xdeps.hist(ax=ax)
@@ -527,7 +535,8 @@ with tab1:
             mime="image/png"
          )
 
-	
+	# Limpiar la figura para evitar advertencias en la siguiente subtrama
+        ax.cla()
 	
 	############################################################################################################################################
 	
