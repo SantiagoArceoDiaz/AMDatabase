@@ -1319,51 +1319,8 @@ with tabs3:
     plt.title("Árbol de decisión")
     st.pyplot()
 #########################333
-    # Separar el conjunto de entrenamiento y de prueba
 
-    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
-    ## get feature and target columns
-    X = BD2019.iloc[:, 1:-2]
-    y = BD2019.iloc[:, -1]
-    
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
-
-    # Crear un clasificador de random forest
-    classifier = RandomForestClassifier(n_estimators=100, random_state=0)
-
-    # Entrenar el clasificador con los datos de entrenamiento
-    classifier.fit(X_train, y_train)
-
-    # Predecir las clases del conjunto de prueba
-    y_pred = classifier.predict(X_test)
-    st.write("valores predichos", y_pred)
-
-    # Calcular la precisión del modelo
-    accuracy = accuracy_score(y_test, y_pred)
-    #print("Precisión:", accuracy)
-    st.write("## Resultados de Random Forest")
-    st.write("Precisión:", accuracy)
-
-    # Graficar importancia de características
-    feature_importances = pd.Series(classifier.feature_importances_, index=X_train.columns)
-    feature_importances.plot(kind='barh')
-    plt.title("Importancia de características")
-    st.pyplot()
-
-    
-    # Graficar árbol
-    plt.figure(figsize=(15,10))
-    tree.plot_tree(classifier.estimators_[0], feature_names=X_train.columns, filled=True)
-    plt.title("Árbol de decisión")
-    fig, ax = plt.subplots()
-    ax = plt.imshow(tree.plot_tree(classifier.estimators_[0], feature_names=X_train.columns, filled=True))
-    st.pyplot(fig) 
     st.set_option('deprecation.showPyplotGlobalUse', False)
-
-
-
-
-
 
 
 ###################333
