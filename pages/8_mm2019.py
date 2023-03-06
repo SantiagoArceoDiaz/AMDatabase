@@ -211,11 +211,7 @@ with tab1:
             mime="image/png")
 
 	
-	
-	
         st.write(BD2019, text_align='center')
-
-	
 
         # Crear un botón de descarga para el dataframe
         def download_button_CSV(df, filename, button_text):
@@ -265,24 +261,28 @@ with tab1:
 
         # Cuenta el número de pacientes por sexo
         count_sexo = BD2019['Sexo'].value_counts()
-
         # Crea una lista con los valores de la cuenta
         values = count_sexo.values.tolist()
-
         # Crea una lista con las etiquetas del sexo
         labels = count_sexo.index.tolist()
-
         # Crea la gráfica de pastel
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(3, 2))
         ax.pie(values, labels=labels)
-
         # Agrega el conteo de individuos de cada categoría dentro de la gráfica de pastel
-        for i, v in enumerate(values):
+        fig.savefig('Pastel 2019.png', dpi=300)
+	for i, v in enumerate(values):
             ax.text(i - 0.1, -0.1, str(v), fontsize=10)
-
         # Muestra la gráfica en Streamlit
         st.pyplot(fig)
 
+        # Prepare file for download.
+        dfn = 'Pastel 2019.png'
+        with open(dfn, "rb") as f:
+            st.download_button(
+            label="Descargar imagen",
+            data=f,
+            file_name=dfn,
+            mime="image/png")
 	
 
 
