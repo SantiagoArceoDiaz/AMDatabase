@@ -476,11 +476,19 @@ with tab1:
         # Mostrar figura en Streamlit
         st.write("Histograma de la variable independiente X")
         st.pyplot(fig)
-        st.download_button(
-            label="Descargar gráfica",
-            data="Xdepl2019.png",
-            file_name="Xdepl2019.png",
-            mime="image/png")
+ 
+	
+	# Prepare file for download.
+        dfn = "Xdepl2019.png"
+        with open(dfn, "rb") as f:
+            st.download_button(
+            label="Descargar imagen",
+            data=f,
+            file_name=dfn,
+            mime="image/png"
+         )
+	
+	
 
         fig, ax = plt.subplots(figsize=[14, 12])
         Xdepm.hist(ax=ax)
