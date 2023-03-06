@@ -1230,48 +1230,7 @@ with tabs3:
     # display the plot in Streamlit
     st.pyplot(fig)
 
-#######################################3
 
-
-#    import streamlit as st
-#    import matplotlib.pyplot as plt
-#    import numpy as np
-#    from sklearn.tree import DecisionTreeClassifier
-
-#    # define a function to plot the decision surface
-#    def plot_decision_surface(X, y, feature1, feature2):
-#        clf = DecisionTreeClassifier().fit(X.loc[:, [feature1, feature2]], y)
-#        x_min, x_max = X.loc[:, feature1].min() - 1, X.loc[:, feature1].max() + 1
-#        y_min, y_max = X.loc[:, feature2].min() - 1, X.loc[:, feature2].max() + 1
-#        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02), np.arange(y_min, y_max, 0.02))
-#        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-#        Z = Z.reshape(xx.shape)
-#        plt.figure()
-#        plt.contourf(xx, yy, Z, alpha=0.4)
-#        plt.scatter(X.loc[:, feature1], X.loc[:, feature2], c=y, alpha=0.8)
-#        plt.xlabel(feature1)
-#        plt.ylabel(feature2)
-#        plt.title('Decision surface of a decision tree')
-
-#    # load the data
-#    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
-
-#    # get feature and target columns
-#    X = BD2019.iloc[:, 1:-2]
-#    y = BD2019.iloc[:, -2]
-
-#    # set up the sidebar inputs
-#    st.sidebar.header('Select two features to display the decision surface')
-#    feature1 = st.sidebar.selectbox('First feature', X.columns)
-#    feature2 = st.sidebar.selectbox('Second feature', X.columns)
-
-#    # plot the decision surface based on the selected features
-#    plot_decision_surface(X, y, feature1, feature2)
-#    # display the plot in Streamlit
-#    plt.show()
-#    st.pyplot()
-
-#################################################
 
     import streamlit as st
     import matplotlib.pyplot as plt
@@ -1359,7 +1318,55 @@ with tabs3:
     tree.plot_tree(classifier.estimators_[0], feature_names=X_train.columns, filled=True)
     plt.title("Árbol de decisión")
     st.pyplot()
+#########################333
+    # Separar el conjunto de entrenamiento y de prueba
 
+    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+    ## get feature and target columns
+    X = BD2019.iloc[:, 1:-2]
+    y = BD2019.iloc[:, -1]
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+    # Crear un clasificador de random forest
+    classifier = RandomForestClassifier(n_estimators=100, random_state=0)
+
+    # Entrenar el clasificador con los datos de entrenamiento
+    classifier.fit(X_train, y_train)
+
+    # Predecir las clases del conjunto de prueba
+    y_pred = classifier.predict(X_test)
+    st.write("valores predichos", y_pred)
+
+    # Calcular la precisión del modelo
+    accuracy = accuracy_score(y_test, y_pred)
+    #print("Precisión:", accuracy)
+    st.write("## Resultados de Random Forest")
+    st.write("Precisión:", accuracy)
+
+    # Graficar importancia de características
+    feature_importances = pd.Series(classifier.feature_importances_, index=X_train.columns)
+    feature_importances.plot(kind='barh')
+    plt.title("Importancia de características")
+    st.pyplot()
+
+    
+    # Graficar árbol
+    plt.figure(figsize=(15,10))
+    tree.plot_tree(classifier.estimators_[0], feature_names=X_train.columns, filled=True)
+    plt.title("Árbol de decisión")
+    fig, ax = plt.subplots()
+    ax = plt.imshow(tree.plot_tree(classifier.estimators_[0], feature_names=X_train.columns, filled=True))
+    st.pyplot(fig) 
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+
+
+
+
+
+
+
+###################333
     
     # Graficar matriz de confusión
     cf=confusion_matrix(y_test, y_pred)
