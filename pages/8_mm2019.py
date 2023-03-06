@@ -939,6 +939,299 @@ with tabs3:
         Se depuro la muestra para eliminar aquellos registros que presentaban informacion incompleta. En las siguientes secciones se presentan dos diferentes tipos de bases de datos: una en la que se incluyen los resultados generales de diversas pruebas y otra en la que se muestran los resultados del test de Barthel.
         """        
         )
+
+
+    import streamlit as st
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    from sklearn.datasets import load_diabetes
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.linear_model import LinearRegression
+
+    def generateXvector(X):
+        """ Taking the original independent variables matrix and add a row of 1 which corresponds to x_0
+            Parameters:
+              X:  independent variables matrix
+            Return value: the matrix that contains all the values in the dataset, not include the outcomes values 
+        """
+        vectorX = np.c_[np.ones((len(X), 1)), X]
+        return vectorX
+
+    def theta_init(X):
+        """ Generate an initial value of vector θ from the original independent variables matrix
+             Parameters:
+              X:  independent variables matrix
+            Return value: a vector of theta filled with initial guess
+        """
+        theta = np.random.randn(len(X[0])+1, 1)
+        return theta
+
+    def Multivariable_Linear_Regression(X,y,learningrate, iterations):
+        """ Find the multivarite regression model for the data set
+             Parameters:
+              X:  independent variables matrix
+              y: dependent variables matrix
+              learningrate: learningrate of Gradient Descent
+              iterations: the number of iterations
+            Return value: the final theta vector and the plot of cost function
+        """
+        y_new = np.reshape(y, (len(y), 1))   
+        cost_lst = []
+        vectorX = generateXvector(X)
+        theta = theta_init(X)
+        m = len(X)
+        for i in range(iterations):
+            gradients = 2/m * vectorX.T.dot(vectorX.dot(theta) - y_new)
+            theta = theta - learningrate * gradients
+            y_pred = vectorX.dot(theta)
+            cost_value = 1/(2*len(y))*((y_pred - y)**2) #Calculate the loss for each training instance
+            total = 0
+            for i in range(len(y)):
+                total += cost_value[i][0] #Calculate the cost function for each iteration
+            cost_lst.append(total)
+        fig, ax = plt.subplots()
+        ax.plot(np.arange(1,iterations),cost_lst[1:], color = 'red')
+        ax.set_title('Cost function Graph')
+        ax.set_xlabel('Number of iterations')
+        ax.set_ylabel('Cost')
+        st.pyplot(fig)
+        return theta
+
+
+    X = BD2019.iloc[:,2:-2].values
+    y = BD2019.iloc[:,-2].values
+
+    sc=StandardScaler()
+    X_transform=sc.fit_transform(X)
+
+    lin_reg = LinearRegression()
+    lin_reg.fit(X_transform, y)
+    lin_reg.intercept_, lin_reg.coef_
+
+    # Find the optimal theta values using the custom function
+    theta_optimal = Multivariable_Linear_Regression(X_transform, y, 0.03, 30000)
+
+    # Create a new dataframe with the original data and predicted values
+    X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas','BARTHEL'])
+    predictions = np.dot(X_transform_df, theta_optimal[1:]) + theta_optimal[0]
+    BD2019_with_predictions = BD2019.assign(Predicted_BARTHEL=predictions)
+
+    # Print the new dataframe with predictions
+    st.write(BD2019_with_predictions)
+
+    from sklearn.datasets import load_iris
+    from sklearn import tree
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.mplot3d import Axes3D
+    from sklearn.datasets import load_iris
+    from sklearn.neighbors import KNeighborsClassifier
+    from sklearn.tree import DecisionTreeClassifier, export_text
+    from sklearn import tree
+
+
+
+    X = BD2019.iloc[:,2:-2].values
+    y = BD2019.iloc[:,-1].values
+
+
+    # Definir el algoritmo de clasificación y ajustar los datos
+    clf = KNeighborsClassifier(n_neighbors=5)
+    clf.fit(X, y)
+
+
+
+    # Crear los deslizadores
+    Edad = st.slider("Edad", 60, 100, 75)
+    MNA = st.slider("MNA", 0, 30, 15)
+    Fuerza = st.slider("Fuerza", 0, 150, 75)
+    Proteinas = st.slider("Proteinas", 0, 200, 100)
+    PuntajeZ = st.slider("PuntajeZ", 0, 200, 100)
+    Marcha = st.slider("Marcha", 0, 200, 100)
+
+
+
+    # Clasificar el objeto
+    prediction = clf.predict([[Edad, MNA, Fuerza, Proteinas, PuntajeZ, Marcha]])
+    print("El objeto pertenece a la clase:", prediction[0])
+
+
+
+    train_data = BD2019.iloc[:-20,2:-2].values
+
+    train_target = BD2019.iloc[:-20, -1].values
+
+    test_data = BD2019.iloc[-20:].values
+
+
+    test_target = BD2019.iloc[-20:, -1].values
+
+    # Train a decision tree classifier
+    clf = tree.DecisionTreeClassifier()
+    clf = clf.fit(train_data, train_target)
+
+    # Use the trained classifier to classify a new object
+    new_object = np.array([[Edad, MNA, Fuerza, Proteinas, PuntajeZ, Marcha]])
+    prediction = clf.predict(new_object)
+
+
+
+    clf = DecisionTreeClassifier()
+    clf.fit(X, y)
+
+
+    class_names=BD2019.columns[-1] #
+    tree_rules = sk.tree.export_text(clf, feature_names=BD2019.columns[2:-2].tolist())
+
+    st.text(tree_rules)
+
+
+
+    fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
+    tree.plot_tree(clf, filled=True, feature_names=BD2019.columns[2:-2].tolist(), class_names=BD2019.columns[-1])
+    plt.show()
+    st.pyplot(fig)
+
+    from sklearn.tree import _tree
+
+    def tree_to_code(tree, feature_names):
+        tree_ = tree.tree_
+        feature_name = [
+            feature_names[i] if i != _tree.TREE_UNDEFINED else "undefined!"
+            for i in tree_.feature
+        ]
+        feature_names = [f.replace(" ", "_")[:-5] for f in feature_names]
+        st.write("def predict({}):".format(", ".join(feature_names)))
+
+    def recurse(node, depth):
+        indent = "    " * depth
+        if tree_.feature[node] != _tree.TREE_UNDEFINED:
+            name = feature_name[node]
+            threshold = tree_.threshold[node]
+            st.write("{}if {} <= {}:".format(indent, name, np.round(threshold,2)))
+            recurse(tree_.children_left[node], depth + 1)
+            st.write("{}else:  # if {} > {}".format(indent, name, np.round(threshold,2)))
+            recurse(tree_.children_right[node], depth + 1)
+        else:
+            st.write("{}return {}".format(indent, tree_.value[node]))
+
+    recurse(0, 1)
+    
+    def get_rules(tree, feature_names, class_names):
+        tree_ = tree.tree_
+        feature_name = [
+            feature_names[i] if i != _tree.TREE_UNDEFINED else "undefined!"
+            for i in tree_.feature
+        ]
+
+        paths = []
+        path = []
+    
+    def recurse(node, path, paths):
+        
+        if tree_.feature[node] != _tree.TREE_UNDEFINED:
+            name = feature_name[node]
+            threshold = tree_.threshold[node]
+            p1, p2 = list(path), list(path)
+            p1 += [f"({name} <= {np.round(threshold, 3)})"]
+            recurse(tree_.children_left[node], p1, paths)
+            p2 += [f"({name} > {np.round(threshold, 3)})"]
+            recurse(tree_.children_right[node], p2, paths)
+        else:
+            path += [(tree_.value[node], tree_.n_node_samples[node])]
+            paths += [path]
+            
+    recurse(0, path, paths)
+
+    # sort by samples count
+    samples_count = [p[-1][1] for p in paths]
+    ii = list(np.argsort(samples_count))
+    paths = [paths[i] for i in reversed(ii)]
+    
+    rules = []
+    for path in paths:
+        rule = "if "
+        
+        for p in path[:-1]:
+            if rule != "if ":
+                rule += " and "
+            rule += str(p)
+        rule += " then "
+        if class_names is None:
+            rule += "response: "+str(np.round(path[-1][0][0][0],3))
+        else:
+            classes = path[-1][0][0]
+            l = np.argmax(classes)
+            rule += f"class: {class_names[l]} (proba: {np.round(100.0*classes[l]/np.sum(classes),2)}%)"
+        rule += f" | based on {path[-1][1]:,} samples"
+        rules += [rule]
+        
+    return rules
+
+#class_names = BD2018['target'].unique().astype(str)#fff
+#class_names = BD2018.columns[-1].unique().astype(str)
+    class_names = ['0', '1', '2']
+    rules = get_rules(clf, BD2019.columns[2:-2].tolist(), BD2019.columns[-1])
+    for r in rules:
+        st.write(r)
+
+
+
+
+    import streamlit as st
+    import pandas as pd
+    from sklearn.tree import DecisionTreeClassifier
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+
+
+
+
+    # get feature and target columns
+    X = BD2019.iloc[:, 1:-2]
+    y = BD2019.iloc[:, -2]
+
+    # define number of columns and plots per column
+    num_cols = 3
+    plots_per_col = 5
+    num_plots = X.shape[1] * (X.shape[1]-1) // 2
+
+    # iterate over all possible pairs of features
+    plot_count = 0
+    for i in range(X.shape[1]):
+        for j in range(i + 1, X.shape[1]):
+        # fit decision tree classifier
+            clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
+
+        # create a meshgrid to plot the decision surface
+            x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
+            y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
+            xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                             np.arange(y_min, y_max, 0.02))
+
+        # predict on the meshgrid
+        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+        Z = Z.reshape(xx.shape)
+
+        # plot the decision surface
+        plot_count += 1
+        plt.subplot(int(np.ceil(num_plots/plots_per_col)), num_cols, plot_count)
+        plt.contourf(xx, yy, Z, alpha=0.4)
+        plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
+        plt.xlabel(X.columns[i])
+        plt.ylabel(X.columns[j])
+
+    # add suptitle to the figure
+    plt.suptitle('Decision surfaces of a decision tree')
+
+    plt.subplots_adjust(hspace=0.8)
+    # display the plot in Streamlit
+    st.pyplot()
+	
+	
+	
 	
 with tabs4:
    
