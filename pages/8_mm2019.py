@@ -195,7 +195,7 @@ with tab1:
 
         fig, ax = plt.subplots(figsize=(3, 2))
         venn2019 = venn2([Setdf2019, SetDBEdades], set_labels=('Muestra de 2019', 'Muestra total'), set_colors=('red', 'blue'))
-        fig.savefig('Venn 2019.png', dpi=75)
+        fig.savefig('Venn 2019.png', dpi=300)
 
         with st.beta_container():
             st.image('Venn 2019.png', width=400)
