@@ -260,7 +260,7 @@ with tab1:
         Hombres2019 # Muestra el dataframe con datos de hombres.
 
         
-        st.write(Hombres2019.describe()) # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
+        st.write(Hombres2019.describe(), text_align='center') # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
 
         st.markdown(
         """ 
@@ -278,7 +278,7 @@ with tab1:
         """
         )
 
-        st.write(Mujeres2019.describe()) # dEscripcion del Dataframe de "Mujeres"
+        st.write(Mujeres2019.describe(), text_align='center') # dEscripcion del Dataframe de "Mujeres"
 	
 	
 	
