@@ -102,7 +102,7 @@ with tab1:
         """        
     )
 
-    tab1, tab2 = ["Pruebas antropometricas", "Test de Barthel"]
+    tab1, tab2 = st.tabs(["Pruebas antropometricas", "Test de Barthel"])
 
     with tab1:
 		
