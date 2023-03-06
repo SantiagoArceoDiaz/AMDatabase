@@ -1088,10 +1088,9 @@ with tabs3:
 
 
 
-    figss, ax = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
     tree.plot_tree(clf, filled=True, feature_names=BD2019.columns[2:-2].tolist(), class_names=BD2019.columns[-1])
     plt.show()
-    st.pyplot(figss)
+    st.pyplot()
 
     from sklearn.tree import _tree
 
@@ -1227,11 +1226,10 @@ with tabs3:
                 #plt.remove()
 
     # add suptitle to the figure
-    decisionsS, ax = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
     plt.suptitle('Decision surfaces of a decision tree')
     plt.subplots_adjust(hspace=0.8)
     # display the plot in Streamlit
-    st.pyplot(decisionsS)
+    st.pyplot()
 
     import streamlit as st
     import matplotlib.pyplot as plt
@@ -1266,11 +1264,10 @@ with tabs3:
     feature2 = st.sidebar.selectbox('Second feature', X.columns)
 
     # plot the decision surface based on the selected features
-    decision, ax = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
     plot_decision_surface(X, y, feature1, feature2)
     # display the plot in Streamlit
     plt.show()
-    st.pyplot(decision)
+    st.pyplot()
 
 
 
