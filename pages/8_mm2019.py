@@ -197,7 +197,7 @@ with tab1:
         venn2019 = venn2([Setdf2019, SetDBEdades], set_labels=('Muestra de 2019', 'Muestra total'), set_colors=('red', 'blue'))
         fig.savefig('Venn 2019.png', dpi=300)
 
-        with st.beta_container():
+        with st.container():
             st.image('Venn 2019.png', width=400)
             st.caption("Comparativa entre los usuarios pertenecientes al año 2019 y el total, correspondiente a 2018-2021.")
 
@@ -785,7 +785,6 @@ with tab2:
          selection
          ).interactive()
 
-    selection = alt.selection_multi(fields=['Sexo'], bind='legend')
     chart6 = alt.Chart(BD2019).mark_circle(size=50).encode(
          x='Edad', y='BARTHEL',
          color='Sexo',
