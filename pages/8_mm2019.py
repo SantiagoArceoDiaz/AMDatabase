@@ -230,17 +230,17 @@ with tab1:
         )
 
         # crea un diagrama de Venn en donde podemos ver los usuarios que tienen en común la base de datos de 2018 y la de edades registradas
-        def create_pdf(img_fn, pdf_fn):
-            """
-            Create pdf written to pdf_fn with the image file img_fn.
-            """
-            pdf = fpdf()
-            pdf.add_page()
+        #def create_pdf(img_fn, pdf_fn):
+        #    """
+        #    Create pdf written to pdf_fn with the image file img_fn.
+        #    """
+        #    pdf = fpdf()
+        #    pdf.add_page()
 
         # Save to pdf
-        pdf.set_xy(30, 50)
-        pdf.image(img_fn, w=140, h=110)
-        pdf.output(pdf_fn)
+        #pdf.set_xy(30, 50)
+        #pdf.image(img_fn, w=140, h=110)
+        #pdf.output(pdf_fn)
     
    
         fig, ax = plt.subplots(figsize=(4,2))
