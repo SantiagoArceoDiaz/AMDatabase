@@ -440,7 +440,7 @@ with tab1:
         Xdeptset=set(df2019BS.loc[df2019BS['Int_Barthel']==4.0].index)
         st.write("Los pacientes con un diagnostico de dependencia total son:", Xdeptset)
         
-        fig, ax = plt.subplots(figsize=[14, 12])
+        Independientes, ax = plt.subplots(figsize=[14, 12])
         Xindep.hist(ax=ax)
 
         # Guardar figura
@@ -448,26 +448,21 @@ with tab1:
 
         # Mostrar figura en Streamlit
         st.write("Histograma de la variable independiente X")
-        st.pyplot(fig)
+        st.pyplot(Independientes)
 
-        # Graficar histogramas de características de entrada
-        #fig, axes = plt.subplots(nrows=2, ncols=4, figsize=[16, 8])
-        #for i, column in enumerate(Xindep.columns):
-        #        Xindep[column].plot(kind='hist', bins=20, ax=axes[i//4, i%4])
-        #plt.tight_layout()
-
-        # Guardar figura
-        #plt.savefig("Xindep2019.png", bbox_inches='tight', dpi=300)
-
-        # Graficar histogramas de características de salida
-        #Xdepl_df = pd.DataFrame(Xdeplset, columns=['Xdepl'])  # convertir conjunto a DataFrame
-        #Xdepl_df.hist(figsize=[14, 12], bins=20)
-        #st.pyplot()
-        
-        
+        # Prepare file for download.
+        dfn = "Xindep2019.png"
+        with open(dfn, "rb") as f:
+            st.download_button(
+            label="Descargar imagen",
+            data=f,
+            file_name=dfn,
+            mime="image/png"
+         )
+               
         
 	############
-        fig, ax = plt.subplots(figsize=[14, 12])
+        Dependientesleves, ax = plt.subplots(figsize=[14, 12])
         Xdepl.hist(ax=ax)
 
         # Guardar figura
@@ -475,7 +470,7 @@ with tab1:
 
         # Mostrar figura en Streamlit
         st.write("Histograma de la variable independiente X")
-        st.pyplot(fig)
+        st.pyplot(Dependientesleves)
  
 	
 	# Prepare file for download.
@@ -490,7 +485,7 @@ with tab1:
 	
 	
 
-        fig, ax = plt.subplots(figsize=[14, 12])
+        Dependientesmoderado, ax = plt.subplots(figsize=[14, 12])
         Xdepm.hist(ax=ax)
 
         # Guardar figura
@@ -498,7 +493,7 @@ with tab1:
 
         # Mostrar figura en Streamlit
         st.write("Histograma de la variable independiente X")
-        st.pyplot(fig)
+        st.pyplot(Dependientesmoderado)
 
         # Prepare file for download.
         dfn = "Xdepm2019.png"
@@ -512,7 +507,7 @@ with tab1:
 	
 	
 
-        fig, ax = plt.subplots(figsize=[14, 12])
+        Dependientesseveros, ax = plt.subplots(figsize=[14, 12])
         Xdeps.hist(ax=ax)
 
         # Guardar figura
@@ -520,7 +515,7 @@ with tab1:
 
         #Mostrar figura en Streamlit
         st.write("Histograma de la variable independiente X")
-        st.pyplot(fig)
+        st.pyplot(Dependientesseveros)
 
 	
 	# Prepare file for download.
