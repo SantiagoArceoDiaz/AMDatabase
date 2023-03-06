@@ -373,8 +373,7 @@ with tab1:
     with tab2:
         st.markdown(
         """ 
-        # Resumen estadistico de la muestra
-        Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
+        A continuacion se muestran los resultados del test de Barthel para los pacientes de la muestra de 2019.
         """)
         
         #carga los datos de los archivos de excel con los resultados del test de Barthel
@@ -383,11 +382,11 @@ with tab1:
         df2019
         
         st.markdown("""
-        De acuerdo al test de Cronbach, la confiabilidad del cuestionario es:
+        El test de Cronbach permite evaluar la confiabilidad de las respuestas de los pacientes al cuestionario. De acuerdo al test de Cronbach, la confiabilidad del cuestionario es:
         """
                    )
         Cr=pg.cronbach_alpha(data=df2019[['B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete','B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina']])
-        st.write(Cr)
+        st.write("Nivel de confiabilidad", Cr)
        
         st.markdown(
         """ 
