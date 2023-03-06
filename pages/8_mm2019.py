@@ -185,14 +185,14 @@ with tab1:
                 # Filtrar el dataframe en función de los valores seleccionados en la columna
             BD2019 = BD2019[(BD2019[col] >= seleccion[0]) & (BD2019[col] <= seleccion[1])]
 
-        fig, ax = plt.subplots(figsize=(1, 0.75))
+        fig, ax = plt.subplots(figsize=(3, 2))
         venn2019 = venn2([Setdf2019, SetDBEdades], set_labels=('Muestra de 2019', 'Muestra total'), set_colors=('red', 'blue'))
         st.pyplot(fig) 
         st.caption("Comparativa entre los usuarios pertenecientes al año 2019 y el total, correspondiente a 2018-2021.")
 
         # Save to png
         img_fn = 'Venn 2019.png'
-        fig.savefig(img_fn, dpi=150)
+        fig.savefig(img_fn, dpi=75)
 
         # Prepare file for download.
         dfn = 'Venn 2019.png'
