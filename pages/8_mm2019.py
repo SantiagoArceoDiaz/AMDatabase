@@ -230,23 +230,26 @@ with tab1:
         )
 
    
-        fig, ax = plt.subplots(figsize=(3,2))
-        venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Muestra de 2019', 'Muestra total'), set_colors=('red','blue'))
-        st.pyplot(fig)
+
+	
+	fig, ax = plt.subplots(figsize=(6, 4))
+        venn2019 = venn2([Setdf2019, SetDBEdades], set_labels=('Muestra de 2019', 'Muestra total'), set_colors=('red', 'blue'))
+        st.pyplot(fig) 
         st.caption("Comparativa entre los usuarios pertenecientes al año 2019 y el total, correspondiente a 2018-2021.")
-    
+
         # Save to png
         img_fn = 'Venn 2019.png'
-        fig.savefig(img_fn)
+        fig.savefig(img_fn, dpi=150)
 
         # Prepare file for download.
         dfn = 'Venn 2019.png'
         with open(img_fn, "rb") as f:
             st.download_button(
-                label="Descargar imagen",
-                data=f,
-                file_name=dfn,
-                mime="image/png")
+            label="Descargar imagen",
+            data=f,
+            file_name=dfn,
+            mime="image/png")
+
 
         st.markdown(
         """ 
