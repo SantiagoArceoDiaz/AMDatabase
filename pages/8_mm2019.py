@@ -1306,12 +1306,14 @@ with tabs3:
     st.write("Precisión:", accuracy)
     
     # Graficar importancia de características
+    
+    
     feature_importances = pd.Series(classifier.feature_importances_, index=X_train.columns)
-    feature_importances.plot(kind='barh')
+    importancia = feature_importances.plot(kind='barh')
     plt.title("Importancia de características")
-    st.pyplot()
+    st.pyplot(importancia)
  
-        
+
     
     # Graficar árbol
     plt.figure(figsize=(15,10))
