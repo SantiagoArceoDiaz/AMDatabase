@@ -96,11 +96,11 @@ tab1, tab2, tab3, tab4 = st.tabs(["Muestra depurada", "Estadistica descriptiva",
 with tab1:
    
     st.markdown(
-        """ 
-        # Sobre la muestra
+        """
+	<div style="text-align: justify">
+        #
         Se depuro la muestra para eliminar aquellos registros que presentaban informacion incompleta. En las siguientes secciones se presentan dos diferentes tipos de bases de datos: una en la que se incluyen los resultados generales de diversas pruebas y otra en la que se muestran los resultados del test de Barthel.
-        """        
-    )
+        """, unsafe_allow_html=True)
 
     tab1, tab2 = st.tabs(["Pruebas antropometricas", "Test de Barthel"])
 
@@ -261,6 +261,41 @@ with tab1:
                 file_name=dfn,
                 mime="image/png")
 
+	# localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Masculino."
+        Hombres2019=BD2019.loc[BD2019['Sexo']=="Mas"]
+        del Hombres2019['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
+        Hombres2019 # Muestra el dataframe con datos de hombres.
+
+        st.markdown(
+        """ 
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
+
+        Hombres2019.describe() # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
+
+        st.markdown(
+        """ 
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
+
+        Mujeres2019=BD2019.loc[BD2019['Sexo']=="Fem"] # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Femenino."
+
+        del Mujeres2019['Sexo']
+        Mujeres2019
+
+        st.markdown(
+        """ 
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
+
+        Mujeres2019.describe() # dEscripcion del Dataframe de "Mujeres"
+	
+	
+	
+	
     with tab2:
         st.markdown(
         """ 
