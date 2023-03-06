@@ -306,7 +306,7 @@ with tab1:
 
         st.markdown(
         """ 
-        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        A continuacion se muestra la submuestra de pacientes de genero "masculino". Si desea descargarla como "excel" o "csv" puede hacerlo presionando los botones correspondientes. 
         """
         )
 	
@@ -315,12 +315,30 @@ with tab1:
         del Hombres2019['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
         st.write(Hombres2019, text_align='center') # Muestra el dataframe con datos de hombres.
 
+        # Dividir la página en dos columnas
+        col1, col2 = st.columns(2)
+
+        # Agregar un botón de descarga para el dataframe en la primera columna
+        with col1:
+            download_button(Hombres2019, 'dataframe.xlsx', 'Descargar como Excel')
+            st.write('')
+
+        # Agregar un botón de descarga para el dataframe en la segunda columna
+        with col2:
+            download_button_CSV(Hombres2019, 'dataframe.csv', 'Descargar como CSV')
+            st.write('')
+	
+	st.markdown(
+        """ 
+        Este es el resumen estadistico de la muestra de hombres
+        """
+        )
         
         st.write(Hombres2019.describe(), text_align='center') # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
 
         st.markdown(
         """ 
-        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        A continuacion se muestra la submuestra de pacientes de genero "femenino". Si desea descargarla como "excel" o "csv" puede hacerlo presionando los botones correspondientes. 
         """
         )
 
@@ -328,9 +346,22 @@ with tab1:
         del Mujeres2019['Sexo']
         st.write(Mujeres2019, text_align='center')
 
-        st.markdown(
+        # Dividir la página en dos columnas
+        col1, col2 = st.columns(2)
+
+        # Agregar un botón de descarga para el dataframe en la primera columna
+        with col1:
+            download_button(Mujeres2019, 'dataframe.xlsx', 'Descargar como Excel')
+            st.write('')
+
+        # Agregar un botón de descarga para el dataframe en la segunda columna
+        with col2:
+            download_button_CSV(Mujeres2019, 'dataframe.csv', 'Descargar como CSV')
+            st.write('')
+	
+	st.markdown(
         """ 
-        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        Este es el resumen estadistico de la muestra de hombres
         """
         )
 
