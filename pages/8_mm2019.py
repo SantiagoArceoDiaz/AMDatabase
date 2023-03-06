@@ -102,6 +102,17 @@ with tab1:
         """        
     )
 
+    tab1, tab2 = ["Pruebas antropometricas", "Test de Barthel"]
+
+    with tab1:
+		
+        st.markdown(
+	"""
+	<div style="text-align: justify">
+	Se registro el nombre, sexo y edad de cada paciente en la base de datos. Adicionalmente, se incluyeron los resultados del indice mininutricional (MNA), velocidad de marcha y fuerza de presion de brazo, el puntaje-Z relacionado con la prueba de fragilidad share-fi, el consumo de proteinas y el resultado del test de Barthel.
+	""", unsafe_allow_html=True
+	)
+
     dfEdades=pd.read_excel('EdadesF.xlsx') # carga el archivo que contiene las edades y nombres de los pacientes
 
     dfEdades['Nombre']= dfEdades['Nombres'] + dfEdades['Apellidos'] #combina la columna de Nombres y la de Apellidos
