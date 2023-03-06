@@ -287,7 +287,7 @@ with tab1:
 
         # Muestra la gráfica en Streamlit
         with st.beta_container():
-            st.image('Pastel 2019.png', width=200)
+            st.image('Pastel 2019.png', width=400)
             st.caption("Distribución de pacientes por género en la muestra 2019.")
 
         # Prepare file for download.
