@@ -568,8 +568,8 @@ with tabs2:
 
 
     chart1=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -589,8 +589,8 @@ with tabs2:
               jitter_width=0.5).interactive()
 
     chart2=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -610,8 +610,8 @@ with tabs2:
               jitter_width=0.5).interactive()
 
     chart3=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -631,8 +631,8 @@ with tabs2:
               jitter_width=0.5).interactive()
 
     chart4=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -652,8 +652,8 @@ with tabs2:
               jitter_width=0.5).interactive()
 
     chart5=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -673,8 +673,8 @@ with tabs2:
               jitter_width=0.5).interactive()
 
     chart6=altcat.catplot(BD2019,
-               height=350,
-               width=450,
+               height=250,
+               width=350,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
                whisker_mark=dict(strokeWidth=2, opacity=0.9),
@@ -713,7 +713,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=200, width=250
+         height=300, width=350
          ).add_selection(
          selection
          ).interactive()
@@ -730,7 +730,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=200, width=250
+         height=300, width=350
          ).add_selection(
          selection
          ).interactive()
@@ -747,7 +747,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=200, width=250
+         height=300, width=350
          ).add_selection(
          selection
          ).interactive()
@@ -765,7 +765,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=200, width=250
+         height=300, width=350
          ).add_selection(
          selection
          ).interactive()
@@ -782,7 +782,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=200, width=250
+         height=300, width=350
          ).add_selection(
          selection
          ).interactive()
@@ -799,7 +799,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=200, width=250
+         height=300, width=350
          ).add_selection(
          selection
          ).interactive()
