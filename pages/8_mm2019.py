@@ -1374,12 +1374,474 @@ with tabs3:
 with tabs4:
    
     st.markdown(
+    """ 
+    # Resumen estadistico de la muestra
+    Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
+    """)
+        
+    tab1, tab2, tab3 = st.tabs(["Muestra general", "Grupo Mujeres", "Grupo Hombres"])
+
+    with tab1:
+   
+        st.markdown(
         """ 
-        # Sobre la muestra
-        Se depuro la muestra para eliminar aquellos registros que presentaban informacion incompleta. En las siguientes secciones se presentan dos diferentes tipos de bases de datos: una en la que se incluyen los resultados generales de diversas pruebas y otra en la que se muestran los resultados del test de Barthel.
-        """        
-        )
+        # Resumen estadistico de la muestra
+        Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
+        """)
+        
+        #carga los datos de los archivos de excel con los resultados del test de Barthel
+        df2019 = pd.read_excel('2019barthel.xlsx')
+        df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
+        df2019
+        
+        st.markdown("""
+        De acuerdo al test de Cronbach, la confiabilidad del cuestionario es:
+        """
+                   )
+        Cr=pg.cronbach_alpha(data=df2019[['B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete','B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina']])
+        st.write(Cr)
+       
+        st.markdown(
+        """ 
+        # Resumen estadistico de la muestra
+        Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
+        """)
+
+        ListadfBarth2019=df2019['Nombre'].tolist() # crea una lista con los usuarios de 2019
+        SetdfBarth2019=set(Listadf2019) # crea un conjunto a partir de la lista de usuarios de 2019   
+        
+        df2019BS=df2019[['Nombre','Sexo','Edad','B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete',
+       'B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina',
+       'Int_Barthel']]
+        
+        from operator import index
+        Xindep=df2019BS.loc[df2019BS['Int_Barthel']==0.0]
+        Xindepset=set(df2019BS.loc[df2019BS['Int_Barthel']==0.0].index)
+        Xindepset
+        
+        from operator import index
+        Xdepl=df2019BS.loc[df2019BS['Int_Barthel']==1.0]
+        Xdeplset=set(df2019BS.loc[df2019BS['Int_Barthel']==1.0].index)
+        Xdeplset
+        
+        from operator import index
+        Xdepm=df2019BS.loc[df2019BS['Int_Barthel']==2.0]
+        Xdepmset=set(df2019BS.loc[df2019BS['Int_Barthel']==2.0].index)
+        Xdepmset
+        
+        from operator import index
+        Xdeps=df2019BS.loc[df2019BS['Int_Barthel']==3.0]
+        Xdepsset=set(df2019BS.loc[df2019BS['Int_Barthel']==3.0].index)
+        Xdepsset
+        
+        from operator import index
+        Xdept=df2019BS.loc[df2019BS['Int_Barthel']==4.0]
+        Xdeptset=set(df2019BS.loc[df2019BS['Int_Barthel']==4.0].index)
+        Xdeptset
+        
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xindep.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xindep2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+        
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepl.hist(ax=ax)
+        
+        # Guardar figura
+        plt.savefig("Xdepl2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+        
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepm.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdepm2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+    
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdeps.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdeps2019.png", bbox_inches='tight', dpi=300)
+
+        #Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+
+        
+        
+        
+    with tab2:
+   
+        st.markdown(
+        """ 
+        # Resumen estadistico de la muestra
+        Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
+        """)
+        
+    with tab3:
+   
+        st.markdown(
+        """ 
+        # Resumen estadistico de la muestra
+        Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
+        """)
+        
+        
+        
+	#a program to find the lower approximation of a feature/ set of features#mohana palaka
+
+        import time
+        def indiscernibility(attr, table):
+            u_ind = {}	#an empty dictionary to store the elements of the indiscernibility relation (U/IND({set of attributes}))
+            attr_values = []	#an empty list to tore the values of the attributes
+            for i in (table.index):
+                attr_values = []
+                for j in (attr):
+                    attr_values.append(table.loc[i, j])	#find the value of the table at the corresponding row and the desired attribute and add it to the attr_values list
+		#convert the list to a string and check if it is already a key value in the dictionary
+                key = ''.join(str(k) for k in (attr_values))
+                if(key in u_ind):	#if the key already exists in the dictionary
+                    u_ind[key].add(i)
+                else:	#if the key does not exist in the dictionary yet
+                    u_ind[key] = set()
+                    u_ind[key].add(i)
+            return list(u_ind.values())
+
+
+        def lower_approximation(R, X):	#We have to try to describe the knowledge in X with respect to the knowledge in R; both are LISTS OS SETS [{},{}]
+            l_approx = set()	#change to [] if you want the result to be a list of sets
+
+
+            for i in range(len(X)):
+                for j in range(len(R)):
+                    if(R[j].issubset(X[i])):
+                        l_approx.update(R[j])	#change to .append() if you want the result to be a list of sets
+            return l_approx
+
+
+        def gamma_measure(describing_attributes, attributes_to_be_described, U, table):	#a functuon that takes attributes/features R, X, and the universe of objects
+            f_ind = indiscernibility(describing_attributes, table)
+            t_ind = indiscernibility(attributes_to_be_described, table)
+            f_lapprox = lower_approximation(f_ind, t_ind)
+            return len(f_lapprox)/len(U)
+
+
+
+        def quick_reduct(C, D, table):	#C is the set of all conditional attributes; D is the set of decision attributes
+            reduct = set()
+            gamma_C = gamma_measure(C, D, table.index, table)
+            st.write(gamma_C)
+            gamma_R = 0
+            while(gamma_R < gamma_C):
+                T = reduct
+                for x in (set(C) - reduct):
+                    feature = set()	#creating a new set to hold the currently selected feature
+                    feature.add(x)
+                    st.write(feature)
+                    new_red = reduct.union(feature)	#directly unioning x separates the alphabets of the feature...
+                    gamma_new_red = gamma_measure(new_red, D, table.index, table)
+                    gamma_T = gamma_measure(T, D, table.index, table)
+                    if(gamma_new_red > gamma_T):
+                        T = reduct.union(feature)
+                        st.write("added")
+                reduct = T
+                        #finding the new gamma measure of the reduct
+                gamma_R = gamma_measure(reduct, D, table.index, table)
+                st.write(gamma_R)
+            return reduct
+        t1 = time.time()
+
+
+        final_reduct=quick_reduct(df2019BS.columns[3:-1],[df2019BS.columns[-1]],df2019BS)
+        st.write("Serial took : ", str(time.time() - t1))
+        st.write(final_reduct)
 	
+        columnas = list(final_reduct)
+        columnasf= ['Nombre','Sexo','Edad']+list(final_reduct)+['Int_Barthel']
+        #columnasf
+        dfBS=df2019BS[columnasf]
+        Xindep=dfBS.loc[dfBS['Int_Barthel']==0.0]
+        Xindepset=set(dfBS.loc[dfBS['Int_Barthel']==0.0].index)
+        Xindepset
+        
+        from operator import index
+        Xdepl=dfBS.loc[dfBS['Int_Barthel']==1.0]
+        Xdeplset=set(dfBS.loc[dfBS['Int_Barthel']==1.0].index)
+        Xdeplset
+        
+        from operator import index
+        Xdepm=dfBS.loc[dfBS['Int_Barthel']==2.0]
+        Xdepmset=set(dfBS.loc[dfBS['Int_Barthel']==2.0].index)
+        Xdepmset
+        
+        from operator import index
+        Xdeps=dfBS.loc[dfBS['Int_Barthel']==3.0]
+        Xdepsset=set(dfBS.loc[dfBS['Int_Barthel']==3.0].index)
+        Xdepsset
+        
+        from operator import index
+        Xdept=dfBS.loc[dfBS['Int_Barthel']==4.0]
+        Xdeptset=set(dfBS.loc[dfBS['Int_Barthel']==4.0].index)
+        Xdeptset
+        
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xindep.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xindep2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+
+        
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepl.hist(ax=ax)
+        
+        # Guardar figura
+        plt.savefig("Xdepl2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+        
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepm.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdepm2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+    
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdeps.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdeps2019.png", bbox_inches='tight', dpi=300)
+
+        #Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+        U=dfBS.columns[1:-1]
+        IND=indiscernibility(U, dfBS)
+        
+        # Lista de conjuntos
+        conjuntos = [{0}, {1, 2, 3, 6, 7, 8, 12, 13, 14, 16, 17, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 34, 36, 37, 39, 40, 41, 45, 46, 48, 50, 52, 53, 54, 55, 56, 57, 58, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 76, 77, 78, 79, 80, 83, 84, 85, 86, 87, 88, 89, 90, 92, 95, 96, 97, 98, 100, 105, 107, 109, 112, 113, 115, 116, 117, 118, 119, 120, 121, 122, 126, 127, 128, 129, 131, 133, 134, 136, 137, 141, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 155, 156, 157, 158, 159, 161, 162, 163, 164, 165, 166, 167}, {32, 33, 4, 138, 139, 51}, {5}, {130, 9, 75, 110, 142, 18, 114, 22, 153, 123}, {10}, {11}, {15}, {35}, {38}, {81, 49, 42, 93}, {59, 43, 108}, {44, 47}, {82, 94, 106}, {91}, {99}, {101}, {102}, {103}, {104}, {111}, {160, 140, 124}, {125, 135}, {132}, {154}]
+
+
+        # Crear un dataframe vacío
+        df = pd.DataFrame()
+
+        # Función para actualizar el dataframe a mostrar y generar el gráfico de radar
+        def actualizar_df(idx):
+           conjunto = conjuntos[idx]
+           df_name = f'df_{idx}'
+           globals()[df_name] = dfBS.loc[conjunto]
+           df = globals()[df_name]
+           cols = df.columns[3:]
+           valores = df[cols].mean().values.tolist()
+           valores.append(valores[0])
+           angles = [n / float(len(cols)) * 2 * np.pi for n in range(len(cols))]
+           angles.append(angles[0])
+           #color = df.iloc[0,-1] # Obtener el color de relleno del valor de la última columna
+		
+           color_code = df.iloc[0,-1] # Obtener el código de color del valor de la última columna
+           if color_code == 0:
+               color = 'green'
+           elif color_code == 1:
+               color = 'yellow'
+           elif color_code == 2:
+               color = 'orange'
+           elif color_code == 3:
+               color = 'red'
+           else:
+               color = 'gray'		
+           fig = plt.figure(figsize=(3, 3))
+           ax = fig.add_subplot(111, polar=True)
+           ax.plot(angles, valores, label='Promedio', color=color) # Establecer el color de relleno correspondiente
+           ax.fill(angles, valores, alpha=0.3, color=color)
+           ax.set_xticks(angles[:-1])
+           ax.set_xticklabels(cols)
+           rticks = np.arange(5, max(valores), 5)
+           ax.set_rticks(rticks)
+           # Agregar leyenda de texto con el número de filas del dataframe
+           n_rows = df.shape[0]
+           ax.text(0.5, 1.1, f'Nº de pacientes: {n_rows}', transform=ax.transAxes, ha='center')
+           #plt.close() 
+           return globals()[df_name], fig
+
+        # Crear un panel de pestañas para mostrar los dataframes y gráficos de radar correspondientes
+        tabs = st.tabs(["Conjunto "+str(i) for i in range(len(conjuntos))])
+        for i, tab in enumerate(tabs):
+           with tab:
+                df, fig = actualizar_df(i)
+                st.write(f"Dataframe para el conjunto {conjuntos[i]}:")
+                st.write(df)
+                st.pyplot(fig)	
+	
+
+        ## get feature and target columns
+        Xbart = dfBS.iloc[:, 3:-1]
+        ybart = dfBS.iloc[:, -1]
+        
+        Xbart_train, Xbart_test, ybart_train, ybart_test = train_test_split(Xbart, ybart, test_size=0.3, random_state=0)
+
+        # Crear un clasificador de random forest
+        classifier = RandomForestClassifier(n_estimators=100, random_state=0)
+
+        # Entrenar el clasificador con los datos de entrenamiento
+        classifier.fit(Xbart_train, ybart_train)
+
+        # Predecir las clases del conjunto de prueba
+        ybart_pred = classifier.predict(Xbart_test)
+        st.write("valores predichos", ybart_pred)
+
+        # Calcular la precisión del modelo
+        accuracy = accuracy_score(ybart_test, ybart_pred)
+        #print("Precisión:", accuracy)
+        st.write("## Resultados de Random Forest")
+        st.write("Precisión:", accuracy)
+    
+     
+        importancia, ax = plt.subplots(figsize=(15,10))
+        feature_importances = pd.Series(classifier.feature_importances_, index=Xbart_train.columns)
+        feature_importances.plot(kind='barh')
+        ax.set_title("Importancia de características")
+        st.pyplot(importancia)
+
+
+
+	# Graficar árbol
+        bartarbol, ax = plt.subplots(figsize=(15,10))
+        tree.plot_tree(classifier.estimators_[0], feature_names=Xbart_train.columns, filled=True, ax=ax)
+        ax.set_title("Árbol de decisión")
+        st.pyplot(bartarbol)
+	
+	
+        # Graficar matriz de confusión
+        cfbart=confusion_matrix(ybart_test, ybart_pred)
+
+
+        confbart, ax = plt.subplots(figsize=(8, 6))
+        sns.heatmap(cfbart/np.sum(cfbart), annot=True, fmt='.2%', cmap='Blues', ax=ax)
+
+        ax.set_title('Seaborn Confusion Matrix with labels\n\n');
+        ax.set_xlabel('\nPredicted Flower Category')
+        ax.set_ylabel('Actual Flower Category ');
+
+        ## Ticket labels - List must be in alphabetical order
+        ax.xaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+        ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+
+        ## Display the visualization of the Confusion Matrix.
+        st.pyplot(confbart)
+
+        # Generar matriz de confusión
+        cfbart_matrix = confusion_matrix(ybart_test, ybart_pred)
+        sns.heatmap(cfbart_matrix/np.sum(cfbart_matrix), annot=True, fmt='.2%', cmap='Blues', ax=ax)
+
+	
+	
+## get feature and target columns
+        XbartF = df2019BS.iloc[:, 3:-1]
+        ybartF = df2019BS.iloc[:, -1]
+        
+        XbartF_train, XbartF_test, ybartF_train, ybartF_test = train_test_split(XbartF, ybartF, test_size=0.3, random_state=0)
+
+        # Crear un clasificador de random forest
+        classifier = RandomForestClassifier(n_estimators=100, random_state=0)
+
+        # Entrenar el clasificador con los datos de entrenamiento
+        classifier.fit(XbartF_train, ybartF_train)
+
+        # Predecir las clases del conjunto de prueba
+        ybartF_pred = classifier.predict(XbartF_test)
+        st.write("valores predichos", ybartF_pred)
+
+        # Calcular la precisión del modelo
+        accuracy = accuracy_score(ybartF_test, ybartF_pred)
+        #print("Precisión:", accuracy)
+        st.write("## Resultados de Random Forest")
+        st.write("Precisión:", accuracy)
+    
+        # Graficar importancia de características
+        
+        #feature_importances = pd.Series(classifier.feature_importances_, index=Xbart_train.columns)
+        #feature_importances.plot(kind='barh')
+        #plt.title("Importancia de características")
+        #st.pyplot()
+     
+        importanciaF, ax = plt.subplots(figsize=(15,10))
+        feature_importances = pd.Series(classifier.feature_importances_, index=XbartF_train.columns)
+        feature_importances.plot(kind='barh')
+        ax.set_title("Importancia de características")
+        st.pyplot(importanciaF)
+
+	# Graficar árbol
+        bartarbolF, ax = plt.subplots(figsize=(15,10))
+        tree.plot_tree(classifier.estimators_[0], feature_names=XbartF_train.columns, filled=True, ax=ax)
+        ax.set_title("Árbol de decisión")
+        st.pyplot(bartarbolF)
+	
+	
+        # Graficar matriz de confusión
+        cfbartF=confusion_matrix(ybartF_test, ybartF_pred)
+
+
+        confbartF, ax = plt.subplots(figsize=(8, 6))
+        sns.heatmap(cfbartF/np.sum(cfbartF), annot=True, fmt='.2%', cmap='Blues', ax=ax)
+
+        ax.set_title('Seaborn Confusion Matrix with labels\n\n');
+        ax.set_xlabel('\nPredicted Flower Category')
+        ax.set_ylabel('Actual Flower Category ');
+
+        ## Ticket labels - List must be in alphabetical order
+        ax.xaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+        ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+
+        ## Display the visualization of the Confusion Matrix.
+        st.pyplot(confbart)
+
+        # Generar matriz de confusión
+        cfbartF_matrix = confusion_matrix(ybartF_test, ybartF_pred)
+        sns.heatmap(cfbartF_matrix/np.sum(cfbartF_matrix), annot=True, fmt='.2%', cmap='Blues', ax=ax)
+  
+
+
+
+	 # Crear gráfica de errores de predicción
+        figF, ax = plt.subplots()
+        ax.set_title("Matriz de confusión")
+        ax.set_ylabel('Valores reales')
+        ax.set_xlabel('Valores predichos')
+        tick_marks = np.arange(len(set(ybartF))) + 0.5
+        ax.set_xticks(tick_marks, set(ybartF))
+        ax.set_yticks(tick_marks, set(ybartF))
+        ax.set_xticklabels(sorted(set(ybartF)))
+        ax.set_yticklabels(sorted(set(ybartF)))
+        ax.xaxis.tick_top()
+        threshold = cfbartF_matrix.max() / 2
+#for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
+        for i in range(cfbartF_matrix.shape[0]):
+            for j in range(cfbartF_matrix.shape[1]):                                                                                                                                                                                                                                                                                                                                                                                                                            
+                ax.text(j, i, format(cfbartF_matrix[i, j], '.2f'), horizontalalignment="center", color="white" if cfbart_matrix[i, j] > threshold else "black")
+        ax.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
+        ax.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
+        st.pyplot(figF)
 	
 	
 	
