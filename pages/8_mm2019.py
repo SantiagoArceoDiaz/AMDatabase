@@ -1173,65 +1173,6 @@ with tabs3:
     for r in rules:
         st.write(r)
 
-#######################################
-
-    import streamlit as st
-    import pandas as pd
-    from sklearn.tree import DecisionTreeClassifier
-    import matplotlib.pyplot as plt
-    import numpy as np
-
-
-
-    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
-## get feature and target columns
-    X = BD2019.iloc[:, 1:-2]
-    y = BD2019.iloc[:, -2]
-
-# Modificamos el número de filas y columnas
-    num_cols = 3
-    plots_per_col = 5
-    num_plots = X.shape[1] * (X.shape[1]-1) // 2
-
-# Eliminamos algunos subgráficos si es necesario para que el número total de subgráficos sea un múltiplo de 3
-    num_extra_plots = num_plots % num_cols
-    if num_extra_plots > 0:
-        num_plots -= num_extra_plots
-
-# iterate over all possible pairs of features
-    plot_count = 0
-    for i in range(X.shape[1]):
-        for j in range(i + 1, X.shape[1]):
-        # fit decision tree classifier
-            clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
-
-        # create a meshgrid to plot the decision surface
-            x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
-            y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
-            xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
-                             np.arange(y_min, y_max, 0.02))
-
-        # predict on the meshgrid
-            Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-            Z = Z.reshape(xx.shape)
-
-        # plot the decision surface
-            plot_count += 1
-            if plot_count <= num_plots:
-                plt.subplot(int(num_plots/num_cols), num_cols, plot_count)
-                plt.contourf(xx, yy, Z, alpha=0.4)
-                plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
-                plt.xlabel(X.columns[i])
-                plt.ylabel(X.columns[j])
-                #plt.remove()
-
-    # add suptitle to the figure
-    plt.suptitle('Decision surfaces of a decision tree')
-    plt.subplots_adjust(hspace=0.8)
-    # display the plot in Streamlit
-    st.pyplot()
-
-###################################
 
     import streamlit as st
     import pandas as pd
@@ -1289,6 +1230,7 @@ with tabs3:
     # display the plot in Streamlit
     st.pyplot(fig)
 
+#######################################3
 
 
     import streamlit as st
@@ -1329,9 +1271,50 @@ with tabs3:
     plt.show()
     st.pyplot()
 
+#################################################
 
+    import streamlit as st
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from sklearn.tree import DecisionTreeClassifier
 
-    
+    # define a function to plot the decision surface
+    def plot_decision_surface(X, y, feature1, feature2):
+        clf = DecisionTreeClassifier().fit(X.loc[:, [feature1, feature2]], y)
+        x_min, x_max = X.loc[:, feature1].min() - 1, X.loc[:, feature1].max() + 1
+        y_min, y_max = X.loc[:, feature2].min() - 1, X.loc[:, feature2].max() + 1
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02), np.arange(y_min, y_max, 0.02))
+        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+        Z = Z.reshape(xx.shape)
+        fig, ax = plt.subplots()
+        ax.contourf(xx, yy, Z, alpha=0.4)
+        ax.scatter(X.loc[:, feature1], X.loc[:, feature2], c=y, alpha=0.8)
+        ax.set_xlabel(feature1)
+        ax.set_ylabel(feature2)
+        ax.set_title('Decision surface of a decision tree')
+        return fig
+
+    # load the data
+    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+
+    # get feature and target columns
+    X = BD2019.iloc[:, 1:-2]
+    y = BD2019.iloc[:, -2]
+
+    # set up the sidebar inputs
+    st.sidebar.header('Select two features to display the decision surface')
+    feature1 = st.sidebar.selectbox('First feature', X.columns)
+    feature2 = st.sidebar.selectbox('Second feature', X.columns)
+
+    # plot the decision surface based on the selected features
+    fig = plot_decision_surface(X, y, feature1, feature2)
+
+    # display the plot in Streamlit
+    st.pyplot(fig)
+ 
+	
+	
+	
     import pandas as pd
     from sklearn.ensemble import RandomForestClassifier
     from sklearn.model_selection import train_test_split
