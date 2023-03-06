@@ -252,6 +252,7 @@ with tab1:
             download_button_CSV(df, 'dataframe.csv', 'Descargar como CSV')
             st.write('')
 
+		
         st.markdown(
         """ 
         # Diagrama de venn 👋
@@ -260,6 +261,24 @@ with tab1:
         )
 
    
+        import streamlit as st
+        import matplotlib.pyplot as plt
+
+        # Cuenta el número de pacientes por sexo
+        count_sexo = BD2019['Sexo'].value_counts()
+
+        # Crea una lista con los valores de la cuenta
+        values = count_sexo.values.tolist()
+
+        # Crea una lista con las etiquetas del sexo
+        labels = count_sexo.index.tolist()
+
+        # Crea la gráfica de pastel
+        fig, ax = plt.subplots()
+        ax.pie(values, labels=labels)
+
+        # Muestra la gráfica en Streamlit
+        st.pyplot(fig, use_container_width=True)
 
 	
 
