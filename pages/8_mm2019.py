@@ -228,7 +228,7 @@ with tab1:
             # Guardar el dataframe en el objeto ExcelWriter
             df.to_excel(excel_writer, index=False)
             # Cerrar el objeto ExcelWriter
-            excel_writer.save()
+            excel_writer.save_as()
             # Leer el archivo guardado como bytes
             with open(filename, 'rb') as f:
                 file_bytes = f.read()
