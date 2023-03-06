@@ -378,7 +378,32 @@ with tab1:
         st.pyplot(fig)
 	############################################################################################################################################
 	
+with tab2:
+   
+    st.markdown(
+        """ 
+        # Sobre la muestra
+        Se depuro la muestra para eliminar aquellos registros que presentaban informacion incompleta. En las siguientes secciones se presentan dos diferentes tipos de bases de datos: una en la que se incluyen los resultados generales de diversas pruebas y otra en la que se muestran los resultados del test de Barthel.
+        """        
+    )
 	
+with tab3:
+   
+    st.markdown(
+        """ 
+        # Sobre la muestra
+        Se depuro la muestra para eliminar aquellos registros que presentaban informacion incompleta. En las siguientes secciones se presentan dos diferentes tipos de bases de datos: una en la que se incluyen los resultados generales de diversas pruebas y otra en la que se muestran los resultados del test de Barthel.
+        """        
+    )
+	
+with tab4:
+   
+    st.markdown(
+        """ 
+        # Sobre la muestra
+        Se depuro la muestra para eliminar aquellos registros que presentaban informacion incompleta. En las siguientes secciones se presentan dos diferentes tipos de bases de datos: una en la que se incluyen los resultados generales de diversas pruebas y otra en la que se muestran los resultados del test de Barthel.
+        """        
+    )
 	
 	
 	
