@@ -1013,7 +1013,7 @@ with tabs3:
     theta_optimal = Multivariable_Linear_Regression(X_transform, y, 0.03, 30000)
 
     # Create a new dataframe with the original data and predicted values
-    X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas','BARTHEL'])
+    X_transform_df = pd.DataFrame(X_transform, columns=['Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', 'Proteinas'])
     predictions = np.dot(X_transform_df, theta_optimal[1:]) + theta_optimal[0]
     BD2019_with_predictions = BD2019.assign(Predicted_BARTHEL=predictions)
 
