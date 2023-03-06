@@ -1173,7 +1173,7 @@ with tabs3:
     for r in rules:
         st.write(r)
 
-
+#######################################
 
     import streamlit as st
     import pandas as pd
@@ -1230,6 +1230,66 @@ with tabs3:
     plt.subplots_adjust(hspace=0.8)
     # display the plot in Streamlit
     st.pyplot()
+
+###################################
+
+    import streamlit as st
+    import pandas as pd
+    from sklearn.tree import DecisionTreeClassifier
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+
+    ## get feature and target columns
+    X = BD2019.iloc[:, 1:-2]
+    y = BD2019.iloc[:, -2]
+
+    # Modificamos el número de filas y columnas
+    num_cols = 3
+    plots_per_col = 5
+    num_plots = X.shape[1] * (X.shape[1]-1) // 2
+
+    # Eliminamos algunos subgráficos si es necesario para que el número total de subgráficos sea un múltiplo de 3
+    num_extra_plots = num_plots % num_cols
+    if num_extra_plots > 0:
+        num_plots -= num_extra_plots
+
+    # iterate over all possible pairs of features
+    plot_count = 0
+    fig, axs = plt.subplots(int(num_plots/num_cols), num_cols, figsize=(12,12))
+    for i in range(X.shape[1]):
+        for j in range(i + 1, X.shape[1]):
+            # fit decision tree classifier
+            clf = DecisionTreeClassifier().fit(X.iloc[:, [i, j]], y)
+
+            # create a meshgrid to plot the decision surface
+            x_min, x_max = X.iloc[:, i].min() - 1, X.iloc[:, i].max() + 1
+            y_min, y_max = X.iloc[:, j].min() - 1, X.iloc[:, j].max() + 1
+            xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                             np.arange(y_min, y_max, 0.02))
+
+            # predict on the meshgrid
+            Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+            Z = Z.reshape(xx.shape)
+
+            # plot the decision surface
+            plot_count += 1
+            if plot_count <= num_plots:
+                row = (plot_count-1) // num_cols
+                col = (plot_count-1) % num_cols
+                axs[row][col].contourf(xx, yy, Z, alpha=0.4)
+                axs[row][col].scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
+                axs[row][col].set_xlabel(X.columns[i])
+                axs[row][col].set_ylabel(X.columns[j])
+
+    # add suptitle to the figure
+    fig.suptitle('Decision surfaces of a decision tree')
+    fig.subplots_adjust(hspace=0.8)
+    # display the plot in Streamlit
+    st.pyplot(fig)
+
+
 
     import streamlit as st
     import matplotlib.pyplot as plt
