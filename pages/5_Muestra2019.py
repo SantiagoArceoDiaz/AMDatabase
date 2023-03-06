@@ -11,8 +11,6 @@ from matplotlib import numpy as np #importar numpy
 import altair as alt
 import altair_catplot as altcat
 import xlsxwriter
-#import os
-#import datapane as dp
 import matplotlib.pyplot as plt
 import seaborn as sns
 import sklearn as sk
@@ -28,8 +26,6 @@ from sklearn.model_selection import train_test_split
 import streamlit as st
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
-#from sklearn.metrics import plot_confusion_matrix
-#from sklearn.metrics._plot.roc_curve import plot_roc_curve
 from sklearn.metrics import RocCurveDisplay
 
 
@@ -95,14 +91,14 @@ BD2019=ddf2019[['Nombre','Sexo','Edad', 'MNA', 'Marcha', 'Fuerza', 'PuntajeZ', '
 
 
 #tab1, tab2, tab3 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes"])
-tab1, tab2, tab3, tab4 = st.tabs(["Descripción de la muestra", "Estadistica básica", "Clasificación de pacientes", "Análisis con teoría de conjuntos"])
+tab1, tab2, tab3, tab4 = st.tabs(["Muestra depurada", "Estadistica descriptiva", "Clasificación de pacientes", "Análisis con teoría de conjuntos"])
 
 with tab1:
    
     st.markdown(
         """ 
-        # Resumen estadistico de la muestra
-        Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
+        # Sobre la muestra
+        Se depuro la muestra para eliminar aquellos registros que presentaban informacion incompleta. En las siguientes secciones se presentan dos diferentes tipos de bases de datos: una en la que se incluyen los resultados generales de diversas pruebas y otra en la que se muestran los resultados del test de Barthel.
         """        
     )
 
@@ -140,7 +136,7 @@ with tab1:
     st.markdown(
         """ 
         # Descripcion de la muestra 👋
-        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de     los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de         proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
         """
         )
 
