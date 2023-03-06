@@ -234,7 +234,7 @@ with tab1:
             """
             Create pdf written to pdf_fn with the image file img_fn.
             """
-            pdf = FPDF()
+            pdf = fpdf()
             pdf.add_page()
 
         # Save to pdf
