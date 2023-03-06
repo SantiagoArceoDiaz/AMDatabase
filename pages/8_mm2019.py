@@ -229,21 +229,8 @@ with tab1:
         """
         )
 
-        # crea un diagrama de Venn en donde podemos ver los usuarios que tienen en común la base de datos de 2018 y la de edades registradas
-        #def create_pdf(img_fn, pdf_fn):
-        #    """
-        #    Create pdf written to pdf_fn with the image file img_fn.
-        #    """
-        #    pdf = fpdf()
-        #    pdf.add_page()
-
-        # Save to pdf
-        #pdf.set_xy(30, 50)
-        #pdf.image(img_fn, w=140, h=110)
-        #pdf.output(pdf_fn)
-    
    
-        fig, ax = plt.subplots(figsize=(4,2))
+        fig, ax = plt.subplots(figsize=(3,2))
         venn2019=venn2([Setdf2019, SetDBEdades], set_labels = ('Muestra de 2019', 'Muestra total'), set_colors=('red','blue'))
         st.pyplot(fig)
         st.caption("Comparativa entre los usuarios pertenecientes al año 2019 y el total, correspondiente a 2018-2021.")
@@ -272,13 +259,8 @@ with tab1:
         del Hombres2019['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
         Hombres2019 # Muestra el dataframe con datos de hombres.
 
-        st.markdown(
-        """ 
-        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-        """
-        )
-
-        Hombres2019.describe() # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
+        
+        st.write(Hombres2019.describe()) # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
 
         st.markdown(
         """ 
@@ -296,7 +278,7 @@ with tab1:
         """
         )
 
-        Mujeres2019.describe() # dEscripcion del Dataframe de "Mujeres"
+        st.write(Mujeres2019.describe()) # dEscripcion del Dataframe de "Mujeres"
 	
 	
 	
