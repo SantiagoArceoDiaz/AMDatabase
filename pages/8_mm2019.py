@@ -270,7 +270,7 @@ with tab1:
         ax.pie(values, labels=labels)
         # Agrega el conteo de individuos de cada categoría dentro de la gráfica de pastel
         fig.savefig('Pastel 2019.png', dpi=300)
-	for i, v in enumerate(values):
+        for i, v in enumerate(values):
             ax.text(i - 0.1, -0.1, str(v), fontsize=10)
         # Muestra la gráfica en Streamlit
         st.pyplot(fig)
