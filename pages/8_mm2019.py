@@ -549,12 +549,12 @@ with tabs2:
         """        
         )
     Barras2019, axes = plt.subplots(3, 2, figsize=(10, 10))
-        sns.histplot(BD2019['Edad'], ax=axes[0,0], kde=True, line_kws={'linewidth': 2})
-        sns.histplot(BD2019['MNA'], ax=axes[0,1], kde=True, line_kws={'linewidth': 2})
-        sns.histplot(BD2019['Marcha'], ax=axes[1,0], kde=True, line_kws={'linewidth': 2})
-        sns.histplot(BD2019['Fuerza'], ax=axes[1,1], kde=True, line_kws={'linewidth': 2})                      
-        sns.histplot(BD2019['PuntajeZ'], ax=axes[2,0], kde=True, line_kws={'linewidth': 2})
-        sns.histplot(BD2019['Proteinas'], ax=axes[2,1], kde=True, line_kws={'linewidth': 2})                      
+    sns.histplot(BD2019['Edad'], ax=axes[0,0], kde=True, line_kws={'linewidth': 2})
+    sns.histplot(BD2019['MNA'], ax=axes[0,1], kde=True, line_kws={'linewidth': 2})
+    sns.histplot(BD2019['Marcha'], ax=axes[1,0], kde=True, line_kws={'linewidth': 2})
+    sns.histplot(BD2019['Fuerza'], ax=axes[1,1], kde=True, line_kws={'linewidth': 2})                      
+    sns.histplot(BD2019['PuntajeZ'], ax=axes[2,0], kde=True, line_kws={'linewidth': 2})
+    sns.histplot(BD2019['Proteinas'], ax=axes[2,1], kde=True, line_kws={'linewidth': 2})                      
     st.pyplot(Barras2019)
 
     st.markdown(
