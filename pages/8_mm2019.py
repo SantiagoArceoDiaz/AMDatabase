@@ -1177,7 +1177,6 @@ with tabs3:
 
 
 
-
     import streamlit as st
     import pandas as pd
     from sklearn.tree import DecisionTreeClassifier
@@ -1186,18 +1185,22 @@ with tabs3:
 
 
 
-
-
-    # get feature and target columns
-    X = BD2019.iloc[:, 2:-2]
+    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+## get feature and target columns
+    X = BD2019.iloc[:, 1:-2]
     y = BD2019.iloc[:, -2]
 
-    # define number of columns and plots per column
+# Modificamos el número de filas y columnas
     num_cols = 3
     plots_per_col = 5
     num_plots = X.shape[1] * (X.shape[1]-1) // 2
 
-    # iterate over all possible pairs of features
+# Eliminamos algunos subgráficos si es necesario para que el número total de subgráficos sea un múltiplo de 3
+    num_extra_plots = num_plots % num_cols
+    if num_extra_plots > 0:
+        num_plots -= num_extra_plots
+
+# iterate over all possible pairs of features
     plot_count = 0
     for i in range(X.shape[1]):
         for j in range(i + 1, X.shape[1]):
@@ -1211,16 +1214,18 @@ with tabs3:
                              np.arange(y_min, y_max, 0.02))
 
         # predict on the meshgrid
-        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
-        Z = Z.reshape(xx.shape)
+            Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+            Z = Z.reshape(xx.shape)
 
         # plot the decision surface
-        plot_count += 1
-        plt.subplot(int(np.ceil(num_plots/plots_per_col)), num_cols, plot_count)
-        plt.contourf(xx, yy, Z, alpha=0.4)
-        plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
-        plt.xlabel(X.columns[i])
-        plt.ylabel(X.columns[j])
+            plot_count += 1
+            if plot_count <= num_plots:
+                plt.subplot(int(num_plots/num_cols), num_cols, plot_count)
+                plt.contourf(xx, yy, Z, alpha=0.4)
+                plt.scatter(X.iloc[:, i], X.iloc[:, j], c=y, alpha=0.8)
+                plt.xlabel(X.columns[i])
+                plt.ylabel(X.columns[j])
+                #plt.remove()
 
     # add suptitle to the figure
     plt.suptitle('Decision surfaces of a decision tree')
@@ -1228,7 +1233,146 @@ with tabs3:
     plt.subplots_adjust(hspace=0.8)
     # display the plot in Streamlit
     st.pyplot()
-	
+
+    import streamlit as st
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from sklearn.tree import DecisionTreeClassifier
+
+    # define a function to plot the decision surface
+    def plot_decision_surface(X, y, feature1, feature2):
+        clf = DecisionTreeClassifier().fit(X.loc[:, [feature1, feature2]], y)
+        x_min, x_max = X.loc[:, feature1].min() - 1, X.loc[:, feature1].max() + 1
+        y_min, y_max = X.loc[:, feature2].min() - 1, X.loc[:, feature2].max() + 1
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02), np.arange(y_min, y_max, 0.02))
+        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+        Z = Z.reshape(xx.shape)
+        plt.figure()
+        plt.contourf(xx, yy, Z, alpha=0.4)
+        plt.scatter(X.loc[:, feature1], X.loc[:, feature2], c=y, alpha=0.8)
+        plt.xlabel(feature1)
+        plt.ylabel(feature2)
+        plt.title('Decision surface of a decision tree')
+
+    # load the data
+    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+
+    # get feature and target columns
+    X = BD2019.iloc[:, 1:-2]
+    y = BD2019.iloc[:, -2]
+
+    # set up the sidebar inputs
+    st.sidebar.header('Select two features to display the decision surface')
+    feature1 = st.sidebar.selectbox('First feature', X.columns)
+    feature2 = st.sidebar.selectbox('Second feature', X.columns)
+
+    # plot the decision surface based on the selected features
+    plot_decision_surface(X, y, feature1, feature2)
+
+    # display the plot in Streamlit
+    st.pyplot()
+    
+    import pandas as pd
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.model_selection import train_test_split
+    from sklearn.metrics import accuracy_score
+
+    # Cargar el dataset
+    #iris = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
+    # Asignar nombres a las columnas
+    #iris.columns = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'class']
+
+    # Separar el conjunto de entrenamiento y de prueba
+ 
+    BD2019 = BD2019[['Nombre','Edad', 'Marcha', 'MNA', 'Fuerza', 'Proteinas', 'PuntajeZ', 'BARTHEL', 'Int_BARTHEL']]
+    ## get feature and target columns
+    X = BD2019.iloc[:, 1:-2]
+    y = BD2019.iloc[:, -1]
+        
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+    # Crear un clasificador de random forest
+    classifier = RandomForestClassifier(n_estimators=100, random_state=0)
+
+    # Entrenar el clasificador con los datos de entrenamiento
+    classifier.fit(X_train, y_train)
+
+    # Predecir las clases del conjunto de prueba
+    y_pred = classifier.predict(X_test)
+    st.write("valores predichos", y_pred)
+
+    # Calcular la precisión del modelo
+    accuracy = accuracy_score(y_test, y_pred)
+    #print("Precisión:", accuracy)
+    st.write("## Resultados de Random Forest")
+    st.write("Precisión:", accuracy)
+    
+    # Graficar importancia de características
+    feature_importances = pd.Series(classifier.feature_importances_, index=X_train.columns)
+    feature_importances.plot(kind='barh')
+    plt.title("Importancia de características")
+    st.pyplot()
+ 
+        
+    
+    # Graficar árbol
+    plt.figure(figsize=(15,10))
+    tree.plot_tree(classifier.estimators_[0], feature_names=X_train.columns, filled=True)
+    plt.title("Árbol de decisión")
+    st.pyplot()
+
+    
+    # Graficar matriz de confusión
+    cf=confusion_matrix(y_test, y_pred)
+    #plot_confusion_matrix()
+    #plt.title("Matriz de confusión")
+    #st.pyplot()
+    st.write("Matriz de confusión",cf)
+
+    import seaborn as sns
+    import matplotlib.pyplot as plt
+
+
+    ax = sns.heatmap(cf/np.sum(cf), annot=True, 
+            fmt='.2%', cmap='Blues')
+
+    ax.set_title('Seaborn Confusion Matrix with labels\n\n');
+    ax.set_xlabel('\nPredicted Flower Category')
+    ax.set_ylabel('Actual Flower Category ');
+
+## Ticket labels - List must be in alphabetical order
+    ax.xaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+    ax.yaxis.set_ticklabels(['Setosa','Versicolor', 'Virginia'])
+
+## Display the visualization of the Confusion Matrix.
+    st.pyplot()
+
+    # Generar matriz de confusión
+    cf_matrix = confusion_matrix(y_test, y_pred)
+    sns.heatmap(cf_matrix/np.sum(cf_matrix), annot=True, fmt='.2%', cmap='Blues')
+
+# Crear gráfica de errores de predicción
+    plt.title("Matriz de confusión")
+    plt.ylabel('Valores reales')
+    plt.xlabel('Valores predichos')
+    tick_marks = np.arange(len(set(y))) + 0.5
+    plt.xticks(tick_marks, set(y))
+    plt.yticks(tick_marks, set(y))
+    plt.gca().set_xticklabels(sorted(set(y)))
+    plt.gca().set_yticklabels(sorted(set(y)))
+    plt.gca().xaxis.tick_top()
+    threshold = cf_matrix.max() / 2
+    #for i, j in itertools.product(range(cf_matrix.shape[0]), range(cf_matrix.shape[1])):
+    for i in range(cf_matrix.shape[0]):
+        for j in range(cf_matrix.shape[1]):
+                plt.text(j, i, format(cf_matrix[i, j], '.2f'),
+                horizontalalignment="center",
+                color="white" if cf_matrix[i, j] > threshold else "black")
+    plt.axhline(y=0.5, xmin=0, xmax=3, color='black', linewidth=2)
+    plt.axvline(x=0.5, ymin=0, ymax=3, color='black', linewidth=2)
+    plt.show()
+    st.pyplot()
+
 	
 	
 	
