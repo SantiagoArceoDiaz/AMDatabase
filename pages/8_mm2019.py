@@ -260,7 +260,6 @@ with tab1:
         """
         )
 
-   
         import streamlit as st
         import matplotlib.pyplot as plt
 
@@ -276,6 +275,10 @@ with tab1:
         # Crea la gráfica de pastel
         fig, ax = plt.subplots()
         ax.pie(values, labels=labels)
+
+        # Agrega el conteo de individuos de cada categoría dentro de la gráfica de pastel
+        for i, v in enumerate(values):
+            ax.text(i - 0.1, -0.1, str(v), fontsize=12)
 
         # Muestra la gráfica en Streamlit
         st.pyplot(fig)
