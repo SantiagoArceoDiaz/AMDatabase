@@ -1227,11 +1227,11 @@ with tabs3:
                 #plt.remove()
 
     # add suptitle to the figure
+    fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
     plt.suptitle('Decision surfaces of a decision tree')
-
     plt.subplots_adjust(hspace=0.8)
     # display the plot in Streamlit
-    st.pyplot()
+    st.pyplot(fig)
 
     import streamlit as st
     import matplotlib.pyplot as plt
