@@ -713,7 +713,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=400, width=500
+         height=200, width=250
          ).add_selection(
          selection
          ).interactive()
@@ -730,7 +730,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=400, width=500
+         height=200, width=250
          ).add_selection(
          selection
          ).interactive()
@@ -747,7 +747,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=400, width=500
+         height=200, width=250
          ).add_selection(
          selection
          ).interactive()
@@ -765,7 +765,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=400, width=500
+         height=200, width=250
          ).add_selection(
          selection
          ).interactive()
@@ -782,7 +782,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=400, width=500
+         height=200, width=250
          ).add_selection(
          selection
          ).interactive()
@@ -799,7 +799,7 @@ with tabs2:
          ],
          opacity=alt.condition(selection, alt.value(1), alt.value(0))
          ).properties(
-         height=400, width=500
+         height=200, width=250
          ).add_selection(
          selection
          ).interactive()
