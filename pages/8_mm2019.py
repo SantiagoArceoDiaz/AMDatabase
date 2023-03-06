@@ -211,8 +211,7 @@ with tab1:
             mime="image/png")
 
 	
-        st.write(BD2019, text_align='center')
-
+        st.write(BD2019)
         # Crear un botón de descarga para el dataframe
         def download_button_CSV(df, filename, button_text):
             csv = df.to_csv(index=False)
@@ -313,7 +312,7 @@ with tab1:
 	# localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Masculino."
         Hombres2019=BD2019.loc[BD2019['Sexo']=="Mas"]
         del Hombres2019['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
-        st.write(Hombres2019, text_align='center') # Muestra el dataframe con datos de hombres.
+        st.write(Hombres2019) # Muestra el dataframe con datos de hombres.
 
         # Dividir la página en dos columnas
         col1, col2 = st.columns(2)
@@ -334,7 +333,7 @@ with tab1:
         """
         )
         
-        st.write(Hombres2019.describe(), text_align='center') # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
+        st.write(Hombres2019.describe()) # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
 
         st.markdown(
         """ 
@@ -344,7 +343,7 @@ with tab1:
 
         Mujeres2019=BD2019.loc[BD2019['Sexo']=="Fem"] # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Femenino."
         del Mujeres2019['Sexo']
-        st.write(Mujeres2019, text_align='center')
+        st.write(Mujeres2019)
 
         # Dividir la página en dos columnas
         col1, col2 = st.columns(2)
@@ -365,7 +364,7 @@ with tab1:
         """
         )
 
-        st.write(Mujeres2019.describe(), text_align='center') # dEscripcion del Dataframe de "Mujeres"
+        st.write(Mujeres2019.describe()) # dEscripcion del Dataframe de "Mujeres"
 	
 	
 	
