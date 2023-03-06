@@ -418,27 +418,27 @@ with tab1:
         from operator import index
         Xindep=df2019BS.loc[df2019BS['Int_Barthel']==0.0]
         Xindepset=set(df2019BS.loc[df2019BS['Int_Barthel']==0.0].index)
-        Xindepset
+        st.write("Los pacientes con un diagnostico de dependencia nula son:", Xindepset)
         
         from operator import index
         Xdepl=df2019BS.loc[df2019BS['Int_Barthel']==1.0]
         Xdeplset=set(df2019BS.loc[df2019BS['Int_Barthel']==1.0].index)
-        Xdeplset
+        st.write("Los pacientes con un diagnostico de dependencia leve son:", Xdeplset)
         
         from operator import index
         Xdepm=df2019BS.loc[df2019BS['Int_Barthel']==2.0]
         Xdepmset=set(df2019BS.loc[df2019BS['Int_Barthel']==2.0].index)
-        Xdepmset
+        st.write("Los pacientes con un diagnostico de dependencia moderada son:", Xdepmset)
         
         from operator import index
         Xdeps=df2019BS.loc[df2019BS['Int_Barthel']==3.0]
         Xdepsset=set(df2019BS.loc[df2019BS['Int_Barthel']==3.0].index)
-        Xdepsset
+        st.write("Los pacientes con un diagnostico de dependencia severa son:", Xdepsset)
         
         from operator import index
         Xdept=df2019BS.loc[df2019BS['Int_Barthel']==4.0]
         Xdeptset=set(df2019BS.loc[df2019BS['Int_Barthel']==4.0].index)
-        Xdeptset
+        st.write("Los pacientes con un diagnostico de dependencia total son:", Xdeptset)
         
         fig, ax = plt.subplots(figsize=[14, 12])
         Xindep.hist(ax=ax)
