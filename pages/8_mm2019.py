@@ -1168,8 +1168,7 @@ with tabs3:
             rules += [rule]
         return rules
 
-#class_names = BD2018['target'].unique().astype(str)#fff
-#class_names = BD2018.columns[-1].unique().astype(str)
+
     class_names = ['0', '1', '2']
     rules = get_rules(clf, BD2019.columns[2:-2].tolist(), BD2019.columns[-1])
     for r in rules:
@@ -1267,20 +1266,20 @@ with tabs3:
     feature2 = st.sidebar.selectbox('Second feature', X.columns)
 
     # plot the decision surface based on the selected features
+    fig, axes = plt.subplots(nrows = 1,ncols = 1,figsize = (8,8), dpi=300)
     plot_decision_surface(X, y, feature1, feature2)
-
     # display the plot in Streamlit
-    st.pyplot()
+    plt.show()
+    st.pyplot(fig)
+
+
+
     
     import pandas as pd
     from sklearn.ensemble import RandomForestClassifier
     from sklearn.model_selection import train_test_split
     from sklearn.metrics import accuracy_score
 
-    # Cargar el dataset
-    #iris = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
-    # Asignar nombres a las columnas
-    #iris.columns = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'class']
 
     # Separar el conjunto de entrenamiento y de prueba
  
@@ -1324,9 +1323,6 @@ with tabs3:
     
     # Graficar matriz de confusión
     cf=confusion_matrix(y_test, y_pred)
-    #plot_confusion_matrix()
-    #plt.title("Matriz de confusión")
-    #st.pyplot()
     st.write("Matriz de confusión",cf)
 
     import seaborn as sns
