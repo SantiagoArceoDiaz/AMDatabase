@@ -381,8 +381,8 @@ with tab1:
         df2019 = df2019.dropna() #quita las filas que tengan NaN en algun valor
         df2019
         
-	df2019Hombres=df2019.loc[df2019['Sexo']==2.0]
-	df2019Mujeres=df2019.loc[df2019['Sexo']==1.0]
+        df2019Hombres=df2019.loc[df2019['Sexo']==2.0]
+        df2019Mujeres=df2019.loc[df2019['Sexo']==1.0]
 	
         st.markdown("""
         El test de Cronbach permite evaluar la confiabilidad de las respuestas de los pacientes al cuestionario. De acuerdo al test de Cronbach, la confiabilidad del cuestionario es:
@@ -397,7 +397,7 @@ with tab1:
                    )
         CrH=pg.cronbach_alpha(data=df2019Hombres[['B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete','B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina']])
         st.write("Nivel de confiabilidad para las respuestas de los pacientes de genero masculino", CrH)
-	CrM=pg.cronbach_alpha(data=df2019Mujeres[['B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete','B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina']])
+        CrM=pg.cronbach_alpha(data=df2019Mujeres[['B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete','B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina']])
         st.write("Nivel de confiabilidad para las respuestas de los pacientes de genero masculino", CrM)
 
 
