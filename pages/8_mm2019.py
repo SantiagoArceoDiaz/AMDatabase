@@ -446,7 +446,7 @@ with tab1:
         plt.savefig("Xindep2019.png", bbox_inches='tight', dpi=300)
 
         # Mostrar figura en Streamlit
-        st.write("Histograma de la variable independiente X")
+        st.write("Histogramas de los puntajes obtenidos en cada pregunta para pacientes diagnosticados como independientes")
         st.pyplot(Independientes)
 
         # Prepare file for download.
@@ -468,7 +468,7 @@ with tab1:
         plt.savefig("Xdepl2019.png", bbox_inches='tight', dpi=300)
 
         # Mostrar figura en Streamlit
-        st.write("Histograma de la variable independiente X")
+        st.write("Histogramas de los puntajes obtenidos en cada pregunta para pacientes diagnosticados con dependencia leve")
         st.pyplot(Dependientesleves)
  
 	
@@ -491,7 +491,7 @@ with tab1:
         plt.savefig("Xdepm2019.png", bbox_inches='tight', dpi=300)
 
         # Mostrar figura en Streamlit
-        st.write("Histograma de la variable independiente X")
+        st.write("Histogramas de los puntajes obtenidos en cada pregunta para pacientes diagnosticados con dependencia moderada")
         st.pyplot(Dependientesmoderado)
 
         # Prepare file for download.
@@ -513,7 +513,7 @@ with tab1:
         plt.savefig("Xdeps2019.png", bbox_inches='tight', dpi=300)
 
         #Mostrar figura en Streamlit
-        st.write("Histograma de la variable independiente X")
+        st.write("Histogramas de los puntajes obtenidos en cada pregunta para pacientes diagnosticados con dependencia severa")
         st.pyplot(Dependientesseveros)
 
 	
