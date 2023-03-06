@@ -204,7 +204,7 @@ with tab1:
             mime="image/png")
 	
 	
-	st.write(BD2019, text_align='center')
+        st.write(BD2019, text_align='center')
 
 	
 
