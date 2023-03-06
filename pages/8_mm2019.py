@@ -1307,11 +1307,14 @@ with tabs3:
     
     # Graficar importancia de características
     
-    
+   
+
     feature_importances = pd.Series(classifier.feature_importances_, index=X_train.columns)
     importancia = feature_importances.plot(kind='barh')
     plt.title("Importancia de características")
-    st.pyplot(importancia)
+    fig = plt.figure()
+    st.pyplot(fig)
+
  
 
     
@@ -1322,7 +1325,7 @@ with tabs3:
     st.pyplot()
 #########################333
 
-    st.set_option('deprecation.showPyplotGlobalUse', False)
+    #st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 ###################333
