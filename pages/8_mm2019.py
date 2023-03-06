@@ -1652,7 +1652,7 @@ with tabs4:
            df_name = f'df_{idx}'
            globals()[df_name] = dfBS.loc[conjunto]
            df = globals()[df_name]
-           cols = df.columns[3:]
+           cols = df.columns[3:-1]
            valores = df[cols].mean().values.tolist()
            valores.append(valores[0])
            angles = [n / float(len(cols)) * 2 * np.pi for n in range(len(cols))]
