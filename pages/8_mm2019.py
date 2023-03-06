@@ -1189,7 +1189,7 @@ with tabs3:
 
 
     # get feature and target columns
-    X = BD2019.iloc[:, 1:-2]
+    X = BD2019.iloc[:, 2:-2]
     y = BD2019.iloc[:, -2]
 
     # define number of columns and plots per column
