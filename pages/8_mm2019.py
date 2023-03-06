@@ -498,6 +498,55 @@ with tab1:
         #Mostrar figura en Streamlit
         st.write("Histograma de la variable independiente X")
         st.pyplot(fig)
+	
+	############
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepl.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdepl2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+        st.download_button(
+            label="Descargar gráfica",
+            data="Xdepl2019.png",
+            file_name="Xdepl2019.png",
+            mime="image/png")
+
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdepm.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdepm2019.png", bbox_inches='tight', dpi=300)
+
+        # Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+        st.download_button(
+            label="Descargar gráfica",
+            data="Xdepm2019.png",
+            file_name="Xdepm2019.png",
+            mime="image/png")
+
+        fig, ax = plt.subplots(figsize=[14, 12])
+        Xdeps.hist(ax=ax)
+
+        # Guardar figura
+        plt.savefig("Xdeps2019.png", bbox_inches='tight', dpi=300)
+
+        #Mostrar figura en Streamlit
+        st.write("Histograma de la variable independiente X")
+        st.pyplot(fig)
+        st.download_button(
+            label="Descargar gráfica",
+            data="Xdeps2019.png",
+            file_name="Xdeps2019.png",
+            mime="image/png")
+
+	
+	
 	############################################################################################################################################
 	
 with tab2:
