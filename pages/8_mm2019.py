@@ -278,7 +278,7 @@ with tab1:
 
         # Agrega el conteo de individuos de cada categoría dentro de la gráfica de pastel
         for i, v in enumerate(values):
-            ax.text(i - 0.1, -0.1, str(v), fontsize=12)
+            ax.text(i - 0.1, -0.1, str(v), fontsize=10)
 
         # Muestra la gráfica en Streamlit
         st.pyplot(fig)
