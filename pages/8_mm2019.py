@@ -257,7 +257,7 @@ with tab1:
 	# localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Masculino."
         Hombres2019=BD2019.loc[BD2019['Sexo']=="Mas"]
         del Hombres2019['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
-        Hombres2019 # Muestra el dataframe con datos de hombres.
+        st.write(Hombres2019, text_align='center') # Muestra el dataframe con datos de hombres.
 
         
         st.write(Hombres2019.describe(), text_align='center') # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
@@ -270,7 +270,7 @@ with tab1:
 
         Mujeres2019=BD2019.loc[BD2019['Sexo']=="Fem"] # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Femenino."
         del Mujeres2019['Sexo']
-        Mujeres2019
+        st.write(Mujeres2019, text_align='center')
 
         st.markdown(
         """ 
