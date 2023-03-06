@@ -328,7 +328,7 @@ with tab1:
             download_button_CSV(Hombres2019, 'dataframe.csv', 'Descargar como CSV')
             st.write('')
 	
-	st.markdown(
+        st.markdown(
         """ 
         Este es el resumen estadistico de la muestra de hombres
         """
@@ -359,7 +359,7 @@ with tab1:
             download_button_CSV(Mujeres2019, 'dataframe.csv', 'Descargar como CSV')
             st.write('')
 	
-	st.markdown(
+        st.markdown(
         """ 
         Este es el resumen estadistico de la muestra de hombres
         """
