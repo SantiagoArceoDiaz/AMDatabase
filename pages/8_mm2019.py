@@ -261,6 +261,12 @@ with tab1:
                 file_name=dfn,
                 mime="image/png")
 
+        st.markdown(
+        """ 
+        La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+        """
+        )
+	
 	# localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Masculino."
         Hombres2019=BD2019.loc[BD2019['Sexo']=="Mas"]
         del Hombres2019['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
@@ -281,7 +287,6 @@ with tab1:
         )
 
         Mujeres2019=BD2019.loc[BD2019['Sexo']=="Fem"] # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Femenino."
-
         del Mujeres2019['Sexo']
         Mujeres2019
 
