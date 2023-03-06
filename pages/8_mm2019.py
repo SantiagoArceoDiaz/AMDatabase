@@ -262,7 +262,7 @@ with tab1:
                 mime="image/png")
 
     with tab2:
-	st.markdown(
+        st.markdown(
         """ 
         # Resumen estadistico de la muestra
         Este es un resumen con la estadistica básica de la muestra. Contiene ocho filas que describen estadísticas clave para la base de datos.
@@ -290,8 +290,8 @@ with tab1:
         SetdfBarth2019=set(Listadf2019) # crea un conjunto a partir de la lista de usuarios de 2019   
         
         df2019BS=df2019[['Nombre','Sexo','Edad','B.Comer', 'B.Silla', 'B.Aseo', 'B.Retrete',
-       'B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina',
-       'Int_Barthel']]
+        'B.Ducha', 'B.Desplaz', 'B.Escal', 'B.Vestirse', 'B.Heces', 'B.Orina',
+        'Int_Barthel']]
         
         from operator import index
         Xindep=df2019BS.loc[df2019BS['Int_Barthel']==0.0]
@@ -385,7 +385,7 @@ with tab2:
         # Sobre la muestra
         Se depuro la muestra para eliminar aquellos registros que presentaban informacion incompleta. En las siguientes secciones se presentan dos diferentes tipos de bases de datos: una en la que se incluyen los resultados generales de diversas pruebas y otra en la que se muestran los resultados del test de Barthel.
         """        
-    )
+        )
 	
 with tab3:
    
@@ -394,7 +394,7 @@ with tab3:
         # Sobre la muestra
         Se depuro la muestra para eliminar aquellos registros que presentaban informacion incompleta. En las siguientes secciones se presentan dos diferentes tipos de bases de datos: una en la que se incluyen los resultados generales de diversas pruebas y otra en la que se muestran los resultados del test de Barthel.
         """        
-    )
+        )
 	
 with tab4:
    
@@ -403,7 +403,7 @@ with tab4:
         # Sobre la muestra
         Se depuro la muestra para eliminar aquellos registros que presentaban informacion incompleta. En las siguientes secciones se presentan dos diferentes tipos de bases de datos: una en la que se incluyen los resultados generales de diversas pruebas y otra en la que se muestran los resultados del test de Barthel.
         """        
-    )
+        )
 	
 	
 	
