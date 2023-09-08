@@ -61,7 +61,7 @@ Setdf2018=set(Listadf2018) # convierte la lista en un conjunto (para su manejo p
 st.markdown(
     """ 
     # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    La muestra se compone de 263 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. Sin embargo, en muchos casos, la información recolectada presentaba registros incompletos. **La muestra depurada es de 152 indiviudos**. Para todos los individuos en la muestra depurada se cuenta datoso sobre: **sexo, edad, índice mininutricional, fuerza de brazo, contenido de proteinas en sangre e índice de Barthel**. A continuación se muestra la base de datos de los participantes. 
     """
     )
 
@@ -77,6 +77,67 @@ BD2018=ddf2018[['Nombre','Sexo','Edad', 'MNA', 'Fuerza','Proteinas','BARTHEL', '
 #BD2018 # Cambia el orden de las columnas y se guarda como una base de datos nueva.
 
 df=BD2018
+
+# Crear una barra de búsqueda en la barra lateral
+#search_term = st.sidebar.text_input('Buscar')
+
+# Filtrar el dataframe en función del término de búsqueda
+#if search_term:
+#    df = df.query(f"Nombre.str.contains('{search_term}')")
+
+# Mostrar el dataframe filtrado
+#st.write(df)
+
+# Seleccionar las columnas que quieres filtrar
+#columnas = ['Edad', 'Sexo', 'MNA', 'Prom_Fuer', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
+
+## Crear una barra de búsqueda para cada columna en la barra lateral
+##for col in columnas:
+#    # Obtener los valores únicos en la columna y ordenarlos
+#    valores = sorted(BD2018[col].unique())
+#    # Crear una barra de selección para cada valor único en la columna
+#    seleccion = st.sidebar.multiselect(col, valores, default=valores)
+#    # Filtrar el dataframe en función de los valores seleccionados en la columna
+#    BD2018 = BD2018[BD2018[col].isin(seleccion)]
+
+## Cambiar el orden de las columnas y guardar como una base de datos nueva.
+#BD2018 = BD2018[['Nombre', 'Edad', 'Sexo', 'MNA', 'Prom_Fuer', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+
+## Crear una barra de búsqueda en la barra lateral
+#search_term = st.sidebar.text_input('Buscar')
+
+# Filtrar el dataframe en función del término de búsqueda
+#if search_term:
+#    BD2018 = BD2018[BD2018['Nombre'].str.contains(search_term)]
+
+# Mostrar el dataframe filtrado
+#st.write(BD2018)
+
+# Seleccionar las columnas que quieres filtrar
+#columnas = ['Edad', 'Sexo', 'MNA', 'Fuerza promedio', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
+
+## Crear una barra de búsqueda para cada columna en la barra lateral
+#for col in columnas:
+#    # Obtener el rango de valores en la columna
+#    valores_min = BD2018[col].min()
+#    valores_max = BD2018[col].max()
+#    # Crear una barra de selección para el rango de valores en la columna
+#    seleccion = st.sidebar.slider(col, valores_min, valores_max, (valores_min, valores_max))
+#    # Filtrar el dataframe en función de los valores seleccionados en la columna
+#    BD2018 = BD2018[(BD2018[col] >= seleccion[0]) & (BD2018[col] <= seleccion[1])]
+
+## Cambiar el orden de las columnas y guardar como una base de datos nueva.
+#BD2018 = BD2018[['Nombre', 'Edad', 'Sexo', 'MNA', 'Prom_Fuer', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+
+# Crear una barra de búsqueda en la barra lateral
+#search_term = st.sidebar.text_input('Buscar')
+
+# Filtrar el dataframe en función del término de búsqueda
+#if search_term:
+#    BD2018 = BD2018[BD2018['Nombre'].str.contains(search_term)]
+
+# Mostrar el dataframe filtrado
+#st.write(BD2018)
 
 # Seleccionar las columnas que quieres filtrar
 columnas = ['Edad', 'Sexo', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
@@ -101,6 +162,24 @@ for col in columnas:
         BD2018 = BD2018[(BD2018[col] >= seleccion[0]) & (BD2018[col] <= seleccion[1])]
 
 st.write(BD2018)
+
+
+# Cambiar el orden de las columnas y guardar como una base de datos nueva.
+#BD2018 = BD2018[['Nombre', 'Edad', 'Sexo', 'MNA', 'Fuerza promedio', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
+
+# Crear una barra de búsqueda en la barra lateral
+#search_term = st.sidebar.text_input('Buscar')
+
+# Filtrar el dataframe en función del término de búsqueda
+#if search_term:
+#    BD2018 = BD2018[BD2018['Nombre'].str.contains(search_term)]
+
+# Mostrar el dataframe filtrado
+
+#st.write(print(BD2018.dtypes))
+
+
+
 
 
 # Crear un botón de descarga para el dataframe
@@ -140,16 +219,16 @@ with col2:
 
 st.markdown(
     """ 
-    # Diagrama de venn 👋
-    La muestra de recolectada en 2018 representa compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    # Diagrama de venn 
+    Representativamente, **la muestra depurada de 2018, representa el 58 por ciento** del total de pacientes registrados ese año.  
     """
     )
 
 # crea un diagrama de Venn en donde podemos ver los usuarios que tienen en común la base de datos de 2018 y la de edades registradas
 fig, ax = plt.subplots(figsize=(2,2))
-venn2018=venn2([Setdf2018, SetDBEdades], set_labels = ('Base de datos de 2018', 'Usuarios con edad registrada'), set_colors=('red','blue'))
+venn2018=venn2([Setdf2018, SetDBEdades], set_labels = ('Muestra depurada', 'Muestra total de 2018'), set_colors=('red','blue'))
 st.pyplot(fig)
-st.caption("Figura de la comparación entre usuarios en la base de datos de 2018 y usuarios con edad registrada.")
+st.caption("**Figura 1:** Diagrama de venn en la que se muestra el tamaño relativo de la muestra depurada, en comparación con el total de pacientes registrados en 2018.")
 
 
 st.markdown(
@@ -177,6 +256,49 @@ st.markdown(
     """
     )
 
+BD2018cat=BD2018.copy()
+### Categorizacion
+
+# Definimos una función para aplicar a cada valor de la columna MNA
+def categorizar_mna(valor):
+    if valor < 17:
+        return 0
+    elif valor >= 17 and valor <= 23.5:
+        return 1
+    else:
+        return 2
+
+def categorizar_fza(valor):
+    if valor < 17:
+        return 0
+    elif valor >= 17 and valor <= 23.5:
+        return 1
+    else:
+        return 2
+
+# Definimos una función para aplicar a cada valor de la columna MNA y genero
+def categorizar_fza_genero(valor, sexo):
+    if sexo == 'Mas':
+        if valor > 29.99:
+            return 0
+        else:
+            return 1
+    elif sexo == 'Fem':
+        if valor > 19.99:
+            return 0
+        else:
+            return 1
+
+
+
+# Aplicamos la función a cada valor de la columna MNA utilizando apply()
+BD2018cat['MNA'] = BD2018cat['MNA'].apply(categorizar_mna)
+BD2018cat['Fuerza'] = BD2018cat.apply(lambda x: categorizar_fza_genero(x['Fuerza'], x['Sexo']), axis=1)
+#BD2018cat
+# Mostramos el DataFrame resultante
+#print(df)
+
+###
 
 # Escribe un archivo de excel que contine a BD2018
 BD2018Depurada = pd.ExcelWriter('BD2018Depurada.xlsx')
@@ -184,6 +306,7 @@ BD2018.to_excel(BD2018Depurada) #convierte BD2018 en un archivo de excel
 BD2018Depurada.save() #guarda el archivo de excel en el directorio local
 #from google.colab import files
 #files.download('BD2018Depurada.xlsx') 
+
 
 
 
@@ -208,12 +331,11 @@ st.markdown(
     """
     )
 
-
-
+#alt.themes.set_config(width='30em')
 
 
 chart1=altcat.catplot(BD2018,
-               height=350,
+               height=400,
                width=450,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
@@ -233,7 +355,7 @@ chart1=altcat.catplot(BD2018,
               jitter_width=0.5).interactive()
 
 chart2=altcat.catplot(BD2018,
-               height=350,
+               height=400,
                width=450,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
@@ -252,8 +374,9 @@ chart2=altcat.catplot(BD2018,
                transform='jitterbox',
               jitter_width=0.5).interactive()
 
+
 chart4=altcat.catplot(BD2018,
-               height=350,
+               height=400,
                width=450,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
@@ -273,8 +396,9 @@ chart4=altcat.catplot(BD2018,
               jitter_width=0.5).interactive()
 
 
+
 chart6=altcat.catplot(BD2018,
-               height=350,
+               height=400,
                width=450,
                mark='point',
                box_mark=dict(strokeWidth=2, opacity=0.6),
@@ -295,7 +419,6 @@ chart6=altcat.catplot(BD2018,
 
 
 cajas2018=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart4, chart6))
-
 st.altair_chart(cajas2018)
 
 
@@ -312,7 +435,7 @@ chart1 = alt.Chart(BD2018).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=400, width=500
+    height=350, width=450
 ).add_selection(
     selection
 ).interactive()
@@ -329,7 +452,7 @@ chart2 = alt.Chart(BD2018).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=400, width=500
+    height=350, width=450
 ).add_selection(
     selection
 ).interactive()
@@ -348,7 +471,7 @@ chart3 = alt.Chart(BD2018).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=400, width=500
+    height=350, width=450
 ).add_selection(
     selection
 ).interactive()
@@ -400,7 +523,7 @@ chart6 = alt.Chart(BD2018).mark_circle(size=50).encode(
     ],
     opacity=alt.condition(selection, alt.value(1), alt.value(0))
 ).properties(
-    height=400, width=500
+    height=350, width=450
 ).add_selection(
     selection
 ).interactive()
@@ -428,8 +551,8 @@ st.altair_chart(correlaciones2018)
 
 st.markdown(
     """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    # Sub muestra de hombres
+    A continuación se muestra la base de datos de los participantes de género masculino
     """
     )
 
@@ -438,36 +561,29 @@ Hombres2018=BD2018.loc[BD2018['Sexo']=="Mas"]
 del Hombres2018['Sexo'] #Borra la columna de "Sexo", ya que es innecesaria
 Hombres2018 # Muestra el dataframe con datos de hombres.
 
-st.markdown(
-    """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-    """
-    )
+# Dividir la página en dos columnas
+col1, col2 = st.columns(2)
 
-Hombres2018.describe() # Crea un resumen estadistico sobre el dataframe "Hombres 2018".
+# Agregar un botón de descarga para el dataframe en la primera columna
+with col1:
+    download_button(Hombres2018, 'dataframe.xlsx', 'Descargar como Excel')
+    st.write('')
 
-st.markdown(
-    """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
-    """
-    )
+# Agregar un botón de descarga para el dataframe en la segunda columna
+with col2:
+    download_button_CSV(Hombres2018, 'dataframe.csv', 'Descargar como CSV')
+    st.write('')
 
-Mujeres2018=BD2018.loc[BD2018['Sexo']=="Fem"] # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Femenino."
-
-del Mujeres2018['Sexo']
-Mujeres2018
 
 st.markdown(
     """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    Resumen estadístico de la sub-muestra de hombres 
     """
     )
 
-Mujeres2018.describe() # dEscripcion del Dataframe de "Mujeres"
+DescripcionHombres2018=Hombres2018.describe() # Crea un resumen con la estadistica de de la base de datos para 2018
 
+st.dataframe(DescripcionHombres2018.style.set_properties(**{'text-align': 'center'}))
 
 # En el siguiente bloque se separa por rangos de edad de 10 años al subgrupo de "Hombres". 
 # En algunos casos no hay miembros registrados que cumplan con el rango de edad requerido, por lo que los
@@ -484,103 +600,91 @@ del Hombres201890['Sexo']
 Hombres2018100=BD2018.loc[((BD2018['Edad'] > 90) & (BD2018['Sexo'] == 'Mas'))]
 del Hombres2018100['Sexo']
 
+st.markdown(
+    """ 
+    Hombres menores de 70 años
+    A continuación se muestra la base de datos de los participantes de género femenino.
+    """
+    )
+Hombres201870
 
+# Dividir la página en dos columnas
+col1, col2 = st.columns(2)
 
-#Hombres201860
-#Hombres201870
-#Hombres201880
-#Hombres201890
-#Hombres2018100
+# Agregar un botón de descarga para el dataframe en la primera columna
+with col1:
+    download_button(Hombres201870, 'dataframe.xlsx', 'Descargar como Excel')
+    st.write('')
 
+# Agregar un botón de descarga para el dataframe en la segunda columna
+with col2:
+    download_button_CSV(Hombres201870, 'dataframe.csv', 'Descargar como CSV')
+    st.write('')
 
-
-Mujeres201860=BD2018.loc[((BD2018['Edad']<=60) & (BD2018['Sexo']=='Fem'))]
-del Mujeres201860['Sexo']
-Mujeres201870=BD2018.loc[((BD2018['Edad'] >60) & (BD2018['Edad']<=70) & (BD2018['Sexo']=='Fem'))]
-del Mujeres201870['Sexo']
-Mujeres201880=BD2018.loc[((BD2018['Edad'] >70) & (BD2018['Edad']<=80) & (BD2018['Sexo']=='Fem'))]
-del Mujeres201880['Sexo']
-Mujeres201890=BD2018.loc[((BD2018['Edad'] >80) & (BD2018['Edad']<=90) & (BD2018['Sexo']=='Fem'))]
-del Mujeres201890['Sexo']
-Mujeres2018100=BD2018.loc[((BD2018['Edad'] >90) & (BD2018['Sexo']=='Fem'))]
-del Mujeres2018100['Sexo']
-
-
-
-#Mujeres201860
-#Mujeres201870
-#Mujeres201880
-#Mujeres201890
-#Mujeres2018100
 
 st.markdown(
     """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    Hombres menores de 80 años
+    A continuación se muestra la base de datos de los participantes de género femenino.
     """
     )
 
-#import pandas as pd
-#import seaborn as sns
-#import matplotlib.pyplot as plt
-# Creamos una correlación desde un dataset D
+Hombres201880
+
+# Dividir la página en dos columnas
+col1, col2 = st.columns(2)
+
+# Agregar un botón de descarga para el dataframe en la primera columna
+with col1:
+    download_button(Hombres201880, 'dataframe.xlsx', 'Descargar como Excel')
+    st.write('')
+
+# Agregar un botón de descarga para el dataframe en la segunda columna
+with col2:
+    download_button_CSV(Hombres201880, 'dataframe.csv', 'Descargar como CSV')
+    st.write('')
+
+st.markdown(
+    """ 
+    Hombres menores de 90 años
+    A continuación se muestra la base de datos de los participantes de género femenino.
+    """
+    )
+Hombres201890
+
+# Dividir la página en dos columnas
+col1, col2 = st.columns(2)
+
+# Agregar un botón de descarga para el dataframe en la primera columna
+with col1:
+    download_button(Hombres201890, 'dataframe.xlsx', 'Descargar como Excel')
+    st.write('')
+
+# Agregar un botón de descarga para el dataframe en la segunda columna
+with col2:
+    download_button_CSV(Hombres201890, 'dataframe.csv', 'Descargar como CSV')
+    st.write('')
+
+
+
+st.markdown(
+    """ 
+    Mapas de calor
+    """
+    )
+
+
 corr = Hombres201870.corr().loc[:'BARTHEL', :"BARTHEL"]
-
-# Dibujamos nuestro gráfico
 sns.heatmap(corr)
 plt.show()
-#st.seaborn(Barras2018)
 
 
-
-#import pandas as pd
-#import seaborn as sns
-#import matplotlib.pyplot as plt
-# Creamos una correlación desde un dataset D
 corr = Hombres201880.corr().loc[:'BARTHEL', :"BARTHEL"]
-
-# Dibujamos nuestro gráfico
 sns.heatmap(corr)
 plt.show()
 
 
-
-# importing libraries
-import altair as alt
-from vega_datasets import data
-  
-# importing airports dataset from vega_datasets package
-# airport = data.airports()
-  
-# making the scatter plot on latitude and longitude
-# setting color on the basis of country
-fig = alt.Chart(Hombres201870).mark_point().encode(
-  x='Edad',y='Proteinas')
-  
-# making the regression line using transform_regression
-# function and add with the scatter plot
-final_plot = fig + fig.transform_regression('latitude','longitude').mark_line()
-  
-# saving the scatter plot with regression line
-st.altair_chart(final_plot)
-
-
-
-# Creamos una correlación desde un dataset D
-corr = Hombres201880.corr().loc[:'BARTHEL', :"BARTHEL"]
-
-# Dibujamos nuestro gráfico
-sns.heatmap(corr)
-plt.show()
-
-
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-# Creamos una correlación desde un dataset D
 corr = Hombres201890.corr().loc[:'BARTHEL', :"BARTHEL"]
-
-# Dibujamos nuestro gráfico
 sns.heatmap(corr)
 plt.show()
 
@@ -611,12 +715,141 @@ sns.heatmap(data=Hombres201890.corr().loc[:'BARTHEL', :"BARTHEL"], ax=ax3, cmap 
 st.pyplot(CalorHombres2018)
 
 
+
 st.markdown(
     """ 
-    # Descripcion de la muestra 👋
-    La muestra se compone de 152 adultos mayores, residentes de casas de asistencia. Las pruebas se realizaron durante múltiples visitas en el año 2018. A cada uno de los pacientes que se muestran se le realizaron pruebas antropométricas, el índice de Barthel, índice mininutricional, además de pruebas sobre el contenido de proteinas en sangre. A continuación se muestra la base de datos de los participantes. 
+    # Sub muestra de mujeres
+    A continuación se muestra la base de datos de los participantes de género femenino.
     """
     )
+
+Mujeres2018=BD2018.loc[BD2018['Sexo']=="Fem"] # localiza a todos los miembros de BD2018 que cumplen con la condicion de "Sexo" = "Femenino."
+
+del Mujeres2018['Sexo']
+Mujeres2018
+
+# Dividir la página en dos columnas
+col1, col2 = st.columns(2)
+
+# Agregar un botón de descarga para el dataframe en la primera columna
+with col1:
+    download_button(Mujeres2018, 'dataframe.xlsx', 'Descargar como Excel')
+    st.write('')
+
+# Agregar un botón de descarga para el dataframe en la segunda columna
+with col2:
+    download_button_CSV(Mujeres2018, 'dataframe.csv', 'Descargar como CSV')
+    st.write('')
+
+
+st.markdown(
+    """ 
+    Resumen estadístico de la sub-muestra de mujeres
+    """
+    )
+
+DescripcionMujeres2018=Mujeres2018.describe() # Crea un resumen con la estadistica de de la base de datos para 2018
+
+st.dataframe(DescripcionMujeres2018.style.set_properties(**{'text-align': 'center'}))
+
+
+Mujeres201860=BD2018.loc[((BD2018['Edad']<=60) & (BD2018['Sexo']=='Fem'))]
+del Mujeres201860['Sexo']
+Mujeres201870=BD2018.loc[((BD2018['Edad'] >60) & (BD2018['Edad']<=70) & (BD2018['Sexo']=='Fem'))]
+del Mujeres201870['Sexo']
+Mujeres201880=BD2018.loc[((BD2018['Edad'] >70) & (BD2018['Edad']<=80) & (BD2018['Sexo']=='Fem'))]
+del Mujeres201880['Sexo']
+Mujeres201890=BD2018.loc[((BD2018['Edad'] >80) & (BD2018['Edad']<=90) & (BD2018['Sexo']=='Fem'))]
+del Mujeres201890['Sexo']
+Mujeres2018100=BD2018.loc[((BD2018['Edad'] >90) & (BD2018['Sexo']=='Fem'))]
+del Mujeres2018100['Sexo']
+
+
+st.markdown(
+    """ 
+    Mujeres menores de 60 años
+    """
+    )
+Mujeres201860
+# Dividir la página en dos columnas
+col1, col2 = st.columns(2)
+
+# Agregar un botón de descarga para el dataframe en la primera columna
+with col1:
+    download_button(Mujeres201860, 'dataframe.xlsx', 'Descargar como Excel')
+    st.write('')
+
+# Agregar un botón de descarga para el dataframe en la segunda columna
+with col2:
+    download_button_CSV(Mujeres201860, 'dataframe.csv', 'Descargar como CSV')
+    st.write('')
+
+
+st.markdown(""" 
+    Mujeres menores de 70 años
+    """)
+Mujeres201870
+# Dividir la página en dos columnas
+col1, col2 = st.columns(2)
+
+# Agregar un botón de descarga para el dataframe en la primera columna
+with col1:
+    download_button(Mujeres201870, 'dataframe.xlsx', 'Descargar como Excel')
+    st.write('')
+
+# Agregar un botón de descarga para el dataframe en la segunda columna
+with col2:
+    download_button_CSV(Mujeres201870, 'dataframe.csv', 'Descargar como CSV')
+    st.write('')
+
+
+
+st.markdown(
+    """ 
+    Mujeres menores de 80 años
+    """
+    )
+Mujeres201880
+# Dividir la página en dos columnas
+col1, col2 = st.columns(2)
+
+# Agregar un botón de descarga para el dataframe en la primera columna
+with col1:
+    download_button(Mujeres201880, 'dataframe.xlsx', 'Descargar como Excel')
+    st.write('')
+
+# Agregar un botón de descarga para el dataframe en la segunda columna
+with col2:
+    download_button_CSV(Mujeres201880, 'dataframe.csv', 'Descargar como CSV')
+    st.write('')
+
+
+
+st.markdown(
+    """ 
+    Mujeres menores de 90 años
+    """
+    )
+Mujeres201890
+
+# Dividir la página en dos columnas
+col1, col2 = st.columns(2)
+
+# Agregar un botón de descarga para el dataframe en la primera columna
+with col1:
+    download_button(Mujeres201890, 'dataframe.xlsx', 'Descargar como Excel')
+    st.write('')
+
+# Agregar un botón de descarga para el dataframe en la segunda columna
+with col2:
+    download_button_CSV(Mujeres201890, 'dataframe.csv', 'Descargar como CSV')
+    st.write('')
+
+
+st.markdown(
+    """ 
+    Mapas de calor
+    """)
 
 
 
