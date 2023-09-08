@@ -5,7 +5,7 @@ numpy
 matplotlib_venn
 matplotlib
 altair
-altair_catplot
+altair-catplot
 xlsxwriter
 datapane
 seaborn
