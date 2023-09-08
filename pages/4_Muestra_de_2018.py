@@ -78,67 +78,6 @@ BD2018=ddf2018[['Nombre','Sexo','Edad', 'MNA', 'Fuerza','Proteinas','BARTHEL', '
 
 df=BD2018
 
-# Crear una barra de búsqueda en la barra lateral
-#search_term = st.sidebar.text_input('Buscar')
-
-# Filtrar el dataframe en función del término de búsqueda
-#if search_term:
-#    df = df.query(f"Nombre.str.contains('{search_term}')")
-
-# Mostrar el dataframe filtrado
-#st.write(df)
-
-# Seleccionar las columnas que quieres filtrar
-#columnas = ['Edad', 'Sexo', 'MNA', 'Prom_Fuer', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
-
-## Crear una barra de búsqueda para cada columna en la barra lateral
-##for col in columnas:
-#    # Obtener los valores únicos en la columna y ordenarlos
-#    valores = sorted(BD2018[col].unique())
-#    # Crear una barra de selección para cada valor único en la columna
-#    seleccion = st.sidebar.multiselect(col, valores, default=valores)
-#    # Filtrar el dataframe en función de los valores seleccionados en la columna
-#    BD2018 = BD2018[BD2018[col].isin(seleccion)]
-
-## Cambiar el orden de las columnas y guardar como una base de datos nueva.
-#BD2018 = BD2018[['Nombre', 'Edad', 'Sexo', 'MNA', 'Prom_Fuer', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
-
-## Crear una barra de búsqueda en la barra lateral
-#search_term = st.sidebar.text_input('Buscar')
-
-# Filtrar el dataframe en función del término de búsqueda
-#if search_term:
-#    BD2018 = BD2018[BD2018['Nombre'].str.contains(search_term)]
-
-# Mostrar el dataframe filtrado
-#st.write(BD2018)
-
-# Seleccionar las columnas que quieres filtrar
-#columnas = ['Edad', 'Sexo', 'MNA', 'Fuerza promedio', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
-
-## Crear una barra de búsqueda para cada columna en la barra lateral
-#for col in columnas:
-#    # Obtener el rango de valores en la columna
-#    valores_min = BD2018[col].min()
-#    valores_max = BD2018[col].max()
-#    # Crear una barra de selección para el rango de valores en la columna
-#    seleccion = st.sidebar.slider(col, valores_min, valores_max, (valores_min, valores_max))
-#    # Filtrar el dataframe en función de los valores seleccionados en la columna
-#    BD2018 = BD2018[(BD2018[col] >= seleccion[0]) & (BD2018[col] <= seleccion[1])]
-
-## Cambiar el orden de las columnas y guardar como una base de datos nueva.
-#BD2018 = BD2018[['Nombre', 'Edad', 'Sexo', 'MNA', 'Prom_Fuer', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
-
-# Crear una barra de búsqueda en la barra lateral
-#search_term = st.sidebar.text_input('Buscar')
-
-# Filtrar el dataframe en función del término de búsqueda
-#if search_term:
-#    BD2018 = BD2018[BD2018['Nombre'].str.contains(search_term)]
-
-# Mostrar el dataframe filtrado
-#st.write(BD2018)
-
 # Seleccionar las columnas que quieres filtrar
 columnas = ['Edad', 'Sexo', 'MNA', 'Fuerza', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']
 
@@ -162,24 +101,6 @@ for col in columnas:
         BD2018 = BD2018[(BD2018[col] >= seleccion[0]) & (BD2018[col] <= seleccion[1])]
 
 st.write(BD2018)
-
-
-# Cambiar el orden de las columnas y guardar como una base de datos nueva.
-#BD2018 = BD2018[['Nombre', 'Edad', 'Sexo', 'MNA', 'Fuerza promedio', 'Proteinas', 'BARTHEL', 'Int_BARTHEL']]
-
-# Crear una barra de búsqueda en la barra lateral
-#search_term = st.sidebar.text_input('Buscar')
-
-# Filtrar el dataframe en función del término de búsqueda
-#if search_term:
-#    BD2018 = BD2018[BD2018['Nombre'].str.contains(search_term)]
-
-# Mostrar el dataframe filtrado
-
-#st.write(print(BD2018.dtypes))
-
-
-
 
 
 # Crear un botón de descarga para el dataframe
@@ -331,26 +252,6 @@ chart2=altcat.catplot(BD2018,
                transform='jitterbox',
               jitter_width=0.5).interactive()
 
-#chart3=altcat.catplot(BD2018,
-#               height=350,
-#               width=450,
-#               mark='point',
-#               box_mark=dict(strokeWidth=2, opacity=0.6),
-#               whisker_mark=dict(strokeWidth=2, opacity=0.9),
-#               encoding=dict(x=alt.X('Sexo:N', title=None),
-#                             y=alt.Y('PuntajeZ:Q',scale=alt.Scale(zero=False)),
-#                             tooltip=[alt.Tooltip("Nombre Completo"),
-#                             alt.Tooltip("Edad"),
-#                             alt.Tooltip("Proteinas"),
-#                             alt.Tooltip("Prom_Fuer"),
-#                             alt.Tooltip("MNA"),
-#                             #alt.Tooltip("Marcha"),
-#                             alt.Tooltip("BARTHEL"),
-#                             ],
-#                             color=alt.Color('Sexo:N', legend=None)),
-#               transform='jitterbox',
-#              jitter_width=0.5).interactive()
-
 chart4=altcat.catplot(BD2018,
                height=350,
                width=450,
@@ -371,25 +272,6 @@ chart4=altcat.catplot(BD2018,
                transform='jitterbox',
               jitter_width=0.5).interactive()
 
-#chart5=altcat.catplot(BD2018,
-#               height=350,
-#               width=450,
-#               mark='point',
-#               box_mark=dict(strokeWidth=2, opacity=0.6),
-#               whisker_mark=dict(strokeWidth=2, opacity=0.9),
-#               encoding=dict(x=alt.X('Sexo:N', title=None),
-#                             y=alt.Y('Marcha:Q',scale=alt.Scale(zero=False)),
-#                             tooltip=[alt.Tooltip("Nombre Completo"),
-#                             alt.Tooltip("Edad"),
-#                             alt.Tooltip("Proteinas"),
-#                             alt.Tooltip("Prom_Fuer"),
-#                             alt.Tooltip("MNA"),
-#                             #alt.Tooltip("Marcha"),
-#                             alt.Tooltip("BARTHEL"),
-#                             ],
-#                             color=alt.Color('Sexo:N', legend=None)),
-#               transform='jitterbox',
-#              jitter_width=0.5).interactive()
 
 chart6=altcat.catplot(BD2018,
                height=350,
@@ -414,18 +296,6 @@ chart6=altcat.catplot(BD2018,
 
 cajas2018=alt.vconcat(alt.hconcat(chart1, chart2),alt.hconcat(chart4, chart6))
 
-#Barras2018, axes = plt.subplots(2, 2, figsize=(10, 10))
-#crear un histograma en cada subplot usando "seaborn"
-#sns.boxplot(data=df, x='team', y='points', ax=axes[0,0])
-#sns.boxplot(data=df, x='team', y='assists', ax=axes[0,1])
-#sn.histplot(BD2018['Edad'], ax=axes[0,0], kde=True,
-#                      line_kws={'linewidth': 2})
-#sn.histplot(BD2018['MNA'], ax=axes[0,1], kde=True,
-#                      line_kws={'linewidth': 2})
-#sn.histplot(BD2018['Prom_Fuer'], ax=axes[1,0], kde=True,
-#                      line_kws={'linewidth': 2})
-#sn.histplot(df2018['Proteinas'], ax=axes[1,1], kde=True,
-#                      line_kws={'linewidth': 2})
 st.altair_chart(cajas2018)
 
 
